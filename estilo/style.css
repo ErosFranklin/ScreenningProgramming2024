@@ -10,21 +10,22 @@
     --cor-1: #275AF2;
     --cor-2: #5079F2;
     --cor-3: #035AA6;
-    --cor-4: #034C8C;
+    --cor-4: #0050b8;
     --cor-5: #023059;
     --cor-text: #fff;
 }
 
 body{
-    background-image: url("../imagens/fundo3.png");
+    background-color: #0050b8;
     background-position:center;
     background-repeat: no-repeat;
     background-size:cover;
     background-attachment: fixed;
     color:var(--cor-4);
+    font-size: 0.9em;
 }
 .login1{
-    background-color: azure;
+    background-color: rgb(255, 255, 255);
     display: flexbox;
     width: 800px;
     height: 450px;
@@ -57,13 +58,15 @@ body{
     color:var(--cor-5);
 }
 .componentes input {
+    position:relative;
     border: 2px solid transparent;
     background-color: #b7daf800;
     border-radius: 5px;
     padding: 10px;
-    width: calc(100% - 39px);
-    transition: border-color 0.3s;
+    width: calc(100% - 75px);
     outline: none;
+    transition: border-color 0.3s;
+    
 }
 
 .componentes input:focus{
@@ -75,6 +78,13 @@ body{
 .componentes i {
     color: var(--cor-1);
     padding: 10px;
+}
+.componentes #eyes{
+    position: absolute;
+    color: var(--cor-1);
+    padding: 10px;
+    cursor: pointer;
+    transform: translateY(5px);
 }
 
 .componentes {
@@ -122,7 +132,7 @@ body{
     font-size: 0.9em;
 }
 .login2{
-    background-image:linear-gradient(var(--cor-5),var(--cor-4),var(--cor-1));
+    background-color:var(--cor-3);
     display: flex; /* Torna o container flexível */
     flex-direction:column; /* Empilha os elementos verticalmente */
     align-items: center; /* Centraliza o conteúdo horizontalmente */
@@ -135,10 +145,10 @@ body{
     border: 1px solid #fff;
     box-shadow: 0px 0px 3px #0230595d;
     text-align: center;
-    position: absolute;
+    position: fixed;
     top: 50%;
-    left: 65%;
-    transform: translate(-50%, -50%);
+    left: 50%;
+    transform: translate(0%, -50%);
 }
 .login2 img{
     width: 80%;
@@ -169,16 +179,17 @@ body{
 
 
 .cadastro{
-    background-color: azure;
+    background-color: rgb(255, 255, 255);
     display: flexbox;
     width: 900px;
-    height: 600px;
+    height: auto;
     margin: auto;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 5px 5px 3px #0230595d;
     text-align: left;
-    position: absolute;
+    font-size: 0.9em;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -219,6 +230,12 @@ body{
 .componentesCads i {
     color: var(--cor-1);
     padding: 10px;
+}
+.componentesCads #eyes{
+    position: absolute;
+    color: var(--cor-1);
+    padding: 10px;
+    cursor: pointer;
 }
 
 .componentesCads {
@@ -287,23 +304,23 @@ body{
 }
 
 .cadastro2{
-    background-image:linear-gradient(var(--cor-5),var(--cor-4),var(--cor-1));
+    background-color:var(--cor-3);
     display: flex; /* Torna o container flexível */
     flex-direction:column; /* Empilha os elementos verticalmente */
     align-items: center; /* Centraliza o conteúdo horizontalmente */
     justify-content: flex-end; /* Alinha o conteúdo no final do container */
     width: 400px;
-    height: 600px;
+    height: 100%;
     margin: auto;
     padding:20px;
     border-radius: 10px;
     border: 1px solid #fff;
     box-shadow: 5px 5px 3px #0230595d;
     text-align: center;
-    position: absolute;
+    position: fixed;
     top: 50%;
-    left: 78%;
-    transform: translate(-50%, -50%);
+    left: 50%;
+    transform: translate(15%, -50%);
 }
 .cadastro2 img{
     width: 80%;
@@ -328,7 +345,7 @@ body{
 
 /*  ESQUECER SENHA   */
 .esq-senha{
-    background-color: azure;
+    background-color: rgb(255, 255, 255);
     display: flexbox;
     width: 500px;
     height: 400px;
@@ -344,6 +361,8 @@ body{
 }
 .titles{
     margin-bottom: 20px;
+    color:var(--cor-5);
+    
 }
 .componentesESQ input {
     border: 2px solid transparent;
@@ -365,6 +384,7 @@ body{
     color: var(--cor-1);
     padding: 10px;
 }
+
 
 .componentesESQ {
     background-color: #fff;
