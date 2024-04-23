@@ -78,13 +78,14 @@ body{
 .componentes i {
     color: var(--cor-1);
     padding: 10px;
+    font-size: 16px;
 }
 .componentes #eyes{
     position: absolute;
     color: var(--cor-1);
+    font-size: 16px;
     padding: 10px;
     cursor: pointer;
-    transform: translateY(5px);
 }
 
 .componentes {
@@ -230,10 +231,19 @@ body{
 .componentesCads i {
     color: var(--cor-1);
     padding: 10px;
+    font-size: 16px;
 }
 .componentesCads #eyes{
     position: absolute;
     color: var(--cor-1);
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+}
+.componentesCads #eyes2{
+    position: absolute;
+    color: var(--cor-1);
+    font-size: 16px;
     padding: 10px;
     cursor: pointer;
 }
@@ -472,25 +482,26 @@ body{
 .menu ul> li {
     display: inline;
     font-weight: bold;
-    text-shadow: 5px 5px 5px var(--cor-5);
 }
-
-
-.menu ul > li > a {
+.item-menuf a {
     text-decoration: none;
     color: #fff;
     padding: 10px 15px;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: 0.3s;
 }
-.menu i{
+.item-menuf i{
     color: #fff;
     padding-left:10px;
-    transition: background-color 0.3s ease;
+    transition: .3s ;
 }
-.menu ul > li > a:hover {
-    background-color: var(--cor-5);
+.item-menuf a:hover{
+    border-radius: 5px;
+    background:var(--cor-5);
+    transition: .3s;
 }
+
+
 
 .contato{
     display:flex;
@@ -502,7 +513,7 @@ body{
     transform: translate(-50%,-50%);
     background-color: #fff;
     width: 500px;
-    height:600px;
+    height:500px;
     border-radius:10px;
     padding:30px;
     box-shadow: 5px 5px 3px #0230595d;
@@ -513,10 +524,10 @@ body{
     text-align: left;
     flex-direction: column;
     top:30%;
-    right:25%;
+    left:30%;
     transform: translate(-50%,-50%);
-    font-size: 1.5em;
-    text-shadow:5px 5px 3px #0230595d;;
+    font-size: 1.2em;
+    text-shadow:5px 5px 3px #0230595d;
     color:#fff;
 }
 .contato label{
@@ -565,6 +576,93 @@ body{
     box-shadow:5px 5px 5px #0230595d;
     cursor:pointer;
 }
+/*         Sobre            */
+#pageSobre{
+    background: #fff;
+    height: 100vh;
+}
+.Sobre{
+    background-color: #0050b8;
+    box-shadow: 5px 5px 3px #0230595d;
+    border-radius:0 0 10px 10px ;
+    height: auto;
+    padding: 15px;
+    margin-bottom: 30px;
+    overflow: auto;
+}
+
+.titlesSobre h1{
+    font-size: 40px;
+    text-align: left;
+    color: #ffffff;
+}
+
+.img img{
+    display: block;
+    width: 15%;
+    margin: auto;
+}
+
+.titlesSobre{
+    display: inline-block;
+    font-size: 2em;
+    text-shadow: 5px 5px 3px #002b64;
+}
+
+#TextSobre p{
+    font-size: 1.2em;
+    width: 80%;
+    margin:auto;
+    text-align: justify;
+    color: #002b64;
+}
+
+.menuS {
+    color: #fff;
+    font-size: 1.2em;
+}
+
+.menuS nav {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.menuS h1 {
+    font-size: 1.3em;
+}
+
+.menuS ul {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.menuS ul> li {
+    display: inline;
+    font-weight: bold;
+}
+.menuS .item-menus a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+.menuS .item-menus i{
+    color: #fff;
+    padding-left:10px;
+    transition: .3s ;
+}
+.menuS .item-menus a:hover{
+    border-radius: 5px;
+    background:var(--cor-5);
+    transition: .3s;
+}
+
+
 
 /* GRUPOS DOS PROFESSORES*/
 .Grupo{
