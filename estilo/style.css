@@ -586,7 +586,6 @@ body{
     box-shadow: 5px 5px 3px #0230595d;
     border-radius:0 0 10px 10px ;
     height: auto;
-    padding: 15px;
     margin-bottom: 30px;
     overflow: auto;
 }
@@ -606,7 +605,8 @@ body{
 .titlesSobre{
     display: inline-block;
     font-size: 2em;
-    text-shadow: 5px 5px 3px #002b64;
+    padding: 10px;
+    text-shadow: 5px 5px 3px var(--cor-5);
 }
 
 #TextSobre p{
@@ -619,7 +619,7 @@ body{
 
 .menuS {
     color: #fff;
-    font-size: 1.2em;
+    font-size: 1.3em;
 }
 
 .menuS nav {
@@ -632,6 +632,7 @@ body{
 
 .menuS h1 {
     font-size: 1.3em;
+
 }
 
 .menuS ul {
@@ -662,7 +663,115 @@ body{
     transition: .3s;
 }
 
+/* CRÉDITOS */
+.pageCreditos{
+    background-color: #fff;
+    height: 100vh;
+}
+.Creditos {
+    background-color: var(--cor-4);
+    font-size: 1.3em;
+}
 
+.menuC nav {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.menuC h1 {
+    color:#ffffff;
+    font-size: 1.3em;
+}
+
+.menuC ul {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.menuC ul> li {
+    display: inline;
+    font-weight: bold;
+}
+.menuC .item-menuC a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+.menuC .item-menuC i{
+    color: #fff;
+    padding-left:10px;
+    transition: .3s ;
+}
+.menuC .item-menuC a:hover{
+    border-radius: 5px;
+    background:var(--cor-5);
+    transition: .3s;
+}
+
+.linha {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.linha::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.coluna{
+    float: left;
+    width: 15%;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 5px;
+}
+.coluna img{
+    max-width: 150px;
+}
+
+#creditos div > h1 {
+    background-color:var(--cor-4);
+    color:#ffffff;
+    font-size: 1.3em;
+    text-align: center;
+    border-radius: 5px;
+    text-shadow: 2px 2px 5px var(--cor-5);
+    margin: 10px auto;
+    width: 90%;
+    padding: 5px;
+}
+
+#creditos div > h2 {
+    color:var(--cor-4);
+    font-size: 1em;
+}
+
+#imgCredito img{
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left:50%;
+    transform: translate(-50%);
+    margin: 30px 0;
+    max-width: 600px;
+    padding: 5px;
+    
+}
+
+#creditos i{
+    padding:5px;
+    font-size: 1em;
+    width: 10px;
+    transform: translateY(3px);
+}
 
 /* GRUPOS DOS PROFESSORES*/
 .Grupo{
