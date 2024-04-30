@@ -900,7 +900,6 @@ body{
     align-items: left;
     flex-direction: column;
     justify-content: space-around;
-    position:fixed;
 }
 .editaGrupo input{
     border-style:none;
