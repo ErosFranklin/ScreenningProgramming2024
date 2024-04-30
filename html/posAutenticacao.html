@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Pos-Autenticacao</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="../estilo/style.css">
+</head>
+<body >
+	<div class="posAutenticacao">
+		<div class="container">
+            <h2 class="pessoa"><span>Aluno</span><span>Professor</span></h2>
+            <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+            <label for="reg-log"></label>
+            <div class="tela">
+                <div class="telaPrincipal">
+                    <div class="telaFrente">
+                        <div class="corpo-central">
+                            <div class="aluno">
+                                <img src="../imagens/logoSC.png" alt="Aluno">
+                                <p>Insira mais algumas informacoes para seguir.</p>
+                                <div class="form-dados">
+                                    <input type="text" class="form-style" id="nome" placeholder="Nome Completo">
+                                    <i class="icones-input bi bi-person-fill"></i>
+                                    <input type="date" class="form-style" id="nascimento" placeholder="Nascimento">
+                                    <i class="icones-input2 bi bi-envelope-fill"></i>
+                                </div>
+                                <div class="form-dados">
+                                    <select name="genero" id="genero" class="form-style" onclick="mudarGenero()">
+                                        <option value="masc" id="masc">Outro</option>
+                                        <option value="femi" id="femi">Feminino</option>
+                                        <option value="outro" id="outro">Masculino</option>
+                                    </select>
+                                    <i class="icones-input bi bi-gender-ambiguous"></i>
+                                    <input type="number" class="form-style" id="periodo" placeholder="Periodo">
+                                    <i class="icones-input2 bi bi-calendar"></i>
+                                </div>
+                                <div class="form-dados">
+                                    <input type="number" class="form-style" id="matricula" placeholder="Matricula">
+                                    <i class="icones-input bi bi-person-vcard-fill"></i>
+                                    <input type="password" class="form-style" id="password" placeholder="Senha Anterior">
+                                    <i class="icones-input2 bi bi-lock-fill"></i>
+                                </div>
+                                <div class="form-dados">
+                                    <input type="text" class="form-style" id="cidade" placeholder="Cidade">
+                                    <i class="icones-input bi bi-houses-fill"></i>
+                                    <input type="text" class="form-style" id="Estado" placeholder="Estado">
+                                    <i class="icones-input2 bi bi-building"></i>
+                                </div>
+                                <div class="form-dados">
+                                    <input type="text" class="form-style" id="instituicao" placeholder="Instituicao">
+                                    <i class="icones-input bi bi-buildings-fill"></i>
+                                    <input type="password" class="form-style" id="passwordPA" placeholder="Nova Senha">
+                                    <i class="icones-input2 bi bi-lock-fill"></i>
+                                </div>
+                                <a href="#" class="btn">Alterar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="telaTras">
+                        <div class="corpo-central">
+                            <div class="aluno">
+                                <img src="../imagens/logoSC.png" alt="Aluno">
+                                <p>Insira mais algumas informacoes para seguir.</p>
+                                <div class="form-dados">
+                                    <input type="text" class="form-style" id="nomeP" placeholder="Nome Completo">
+                                    <i class="icones-input bi bi-person-fill"></i>
+                                    <input type="date" class="form-style" id="nascimentoP" placeholder="Nascimento">
+                                    <i class="icones-input2 bi bi-envelope-fill"></i>
+                                </div>
+                                <div class="form-dados">
+                                    <select name="genero" id="generoP" class="form-style" onclick="mudarGenero()">
+                                        <option value="masc" id="mascP">Outro</option>
+                                        <option value="femi" id="femiP">Feminino</option>
+                                        <option value="outro" id="outroP">Masculino</option>
+                                    </select>
+                                    <i class="icones-input bi bi-gender-ambiguous"></i>
+                                    <input type="number" class="form-style" id="periodoP" placeholder="Periodo">
+                                    <i class="icones-input2 bi bi-calendar"></i>
+                                </div>
+                                <div class="form-dados">
+                                    <input type="number" class="form-style" id="matriculaP" placeholder="Matricula">
+                                    <i class="icones-input bi bi-person-vcard-fill"></i>
+                                    <input type="password" class="form-style" id="passwordP" placeholder="Senha Anterior">
+                                    <i class="icones-input2 bi bi-lock-fill"></i>
+                                </div>
+                                <div class="form-dados">
+                                    <input type="text" class="form-style" id="cidadeP" placeholder="Cidade">
+                                    <i class="icones-input bi bi-houses-fill"></i>
+                                    <input type="text" class="form-style" id="EstadoP" placeholder="Estado">
+                                    <i class="icones-input2 bi bi-building"></i>
+                                </div>
+                                <div class="form-dados">
+                                    <input type="text" class="form-style" id="instituicaoP" placeholder="Instituicao">
+                                    <i class="icones-input bi bi-buildings-fill"></i>
+                                    <input type="password" class="form-style" id="passwordPAP" placeholder="Nova Senha">
+                                    <i class="icones-input2 bi bi-lock-fill"></i>
+                                </div>
+                                <a href="../html/grupo.html" class="btn">Alterar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</body>
+</html>
