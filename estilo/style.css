@@ -783,17 +783,77 @@ body{
 .aluno img{
     position:relative;
     align-items: center;
-    width: 20%;
-    height: auto;
+    width: 130px;
+    height: 130px;
     border-radius:100%;
     background-color: black;
     box-shadow: 0px 0px 5px var(--cor-4);
+}
+.professor img{
+    position:relative;
+    align-items: center;
+    width: 130px;
+    height: 130px;
+    border-radius:100%;
+    background-color: black;
+    box-shadow: 0px 0px 5px var(--cor-4);
+}
+#mudarFotoP{
+    display: none;
+}
+#mudarFotoLabelP{
+    border-radius: 5px;
+    width: 160px;
+    height: 35px;
+    font-size: 16px;
+    -webkit-transition : all 200ms linear;
+    transition: all 200ms linear;
+    padding: 0 30px;
+    margin-top: 10px;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--cor-4);
+    text-decoration: none;
+    color: #fff;
+}
+#mudarFotoLabelP:hover{
+    background-image: linear-gradient(to right,#023059,#014581,#023059 );
+    box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
+    cursor:pointer;
+}
+#mudarFotoA{
+    display: none;
+}
+#mudarFotoLabelA{
+    border-radius: 5px;
+    width: 160px;
+    height: 35px;
+    font-size: 16px;
+    -webkit-transition : all 200ms linear;
+    transition: all 200ms linear;
+    padding: 0 30px;
+    margin-top: 10px;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--cor-4);
+    text-decoration: none;
+    color: #fff;
+}
+#mudarFotoLabelA:hover{
+    background-image: linear-gradient(to right,#023059,#014581,#023059 );
+    box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
+    cursor:pointer;
 }
 .aluno, .professor a:hover {
 	text-decoration: none;
 }
 .aluno p {
     color:var(--cor-5);
+    padding:10px;
     font-weight: 500;
     font-size: 14px;
 }
@@ -858,7 +918,7 @@ display: none;
     position: relative;
     margin:auto;
     width: 700px;
-    height:500px;
+    height:570px;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     perspective: 800px;
@@ -937,10 +997,13 @@ display: none;
     -webkit-transition: all 200ms linear;
     transition: all 200ms linear;
 }
-#genero{
+#generoP{
     appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
-#genero:hover{
+#generoP:focus{
+    border: 1px solid var(--cor-5);
     cursor:pointer;
 }
 .form-style:focus,
@@ -1078,9 +1141,6 @@ display: none;
     margin:100px;
 }
 .overlay {
-
-    /* PARA CONFIGURAR O FUNDO TRANSPARENTE DO BLOCO DE CADASTRAR GRUPO */
-    
     display: none;
     position: fixed;
     top: 0;
@@ -1092,9 +1152,6 @@ display: none;
 }
 
 .modal {
-
-    /* PARA CONFIGURAR O BLOCO DE CADASTRAR GRUPO */
-
     display: none;
     position: fixed;
     top: 50%;
@@ -1200,10 +1257,6 @@ display: none;
     transition: .3s;
 }
 
-
-
-
-/* FORMATAÇÃO DE BOTÕES */
 .bttGrupo{
     display: flex;
     top:2%;

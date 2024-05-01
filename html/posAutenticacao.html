@@ -20,13 +20,17 @@
                     <div class="telaFrente">
                         <div class="corpo-central">
                             <div class="aluno">
-                                <img src="../imagens/logoSC.png" alt="Aluno">
+                                <div id="fotoContainerA">
+                                    <img id="fotoAluno" src="#" alt="Aluno">
+                                </div>
+                                <input type="file" id="mudarFotoA" accept="image/*">
+                                <label for="mudarFotoA" id="mudarFotoLabelA">Alterar Foto</label>
                                 <p>Insira mais algumas informacoes para seguir.</p>
                                 <div class="form-dados">
                                     <input type="text" class="form-style" id="nome" placeholder="Nome Completo">
                                     <i class="icones-input bi bi-person-fill"></i>
                                     <input type="date" class="form-style" id="nascimento" placeholder="Nascimento">
-                                    <i class="icones-input2 bi bi-envelope-fill"></i>
+                                    <i class="icones-input2 bi bi-calendar-check-fill"></i>
                                 </div>
                                 <div class="form-dados">
                                     <select name="genero" id="genero" class="form-style" onclick="mudarGenero()">
@@ -62,14 +66,19 @@
                     </div>
                     <div class="telaTras">
                         <div class="corpo-central">
-                            <div class="aluno">
-                                <img src="../imagens/logoSC.png" alt="Aluno">
+                            <div class="professor">
+                                <div id="fotoContainer">
+                                    <img id="fotoProfessor" src="#" alt="Professor">
+                                </div>
+                                <input type="file" id="mudarFotoP" accept="image/*">
+                                <label for="mudarFotoP" id="mudarFotoLabelP">Alterar Foto</label>
+
                                 <p>Insira mais algumas informacoes para seguir.</p>
                                 <div class="form-dados">
                                     <input type="text" class="form-style" id="nomeP" placeholder="Nome Completo">
                                     <i class="icones-input bi bi-person-fill"></i>
                                     <input type="date" class="form-style" id="nascimentoP" placeholder="Nascimento">
-                                    <i class="icones-input2 bi bi-envelope-fill"></i>
+                                    <i class="icones-input2 bi bi-calendar-check-fill"></i>
                                 </div>
                                 <div class="form-dados">
                                     <select name="genero" id="generoP" class="form-style" onclick="mudarGenero()">
@@ -107,5 +116,7 @@
             </div>
         </div>
 </div>
+<script src="../javascript/alterarFotoProfessor.js"></script>
+<script src="../javascript/alterarFotoAluno.js"></script>
 </body>
 </html>
