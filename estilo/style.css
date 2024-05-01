@@ -1011,11 +1011,11 @@ display: none;
     position:fixed;
     top:0;
     left:0;
-    transition: .2s;
+    transition: .5s;
     z-index: 1;
 }
 
-.menuLateral:hover{
+.menuLateral.expandir{
     width: 300px;
 }
 .btn-expandir{
@@ -1059,9 +1059,15 @@ display: none;
     padding-left:10px;
 }
 .item-menu .txt-link{
-    margin-left: 40px;
+    margin-left: 77px;
     font-size: 20px;
+    transition: .18s;
+    opacity: 0;
     transform: translateY(18px);
+}
+.menuLateral.expandir .txt-link{
+    margin-left: 40px;
+    opacity: 1;
 }
 .grupos-container {
 
@@ -1071,6 +1077,34 @@ display: none;
     position: relative;
     margin:100px;
 }
+.overlay {
+
+    /* PARA CONFIGURAR O FUNDO TRANSPARENTE DO BLOCO DE CADASTRAR GRUPO */
+    
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.modal {
+
+    /* PARA CONFIGURAR O BLOCO DE CADASTRAR GRUPO */
+
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 2;
+}
 
 .grupo {
     display: flex;
@@ -1079,11 +1113,11 @@ display: none;
     position:relative;
     justify-content: space-between;
     width: 100%;
-    height: 5em;
+    height: 10em;
     padding: 15px;
     border-radius: 10px;
     background-color: var(--cor-4);
-    margin: 10px; 
+    margin: 10px;
 }
 .grupo h2 a{
     text-decoration: none;
@@ -1167,34 +1201,6 @@ display: none;
 }
 
 
-.overlay {
-
-    /* PARA CONFIGURAR O FUNDO TRANSPARENTE DO BLOCO DE CADASTRAR GRUPO */
-    
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-}
-
-.modal {
-
-    /* PARA CONFIGURAR O BLOCO DE CADASTRAR GRUPO */
-
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    z-index: 2;
-}
 
 
 /* FORMATAÇÃO DE BOTÕES */
@@ -1227,7 +1233,7 @@ display: none;
 }
 
 .modal{
-    display:grid;
+    display:none;
     text-align: center;
     grid-column: auto;
     width: 30%;

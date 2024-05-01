@@ -7,11 +7,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const periodoInput = document.querySelector('#periodo');
     const botaoFechar = document.querySelector('#fechar');
 
+    const modalExibido = localStorage.getItem('modalExibido');
+    if (modalExibido === 'true') {
+        overlay.style.display = 'block';
+        modal.style.display = 'block';
+    }
     novoGrupo.addEventListener('click', function() {
         overlay.style.display = 'block';
         modal.style.display = 'block';
+        localStorage.setItem('modalExibido','true')
     });
 
+    botaoFechar.addEventListener('click', function() {
+        fecharJanela();
+    });
+    
     document.querySelector('#criarGrupo').addEventListener('click', function() {
         const nomeGrupo = nomeGrupoInput.value;
         const periodo = periodoInput.value;
@@ -67,6 +77,7 @@ function fecharJanela(overlay, modal, nomeGrupoInput, periodoInput) {
     periodoInput.value = "";
     overlay.style.display = 'none';
     modal.style.display = 'none';
+    localStorage.setItem('modalExibido', 'false');
 }
 
 function verificarGrupo(nomeGrupo, periodo) {
