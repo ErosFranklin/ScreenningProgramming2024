@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function criarGrupo(nome, periodo) {
     const novoGrupo = document.createElement('div');
     novoGrupo.className = 'grupo';
-    novoGrupo.innerHTML = '<h2><a href="#">' + nome + '</a></h2><p>' + periodo + '</p>';
+    novoGrupo.innerHTML = '<h2><a href="detalhe-grupo.html">' + nome + '</a></h2><p>' + periodo + '</p>';
 
     const editar = document.createElement('button');
     editar.textContent = 'Editar';
