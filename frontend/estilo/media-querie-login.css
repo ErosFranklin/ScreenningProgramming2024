@@ -39,7 +39,7 @@ Grandes telas: acima de 1200px
     .login2 img{
         display:flex;
         width: 150px;
-        top:-35%;
+        top:-30%;
         left: 50%;
         position: absolute;
         transform: translate(-50%,35%);
