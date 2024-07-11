@@ -30,7 +30,8 @@ Grandes telas: acima de 1200px
     }
     .login1{
         width: 100%;
-        height:76%;
+        height:35em;
+        margin-bottom: 10px;
         top:56%;
         border-radius: 60px 0px 0px 0px;
         z-index:2;
@@ -47,12 +48,12 @@ Grandes telas: acima de 1200px
     }
     .login2 img{
         display:flex;
-        width: 100px;
-        margin-top: 10px;
+        width: 23%;
+        margin-top: 5%;
         top:-30%;
         left: 50%;
         position: absolute;
-        transform: translate(-50%,35%);
+        transform: translate(-50%,30%);
     }
     .login2 h1{
         display: none;
@@ -66,7 +67,7 @@ Grandes telas: acima de 1200px
         left: 0;
         font-size: 1.3em;
         width: 100%;
-        z-index: 2;
+        z-index: 1;
     }
     .componentes {
         width: 100%;

@@ -42,6 +42,19 @@
             </p>
         </div>
     </main>
+    <script>
+        // JavaScript para ajustar a posição do rodapé quando o teclado é ativado
+        const footer = document.querySelector('p');
+        const input = document.querySelector('input');
+
+        input.addEventListener('focus', () => {
+            footer.style.position = 'absolute';
+        });
+
+        input.addEventListener('blur', () => {
+            footer.style.position = 'fixed';
+        });
+    </script>
     <script src="../javascript/script_eyes.js"></script>
 </body>
 </html>
