@@ -7,7 +7,7 @@ Desktop: 992px ate 1200px
 Grandes telas: acima de 1200px
 */
 
-@media only screen and (max-width:767px){
+@media screen and  (max-width:768px){
     :root {
         --cor-1: #275AF2;
         --cor-2: #5079F2;
@@ -16,11 +16,17 @@ Grandes telas: acima de 1200px
         --cor-5: #023059;
         --cor-text: #fff;
     }
+    * {
+        box-sizing: border-box;
+    }
     body{
-       
+       overflow: hidden;
     }
     .titles{
         font-size: 15px;
+    }
+    .titles p{
+        font-size:0.9em;
     }
     .login1{
         width: 100%;
@@ -41,7 +47,8 @@ Grandes telas: acima de 1200px
     }
     .login2 img{
         display:flex;
-        width: 120px;
+        width: 100px;
+        margin-top: 10px;
         top:-30%;
         left: 50%;
         position: absolute;
@@ -53,39 +60,33 @@ Grandes telas: acima de 1200px
     .login2 p{
         position: fixed;
         text-align: center;
+        align-items: center;
         background-color: #0050b8;
         bottom: 0;
         left: 0;
-        font-size: 22px;
-        padding: 5px;
+        font-size: 1.3em;
         width: 100%;
         z-index: 2;
     }
     .componentes {
-        padding: 10px 0px;
-        margin-right: 10px;
-        margin-left: 15%;
+        width: 100%;
+        margin-right: 5%;
+        height: auto;
+        padding: 10px;
     }
     .componentes i{
         font-size: 22px;
     }
     .componentes #eyes{
         font-size: 22px;
-        padding:10px;
         border-radius: 10px;
-        transform: translate(-40%,-10%);
-    }
-    .esq-env{
-        width: 165%;
-        margin-top:25px;
-        left:50%;
-        position: relative;
+        transform: translate(-10%,-10%);
     }
     .esq-env #Enviar{
-        font-size: 22px;
-        height: 70px;
+        font-size: 20px;
+        height: auto;
     }
     .esq-env #esq_senha{
-        font-size: 20px;
+        font-size: 15px;
     }
 }
