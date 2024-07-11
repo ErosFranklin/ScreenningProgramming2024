@@ -34,7 +34,7 @@ def add_user_router():
 
     hashed_password = hashpw(password.encode('utf-8'), gensalt())
 
-    data['password'] = hashed_password.decode('utf-8')  
+    data['passwordStudent'] = hashed_password.decode('utf-8')  
 
     response, status_code = add_student_controller(data)
     return jsonify(response), status_code
