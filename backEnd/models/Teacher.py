@@ -21,11 +21,9 @@ class Teacher(User):
             'cityTeacher': self.city
         }
 
-
     def create_teacher_service(self, connection):
         teacher_data = self.to_db_format()
         return self.create_user_service(connection, 'professor', teacher_data)
-    
 
     def update_teacher_service(connection, user_id, field, value):
         User.update_user_service(connection, 'professor', user_id, field, value)
@@ -43,4 +41,4 @@ class Teacher(User):
 
     @staticmethod
     def get_teacher_by_id_email(connection, email):
-        return User.get_user_by_id_email(connection, email, 'professor')
+        return User.get_user_by_id_email(connection, email, 'professor', 'emailTeacher')

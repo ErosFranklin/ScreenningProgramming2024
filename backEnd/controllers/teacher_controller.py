@@ -16,13 +16,14 @@ def add_teacher_controller(data):
             email=email,
             password=password
         )
-        inserted_id = teacher.create_teacher_service(connection)
+        teacher_id = teacher.create_teacher_service(connection)
         connection.close()
         
-        if inserted_id is not None:
-            return {"message": 'Usuário criado com sucesso!', "user_id": inserted_id}, 200
+        if teacher_id:
+            return {"id": teacher_id, "message": 'Usuário criado com sucesso!'}, 201
         else:
-            return {"message": "Falha ao criar usuário"}, 500
+            return {"message": "Erro ao criar usuário!"}, 500
+        
     else:
         return {"message": "Falha ao conectar com o banco de dados!"}, 500
 
@@ -54,5 +55,14 @@ def delete_teacher_controller(user_id):
         Teacher.delete_teacher_service(connection, user_id)
         connection.close()
         return {"message": "User deletedo"}, 200
+    else:
+        return {"message": "Falha ao conectar com o banco de dados!"}, 500
+    
+def get_teacher_by_id_email_controller(email):
+    connection = db_connection()
+    if connection:
+        user = Teacher.get_teacher_by_id_email(connection, email)
+        connection.close()
+        return user
     else:
         return {"message": "Falha ao conectar com o banco de dados!"}, 500

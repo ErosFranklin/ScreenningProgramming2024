@@ -26,7 +26,6 @@ class Student(User):
         student_data = self.to_db_format()
         return self.create_user_service(connection, 'aluno', student_data)
     
-
     def update_student_service(connection, user_id, field, value):
         User.update_user_service(connection, 'aluno', user_id, field, value)
 
@@ -43,4 +42,4 @@ class Student(User):
 
     @staticmethod
     def get_student_by_id_email(connection, email):
-        return User.get_user_by_id_email(connection, email, 'aluno')
+        return User.get_user_by_id_email(connection, email, 'aluno', 'emailStudent')
