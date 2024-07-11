@@ -27,7 +27,7 @@ body{
 }
 .esq-senha{
     background-color: rgb(255, 255, 255);
-    display: flexbox;
+    display: flex;
     width: 500px;
     height: 400px;
     margin: auto;
@@ -43,7 +43,6 @@ body{
 .titles{
     margin-bottom: 20px;
     color:var(--cor-5);
-    
 }
 .componentesESQ input {
     border: 2px solid transparent;
