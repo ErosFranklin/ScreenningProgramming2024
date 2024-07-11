@@ -30,6 +30,20 @@ class User:
                 cursor.execute("SELECT LAST_INSERT_ID()")
                 inserted_id = cursor.fetchone()[0]
                 return inserted_id
+
+            elif user_type == 'professor':
+                cursor.execute("""
+                    INSERT INTO professor (nameTeacher, emailTeacher, passwordTeacher)
+                    VALUES (%s, %s, %s)
+                """, (
+                    user_data['nameTeacher'], user_data['emailTeacher'], user_data['passwordTeacher'],
+                    
+                ))
+                connection.commit()
+                cursor.execute("SELECT LAST_INSERT_ID()")
+                inserted_id = cursor.fetchone()[0]
+                return inserted_id
+        
         except Exception as e:
             print(f"Erro ao criar usuário: {e}")
             connection.rollback()

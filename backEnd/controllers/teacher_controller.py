@@ -5,9 +5,9 @@ from middleware.global_middleware import (
     verify_user)
 
 def add_teacher_controller(data):
-    name = data.get('name').lower()
-    email = data.get('email').lower()
-    password = data.get('password')
+    name = data.get('nameTeacher').lower()
+    email = data.get('emailTeacher').lower()
+    password = data.get('passwordTeacher')
 
     connection = db_connection()
     if connection:

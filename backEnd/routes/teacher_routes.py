@@ -11,9 +11,9 @@ teacher_app = Blueprint('teacher_app', __name__)
 def add_user_router():
     data = request.get_json()
 
-    name = data.get('name').lower()
-    email = data.get('email').lower()
-    password = data.get('password')
+    name = data.get('nameTeacher').lower()
+    email = data.get('emailTeacher').lower()
+    password = data.get('passwordTeacher')
 
     if not all([name, email, password]):
         return jsonify({"message": "All fields are required"}), 400
@@ -34,7 +34,7 @@ def add_user_router():
 
     hashed_password = hashpw(password.encode('utf-8'), gensalt())
 
-    data['password'] = hashed_password.decode('utf-8')  
+    data['passwordTeacher'] = hashed_password.decode('utf-8')  
 
     response, status_code = add_teacher_controller(data)
     return jsonify(response), status_code
