@@ -136,10 +136,10 @@ body{
 }
 .login2{
     background-color:var(--cor-3);
-    display: flex; /* Torna o container flexível */
-    flex-direction:column; /* Empilha os elementos verticalmente */
-    align-items: center; /* Centraliza o conteúdo horizontalmente */
-    justify-content: flex-end; /* Alinha o conteúdo no final do container */
+    display: flex; 
+    flex-direction:column; 
+    align-items: center; 
+    justify-content: flex-end; 
     width: 400px;
     height: 450px;
     margin: auto;
