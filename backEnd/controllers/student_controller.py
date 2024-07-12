@@ -51,15 +51,25 @@ def update_student_controller(user_id, field, value):
     else:
         return {"error": "Falha ao conectar com o banco de dados!"}, 500
 
-def delete_student_controller(user_id):
+def delete_student_controller(current_user_id, user_id):
     connection = db_connection()
-    if connection:
+    if not connection:
+        return {"message": "Falha ao conectar com o banco de dados!"}, 500
+
+    try:
+        if current_user_id != user_id:
+            return {"message": "Sem permissão para deletar"}, 400
+
         verify_user(user_id)
         Student.delete_student_service(connection, user_id)
+        return {"message": "User deletado"}, 200
+
+    except Exception as e:
+        return {"message": f"Erro ao deletar o usuário: {e}"}, 500
+
+    finally:
         connection.close()
-        return {"message": "User deletedo"}, 200
-    else:
-        return {"message": "Falha ao conectar com o banco de dados!"}, 500
+
 
 
 

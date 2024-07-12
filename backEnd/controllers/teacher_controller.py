@@ -16,13 +16,14 @@ def add_teacher_controller(data):
             email=email,
             password=password
         )
-        inserted_id = teacher.create_teacher_service(connection)
+        teacher_id = teacher.create_teacher_service(connection)
         connection.close()
         
-        if inserted_id is not None:
-            return {"message": 'Usuário criado com sucesso!', "user_id": inserted_id}, 200
+        if teacher_id:
+            return {"id": teacher_id, "message": 'Usuário criado com sucesso!'}, 201
         else:
-            return {"message": "Falha ao criar usuário"}, 500
+            return {"message": "Erro ao criar usuário!"}, 500
+        
     else:
         return {"message": "Falha ao conectar com o banco de dados!"}, 500
 
@@ -47,12 +48,34 @@ def update_teacher_controller(user_id, field, value):
     else:
         return {"error": "Falha ao conectar com o banco de dados!"}, 500
 
-def delete_teacher_controller(user_id):
+def delete_teacher_controller(current_user_id, user_id):
+    if current_user_id != user_id:
+        return {"message": "Você não tem permissão para deletar este usuário!"}, 403
+    
+    user = verify_user(user_id)
+    if not user:
+        return {"message": "Usuário não encontrado!"}, 404
+    try:
+        connection = db_connection()
+        if not connection:
+            return {"message": "Falha ao conectar com o banco de dados!"}, 500
+        
+        Teacher.delete_teacher_service(connection, user_id)
+        return {"message": "Usuário deletado"}, 200
+
+    except Exception as e:
+        return {"message": str(e)}, 500
+
+    finally:
+        if connection:
+            connection.close()
+
+    
+def get_teacher_by_id_email_controller(email):
     connection = db_connection()
     if connection:
-        verify_user(user_id)
-        Teacher.delete_teacher_service(connection, user_id)
+        user = Teacher.get_teacher_by_email_service(connection, email)
         connection.close()
-        return {"message": "User deletedo"}, 200
+        return user
     else:
         return {"message": "Falha ao conectar com o banco de dados!"}, 500

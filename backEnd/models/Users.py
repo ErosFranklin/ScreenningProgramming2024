@@ -23,12 +23,10 @@ class User:
                     INSERT INTO aluno (nameStudent, emailStudent, passwordStudent) 
                     VALUES (%s, %s, %s)
                 """, (
-                    user_data['nameStudent'], user_data['emailStudent'], user_data['passwordStudent'], 
-                
+                    user_data['nameStudent'], user_data['emailStudent'], user_data['passwordStudent']
                 ))
                 connection.commit()
-                cursor.execute("SELECT LAST_INSERT_ID()")
-                inserted_id = cursor.fetchone()[0]
+                inserted_id = cursor.lastrowid 
                 return inserted_id
 
             elif user_type == 'professor':
@@ -36,24 +34,24 @@ class User:
                     INSERT INTO professor (nameTeacher, emailTeacher, passwordTeacher)
                     VALUES (%s, %s, %s)
                 """, (
-                    user_data['nameTeacher'], user_data['emailTeacher'], user_data['passwordTeacher'],
-                    
+                    user_data['nameTeacher'], user_data['emailTeacher'], user_data['passwordTeacher']
                 ))
                 connection.commit()
-                cursor.execute("SELECT LAST_INSERT_ID()")
-                inserted_id = cursor.fetchone()[0]
+                inserted_id = cursor.lastrowid 
                 return inserted_id
-        
+
         except Exception as e:
             print(f"Erro ao criar usuário: {e}")
             connection.rollback()
             return None
+
+        finally:
+            cursor.close()
     
 
     def update_user_service(connection, table_name, user_id, field, value):
         cursor = connection.cursor()
 
-        # Montei a query de atualização para um único campo
         sql = f"UPDATE {table_name} SET {field} = %s WHERE id = %s"
 
         cursor.execute(sql, (value, user_id))
@@ -62,12 +60,47 @@ class User:
     
 
     @staticmethod
+    def get_user_by_id_service(connection, user_id, table_name):
+        cursor = connection.cursor()
+        try:
+            cursor.execute(f"SELECT * FROM {table_name} WHERE id = %s", (user_id,))
+            user = cursor.fetchone()
+
+            if user:
+                return {
+                    "id": user[0],
+                    "name": user[1],
+                    "email": user[2],
+                    "password": user[3]
+                }
+            else:
+                return None
+
+        finally:
+            cursor.close()
+
+
+    @staticmethod
     def get_all_user_service(connection, table_name):
         cursor = connection.cursor()
-        cursor.execute(f"SELECT name, last_name, email FROM {table_name}")
-        students = cursor.fetchall()
-        cursor.close()
-        return students
+        try:
+            if table_name == 'aluno':
+                cursor.execute(f"SELECT nameStudent AS name, emailStudent AS email FROM {table_name}")
+            elif table_name == 'professor':
+                cursor.execute(f"SELECT nameTeacher AS name, emailTeacher AS email FROM {table_name}")
+            else:
+                raise ValueError("Invalid table name")
+
+            users = cursor.fetchall()
+            return users
+
+        except Exception as e:
+            print(f"Erro ao buscar usuários: {e}")
+            return []
+
+        finally:
+            cursor.close()
+
     
     @staticmethod
     def delete_user_service(connection, user_id, table_name):
@@ -78,17 +111,18 @@ class User:
 
 
     @staticmethod
-    def get_user_by_id_email(connection, email, table_name):
+    def get_user_by_email_service(connection, email, table_name, email_column):
         cursor = connection.cursor()
         try:
-            cursor.execute(f"SELECT * FROM {table_name} WHERE email = %s", (email,))
+            cursor.execute(f"SELECT * FROM {table_name} WHERE {email_column} = %s", (email,))
             user = cursor.fetchone()  
 
             if user:
                 return {
                     "id": user[0],
                     "name": user[1],  
-                    "email": user[2]
+                    "email": user[2],
+                    "password": user[3]
                     
                 }
             else:
@@ -96,6 +130,22 @@ class User:
 
         finally:
             cursor.close()
+
+
+    @staticmethod
+    def get_all_emails_service(connection):
+        try:
+            cursor = connection.cursor()
+            cursor.execute("""
+                SELECT emailStudent AS email FROM aluno
+                UNION
+                SELECT emailTeacher AS email FROM professor
+            """)
+            emails = cursor.fetchall()
+        finally:
+            cursor.close()
+        return emails
+
 
 
     @classmethod
