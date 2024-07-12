@@ -48,10 +48,13 @@ def update_teacher_controller(user_id, field, value):
     else:
         return {"error": "Falha ao conectar com o banco de dados!"}, 500
 
-def delete_teacher_controller(user_id):
+def delete_teacher_controller(current_user_id,user_id):
     connection = db_connection()
     if connection:
         verify_user(user_id)
+        if current_user_id != user_id:
+            return {"message": "Você não tem permissão para deletar este usuário!"}, 403
+        
         Teacher.delete_teacher_service(connection, user_id)
         connection.close()
         return {"message": "User deletedo"}, 200
@@ -61,7 +64,7 @@ def delete_teacher_controller(user_id):
 def get_teacher_by_id_email_controller(email):
     connection = db_connection()
     if connection:
-        user = Teacher.get_teacher_by_id_email(connection, email)
+        user = Teacher.get_teacher_by_email_service(connection, email)
         connection.close()
         return user
     else:

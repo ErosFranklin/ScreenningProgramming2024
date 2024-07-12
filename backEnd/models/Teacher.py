@@ -40,5 +40,9 @@ class Teacher(User):
     
 
     @staticmethod
-    def get_teacher_by_id_email(connection, email):
-        return User.get_user_by_id_email(connection, email, 'professor', 'emailTeacher')
+    def get_teacher_by_email_service(connection, email):
+        return User.get_user_by_email_service(connection, email, 'professor', 'emailTeacher')
+    
+    @staticmethod
+    def get_teacher_by_id_service(connection, user_id):
+        return User.get_user_by_id_service(connection, user_id, 'professor')

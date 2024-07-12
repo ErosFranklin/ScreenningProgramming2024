@@ -1,6 +1,6 @@
 from bcrypt import gensalt, hashpw
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import get_jwt_identity, jwt_required
 from controllers.teacher_controller import *
 
 from models.Teacher import Teacher
@@ -61,7 +61,9 @@ def update_user(user_id):
 @teacher_app.route("/api/teacher/<user_id>", methods=["DELETE"])
 @jwt_required()
 def delete_users(user_id):
-    response, status_code = delete_teacher_controller(user_id)
+    current_user_id = get_jwt_identity()
+    current_user_id = current_user_id['id']
+    response, status_code = delete_teacher_controller(current_user_id,user_id)
     return jsonify(response), status_code
 
 @teacher_app.route('/api/teacher', methods=['GET'])

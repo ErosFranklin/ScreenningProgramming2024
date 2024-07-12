@@ -53,7 +53,6 @@ def update_student_controller(user_id, field, value):
 
 def delete_student_controller(current_user_id, user_id):
     connection = db_connection()
-
     if not connection:
         return {"message": "Falha ao conectar com o banco de dados!"}, 500
 

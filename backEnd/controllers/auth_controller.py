@@ -19,11 +19,11 @@ def login_controller(data):
         if not connection:
             return {"message": "Database connection error"}, 500
         
-        user = Student.get_student_by_id_service(connection, email)
+        user = Student.get_student_by_email_service(connection, email)
         user_type = 'student'
 
         if not user:
-            user = Teacher.get_teacher_by_id_email(connection, email)
+            user = Teacher.get_teacher_by_email_service(connection, email)
             user_type = 'teacher'
 
         if user:

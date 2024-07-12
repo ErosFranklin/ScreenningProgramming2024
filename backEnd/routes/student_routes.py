@@ -62,6 +62,7 @@ def update_user(user_id):
 @jwt_required()
 def delete_users(user_id):
     current_user_id = get_jwt_identity()
+    current_user_id = current_user_id['id']
     response, status_code = delete_student_controller(current_user_id,user_id)
     return jsonify(response), status_code
 

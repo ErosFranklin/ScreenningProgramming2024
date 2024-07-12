@@ -111,7 +111,7 @@ class User:
 
 
     @staticmethod
-    def get_user_by_id_email(connection, email, table_name, email_column):
+    def get_user_by_email_service(connection, email, table_name, email_column):
         cursor = connection.cursor()
         try:
             cursor.execute(f"SELECT * FROM {table_name} WHERE {email_column} = %s", (email,))

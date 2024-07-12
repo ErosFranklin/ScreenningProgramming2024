@@ -1,5 +1,6 @@
 from flask import abort
 #from models.Student import Student
+from models.Teacher import Teacher
 from db.bd_mysql import db_connection
 from models.Student import Student
 
@@ -8,12 +9,19 @@ def verify_user(userId):
     connection = db_connection()
     if not connection:
         abort(500, {"message": "Database connection error"})
-    user = Student.get_student_by_id_service(connection, userId)
-    connection.close()
+    
+    try:
+        user = Student.get_student_by_id_service(connection, userId)
+        if not user:
+            user = Teacher.get_teacher_by_id_service(connection, userId)
+        if not user:
+            abort(400, {"message": "User not exist"})
+        return user
+    except Exception as e:
+        abort(500, {"message": str(e)})
+    finally:
+        connection.close()
 
-    if not user:
-        abort(400, {"message": "User not exist"})
-    return user
 
 #def verify_username_registered(username):
     #user = Student.get_user_by_username_service(username)
