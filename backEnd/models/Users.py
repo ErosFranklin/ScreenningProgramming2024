@@ -114,22 +114,40 @@ class User:
     def get_user_by_email_service(connection, email, table_name, email_column):
         cursor = connection.cursor()
         try:
-            cursor.execute(f"SELECT * FROM {table_name} WHERE {email_column} = %s", (email,))
-            user = cursor.fetchone()  
+            query = f"SELECT id, name, email, password FROM {table_name} WHERE {email_column} = %s"
+            cursor.execute(query, (email,))
+            user = cursor.fetchone()
 
             if user:
-                return {
+                user_data = {
                     "id": user[0],
-                    "name": user[1],  
+                    "name": user[1],
                     "email": user[2],
                     "password": user[3]
-                    
                 }
+                return user_data
             else:
                 return None
 
         finally:
             cursor.close()
+
+
+
+    @staticmethod
+    def get_all_emails_service(connection):
+        try:
+            cursor = connection.cursor()
+            cursor.execute("""
+                SELECT emailStudent AS email FROM aluno
+                UNION
+                SELECT emailTeacher AS email FROM professor
+            """)
+            emails = cursor.fetchall()
+        finally:
+            cursor.close()
+        return emails
+
 
 
     @classmethod

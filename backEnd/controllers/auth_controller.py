@@ -4,13 +4,18 @@ from flask import jsonify
 from flask_jwt_extended import create_access_token, get_jwt_identity
 from models.Teacher import Teacher
 from models.Student import Student
+from middleware.global_middleware import verify_user
 
 from db.bd_mysql import db_connection
 
 def login_controller(data):
+
+
     try:
         email = data.get('email', '').lower()
         password = data.get('password', '')
+
+        verify_user(email)
 
         if not email or not password:
             return {"message": "Email or password is missing"}, 400

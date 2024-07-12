@@ -3,6 +3,7 @@ from flask import abort
 from models.Teacher import Teacher
 from db.bd_mysql import db_connection
 from models.Student import Student
+from models.Users import User
 
 
 def verify_user(userId):
