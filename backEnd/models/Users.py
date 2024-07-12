@@ -60,6 +60,27 @@ class User:
     
 
     @staticmethod
+    def get_user_by_id_service(connection, user_id, table_name):
+        cursor = connection.cursor()
+        try:
+            cursor.execute(f"SELECT * FROM {table_name} WHERE id = %s", (user_id,))
+            user = cursor.fetchone()
+
+            if user:
+                return {
+                    "id": user[0],
+                    "name": user[1],
+                    "email": user[2],
+                    "password": user[3]
+                }
+            else:
+                return None
+
+        finally:
+            cursor.close()
+
+
+    @staticmethod
     def get_all_user_service(connection, table_name):
         cursor = connection.cursor()
         try:
@@ -100,7 +121,8 @@ class User:
                 return {
                     "id": user[0],
                     "name": user[1],  
-                    "email": user[2]
+                    "email": user[2],
+                    "password": user[3]
                     
                 }
             else:

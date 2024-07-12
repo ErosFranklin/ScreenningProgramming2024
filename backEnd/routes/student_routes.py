@@ -1,6 +1,6 @@
 from bcrypt import gensalt, hashpw
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import get_jwt_identity, jwt_required
 from controllers.student_controller import *
 
 from models.Student import Student
@@ -39,7 +39,7 @@ def add_user_router():
     response, status_code = add_student_controller(data)
     return jsonify(response), status_code
 
-@user_app.route("/api/user/<user_id>", methods=['PATCH'])
+@user_app.route("/api/student/<user_id>", methods=['PATCH'])
 @jwt_required()
 def update_user(user_id):
     data = request.get_json()
@@ -50,7 +50,7 @@ def update_user(user_id):
     if len(data) == 0:
         return jsonify({"error": "Nenhum campo enviado para atualização"}), 400
 
-    field, value = next(iter(data.items()))  # Obtém o primeiro par chave-valor
+    field, value = next(iter(data.items()))
 
     try:
         update_student_controller(user_id, field, value)
@@ -58,13 +58,14 @@ def update_user(user_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@user_app.route("/api/users/<user_id>", methods=["DELETE"])
+@user_app.route("/api/student/<user_id>", methods=["DELETE"])
 @jwt_required()
 def delete_users(user_id):
-    response, status_code = delete_student_controller(user_id)
+    current_user_id = get_jwt_identity()
+    response, status_code = delete_student_controller(current_user_id,user_id)
     return jsonify(response), status_code
 
-@user_app.route('/api/users', methods=['GET'])
+@user_app.route('/api/students', methods=['GET'])
 def get_users_route():
     response = get_student_controller()
     return jsonify(response)
