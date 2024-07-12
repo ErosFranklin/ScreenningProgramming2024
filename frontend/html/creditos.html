@@ -7,120 +7,94 @@
     <link rel="icon" type="image/png" href="imagens/ScreenPrograming.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../estilo/style-creditos.css">
-    <link rel="stylesheet" href="media-querry.css">
+    <link rel="stylesheet" href="../estilo/media-querie-creditos.css">
 </head>
 <body class="pageCreditos">
     <header>
-        <div class="Creditos">
-            <div class="menuC">
-                <nav>
-                    <h1>Screen Programming</h1>
-                    <ul>
-                        <li class="item-menuC">
-                            <a href="../html/contato.html" >Contatos<i class="bi bi-chat-fill"></i></a>
-                        </li>
-                        <li class="item-menuC">
-                            <a href="../html/sobre.html" >Sobre<i class="bi bi-info-circle"></i></a>
-                        </li>
-                        <li class="item-menuC">
-                            <a href="../html/login.html" >Entrar<i class="bi bi-box-arrow-in-right"></i></a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+            <nav class="menuS">
+                <h1>SC</h1>
+                <i id="burguer" class="bi bi-list"></i>
+                <ul class="itens-menu"> 
+                    <li class="item-menus">
+                        <a href="../html/contato.html" >Contatos<i class="bi bi-chat-fill"></i></a>
+                    </li>
+                    <li class="item-menus">
+                        <a href="../html/sobre.html" >Sobre<i class="bi bi-info-circle"></i></a>
+                    </li>
+                    <li class="item-menus">
+                        <a href="../html/login.html" >Entrar<i class="bi bi-box-arrow-in-right"></i></a>
+                    </li>
+                </ul>
+            </nav>
     </header>
 
     <main>
         <section id="creditos">
-            <div>
-                <div>
-                    <h1> Direitos intelectuais </h1>
-                </div>
-                <div class="linha">
-                    <div class="coluna">
+            <div class="linha-intelectuais">
+                <h1> Direitos intelectuais </h1>
+                <div class="coluna-intelectuais">
+                    <div class="item-intelectuais">
                         <img src = "../imagens/teste_perfil.jpg" >
                         <h2>Prof. Dr. João Arthur Brunet Monteiro (UFCG)</h2>
-
                     </div>
-
-                    <div class="coluna">
+                    <div class="item-intelectuais">
                         <img src = "../imagens/teste_perfil.jpg" >
                         <h2>Prof. Dr. Jucelio Soares dos Santos (UEPB/UFCG)</h2>
-
                     </div>
-
-                    <div class="coluna">
+                    <div class="item-intelectuais">
                         <img src = "../imagens/teste_perfil.jpg">
                         <h2>Prof. Dra. Kezia de Vasconcelos Oliveira Dantas (UEPB)</h2>
                     </div>
-
-                    <div class="coluna">
+                    <div class="item-intelectuais">
                         <img src = "../imagens/teste_perfil.jpg" >
                         <h2>Prof. Dra. Mikaelle Oliveira dos Santos (UEPB)</h2>
                     </div>
-
-                    <div class="coluna">
+                    <div class="item-intelectuais">
                         <img src = "../imagens/teste_perfil.jpg" >
                         <h2>Prof. Dra. Monilly Ramos Araujo Melo (UFCG)</h2>
                     </div>
-
-                    <div class="coluna">
+                    <div class="item-intelectuais">
                         <img src = "../imagens/teste_perfil.jpg" >
                         <h2>Prof. Dr. Wilkerson de Lucena Andrade (UFCG)</h2>
                     </div>
-
                 </div>
             </div>
-        
-            <div>
-                <div>
-                    <h1> Direitos de produção e desenvolvimento </h1>
-                </div>
-
-                <div class="linha">
-                    <div class="coluna">
+            <div class="linha-producao-desenvolvimento">
+                <h1> Direitos intelectuais </h1>
+                <div class="coluna-producao-desenvolvimento">
+                    <div class="item-producao-desenvolvimento">
                         <img src = "../imagens/teste_perfil.jpg">
                         <h2>Beatriz Wanderley Gomes (UEPB)</h2>
-
                     </div>
-
-                    <div class="coluna">
+                    <div class="item-producao-desenvolvimento">
                         <img src = ../imagens/teste_perfil.jpg >
                         <h2>Danilo Medeiros Dantas (UEPB)</h2>
-
                     </div>
-
-                    <div class="coluna">
+                    <div class="item-producao-desenvolvimento">
                         <img src = "../imagens/teste_perfil.jpg" >
                         <h2>Davi Miguel Franklim de Almeida (UEPB)</h2>
                     </div>
-
-                    <div class="coluna">
+                    <div class="item-producao-desenvolvimento">
                         <img src = "../imagens/teste_perfil.jpg" >
                         <h2>Eros Franklin Soares Felix (UEPB)</h2>
                     </div>
-
-                    <div class="coluna">
+                    <div class="item-producao-desenvolvimento">
                         <img src = "../imagens/teste_perfil.jpg" >
                         <h2>Giordanni Alves Formiga (UEPB)</h2>
                     </div>
-
-                    <div class="coluna">
+                    <div class="item-producao-desenvolvimento">
                         <img src = "../imagens/teste_perfil.jpg" >
                         <h2>Pedro Henrique de Andrade (UEPB)</h2>
                     </div>
-
+                    
                 </div>
-
-
             </div>
-            
             <div id="imgCredito">
                 <img src="../imagens/apoiadores.png" alt="Apoiadores do Projeto">
             </div>
 
         </section>
     </main>
+    <script src="../javascript/menu-burguer.js"></script>
 </body>
 </html>
