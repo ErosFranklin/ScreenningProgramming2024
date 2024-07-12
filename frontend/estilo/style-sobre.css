@@ -24,6 +24,8 @@ body{
     background-attachment: fixed;
     color:var(--cor-4);
     font-size: 0.9em;
+    padding:0;
+    margin:0;
 }
 #pageSobre{
     background: #fff;
@@ -43,6 +45,9 @@ body{
     text-align: left;
     color: #ffffff;
 }
+#burguer{
+    display:none;
+}
 
 .img img{
     display: block;
@@ -51,7 +56,6 @@ body{
 }
 
 .titlesSobre{
-    display: inline-block;
     font-size: 2em;
     padding: 10px;
     text-shadow: 5px 5px 3px var(--cor-5);
@@ -64,48 +68,42 @@ body{
     text-align: justify;
     color: #002b64;
 }
-
-.menuS {
+.menuS{
+    display: flex;
+    align-items: center;
+    text-align: center;
     color: #fff;
     font-size: 1.3em;
-}
-
-.menuS nav {
-    display: flex;
     justify-content: space-between;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px 20px;
+    padding: 0px 30px;
 }
 
 .menuS h1 {
     font-size: 1.3em;
-
 }
 
-.menuS ul {
+.itens-menu {
     display: flex;
-    gap: 20px;
-    align-items: center;
+    list-style: none;
+    padding-top: 10px;
 }
 
-.menuS ul> li {
-    display: inline;
-    font-weight: bold;
+.item-menus {
+   padding-right: 20px ;
 }
-.menuS .item-menus a {
+.item-menus a {
     text-decoration: none;
     color: #fff;
-    padding: 10px 15px;
+    padding: 5px;
     border-radius: 5px;
     transition: 0.3s;
 }
-.menuS .item-menus i{
+ .item-menus i{
     color: #fff;
     padding-left:10px;
     transition: .3s ;
 }
-.menuS .item-menus a:hover{
+.item-menus a:hover{
     border-radius: 5px;
     background:var(--cor-5);
     transition: .3s;
