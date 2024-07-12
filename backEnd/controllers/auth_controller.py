@@ -9,13 +9,9 @@ from middleware.global_middleware import verify_user
 from db.bd_mysql import db_connection
 
 def login_controller(data):
-
-
     try:
         email = data.get('email', '').lower()
         password = data.get('password', '')
-
-        verify_user(email)
 
         if not email or not password:
             return {"message": "Email or password is missing"}, 400
@@ -32,12 +28,13 @@ def login_controller(data):
             user_type = 'teacher'
 
         if user:
-            if bcrypt.checkpw(password.encode('utf-8'), user['password'].encode('utf-8')):
+            if bcrypt.checkpw(password.encode('utf-8'), user.get('password', '').encode('utf-8')):
                 access_token = create_access_token(identity={'id': str(user['id']), 'type': user_type})
-                print(user)
                 return {"access_token": access_token}, 200
             else:
                 return {"message": "Invalid email or password"}, 401
+        else:
+            return {"message": "Invalid email or password"}, 401
 
     except Exception as e:
         return {"message": str(e)}, 500
@@ -45,6 +42,7 @@ def login_controller(data):
     finally:
         if connection:
             connection.close()
+
 
 
 
