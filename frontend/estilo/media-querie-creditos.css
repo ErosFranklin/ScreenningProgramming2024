@@ -43,6 +43,7 @@ Grandes telas: acima de 1200px
         font-size: 30px;
         width: 100%;
         height: 100%;
+        padding-top:5px;
         padding-left: 10px;
         top: 0;
         left: 0;
@@ -83,11 +84,27 @@ Grandes telas: acima de 1200px
     .menuS.ativo #burguer {
         z-index: 9998;
     }
-    .img img{
-        margin-top:20px;
-    }
 
     #creditos div > h1{
         width: 100%;
+    }
+    
+    .coluna-intelectuais{
+        grid-template-columns: repeat(1, 1fr);
+        gap:0;
+    }
+    .linha-producao-desenvolvimento{
+        top:90%;
+    }
+    .item-intelectuais{
+        margin-left: 0px;
+    }
+    .coluna-producao-desenvolvimento{
+        grid-template-columns: repeat(1, 1fr);
+        gap:0;
+        margin-bottom: 13%;
+    }
+    #imgCredito img{
+        width: 350px;
     }
 }
