@@ -2,12 +2,18 @@ from models.Student import Student
 from db.bd_mysql import db_connection
 
 from middleware.global_middleware import (
+    verify_email_registered,
     verify_user)
 
 def add_student_controller(data):
     name = data.get('nameStudent').lower()
     email = data.get('emailStudent').lower()
     password = data.get('passwordStudent')
+
+
+    verifyEmail = verify_email_registered(email)
+    if verifyEmail:
+        return {"message": "Email já cadastrado!"}, 400
 
     connection = db_connection()
     if connection:

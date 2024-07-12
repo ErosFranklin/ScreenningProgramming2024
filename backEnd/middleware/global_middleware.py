@@ -23,6 +23,14 @@ def verify_user(userId):
     finally:
         connection.close()
 
+@staticmethod
+def verify_email_registered(connection, email):
+    user = Student.get_student_by_email_service(connection, email)
+    if not user:
+        user = Teacher.get_teacher_by_email_service(connection, email)
+    return user is not None
+
+
 
 #def verify_username_registered(username):
     #user = Student.get_user_by_username_service(username)
