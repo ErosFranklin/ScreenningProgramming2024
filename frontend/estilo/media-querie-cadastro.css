@@ -6,3 +6,91 @@ Tablet: 768px ate 993px
 Desktop: 992px ate 1200px
 Grandes telas: acima de 1200px
 */
+
+@media screen and (max-width:767px){
+    * {
+        box-sizing: border-box;
+    }
+    .titles{
+        font-size: 15px;
+        
+    }
+    .titles p{
+        font-size:0.9em;
+    }
+    .cadastro{
+        display:flex;
+        overflow-y: auto;
+        width: 100vw;
+        border-radius: 0%;
+        justify-content: center;
+        align-content: center;
+        height: 100vh;
+    }
+    .cadastro2{
+        display:none;
+    }
+    .componentesCads{
+        width: 100%;
+        margin-right: 5%;
+        height: auto;
+        padding: 10px;
+        margin-left: 0;
+    }
+    .componentesCads i{
+        font-size:22px;
+    }
+    .componentesCads #eyes, .componentesCads #eyes2{
+        font-size: 22px;
+        border-radius: 10px;
+    }
+    
+    .env{
+        justify-content: center;
+        width: 100%;
+        padding:50px 0px;
+    }
+    .env #Enviar, .env #Voltar{
+        height: auto;
+        font-size: 20px;
+    }
+}
+@media screen and (min-width:768px) and (max-width:992px){
+    .cadastro{
+        display:flex;
+        overflow-y: auto;
+        width: 90%;
+        justify-content: center;
+        align-content: center;
+    }
+    .cadastro2{
+        display:none;
+    }
+    .cadastro2 h1{
+        display: none;
+    }
+    .componentesCads{
+        width: 100%;
+        margin-right: 5%;
+        height: auto;
+        padding: 10px;
+        margin-left: 0;
+    }
+    .componentesCads i{
+        font-size:22px;
+    }
+    .componentesCads #eyes, .componentesCads #eyes2{
+        font-size: 22px;
+        border-radius: 10px;
+    }
+    .env{
+        justify-content: center;
+        width: 100%;
+        padding:50px 0px;
+    }
+    .env #Enviar, .env #Voltar{
+        height: auto;
+        font-size: 20px;
+    }
+
+}
