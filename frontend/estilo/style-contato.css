@@ -33,7 +33,9 @@ body{
     justify-content: space-between;
     padding: 0px 30px;
 }
-
+#burguer{
+    display:none;
+}
 .menuS h1 {
     font-size: 1.3em;
 }
@@ -64,8 +66,6 @@ body{
     background:var(--cor-5);
     transition: .3s;
 }
-
-
 
 .contato{
     display:flex;
