@@ -116,21 +116,6 @@ body{
     font-size: 14px;
 }
 
-.container h2 span{
-    text-align: center;
-    padding: 0 25px;
-    margin-top:-30px;
-    font-weight: 700;
-    gap:25px;
-}
-
-.pessoa{
-    display:flex;
-    justify-content: center;
-    margin-top:50px;
-    color:#fff;
-}
-
 .professor{
     display: block;
     text-align: center;
@@ -150,7 +135,7 @@ body{
     background-color: transparent;
     position: relative;
     display: block;
-    margin: auto;
+    margin: 10px auto;
     padding: 0;
     width: 80%;
     height: auto;
@@ -168,8 +153,7 @@ body{
     color:var(--cor-5);
     border:1px solid var(--cor-5);
     border-radius:10px;
-    -webkit-transition: all 200ms linear;
-    transition: all 200ms linear;
+    margin-bottom: 10px; 
 }
 #generoP{
     appearance: none;
