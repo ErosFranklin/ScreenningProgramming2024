@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pos Autenticacao Aluno</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../estilo/style-pos-autenticacao.css">
+</head>
+<body>
+    <div class="posAutenticacao">
+        <div class="aluno">
+            <div id="fotoContainerA">
+                <img id="fotoAluno" src="../imagens/teste_perfil.jpg" alt="Aluno">
+            </div>
+            <input type="file" id="mudarFotoA" accept="image/*">
+            <label for="mudarFotoA" id="mudarFotoLabelA">Alterar Foto</label>
+            <p>Insira mais algumas informacoes para seguir o cadastro.</p>
+            <form action="" method="post">
+                <div class="form-dados">
+                    <input type="text" class="form-style" id="nome" placeholder="Nome Completo">
+                    <i class="icones-input bi bi-person-fill"></i>
+                    <input type="date" class="form-style" id="nascimento" placeholder="Nascimento">
+                    <i class="icones-input2 bi bi-calendar-check-fill"></i>
+                </div>
+                <div class="form-dados">
+                    <select name="genero" id="genero" class="form-style" onclick="mudarGenero()">
+                        <option value="masc" id="masc">Outro</option>
+                        <option value="femi" id="femi">Feminino</option>
+                        <option value="outro" id="outro">Masculino</option>
+                    </select>
+                    <i class="icones-input bi bi-gender-ambiguous"></i>
+                    <input type="number" class="form-style" id="periodo" placeholder="Periodo">
+                    <i class="icones-input2 bi bi-calendar"></i>
+                </div>
+                <div class="form-dados">
+                    <input type="number" class="form-style" id="matricula" placeholder="Matricula">
+                    <i class="icones-input bi bi-person-vcard-fill"></i>
+                    <input type="password" class="form-style" id="password" placeholder="Senha Anterior">
+                    <i class="icones-input2 bi bi-lock-fill"></i>
+                </div>
+                <div class="form-dados">
+                    <input type="text" class="form-style" id="cidade" placeholder="Cidade">
+                    <i class="icones-input bi bi-houses-fill"></i>
+                    <input type="text" class="form-style" id="Estado" placeholder="Estado">
+                    <i class="icones-input2 bi bi-building"></i>
+                </div>
+                <div class="form-dados">
+                    <input type="text" class="form-style" id="instituicao" placeholder="Instituicao">
+                    <i class="icones-input bi bi-buildings-fill"></i>
+                    <input type="password" class="form-style" id="passwordPA" placeholder="Nova Senha">
+                    <i class="icones-input2 bi bi-lock-fill"></i>
+                </div>
+                <a href="#" class="btn" id="idAluno">Confirmar</a>
+            </form>
+        </div>
+    </div>
+    <script src="../javascript/alterarFotoAluno.js"></script>
+</body>
+</html>

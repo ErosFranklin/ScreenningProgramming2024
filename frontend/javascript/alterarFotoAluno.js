@@ -13,5 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             fotoContainer.style.display = 'block';
         }
+        
     });
 });
