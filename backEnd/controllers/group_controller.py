@@ -5,18 +5,23 @@ from models.Group import Group
 from db.bd_mysql import db_connection
 
 
-from middleware.global_middleware import (
-    verify_email_registered,verify_user
-    )
+# from middleware.global_middleware import (
+# verify_email_registered, verify_user
+# )
 
 def create_group_controller(data):
+
+    id_teacher = data.get('id_teacher')
+    id_student = data.get("id_student")
     name = data.get("name").lower()
-    period = data.get("period").lower()
+    period = data.get("period")
 
     connection = db_connection()
     if connection:
 
         group = Group(
+            id_teacher,
+            id_student,
             name,
             period
             )
@@ -24,6 +29,7 @@ def create_group_controller(data):
         group.create_group_service(connection)
         inserted_id = group.create_group_service(connection)
         connection.close()
+        
         if inserted_id is not None:
             return {"message": 'Grupo criado com sucesso!', "user_id": inserted_id}, 200
         else:

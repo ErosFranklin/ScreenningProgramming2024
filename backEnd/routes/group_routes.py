@@ -11,10 +11,12 @@ group_app = Blueprint("group_app", __name__)
 def create_group_route():
     data = request.get_json()
     
+    id_teacher = data["id_teacher"]
+    id_student = data["id_student"]
     name = data["name"].lower()
     period = data["period"]
 
-    response, status_code = create_group_controller(name, period)
+    response, status_code = create_group_controller(data)
     return jsonify(response), status_code
 
 @group_app.route("/api/group/<groupId>/<studentId>", methods=["DELETE"])
