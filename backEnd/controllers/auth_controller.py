@@ -4,11 +4,17 @@ from flask import jsonify
 from flask_jwt_extended import create_access_token, get_jwt_identity
 from models.Teacher import Teacher
 from models.Student import Student
-from middleware.global_middleware import verify_user
+from middleware.global_middleware import verify_email_registered
 
 from db.bd_mysql import db_connection
 
 def login_controller(data):
+
+    email = verify_email_registered(data['email'])
+    if not email:
+        return {"message": "Email not registered"}, 400
+    
+
     try:
         email = data.get('email', '').lower()
         password = data.get('password', '')
@@ -27,14 +33,11 @@ def login_controller(data):
             user = Teacher.get_teacher_by_email_service(connection, email)
             user_type = 'teacher'
 
-        if user:
-            if bcrypt.checkpw(password.encode('utf-8'), user.get('password', '').encode('utf-8')):
-                access_token = create_access_token(identity={'id': str(user['id']), 'type': user_type})
-                return {"access_token": access_token}, 200
-            else:
-                return {"message": "Invalid email or password"}, 401
-        else:
-            return {"message": "Invalid email or password"}, 401
+        if user and bcrypt.checkpw(password.encode('utf-8'), user['password'].encode('utf-8')):
+            access_token = create_access_token(identity={'id': str(user['id']), 'type': user_type})
+            return {"access_token": access_token}, 200
+
+        return {"message": "Invalid email or password"}, 401
 
     except Exception as e:
         return {"message": str(e)}, 500
@@ -42,6 +45,7 @@ def login_controller(data):
     finally:
         if connection:
             connection.close()
+
 
 
 
