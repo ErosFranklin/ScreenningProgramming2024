@@ -22,6 +22,9 @@ Grandes telas: acima de 1200px
         padding: 0;
         margin: 0;
     }
+    body{
+        background-color: #fff;
+    }
     .menuS {
         position: fixed;
         width: 90vw;
@@ -37,7 +40,7 @@ Grandes telas: acima de 1200px
 
     #burguer {
         display: block;
-        align-items: center;
+        color: var(--cor-5);
         position: absolute;
         text-align: left;
         font-size: 30px;
@@ -82,6 +85,7 @@ Grandes telas: acima de 1200px
     }
 
     .menuS.ativo #burguer {
+        color: #fff;
         z-index: 9998;
     }
     .titlespage{
@@ -111,6 +115,7 @@ Grandes telas: acima de 1200px
         margin-bottom: 60px;
     }
     .contato{
+        background-color: transparent;
         margin-top:50px;
         top:0;
         left:0;
