@@ -48,5 +48,5 @@ def add_student_to_group_controller(group_id, student_id):
 
 def get_students_from_group_controller(title):
     connection = db_connection()
-    students = Group.get_students_from_group_service(connection,title)
-    return {"students": students}, 200
+    teacher,students = Group.get_students_from_group_service(connection,title)
+    return {"Group": teacher,"Students":students}, 200

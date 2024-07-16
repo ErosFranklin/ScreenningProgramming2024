@@ -66,12 +66,18 @@ class Group:
             cursor.execute(query, (title,))
             results = cursor.fetchall()
 
+        teacher = {
+            "nameTeacher": results[0][0],
+            "title": results[0][2],
+            "period": results[0][3]
+        }
+
         students = [
             {
-                "nameStudent": row[1],
-                "title": row[2],
-                "period": row[3]
+                "nameStudent": row[1]
+                
             }
             for row in results
         ]
-        return students       
+
+        return teacher, students
