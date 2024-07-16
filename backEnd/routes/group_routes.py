@@ -31,8 +31,8 @@ def add_student_to_group_route(groupId, studentId):
     response, status_code = add_student_to_group_controller(groupId, studentId)
     return jsonify(response), status_code
 
-@group_app.route("/api/group/<groupId>", methods=["GET"])
+@group_app.route("/api/group/<title>", methods=["GET"])
 @jwt_required()
-def get_students_from_group_route(groupId):
-    response, status_code = get_students_from_group_controller(groupId)
+def get_students_from_group_route(title):
+    response, status_code = get_students_from_group_controller(title)
     return jsonify(response), status_code

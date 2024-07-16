@@ -46,6 +46,6 @@ def add_student_to_group_controller(group_id, student_id):
     Group.add_student_to_group_model(group_id, student_id)
     return {"message": "Student added to group"}, 200
 
-def get_students_from_group_controller(group_id):
-    students = Group.get_students_from_group_model(group_id)
+def get_students_from_group_controller(title):
+    students = Group.get_students_from_group_model(title)
     return {"students": students}, 200

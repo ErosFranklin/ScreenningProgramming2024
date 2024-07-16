@@ -57,6 +57,6 @@ class Group:
             return False
 
     @staticmethod
-    def get_students_from_group_model(self,connection,group_id):
+    def get_students_from_group_model(self,connection,title):
         cursor = connection.cursor()
-        cursor.execute("SELECT id_student FROM group_table WHERE id = %s", (group_id,))        
+        cursor.execute("select p.nameTeacher, e.nameStudent, g.title, g.period from group_table g JOIN professor p ON g.id_teacher = p.id JOIN aluno e ON g.id_student = e.id where g.title = %s ", (title))        
