@@ -5,15 +5,16 @@ from middleware.global_middleware import (
     verify_user,verify_email_registered)
 
 def add_teacher_controller(data):
+    connection = db_connection()
+
     name = data.get('nameTeacher').lower()
     email = data.get('emailTeacher').lower()
     password = data.get('passwordTeacher')
 
-    verifyEmail = verify_email_registered(email)
+    verifyEmail = verify_email_registered(connection,email)
     if verifyEmail:
         return {"message": "Email já cadastrado!"}, 400
 
-    connection = db_connection()
     if connection:
         teacher = Teacher(
             name=name,
