@@ -96,12 +96,17 @@ function verificarGrupo(nomeGrupo, periodo) {
 }
 
 function editarGrupo(grupo) {
-
     const editar = grupo.querySelector('.editar');
     editar.remove();
 
     const a = grupo.querySelector('a');
     const p = grupo.querySelector('p');
+
+    // Armazenar o href original
+    const hrefOriginal = a.href;
+
+    // Prevenir redirecionamento ao clicar no link durante a edição
+    a.removeAttribute('href');
 
     const inputNome = document.createElement('input');
     inputNome.type = 'text';
@@ -113,15 +118,14 @@ function editarGrupo(grupo) {
 
     a.classList.add('editaG');
     p.classList.add('editaG');
-    
+
     a.innerHTML = '';
     a.appendChild(inputNome);
 
     p.innerHTML = '';
     p.appendChild(inputPeriodo);
-    
+
     const salvar = document.createElement('button');
-    salvar.textContent = 'Salvar';
     salvar.innerHTML = '<i class="bi bi-floppy-fill"></i>';
     salvar.className = 'salvar';
     salvar.classList.add('editarGrupo');
@@ -134,21 +138,23 @@ function editarGrupo(grupo) {
             return;
         }
 
-        if (novoNome !== a.textContent || novoPeriodo !== p.textContent) {
-            if (verificarGrupo(novoNome, novoPeriodo)) {
-                alert('Já existe um grupo com esse nome e período.');
-                return;
-            }
-
-            a.textContent = novoNome;
-            p.textContent = novoPeriodo;
+        if (verificarGrupo(novoNome, novoPeriodo)) {
+            alert('Já existe um grupo com esse nome e período.');
+            return;
         }
-        
+
+        a.textContent = novoNome;
+        p.textContent = novoPeriodo;
+
+        // Restaurar o comportamento de hyperlink após a edição
+        a.href = hrefOriginal;
+
         inputNome.remove();
         inputPeriodo.remove();
         salvar.remove();
         grupo.appendChild(editar);
-
     });
+
     grupo.appendChild(salvar);
 }
+
