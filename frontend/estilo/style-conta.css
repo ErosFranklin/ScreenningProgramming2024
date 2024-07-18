@@ -126,11 +126,39 @@ body{
     border-radius:10px;
     padding:15px;
 }
-.componentes-basicos{
+
+.componentes-basicos {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(1, 1fr);
     grid-gap: 10px;
 }
+
+
+.componentes-basicos.modo-edicao {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+
+.informacao {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 300px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+.informacao.modo-edicao {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 300px; /* Alterado para ocupar o espaço necessário */
+    height: 100px;
+    border-radius: 10px;
+}
+
+
 .informacao{
     display:flex;
     flex-direction: column;
@@ -143,8 +171,8 @@ body{
     font-weight: bold;
     font-size:18px;
 }
-.informacao h3{
-    width: 350px;
+.informacao input{
+    width: 100%;
     height:auto;
     padding:10px;
     padding-left:10px; 
@@ -153,6 +181,52 @@ body{
     font-weight: lighter;
     font-size:16px;
     border-radius:10px;
+}
+.dado-texto{
+    width: 100%;
+    height:auto;
+    padding:10px;
+    padding-left:10px; 
+    color:var(--cor-3);
+    border:1px solid var(--cor-1);
+    font-weight: lighter;
+    font-size:16px;
+    border-radius:10px;
+}
+.btt-alterar{
+    display:flex;
+    width: 350px;
+    justify-content: center;
+    align-content: center;
+}
+#alterar{
+    background-color: var(--cor-3);
+    color:#fff;
+    padding:10px;
+    margin-top:8%;
+    border-radius: 5px;
+    border-style: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    width: 100%;
+    height: 45px;
+}
+#alterar:hover{
+    background-image: linear-gradient(to right,#023059,#014581,#023059 );
+    box-shadow:5px 5px 5px #0230595d;
+    color:#dfdfdf;
+    cursor:pointer;
+}
+/* Transição entre estados */
+.dados-basicos .componentes-basicos {
+    transition: all 0.3s ease;
+}
 
+/* Estilo durante a edição */
+.dados-basicos.editando .componentes-basicos {
+    opacity: 0.8; /* Exemplo de redução de opacidade durante a edição */
+}
 
+.dados-basicos.editando .dado-texto {
+    display: none; /* Esconde o h3 durante a edição */
 }
