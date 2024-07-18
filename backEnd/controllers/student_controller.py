@@ -7,9 +7,10 @@ from middleware.global_middleware import (
 
 def add_student_controller(data):
     connection = db_connection()
+    
     name = data.get('nameStudent').lower()
     email = data.get('emailStudent').lower()
-    birth = data.get('birth')
+    birth = data.get('birthStudent')
     password = data.get('passwordStudent')
 
     
