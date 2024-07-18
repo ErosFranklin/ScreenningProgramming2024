@@ -9,7 +9,9 @@ def add_teacher_controller(data):
 
     name = data.get('nameTeacher').lower()
     email = data.get('emailTeacher').lower()
+    birth = data.get('birthTeacher')
     password = data.get('passwordTeacher')
+    
 
     verifyEmail = verify_email_registered(connection,email)
     if verifyEmail:
@@ -19,6 +21,7 @@ def add_teacher_controller(data):
         teacher = Teacher(
             name=name,
             email=email,
+            birth=birth,
             password=password
         )
         teacher_id = teacher.create_teacher_service(connection)
