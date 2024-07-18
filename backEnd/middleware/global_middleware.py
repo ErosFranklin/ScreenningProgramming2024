@@ -18,7 +18,9 @@ def verify_id_exists(connection, user_id):
     user = Student.get_student_by_id_service(connection, user_id)
     if not user:
         user = Teacher.get_teacher_by_id_service(connection, user_id)
-    return user is not None
+    if not user:
+        abort(404, {"message": "User not found"})
+    return user
 
 #def verify_username_registered(username):
     #user = Student.get_user_by_username_service(username)
