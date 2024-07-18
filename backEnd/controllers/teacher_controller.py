@@ -2,7 +2,7 @@ from models.Teacher import Teacher
 from db.bd_mysql import db_connection
 
 from middleware.global_middleware import (
-    verify_user,verify_email_registered)
+    verify_id_exists, verify_user,verify_email_registered)
 
 def add_teacher_controller(data):
     connection = db_connection()
@@ -47,6 +47,7 @@ def get_teacher_controller():
 def update_teacher_controller(user_id, field, value):
     connection = db_connection()
     if connection:
+        verify_id_exists(connection,user_id)
         try:
             Teacher.update_teacher_service(connection, user_id, field, value)
             connection.close()
@@ -56,27 +57,25 @@ def update_teacher_controller(user_id, field, value):
     else:
         return {"error": "Falha ao conectar com o banco de dados!"}, 500
 
+
 def delete_teacher_controller(current_user_id, user_id):
-    if current_user_id != user_id:
-        return {"message": "Você não tem permissão para deletar este usuário!"}, 403
-    
-    user = verify_user(user_id)
-    if not user:
-        return {"message": "Usuário não encontrado!"}, 404
+    connection = db_connection()
+    if not connection:
+        return {"message": "Falha ao conectar com o banco de dados!"}, 500
+
     try:
-        connection = db_connection()
-        if not connection:
-            return {"message": "Falha ao conectar com o banco de dados!"}, 500
-        
+        if current_user_id != user_id:
+            return {"message": "Sem permissão para deletar"}, 400
+
+        verify_id_exists(connection,user_id)
         Teacher.delete_teacher_service(connection, user_id)
-        return {"message": "Usuário deletado"}, 200
+        return {"message": "User deletado"}, 200
 
     except Exception as e:
-        return {"message": str(e)}, 500
+        return {"message": f"Erro ao deletar o usuário: {e}"}, 500
 
     finally:
-        if connection:
-            connection.close()
+        connection.close()
 
     
 def get_teacher_by_id_email_controller(email):

@@ -3,6 +3,7 @@ from db.bd_mysql import db_connection
 
 from middleware.global_middleware import (
     verify_email_registered,
+    verify_id_exists,
     verify_user)
 
 def add_student_controller(data):
@@ -51,6 +52,7 @@ def get_student_controller():
 def update_student_controller(user_id, field, value):
     connection = db_connection()
     if connection:
+        verify_id_exists(connection,user_id)
         try:
             Student.update_student_service(connection, user_id, field, value)
             connection.close()
@@ -69,7 +71,7 @@ def delete_student_controller(current_user_id, user_id):
         if current_user_id != user_id:
             return {"message": "Sem permissão para deletar"}, 400
 
-        verify_user(user_id)
+        verify_id_exists(connection,user_id)
         Student.delete_student_service(connection, user_id)
         return {"message": "User deletado"}, 200
 
