@@ -19,7 +19,7 @@ def add_student_controller(data):
         return {"message": "Email já cadastrado!"}, 400
 
     if connection:
-        user = Student(
+        student = Student(
             name=name,
             email=email,
             birth=birth,
@@ -27,7 +27,7 @@ def add_student_controller(data):
         
         )
 
-        inserted_id = user.create_student_service(connection)
+        inserted_id = student.create_student_service(connection)
         connection.close()
         
         if inserted_id is not None:
