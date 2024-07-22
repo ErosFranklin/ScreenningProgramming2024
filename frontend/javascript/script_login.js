@@ -14,37 +14,40 @@ document.addEventListener("DOMContentLoaded", function() {
             validarEmail(email.value) === true &&
             validarPassword(password.value) === true
         ){
-            const usuario = {
-                email: email.value,
-                senha: password.value,
+            const login = async (email, password) => {
+                const url = ${url_base}/api/login; 
+                const data = {
+                    email: email,
+                    password: password
+                };
+            
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+            
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        console.error('Error:', errorData.error);
+                        return errorData;
+                    }
+            
+                    const responseData = await response.json();
+                    console.log('Success:', responseData);
+                    return responseData;
+            
+                } catch (error) {
+                    console.error('Fetch error:', error);
+                }
             };
-            // Enviar os dados ao servidor
-            fetch("http://localhost:8000/", {
-                method: "POST",
-                headers: {
-                "Content-Type": "application/json",
-                },
-                body: JSON.stringify(usuario),
-            })
-            .then((response) => response.json())
-            .then((data) => {
-            if (data.error) {
-                textForm.textContent = data.error;
-            } else {
-                textForm.textContent = data.message;
-            }
-            })
-            .catch((error) => {
-                console.error("Erro:", error);
-                textForm.textContent = "Ocorreu um erro ao fazer login.";
-            });
-         } else {
-            onsole.log("Requisição não atendida");
-        }
         /*
         window.location.href = "";
         */
-
+        }
 });
     
 function validarEmail(email) {
@@ -52,7 +55,7 @@ function validarEmail(email) {
     return emailRegex.test(email);
 }
 function validarPassword(password){
-    var passwordRegex = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{6,16}$/;
+    var passwordRegex = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{6,20}$/;
     return passwordRegex.test(password);
 }
 })

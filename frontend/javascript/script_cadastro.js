@@ -18,36 +18,38 @@ document.addEventListener("DOMContentLoaded", function() {
             validarPassword(password.value) &&
             validarSenhas(password.value, confsenha.value)
         ){
-            const usuario = {
-                nome:nome.value,
-                email:email.value,
-                dataNasc:dataNasc.value,
-                password:password.value,
-                confsenha:confsenha.value
-            }
-            // Enviar os dados para o servidor
-        try {
-            const response = await fetch("http://localhost:8000/cadastro", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(usuario)
-        });
-  
-        if (!response.ok) {
-          throw new Error("Erro na requisição");
-        }
-  
-        // Redirecionar para a tela de login
-        window.location.href = "/views/login.html";
-      } catch (error) {
-        console.error('Erro:', error);
-        textForm.textContent = "Erro ao cadastrar usuário!";
-      }
-    } else {
-      alert("Verifique os campos e tente novamente!") 
-    }
+            const cadastro = async (nome,email,dataNasc, password) => {
+                const url = ${url_base}/api/cadastro; 
+                const data = {
+                    name:nome,
+                    email: email,
+                    birth: dataNasc,
+                    password: password
+                };
+
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        console.error('Error:', errorData.error);
+                        return errorData;
+                    }
+
+                    const responseData = await response.json();
+                    console.log('Success:', responseData);
+                    return responseData;
+
+                } catch (error) {
+                    console.error('Fetch error:', error);
+                }
+            };
 });
     
 function validarEmail(email) {
@@ -55,7 +57,7 @@ function validarEmail(email) {
     return emailRegex.test(email);
 }
 function validarPassword(password){
-    var passwordRegex = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{6,16}$/;\
+    var passwordRegex = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{6,20}$/;
     return passwordRegex.test(password);
 }
 function validarSenhas(password, confsenha){
