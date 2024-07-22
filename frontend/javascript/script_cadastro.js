@@ -49,17 +49,23 @@ document.addEventListener("DOMContentLoaded", function() {
                 },
                 body: JSON.stringify(data)
             });
-
+            
             if (!response.ok) {
                 const errorData = await response.json();
                 console.error('Error:', errorData.error);
                 alert('Erro: ' + errorData.error);
                 return;
             }
-
-            const responseData = await response.json();
-            console.log('Success:', responseData);
-            alert('Cadastro realizado com sucesso!');
+            
+            try {
+                const responseData = await response.json();
+                console.log('Success:', responseData);
+                alert('Cadastro realizado com sucesso!');
+            } catch (error) {
+                console.error('JSON parse error:', error);
+                alert('Ocorreu um erro ao processar a resposta do servidor.');
+            }
+            
 
         } catch (error) {
             console.error('Fetch error:', error);
