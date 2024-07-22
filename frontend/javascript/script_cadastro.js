@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (email.includes("@aluno")) {
                 url_api = "/api/student";
             } else {
-                url_api = "/api/teacher";
+                url_api = "/api/teachers";
             }
             const url = `https://projetodepesquisa.vercel.app${url_api}`; 
             const data = {
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 birth: dataNasc,
                 password: password
             };
-
+            console.log(url)
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
