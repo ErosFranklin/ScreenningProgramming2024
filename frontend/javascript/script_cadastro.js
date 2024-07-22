@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const dataNasc = document.querySelector("#dataNasc").value;
         const password = document.querySelector("#password").value;
         const confsenha = document.querySelector("#confsenha").value;
-        
         if (nome === "" || email === "" || dataNasc === "" || password === "" || confsenha === "") {
             alert("Preencha todos os campos!");
             return;
@@ -36,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 url_api = "/api/teacher";
             }
             const url = `https://projetodepesquisa.vercel.app${url_api}`; 
-            console.log(email)
             const data = {
                 name: nome,
                 email: email,
