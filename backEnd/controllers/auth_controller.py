@@ -9,8 +9,10 @@ from middleware.global_middleware import verify_email_registered
 from db.bd_mysql import db_connection
 
 def login_controller(data):
-
-    email = verify_email_registered(data['email'])
+    connection = db_connection()
+    if not connection:
+        return {"message": "Database connection error"}, 500
+    email = verify_email_registered(connection,data['email'])
     if not email:
         return {"message": "Email not registered"}, 400
     
@@ -22,9 +24,7 @@ def login_controller(data):
         if not email or not password:
             return {"message": "Email or password is missing"}, 400
 
-        connection = db_connection()
-        if not connection:
-            return {"message": "Database connection error"}, 500
+        
         
         user = Student.get_student_by_email_service(connection, email)
         user_type = 'student'

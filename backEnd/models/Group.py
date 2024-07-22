@@ -13,9 +13,6 @@ class Group:
     def create_group_service(self, connection):
         try:
             cursor = connection.cursor()
-
-            #student_ids_json = json.dumps(self.students)
-
             cursor.execute("INSERT INTO group_table (id_teacher, id_student, title, period) VALUES (%s, %s, %s, %s)",
                            (self.id_teacher, self.id_students, self.title, self.period))
             connection.commit()
@@ -57,6 +54,24 @@ class Group:
             return False
 
     @staticmethod
-    def get_students_from_group_model(self,connection,title):
-        cursor = connection.cursor()
-        cursor.execute("select p.nameTeacher, e.nameStudent, g.title, g.period from group_table g JOIN professor p ON g.id_teacher = p.id JOIN aluno e ON g.id_student = e.id where g.title = %s ", (title))        
+    def get_students_from_group_service(connection, title):
+        with connection.cursor() as cursor:
+            query = """
+                SELECT p.nameTeacher, e.nameStudent, g.title, g.period 
+                FROM group_table g 
+                JOIN professor p ON g.id_teacher = p.id 
+                JOIN aluno e ON g.id_student = e.id 
+                WHERE g.title = %s
+            """
+            cursor.execute(query, (title,))
+            results = cursor.fetchall()
+
+        students = [
+            {
+                "nameStudent": row[1],
+                "title": row[2],
+                "period": row[3]
+            }
+            for row in results
+        ]
+        return students       
