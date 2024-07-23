@@ -12,7 +12,7 @@
 <body>
     <main>
         <div class="login1" autocomplete="on">
-            <form action="login.js" method="post">
+            <form  method="post" id="formLogin">
                 <div class="titles">
                     <h3>Bem-vindo de Volta!</h3>
                     <h1>Login</h1>
@@ -24,7 +24,7 @@
                 </div>
                 <label for="password">Senha:</label>
                 <div class="componentes">
-                    <i class="bi bi-lock-fill"></i><input type="password" name="password" id="password" placeholder="********" required><i class="bi bi-eye-fill" id="eyes" onclick="mostrarSenha()"  ></i>
+                    <i class="bi bi-lock-fill"></i><input type="password" name="password" id="senha" placeholder="********" required><i class="bi bi-eye-fill" id="eyes" onclick="mostrarSenha()"  ></i>
                 </div>
                 <div class="esq-env">
                     <p><a href="esq_senha.html" id="esq_senha">Esqueceu a senha?</a></p>
@@ -43,5 +43,6 @@
         </div>
     </main>
     <script src="../javascript/script_eyes.js"></script>
+    <script src="../javascript/script_login.js"></script>
 </body>
 </html>

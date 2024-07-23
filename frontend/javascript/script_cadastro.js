@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     function validarEmail(email) {
-        var emailRegex = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+        var emailRegex = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/;
         return emailRegex.test(email);
     }
 
@@ -99,17 +99,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function validarSenhas(password, confsenha) {
         return password === confsenha;
-    }
-
-    function convertDateFormat(dateStr) {
-        const datePattern = /^\d{4}-\d{2}-\d{2}$/;
-        if (!datePattern.test(dateStr)) {
-            console.error("Formato de data inválido.");
-            return null;
-        }
-    
-        const [year, month, day] = dateStr.split('-');
-    
-        return `${day}/${month}/${year}`;
     }
 });
