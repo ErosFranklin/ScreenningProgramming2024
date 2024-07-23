@@ -74,6 +74,11 @@ document.addEventListener("DOMContentLoaded", function() {
             try {
                 const responseData = await response.json();
                 alert('Cadastro realizado com sucesso!');
+                if(email.includes("@servidor")){
+                    window.location.href ="../html/pos-autenticacao-professor.html"
+                }else{
+                    window.location.href = "../html/pos-autenticacao-aluno.html"
+                }
             } catch (error) {
                 console.error('JSON parse error:', error);
                 alert('Ocorreu um erro ao processar a resposta do servidor.');
@@ -97,5 +102,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function validarSenhas(password, confsenha) {
         return password === confsenha;
+    }
+    function convertDateFormat(dateStr) {
+        const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+        if (!datePattern.test(dateStr)) {
+            console.error("Formato de data inválido.");
+            return null;
+        }
+
+        const [year, month, day] = dateStr.split('-');
+
+        return `${day}/${month}/${year}`;
     }
 });
