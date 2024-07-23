@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault();
 
         const nome = document.querySelector("#nome").value;
-        const email = document.querySelector("#email").value;
+        const email = document.querySelector("#email").value.toLowerCase();
         const dataNasc = document.querySelector("#dataNasc").value;
         const password = document.querySelector("#senha").value;
         const confsenha = document.querySelector("#confsenha").value;
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     confirm_password_Student: confsenha
                 };
             } else {
-                url_api = "/api/teachers";
+                url_api = "/api/teacher";
                 data = {
                     nameTeacher: nome,
                     emailTeacher: email,
