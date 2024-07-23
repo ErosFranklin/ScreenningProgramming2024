@@ -217,16 +217,15 @@ body{
     color:#dfdfdf;
     cursor:pointer;
 }
-/* Transição entre estados */
+
 .dados-basicos .componentes-basicos {
     transition: all 0.3s ease;
 }
 
-/* Estilo durante a edição */
 .dados-basicos.editando .componentes-basicos {
-    opacity: 0.8; /* Exemplo de redução de opacidade durante a edição */
+    opacity: 0.8; 
 }
 
 .dados-basicos.editando .dado-texto {
-    display: none; /* Esconde o h3 durante a edição */
+    display: none; 
 }
