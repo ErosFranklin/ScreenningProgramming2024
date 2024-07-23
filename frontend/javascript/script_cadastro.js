@@ -55,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             const url = `https://projetodepesquisa.vercel.app${url_api}`;
-            console.log(url);
 
             const response = await fetch(url, {
                 method: 'POST',
@@ -74,7 +73,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
             try {
                 const responseData = await response.json();
-                console.log('Success:', responseData);
                 alert('Cadastro realizado com sucesso!');
             } catch (error) {
                 console.error('JSON parse error:', error);
