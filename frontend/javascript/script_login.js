@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (email.includes('@servidor')) {
                     window.location.href = "../html/grupo.html";
                 } else {
-                    window.location.href = "../html/grupo.html";
+                    window.location.href = "../html/aluno.html";
                 }
                 
                 alert('Login realizado com sucesso!');

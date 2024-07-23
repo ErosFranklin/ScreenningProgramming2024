@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     confirm_password_Student: confsenha
                 };
             } else {
-                url_api = "/api/teachers";
+                url_api = "/api/teacher";
                 data = {
                     nameTeacher: nome,
                     emailTeacher: email,
