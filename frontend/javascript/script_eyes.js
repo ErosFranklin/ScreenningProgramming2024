@@ -1,5 +1,5 @@
 function mostrarSenha(){
-    var input = document.getElementById('password');
+    var input = document.getElementById('senha');
     var eyesbtt = document.getElementById('eyes');
     
     if(input.type === 'password' ){
