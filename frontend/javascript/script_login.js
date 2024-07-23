@@ -28,7 +28,12 @@ document.addEventListener("DOMContentLoaded", function() {
             // Se o login for bem-sucedido, redirecionar para a página desejada
             if (responseData) {
                 console.log('Login realizado com sucesso:', responseData);
-                // window.location.href = ""; // Coloque a URL para onde deseja redirecionar após o login
+                if(email.include('@servidor')){
+                    window.location.href = "../html/grupo.html";
+                }else{
+                    window.location.href = "../html/"
+                }
+                
                 alert('Login realizado com sucesso!');
             } else {
                 console.error('Erro ao realizar login.');
