@@ -141,7 +141,7 @@ body{
     height: auto;
     border-radius:5px;
     margin-bottom: 5px;
-    
+    background-color: red;
 }
 .form-style {
     padding:10px;
@@ -171,7 +171,8 @@ body{
 }
 .icones-input {
     position: absolute;
-    left: 15px;
+    left:25px;
+    bottom:8px;
     height: 48px;
     font-size: 16px;
     line-height: 48px;
@@ -179,28 +180,39 @@ body{
     color:var(--cor-4);
     transform: translateX(100%);
 }
-.icones-input2 {
-    position: relative;
-    right: 295px;
+.icones-input2, .custom-date-icon {
+    position: absolute;
+    right:40px;
+    bottom:8px;
     height: 48px;
     font-size: 16px;
     line-height: 48px;
-    text-align: left;
+    text-align: center;
     color:var(--cor-4);
-    transform: translateX(100%);
+    pointer-events: none;
+    transform: translateX(-46%);
+}
+.custom-date-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #333; /* Cor personalizada do ícone */
+    pointer-events: none; /* Permite clicar no input por trás do ícone */
 }
 .btn{
     border-radius: 4px;
+    border:none;
     height: 44px;
     font-size: 16px;
     -webkit-transition : all 200ms linear;
     transition: all 200ms linear;
     padding: 0 30px;
     margin-top: 10px;
-    display: -webkit-inline-flex;
-    display: -ms-inline-flexbox;
     display: inline-flex;
     align-items: center;
+    text-align: center;
     background-color: var(--cor-4);
     text-decoration: none;
     color: #fff;
@@ -209,3 +221,23 @@ body{
     background-image: linear-gradient(to right,#023059,#014581,#023059 );
     box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
+
+/* Esconder o ícone do calendário em navegadores baseados em WebKit (Chrome, Safari) */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color:transparent;
+    background-color: transparent;
+}
+
+/* Esconder o ícone do calendário em navegadores Firefox */
+input[type="date"]::-moz-calendar-picker-indicator {
+    color:transparent;
+    background-color: transparent;
+}
+
+/* Esconder o ícone do calendário em navegadores Opera */
+input[type="date"]::-o-calendar-picker-indicator {
+    color:transparent;
+    background-color: transparent;
+}
+
+

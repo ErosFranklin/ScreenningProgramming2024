@@ -74,6 +74,9 @@ document.addEventListener("DOMContentLoaded", function() {
             try {
                 const responseData = await response.json();
                 alert('Cadastro realizado com sucesso!');
+
+                localStorage.setItem('nome', nome);
+                localStorage.setItem('dataNasc', dataNasc)
                 if(email.includes("@servidor")){
                     window.location.href ="../html/pos-autenticacao-professor.html"
                 }else{
