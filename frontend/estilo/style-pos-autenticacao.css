@@ -141,7 +141,6 @@ body{
     height: auto;
     border-radius:5px;
     margin-bottom: 5px;
-    background-color: red;
 }
 .form-style {
     padding:10px;
@@ -192,15 +191,7 @@ body{
     pointer-events: none;
     transform: translateX(-46%);
 }
-.custom-date-icon {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 20px;
-    color: #333; /* Cor personalizada do ícone */
-    pointer-events: none; /* Permite clicar no input por trás do ícone */
-}
+
 .btn{
     border-radius: 4px;
     border:none;
@@ -222,19 +213,19 @@ body{
     box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
 
-/* Esconder o ícone do calendário em navegadores baseados em WebKit (Chrome, Safari) */
+
 input[type="date"]::-webkit-calendar-picker-indicator {
     color:transparent;
     background-color: transparent;
 }
 
-/* Esconder o ícone do calendário em navegadores Firefox */
+
 input[type="date"]::-moz-calendar-picker-indicator {
     color:transparent;
     background-color: transparent;
 }
 
-/* Esconder o ícone do calendário em navegadores Opera */
+
 input[type="date"]::-o-calendar-picker-indicator {
     color:transparent;
     background-color: transparent;
