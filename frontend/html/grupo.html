@@ -63,18 +63,20 @@
         <div id="overlay" class="overlay"></div>
         <div id="modal" class="modal">
             <h2>Cadastrar Grupo</h2>
-            <label for="nomeGrupo">Título do grupo</label>
-            <div class="componentesG">
-                <i class="bi bi-people-fill"></i><input type="text" name="nomeGrupo" id="nomeGrupo" placeholder="Nome do Grupo" required>
-            </div>
-            <label for="periodo">Periodo, ex:2024.1</label>
-            <div class="componentesG">
-                <i class="bi bi-calendar-week-fill"></i><input type="text" name="periodo" id="periodo" placeholder="ex:2024.1" required>
-            </div>
-            <div class="bttsGrupo">
-                <button id="criarGrupo">Criar</button>
-                <button id="fechar">Fechar</button>
-            </div>
+            <form method="post" id="formAddGrupo">
+                <label for="nomeGrupo">Título do grupo</label>
+                <div class="componentesG">
+                    <i class="bi bi-people-fill"></i><input type="text" name="nomeGrupo" id="nomeGrupo" placeholder="Nome do Grupo" required>
+                </div>
+                <label for="periodo">Periodo, ex:2024.1</label>
+                <div class="componentesG">
+                    <i class="bi bi-calendar-week-fill"></i><input type="text" name="periodo" id="periodo" placeholder="ex:2024.1" required>
+                </div>
+                <div class="bttsGrupo">
+                    <button id="criarGrupo">Criar</button>
+                    <button id="fechar">Fechar</button>
+                </div>
+            </form>
         </div>
         <div id="grupos-container" class="grupos-container">
             
@@ -82,31 +84,5 @@
         <script src="../javascript/add-grupos.js"></script>
         <script src="../javascript/menu.js"></script>
     </main>
-    
-    
-    
-<!--
-<div class="Grupo">
-    <button id="abrirGrupo">Cadastrar Grupo</button>
-    <div id="addGrupo">
-        <div class="grupos">
-            <span class="fechar">&times;</span>
-            <h2>Cadastrar Grupo</h2>
-            <form id="grupoForm">
-                <label for="groupName">Nome do Grupo:</label>
-                <input type="text" id="groupName" required>
-                <button type="submit">Cadastrar</button>
-            </form>
-        </div>
-    </div>
-    
-    <div id="listaGrupo">
-        
-    </div>
-</div>
-
-<script src="../javascript/addGrupos.js"></script>
-
--->
 </body>
 </html>

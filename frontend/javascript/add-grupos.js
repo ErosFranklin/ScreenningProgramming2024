@@ -15,14 +15,14 @@ document.addEventListener('DOMContentLoaded', function() {
     novoGrupo.addEventListener('click', function() {
         overlay.style.display = 'block';
         modal.style.display = 'block';
-        localStorage.setItem('modalExibido','true')
+        localStorage.setItem('modalExibido', 'true');
     });
 
     botaoFechar.addEventListener('click', function() {
-        fecharJanela();
+        fecharJanela(overlay, modal, nomeGrupoInput, periodoInput);
     });
     
-    document.querySelector('#criarGrupo').addEventListener('click', function() {
+    document.querySelector('#criarGrupo').addEventListener('click', async function() {
         const nomeGrupo = nomeGrupoInput.value;
         const periodo = periodoInput.value;
 
@@ -34,16 +34,54 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const novoGrupo = criarGrupo(nomeGrupo, periodo);
-        gruposContainer.appendChild(novoGrupo);
+        try {
+            const savedGroup = await salvarGrupoBackend(nomeGrupo, periodo);
 
-        fecharJanela(overlay, modal, nomeGrupoInput, periodoInput);
-    });
-
-    botaoFechar.addEventListener('click', function() {
-        fecharJanela(overlay, modal, nomeGrupoInput, periodoInput);
+            if (savedGroup) {
+                const novoGrupo = criarGrupo(nomeGrupo, periodo);
+                gruposContainer.appendChild(novoGrupo);
+                fecharJanela(overlay, modal, nomeGrupoInput, periodoInput);
+            }
+        } catch (error) {
+            console.error('Erro ao criar grupo:', error);
+        }
     });
 });
+
+async function salvarGrupoBackend(nomeGrupo, periodo) {
+    const userId = localStorage.getItem('userId'); 
+
+    if (!userId) {
+        alert('Erro: ID do usuário não encontrado.');
+        return;
+    }
+
+    const data = {
+        name: nomeGrupo,
+        period: periodo,
+        userId: userId
+    };
+
+    try {
+        const response = await fetch('https://projetodepesquisa.vercel.app/api/group', { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Erro ao salvar grupo:', error);
+        alert('Erro ao salvar grupo: ' + error.message);
+    }
+}
 
 function criarGrupo(nome, periodo) {
     const novoGrupo = document.createElement('div');
@@ -51,8 +89,7 @@ function criarGrupo(nome, periodo) {
     novoGrupo.innerHTML = '<h2><a href="detalhe-grupo.html">' + nome + '</a></h2><p>' + periodo + '</p>';
 
     const editar = document.createElement('button');
-    editar.textContent = 'Editar';
-    editar.innerHTML = '<i class="bi bi-pencil-square"></i>'
+    editar.innerHTML = '<i class="bi bi-pencil-square"></i>';
     editar.className = 'editar';
     editar.addEventListener('click', function() {   
         editarGrupo(novoGrupo);
@@ -60,14 +97,13 @@ function criarGrupo(nome, periodo) {
     novoGrupo.appendChild(editar);
 
     const apagar = document.createElement('button');
-    apagar.textContent = 'Apagar';
+
     apagar.innerHTML = '<i class="bi bi-trash"></i>';
     apagar.className = 'apagar';
     apagar.addEventListener('click', function() { 
         novoGrupo.remove();
     });
-    apagar.classList.add('editarGrupo');
-    editar.classList.add('editarGrupo');
+
     novoGrupo.appendChild(apagar);
     return novoGrupo;
 }
@@ -102,10 +138,10 @@ function editarGrupo(grupo) {
     const a = grupo.querySelector('a');
     const p = grupo.querySelector('p');
 
-    // Armazenar o href original
+
     const hrefOriginal = a.href;
 
-    // Prevenir redirecionamento ao clicar no link durante a edição
+
     a.removeAttribute('href');
 
     const inputNome = document.createElement('input');
@@ -129,7 +165,7 @@ function editarGrupo(grupo) {
     salvar.innerHTML = '<i class="bi bi-floppy-fill"></i>';
     salvar.className = 'salvar';
     salvar.classList.add('editarGrupo');
-    salvar.addEventListener('click', function() {
+    salvar.addEventListener('click', async function() {
         const novoNome = inputNome.value.trim();
         const novoPeriodo = inputPeriodo.value.trim();
 
@@ -143,16 +179,20 @@ function editarGrupo(grupo) {
             return;
         }
 
-        a.textContent = novoNome;
-        p.textContent = novoPeriodo;
+        try {
+            await salvarGrupoBackend(novoNome, novoPeriodo); 
 
-        // Restaurar o comportamento de hyperlink após a edição
-        a.href = hrefOriginal;
+            a.textContent = novoNome;
+            p.textContent = novoPeriodo;
+            a.href = hrefOriginal;
 
-        inputNome.remove();
-        inputPeriodo.remove();
-        salvar.remove();
-        grupo.appendChild(editar);
+            inputNome.remove();
+            inputPeriodo.remove();
+            salvar.remove();
+            grupo.appendChild(editar);
+        } catch (error) {
+            console.error('Erro ao editar grupo:', error);
+        }
     });
 
     grupo.appendChild(salvar);
