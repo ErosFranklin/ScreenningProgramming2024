@@ -2,10 +2,10 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelector("#formContato").addEventListener("submit", async function(event) {
         event.preventDefault();
 
-        const nome = document.querySelector("#nome").value;
+        const nome = document.querySelector("#name").value;
         const email = document.querySelector("#email").value;
         const assunto = document.querySelector("#assunto").value;
-        const msg = document.querySelector("#msg").value;
+        const msg = document.querySelector("#mensagem").value;
         if (nome === "" || email === "" || assunto === "" || msg === "") {
             alert("Preencha todos os campos!");
             return;
