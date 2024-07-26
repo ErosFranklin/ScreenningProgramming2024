@@ -1,16 +1,30 @@
 document.addEventListener('DOMContentLoaded', async function() {
     const alterarButton = document.getElementById('alterar');
     let isEditing = false;
+    let userId = localStorage.getItem('userId');
+    let urlBase;
 
-    const userId = localStorage.getItem('userId');
-
-    let userResponse;
-    let userData;
+    if (!userId) {
+        console.error('User ID não encontrado no localStorage');
+        return;
+    }
+    /*
     try {
-        //MESMO PROBLEMA NAO SEI COMO TESTAR O EMAIL ANTES DA REQUISICAO
-        userResponse = await fetch(`https://api.exemplo.com/usuario/${userId}`);
-        userData = await userResponse.json();
+        const userResponse = await fetch(`https://api.exemplo.com/usuario/${userId}`);
+        if (!userResponse.ok) throw new Error('Erro na resposta da API');
+        
+        const userData = await userResponse.json();
+        
+        if (userData.email.includes('@servidor')) {
+            urlBase = 'https://projetodepesquisa.vercel.app/api/teachers';
+        } else if (userData.email.includes('@aluno')) {
+            urlBase = 'https://projetodepesquisa.vercel.app/api/students';
+        } else {
+            console.error('Email do usuário não corresponde a nenhum domínio esperado.');
+            return;
+        }
 
+        // Preencher os campos com os dados do usuário
         document.getElementById('nomeUsuario').textContent = userData.nome;
         document.getElementById('generoUsuario').textContent = userData.genero;
         document.getElementById('periodoUsuario').textContent = userData.periodo;
@@ -20,30 +34,24 @@ document.addEventListener('DOMContentLoaded', async function() {
         document.getElementById('estadoUsuario').textContent = userData.estado;
         document.getElementById('instituicaoUsuario').textContent = userData.instituicao;
         document.getElementById('senhaUsuario').textContent = userData.senha;
+
     } catch (error) {
         console.error('Erro ao obter os dados do usuário:', error);
-    }
-
-    let urlBase;
-    if (userData.email.includes('@servidor')) {
-        urlBase = 'https://projetodepesquisa.vercel.app/api/teachers';
-    } else if (userData.email.includes('@aluno')) {
-        urlBase = 'https://projetodepesquisa.vercel.app/api/students';
-    } else {
-        console.error('Email do usuário não corresponde a nenhum domínio esperado.');
         return;
     }
-
+    */
     alterarButton.addEventListener('click', function() {
         const informacoes = document.querySelectorAll('.dados-basicos .componentes-basicos');
 
         if (!isEditing) {
+            console.log('Modo de edição ativado');
             informacoes.forEach(informacao => {
                 editarDados(informacao);
             });
             alterarButton.textContent = 'Salvar Alteração';
             isEditing = true;
         } else {
+            console.log('Salvando alterações');
             let valid = true;
             let updatedData = {};
             informacoes.forEach(informacao => {
@@ -59,14 +67,18 @@ document.addEventListener('DOMContentLoaded', async function() {
                     informacao.classList.remove('modo-edicao');
                 });
 
-                fetch(`${urlBase}${userId}`, {
+                console.log('Dados atualizados:', updatedData);
+                fetch(`${urlBase}/${userId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(updatedData)
                 })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) throw new Error('Erro na resposta da API');
+                    return response.json();
+                })
                 .then(data => {
                     console.log('Dados atualizados com sucesso:', data);
                 })
@@ -82,7 +94,7 @@ function editarDados(informacao) {
     const label = informacao.querySelector('label');
     const h3Dado = informacao.querySelector('h3');
     const inputDado = document.createElement('input');
-    
+
     inputDado.type = 'text';
     inputDado.value = h3Dado ? h3Dado.textContent : ''; 
     inputDado.className = 'dado-texto';
@@ -121,4 +133,3 @@ function salvarDados(informacao, updatedData) {
 
     return true;
 }
-
