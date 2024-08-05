@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', async function() {
     const alterarButton = document.getElementById('alterar');
     let isEditing = false;
-    let userId = localStorage.getItem('userId');
+    const userId = localStorage.getItem('userId');
     let urlBase;
 
     if (!userId) {
         console.error('User ID não encontrado no localStorage');
         return;
     }
-    /*
+
     try {
         const userResponse = await fetch(`https://api.exemplo.com/usuario/${userId}`);
         if (!userResponse.ok) throw new Error('Erro na resposta da API');
@@ -39,19 +39,17 @@ document.addEventListener('DOMContentLoaded', async function() {
         console.error('Erro ao obter os dados do usuário:', error);
         return;
     }
-    */
+    
     alterarButton.addEventListener('click', function() {
         const informacoes = document.querySelectorAll('.dados-basicos .componentes-basicos');
 
         if (!isEditing) {
-            console.log('Modo de edição ativado');
             informacoes.forEach(informacao => {
                 editarDados(informacao);
             });
             alterarButton.textContent = 'Salvar Alteração';
             isEditing = true;
         } else {
-            console.log('Salvando alterações');
             let valid = true;
             let updatedData = {};
             informacoes.forEach(informacao => {
@@ -67,9 +65,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                     informacao.classList.remove('modo-edicao');
                 });
 
-                console.log('Dados atualizados:', updatedData);
                 fetch(`${urlBase}/${userId}`, {
-                    method: 'PUT',
+                    method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -99,9 +96,7 @@ function editarDados(informacao) {
     inputDado.value = h3Dado ? h3Dado.textContent : ''; 
     inputDado.className = 'dado-texto';
 
-    informacao.classList.add('informacao'); 
-    informacao.classList.add('modo-edicao'); 
-
+    informacao.classList.add('informacao', 'modo-edicao'); 
     informacao.innerHTML = ''; 
     informacao.appendChild(label);
     informacao.appendChild(inputDado);
@@ -121,9 +116,7 @@ function salvarDados(informacao, updatedData) {
     dado.textContent = novoDado;
     dado.className = 'dado-texto';
 
-    informacao.classList.add('informacao'); 
     informacao.classList.remove('modo-edicao'); 
-
     informacao.innerHTML = ''; 
     informacao.appendChild(label);
     informacao.appendChild(dado);
