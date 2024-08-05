@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,800;0,900;1,500&display=swap');
+*{
+    
+    margin:0;
+    padding:0;
+    font-family:'Poppins', sans-serif;
+    box-sizing:border-box;
+}
+:root {
+    --cor-1: #275AF2;
+    --cor-2: #5079F2;
+    --cor-3: #035AA6;
+    --cor-4: #0050b8;
+    --cor-5: #023059;
+    --cor-text: #fff;
+}
+
+body{
+    background-color: #0050b8;
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
+    color:var(--cor-4);
+    font-size: 0.9em;
+}
+
+.telaNovaSenha{
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    width: 40%;
+    height: 450px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 3px #0230595d;
+    text-align: left;
+    justify-content: center; 
+    align-items: center;   
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.titles{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.telaNovaSenha h1{
+    color:var(--cor-5);
+}
+.telaNovaSenha h3{
+    color:var(--cor-3);
+}
+.telaNovaSenha a{
+    text-decoration: none;
+    font-weight: bolder;
+    color:var(--cor-4);
+}
+.telaNovaSenha a:hover{
+    text-decoration: underline;
+    color:var(--cor-5);
+}
+.componentes input {
+    position:relative;
+    border: 2px solid transparent;
+    background-color: #b7daf800;
+    border-radius: 5px;
+    padding: 10px;
+    width: calc(100% - 75px);
+    outline: none;
+    
+}
+
+.componentes input:focus{
+    border-color: #02305900;
+    color:var(--cor-5);
+}
+
+
+.componentes i {
+    color: var(--cor-1);
+    padding: 10px;
+    font-size: 16px;
+}
+.componentes #eyes, .componentes #eyes2{
+    position: absolute;
+    color: var(--cor-1);
+    font-size: 16px;
+    padding: 10px;
+    cursor: pointer;
+}
+#formNovaSenha{
+    position: relative;
+    display:flex;
+    width: 80%;
+    flex-direction: column;
+    
+}
+.componentes {
+    width: 100%;
+    margin-left: 5%;
+    margin-top: 5px;
+    border-style: groove;
+    border:1px solid var(--cor-3);
+    border-radius: 5px;
+}
+.telaNovaSenha label{
+    color: var(--cor-2);
+    margin-top: 10px;
+}
+.esq-env{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    left: 5%;
+    padding-top: 30px;
+    position: relative;
+}
+.esq-env #Enviar{
+    background-color: var(--cor-3);
+    color:#fff;
+    padding:10px;
+    margin-top: 30px;
+    margin-left: 1%;
+    border-radius: 5px;
+    border-style: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    width: 83%;
+    height: 45px;
+
+}
+.esq-env #Enviar:hover{
+    background-image: linear-gradient(to right,#023059,#014581,#023059 );
+    box-shadow:5px 5px 5px #0230595d;
+    cursor:pointer;
+}
+.esq-env #esq_senha{
+    color:var(--cor-3);
+    font-size: 0.9em;
+}

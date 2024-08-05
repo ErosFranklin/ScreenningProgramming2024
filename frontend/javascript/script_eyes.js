@@ -15,7 +15,7 @@ function mostrarConfSenha(){
     var inputC = document.getElementById('confsenha');
     var eyesbttC = document.getElementById('eyes2');
 
-    if(inputC.type === 'password' ){
+    if(inputC.type === 'password'){
         inputC.setAttribute('type','text');
         eyesbttC.classList.replace('bi-eye-fill', 'bi-eye-slash-fill');
     }
