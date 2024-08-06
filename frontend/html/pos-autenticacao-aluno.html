@@ -17,7 +17,7 @@
             <input type="file" id="mudarFotoA" accept="image/*">
             <label for="mudarFotoA" id="mudarFotoLabelA">Alterar Foto</label>
             <p>Insira mais algumas informacoes para seguir o cadastro.</p>
-            <form method="post">
+            <form method="post" id="formPosAutentAluno">
                 <div class="form-dados">
                     <input type="text" class="form-style" id="nome" placeholder="Nome Completo">
                     <i class="icones-input bi bi-person-fill"></i>
@@ -37,8 +37,8 @@
                 <div class="form-dados">
                     <input type="number" class="form-style" id="matricula" placeholder="Matricula">
                     <i class="icones-input bi bi-person-vcard-fill"></i>
-                    <input type="password" class="form-style" id="password" placeholder="Senha Anterior">
-                    <i class="icones-input2 bi bi-lock-fill"></i>
+                    <input type="text" class="form-style" id="instituicao" placeholder="Instituicao">
+                    <i class="icones-input2 bi bi-buildings-fill"></i>
                 </div>
                 <div class="form-dados">
                     <input type="text" class="form-style" id="cidade" placeholder="Cidade">
@@ -46,13 +46,7 @@
                     <input type="text" class="form-style" id="estado" placeholder="Estado">
                     <i class="icones-input2 bi bi-pin-map-fill"></i>
                 </div>
-                <div class="form-dados">
-                    <input type="text" class="form-style" id="instituicao" placeholder="Instituicao">
-                    <i class="icones-input bi bi-buildings-fill"></i>
-                    <input type="password" class="form-style" id="passwordPA" placeholder="Nova Senha">
-                    <i class="icones-input2 bi bi-lock-fill"></i>
-                </div>
-                <a href="#" class="btn" id="idAluno">Confirmar</a>
+                <button type="submit" class="btn" id="idAluno">Confirmar</button>
             </form>
         </div>
     </div>
