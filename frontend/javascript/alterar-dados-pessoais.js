@@ -10,20 +10,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     try {
-        const userResponse = await fetch(`https://api.exemplo.com/usuario/${userId}`);
+        const userResponse = await fetch(`https://projetodepesquisa.vercel.app/api/teachers/${userId}`);
         if (!userResponse.ok) throw new Error('Erro na resposta da API');
         
         const userData = await userResponse.json();
         
-        if (userData.email.includes('@servidor')) {
-            urlBase = 'https://projetodepesquisa.vercel.app/api/teachers';
-        } else if (userData.email.includes('@aluno')) {
-            urlBase = 'https://projetodepesquisa.vercel.app/api/students';
-        } else {
-            console.error('Email do usuário não corresponde a nenhum domínio esperado.');
-            return;
-        }
-
         // Preencher os campos com os dados do usuário
         document.getElementById('nomeUsuario').textContent = userData.nome;
         document.getElementById('generoUsuario').textContent = userData.genero;
@@ -44,12 +35,14 @@ document.addEventListener('DOMContentLoaded', async function() {
         const informacoes = document.querySelectorAll('.dados-basicos .componentes-basicos');
 
         if (!isEditing) {
+            // Modo de edição ativado
             informacoes.forEach(informacao => {
                 editarDados(informacao);
             });
             alterarButton.textContent = 'Salvar Alteração';
             isEditing = true;
         } else {
+            // Salvando alterações
             let valid = true;
             let updatedData = {};
             informacoes.forEach(informacao => {
@@ -65,7 +58,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                     informacao.classList.remove('modo-edicao');
                 });
 
-                fetch(`${urlBase}/${userId}`, {
+                // Enviar apenas os campos alterados no PATCH
+                fetch(`https://projetodepesquisa.vercel.app/api/teachers/${userId}`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json'
@@ -108,9 +102,19 @@ function salvarDados(informacao, updatedData) {
     const dado = document.createElement('h3');
 
     const novoDado = inputDado.value.trim();
+    const campo = label.textContent.replace(':', '').toLowerCase();
+
+    // Verifica se o dado foi alterado em comparação com o valor original
+    const valorOriginal = document.getElementById(`${campo}Usuario`).textContent;
+
     if (novoDado === '') {
         alert('Por favor, preencha todos os campos');
         return false;
+    }
+
+    if (novoDado !== valorOriginal) {
+        // Se o valor foi alterado, adiciona ao updatedData
+        updatedData[campo] = novoDado;
     }
 
     dado.textContent = novoDado;
@@ -120,9 +124,5 @@ function salvarDados(informacao, updatedData) {
     informacao.innerHTML = ''; 
     informacao.appendChild(label);
     informacao.appendChild(dado);
-
-    const campo = label.textContent.replace(':', '').toLowerCase();
-    updatedData[campo] = novoDado;
-
     return true;
 }

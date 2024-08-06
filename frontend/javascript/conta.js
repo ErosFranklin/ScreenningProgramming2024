@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     try {
-        //NAO SEI COMO ACESSAR O EMAIL SEM FAZER UMA REQUISICAO 
         const requisitarEmail = await fetch(`https://api.exemplo.com/usuario/${userId}`);
 
         if (!requisitarEmail.ok) {
