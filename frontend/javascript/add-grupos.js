@@ -63,7 +63,7 @@ async function salvarGrupoBackend(nomeGrupo, periodo) {
     };
 
     try {
-        const response = await fetch(`https://projetodepesquisa.vercel.app/api/group`, { 
+        const response = await fetch(`https://projetodepesquisa.vercel.app/api/group/${userID}`, { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
