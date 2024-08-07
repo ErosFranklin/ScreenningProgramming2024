@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 async function salvarGrupoBackend(nomeGrupo, periodo) {
-    const token = localStorage.getItem('token'); // token armazenado
+    const token = localStorage.getItem('token'); // Token armazenado
     const userId = localStorage.getItem('userId');
 
     if (!userId || !token) {
@@ -63,13 +63,13 @@ async function salvarGrupoBackend(nomeGrupo, periodo) {
     };
 
     try {
-        const response = await fetch(`https://projetodepesquisa.vercel.app/api/group/${userID}`, { 
+        const response = await fetch(`https://projetodepesquisa.vercel.app/api/group`, { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}` //token no cabeçalho
+                'Authorization': `Bearer ${token}` // Token no cabeçalho
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(data) // Não inclua o id_teacher aqui
         });
 
         if (!response.ok) {
@@ -83,8 +83,6 @@ async function salvarGrupoBackend(nomeGrupo, periodo) {
         alert('Erro ao salvar grupo: ' + error.message);
     }
 }
-
-
 
 function criarGrupo(nome, periodo) {
     const novoGrupo = document.createElement('div');
@@ -100,7 +98,6 @@ function criarGrupo(nome, periodo) {
     novoGrupo.appendChild(editar);
 
     const apagar = document.createElement('button');
-
     apagar.innerHTML = '<i class="bi bi-trash"></i>';
     apagar.className = 'apagar';
     apagar.addEventListener('click', function() { 
@@ -205,5 +202,3 @@ function editarGrupo(grupo) {
 
     grupo.appendChild(salvar);
 }
-
-
