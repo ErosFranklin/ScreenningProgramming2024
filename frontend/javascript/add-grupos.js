@@ -132,6 +132,7 @@ function criarGrupo(nome, periodo) {
     const editar = document.createElement('button');
     editar.innerHTML = '<i class="bi bi-pencil-square"></i>';
     editar.className = 'editar';
+    editar.classList.add('editarGrupo');
     editar.addEventListener('click', function() {   
         editarGrupo(novoGrupo);
     });
@@ -140,6 +141,7 @@ function criarGrupo(nome, periodo) {
     const apagar = document.createElement('button');
     apagar.innerHTML = '<i class="bi bi-trash"></i>';
     apagar.className = 'apagar';
+    apagar.classList.add('editarGrupo');
     apagar.addEventListener('click', function() { 
         novoGrupo.remove();
     });

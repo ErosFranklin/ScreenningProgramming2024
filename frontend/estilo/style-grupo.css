@@ -163,19 +163,22 @@ body{
 }
 .grupo .editarGrupo{
     display: flex;
-    justify-content: flex-start; 
-    align-items:flex-start; 
+    
     position: absolute; 
     bottom: 0; 
     right: 0; 
     padding:5px;
 }
+
 .editar{
     background-color: transparent;
     color:#ffffff;
     border-style:none;
     font-size: 1.2em;
-    margin-right: 10px;
+    position:relative;
+    width: 20px;
+    margin-right: 40px;
+    padding: 10px;
     cursor:pointer;
 }
 .editar:hover{
@@ -186,9 +189,11 @@ body{
     background-color: transparent;
     color:#ffffff;
     border-style:none;
-    margin-right: 50px;
+    margin-right: 0;
+    padding: 10px;
     font-size: 1.2em;
     cursor:pointer;
+    position: relative;
 }
 .apagar:hover{
     color: var(--cor-5);
@@ -216,7 +221,10 @@ body{
     color:#ffffff;
     border-style:none;
     font-size: 1.2em;
-    margin-right: 10px;
+    position:relative;
+    width: 20px;
+    margin-right: 40px;
+    padding: 10px;
     cursor:pointer;
 }
 .salvar:hover{
