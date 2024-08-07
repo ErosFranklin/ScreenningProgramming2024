@@ -27,7 +27,7 @@
                     <i class="icones-input2 bi bi-calendar-check-fill"></i>
                 </div>
                 <div class="form-dados">
-                    <select name="genero" id="generoP" class="form-style" onclick="mudarGenero()">
+                    <select name="genero" id="generoP" class="form-style" >
                         <option value="masc" id="mascP">Outro</option>
                         <option value="femi" id="femiP">Feminino</option>
                         <option value="outro" id="outroP">Masculino</option>
@@ -56,9 +56,33 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            flatpickr("#nascimentoP", {
+            flatpickr("#nascimento", {
                 dateFormat: "d/m/Y",
                 altFormat: "d/m/Y"
+            });
+
+            document.getElementById('estado').addEventListener('change', function() {
+                const estado = this.value;
+                const cidadeSelect = document.getElementById('cidade');
+
+                if (estado) {
+                    const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estado}/municipios`;
+
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                            cidadeSelect.innerHTML = ''; 
+                            data.forEach(municipio => {
+                                const option = document.createElement('option');
+                                option.value = municipio.id;
+                                option.textContent = municipio.nome;
+                                cidadeSelect.appendChild(option);
+                            });
+                        })
+                        .catch(error => console.error('Erro ao carregar municípios:', error));
+                } else {
+                    cidadeSelect.innerHTML = ''; 
+                }
             });
         });
     </script>

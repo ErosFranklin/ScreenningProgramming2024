@@ -49,24 +49,25 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 async function salvarGrupoBackend(nomeGrupo, periodo) {
-    const userId = localStorage.getItem('userId'); 
+    const token = localStorage.getItem('token'); // token armazenado
+    const userId = localStorage.getItem('userId');
 
-    if (!userId) {
-        alert('Erro: ID do usuário não encontrado.');
-        return;
+    if (!userId || !token) {
+        alert('Erro: ID do usuário ou token não encontrado.');
+        return null;
     }
 
     const data = {
         name: nomeGrupo,
-        period: periodo,
-        userId: userId
+        period: periodo
     };
 
     try {
-        const response = await fetch('https://projetodepesquisa.vercel.app/api/group', { 
+        const response = await fetch(`https://projetodepesquisa.vercel.app/api/group`, { 
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` //token no cabeçalho
             },
             body: JSON.stringify(data)
         });
@@ -82,6 +83,8 @@ async function salvarGrupoBackend(nomeGrupo, periodo) {
         alert('Erro ao salvar grupo: ' + error.message);
     }
 }
+
+
 
 function criarGrupo(nome, periodo) {
     const novoGrupo = document.createElement('div');
@@ -138,9 +141,7 @@ function editarGrupo(grupo) {
     const a = grupo.querySelector('a');
     const p = grupo.querySelector('p');
 
-
     const hrefOriginal = a.href;
-
 
     a.removeAttribute('href');
 
@@ -179,6 +180,13 @@ function editarGrupo(grupo) {
             return;
         }
 
+        const userId = localStorage.getItem('userId');  // Obter o userId aqui
+
+        if (!userId) {
+            alert('Erro: ID do usuário não encontrado.');
+            return;
+        }
+
         try {
             await salvarGrupoBackend(novoNome, novoPeriodo); 
 
@@ -197,4 +205,5 @@ function editarGrupo(grupo) {
 
     grupo.appendChild(salvar);
 }
+
 

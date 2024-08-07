@@ -71,11 +71,6 @@ document.addEventListener('DOMContentLoaded', function(){
             alert('Ocorreu um erro ao tentar cadastrar. Por favor, tente novamente.');
         }
     });
-
-    function validarPassword(password){
-        let passwordRegex = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{6,20}$/;
-        return passwordRegex.test(password);
-    }
 });
 
 function convertDateFormat(dateStr) {
