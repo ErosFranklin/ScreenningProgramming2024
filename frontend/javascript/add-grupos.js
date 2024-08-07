@@ -7,11 +7,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const periodoInput = document.querySelector('#periodo');
     const botaoFechar = document.querySelector('#fechar');
 
+    // Carregar grupos ao inicializar a página
+    carregarGrupos();
+
     const modalExibido = localStorage.getItem('modalExibido');
     if (modalExibido === 'true') {
         overlay.style.display = 'block';
         modal.style.display = 'block';
     }
+    
     novoGrupo.addEventListener('click', function() {
         overlay.style.display = 'block';
         modal.style.display = 'block';
@@ -22,7 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
         fecharJanela(overlay, modal, nomeGrupoInput, periodoInput);
     });
     
-    document.querySelector('#criarGrupo').addEventListener('click', async function() {
+    document.querySelector('#formAddGrupo').addEventListener('submit', async function(event) {
+        event.preventDefault(); // Previne o envio padrão do formulário
+        
         const nomeGrupo = nomeGrupoInput.value;
         const periodo = periodoInput.value;
 
@@ -48,10 +54,44 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+async function carregarGrupos() {
+    const token = localStorage.getItem('token'); // Token armazenado
+    const userId = localStorage.getItem('userId');
+    
+    if (!userId || !token) {
+        console.error('Erro: ID do usuário ou token não encontrado.');
+        return;
+    }
+
+    try {
+        const response = await fetch('https://projetodepesquisa.vercel.app/api/group', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` // Token no cabeçalho
+            }
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message);
+        }
+
+        const grupos = await response.json();
+        grupos.forEach(grupo => {
+            const novoGrupo = criarGrupo(grupo.title, grupo.period);
+            gruposContainer.appendChild(novoGrupo);
+        });
+    } catch (error) {
+        console.error('Erro ao carregar grupos:', error);
+    }
+}
+
 async function salvarGrupoBackend(nomeGrupo, periodo) {
     const token = localStorage.getItem('token'); // Token armazenado
     const userId = localStorage.getItem('userId');
-
+    console.log(token); // Corrigido para console.log
+    
     if (!userId || !token) {
         alert('Erro: ID do usuário ou token não encontrado.');
         return null;
@@ -69,7 +109,7 @@ async function salvarGrupoBackend(nomeGrupo, periodo) {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}` // Token no cabeçalho
             },
-            body: JSON.stringify(data) // Não inclua o id_teacher aqui
+            body: JSON.stringify(data)
         });
 
         if (!response.ok) {
