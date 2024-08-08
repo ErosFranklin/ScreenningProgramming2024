@@ -20,7 +20,7 @@ function loadGistData(url, callback) {
         const estadoSelect = document.getElementById("estados");
         const cidadeSelect = document.getElementById("cidades");
 
-        // Populando o dropdown de estados
+        // Essa parte popula o dropdown de estados
         estadosData.forEach(function(estado) {
             const option = document.createElement("option");
             option.value = estado.sigla;
@@ -28,11 +28,11 @@ function loadGistData(url, callback) {
             estadoSelect.add(option);
         });
 
-        // Atualizando o dropdown de cidades ao selecionar um estado
+        // Isso aqui atualiza o dropdown de cidades ao selecionar um estado
         estadoSelect.addEventListener("change", function() {
             const selectedEstado = estadosData.find(estado => estado.sigla === this.value);
             
-            // Limpando o dropdown de cidades
+            // Limpa o dropdown de cidades
             cidadeSelect.innerHTML = "";
 
             if (selectedEstado) {
