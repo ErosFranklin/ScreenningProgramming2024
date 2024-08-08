@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         try {
             const savedGroup = await salvarGrupoBackend(nomeGrupo, periodo);
-
             if (savedGroup) {
                 const novoGrupo = criarGrupo(nomeGrupo, periodo);
                 gruposContainer.appendChild(novoGrupo);
@@ -90,7 +89,6 @@ async function carregarGrupos() {
 async function salvarGrupoBackend(nomeGrupo, periodo) {
     const token = localStorage.getItem('token'); // Token armazenado
     const userId = localStorage.getItem('userId');
-    console.log(token); // Corrigido para console.log
     
     if (!userId || !token) {
         alert('Erro: ID do usuário ou token não encontrado.');
@@ -117,12 +115,23 @@ async function salvarGrupoBackend(nomeGrupo, periodo) {
             throw new Error(errorData.message);
         }
 
-        return await response.json();
+        const savedGroup = await response.json();
+        
+        const groupId = savedGroup.group_id;
+        console.log('id do grupo:', groupId)
+
+        if(groupId){
+            localStorage.setItem(`groupId_${groupId}`, JSON.stringify(savedGroup));
+        }
+       
+        return savedGroup;
     } catch (error) {
         console.error('Erro ao salvar grupo:', error);
         alert('Erro ao salvar grupo: ' + error.message);
+        return null;
     }
 }
+
 
 function criarGrupo(nome, periodo) {
     const novoGrupo = document.createElement('div');
