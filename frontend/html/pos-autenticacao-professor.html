@@ -43,10 +43,39 @@
                     <i class="icones-input2 bi bi-buildings-fill"></i>
                 </div>
                 <div class="form-dados">
-                    <input type="text" class="form-style" id="cidadeP" placeholder="Cidade">
-                    <i class="icones-input bi bi-houses-fill"></i>
-                    <input type="text" class="form-style" id="estadoP" placeholder="Estado">
-                    <i class="icones-input2 bi bi-pin-map-fill"></i>
+                    <select name="estado" id="estadoP" class="form-style">
+                        <option value="">Estado</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                    <i class="icones-input bi bi-pin-map-fill"></i>
+                    <select name="cidade" id="cidadeP" class="form-style" ></select>
+                    <i class="icones-input2 bi bi-houses-fill"></i>
+                    
                 </div>
                 <div class="env">
                     <button type="submit" class="btn" id="idProfessor">Confirmar</button>
@@ -56,14 +85,14 @@
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            flatpickr("#nascimento", {
+            flatpickr("#nascimentoP", {
                 dateFormat: "d/m/Y",
                 altFormat: "d/m/Y"
             });
 
-            document.getElementById('estado').addEventListener('change', function() {
+            document.getElementById('estadoP').addEventListener('change', function() {
                 const estado = this.value;
-                const cidadeSelect = document.getElementById('cidade');
+                const cidadeSelect = document.getElementById('cidadeP');
 
                 if (estado) {
                     const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estado}/municipios`;
@@ -88,6 +117,7 @@
     </script>
     <script src="../javascript/alterar-foto-professor.js"></script>
     <script src="../javascript/pos-autenticacao-professor.js"></script>
+    <script src="../javascript/cidades.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </body>
 </html>
