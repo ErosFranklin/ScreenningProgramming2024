@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const nomeGrupoInput = document.querySelector('#nomeGrupo');
     const periodoInput = document.querySelector('#periodo');
     const botaoFechar = document.querySelector('#fechar');
-
+    console.log("grupos conatiner",gruposContainer)
     // Carregar grupos ao inicializar a página
     carregarGrupos();
 
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Erro ao criar grupo:', error);
         }
     });
-});
+
 
 async function carregarGrupos() {
     const token = localStorage.getItem('token'); // Token armazenado
@@ -63,7 +63,7 @@ async function carregarGrupos() {
     }
 
     try {
-        const response = await fetch('https://projetodepesquisa.vercel.app/api/group', {
+        const response = await fetch('https://projetodepesquisa.vercel.app/api/group/teacher', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -76,15 +76,23 @@ async function carregarGrupos() {
             throw new Error(errorData.message);
         }
 
-        const grupos = await response.json();
-        grupos.forEach(grupo => {
-            const novoGrupo = criarGrupo(grupo.title, grupo.period);
-            gruposContainer.appendChild(novoGrupo);
-        });
+        const gruposData = await response.json();
+        if (gruposData.groups && Array.isArray(gruposData.groups)) {
+            const grupos = gruposData.groups;
+            grupos.forEach(grupo => {
+                const novoGrupo = criarGrupo(grupo.title, grupo.period);
+                gruposContainer.appendChild(novoGrupo);
+                console.log('Grupo adicionado ao container:', novoGrupo);
+            });
+        } else {
+            console.error('A resposta da API não contém a propriedade "groups" ou não é um array.');
+        }
     } catch (error) {
         console.error('Erro ao carregar grupos:', error);
     }
 }
+
+
 
 async function salvarGrupoBackend(nomeGrupo, periodo) {
     const token = localStorage.getItem('token'); // Token armazenado
@@ -118,7 +126,7 @@ async function salvarGrupoBackend(nomeGrupo, periodo) {
         const savedGroup = await response.json();
         
         const groupId = savedGroup.group_id;
-        console.log('id do grupo:', groupId)
+        
 
         if(groupId){
             localStorage.setItem(`groupId_${groupId}`, JSON.stringify(savedGroup));
@@ -131,7 +139,7 @@ async function salvarGrupoBackend(nomeGrupo, periodo) {
         return null;
     }
 }
-
+})
 
 function criarGrupo(nome, periodo) {
     const novoGrupo = document.createElement('div');
@@ -156,6 +164,7 @@ function criarGrupo(nome, periodo) {
     });
 
     novoGrupo.appendChild(apagar);
+    
     return novoGrupo;
 }
 

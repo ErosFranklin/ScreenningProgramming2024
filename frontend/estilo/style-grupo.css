@@ -24,12 +24,14 @@ body{
     background-attachment: fixed;
     color:var(--cor-4);
     font-size: 0.9em;
+    
 }
 .Grupo{
     width: 100vw;
     height: 100vh;
     background-color: #ffffff;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
 
 }
 .menuLateral{
