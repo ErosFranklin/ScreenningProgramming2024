@@ -239,6 +239,8 @@ body{
     top:2%;
     right: 2%;
     position:fixed;
+    z-index: 2;
+    
 }
 .titlesGrupos h2{
     display:flex;
@@ -251,6 +253,7 @@ body{
     padding: 10px;
     border-style:none;
     border-radius:5px;
+    border:2px solid #fff;
     font-size: 1em;
     background-color: var(--cor-4);
     text-align: center;
