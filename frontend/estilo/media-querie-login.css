@@ -52,12 +52,11 @@ Grandes telas: acima de 1200px
     }
     .login2 img{
         display:flex;
-        width: 6em;
-        margin-top: 7%;
-        top:-30%;
+        width: 25%;
+        top:-25%;
         left: 50%;
         position: absolute;
-        transform: translate(-50%,30%);
+        transform: translate(-50%,25%);
     }
     .login2 h1{
         display: none;
@@ -97,21 +96,5 @@ Grandes telas: acima de 1200px
     }
     .esq-env #esq_senha{
         font-size: 15px;
-    }
-}
-
-@media screen and (min-width:768px) and (max-width:992px){
-    .login1{
-        left:25%;
-        margin-left:5%;
-    }
-    .login2{
-        width: 50%;
-        left:48%;
-        margin-right:5%;
-
-    }
-    .componentes{
-        width: 100%;
     }
 }
