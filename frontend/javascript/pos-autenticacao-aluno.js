@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function(){
     const name = localStorage.getItem('nome');
     const dataNasc = localStorage.getItem('dataNasc');
-
+    
     if (name) {
         const nameField = document.querySelector('#nome');
         nameField.value = name;

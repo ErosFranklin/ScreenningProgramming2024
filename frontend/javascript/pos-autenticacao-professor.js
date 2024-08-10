@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', function(){
     const name = localStorage.getItem('nome');
     const dataNasc = localStorage.getItem('dataNasc');
-
+    const teacherId = localStorage.getItem('userId'); 
+    const teacherToken = localStorage.getItem('token')
+    console.log(teacherId)
+    
     if (name) {
         const nameField = document.querySelector('#nomeP');
         nameField.value = name;
@@ -25,15 +28,15 @@ document.addEventListener('DOMContentLoaded', function(){
         const institution = document.getElementById('instituicaoP').value;
         
 
-        if(name === "" || gender ==="" || period ==="" || registration === "" || password === "" || city === "" ||
-        state === "" || institution ==="" || passwordNew === ""){
+        if(name === "" || gender ==="" || period ==="" || registration === ""  || city === "" ||
+        state === "" || institution ==="" ){
             alert("Preencha todos os campos!!!");
             return;
         }
 
 
         try {
-            const url = `https://projetodepesquisa.vercel.app/api/update`;
+            const url = `https://projetodepesquisa.vercel.app/api/teacher/${teacherId}`;
             const data = {
                 name: name,
                 gender: gender,

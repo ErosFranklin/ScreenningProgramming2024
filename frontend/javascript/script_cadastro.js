@@ -77,6 +77,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 localStorage.setItem('nome', nome);
                 localStorage.setItem('dataNasc', dataNasc)
+
+                const userId = responseData.id
+                localStorage.setItem('userId', userId)
+                console.log(responseData.user_id)
                 if(email.includes("@servidor")){
                     window.location.href ="../html/pos-autenticacao-professor.html"
                 }else{

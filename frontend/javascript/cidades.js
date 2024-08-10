@@ -1,47 +1,41 @@
-function loadGistData(url, callback) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-        xhr.responseType = 'json';
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                callback(xhr.response);
-            }
-        };
-        xhr.send();
-    }
+document.addEventListener('DOMContentLoaded', function() {
+    const estadoSelect = document.getElementById('estadoP');
+    const cidadeSelect = document.getElementById('cidadeP');
 
-    // URL do JSON com os estados e cidades
-    var gistUrl = "https://gist.githubusercontent.com/letanure/3012978/raw/4d0d60c1b39e4086c051e9cb7724fb6016a79592/estados-cidades.json"; 
+    // Carregar estados
+    fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+        .then(response => response.json())
+        .then(estados => {
+            estadoSelect.innerHTML = '<option value="">Selecione um estado</option>';
+            estados.forEach(estado => {
+                const option = document.createElement('option');
+                option.value = estado.sigla;
+                option.textContent = estado.nome;
+                estadoSelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Erro ao carregar estados:', error));
 
-    // Carregar os dados e preencher os selects
-    loadGistData(gistUrl, function(data) {
-        const estadosData = data.estados;
+    // Atualizar municípios ao selecionar um estado
+    estadoSelect.addEventListener('change', function() {
+        const estado = this.value;
+        const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estado}/municipios`;
 
-        const estadoSelect = document.getElementById("estados");
-        const cidadeSelect = document.getElementById("cidades");
-
-        // Essa parte popula o dropdown de estados
-        estadosData.forEach(function(estado) {
-            const option = document.createElement("option");
-            option.value = estado.sigla;
-            option.text = estado.nome;
-            estadoSelect.add(option);
-        });
-
-        // Isso aqui atualiza o dropdown de cidades ao selecionar um estado
-        estadoSelect.addEventListener("change", function() {
-            const selectedEstado = estadosData.find(estado => estado.sigla === this.value);
-            
-            // Limpa o dropdown de cidades
-            cidadeSelect.innerHTML = "";
-
-            if (selectedEstado) {
-                selectedEstado.cidades.forEach(function(cidade) {
-                    const option = document.createElement("option");
-                    option.value = cidade;
-                    option.text = cidade;
-                    cidadeSelect.add(option);
-                });
-            }
-        });
+        if (estado) {
+            fetch(url)
+                .then(response => response.json())
+                .then(cidades => {
+                    cidadeSelect.innerHTML = '<option value="">Selecione um município</option>';
+                    cidades.forEach(cidade => {
+                        const option = document.createElement('option');
+                        option.value = cidade.id;
+                        option.textContent = cidade.nome;
+                        cidadeSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Erro ao carregar municípios:', error));
+        } else {
+            cidadeSelect.innerHTML = '<option value="">Selecione um município</option>';
+        }
+    });
 });
