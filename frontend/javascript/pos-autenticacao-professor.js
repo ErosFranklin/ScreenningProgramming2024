@@ -20,14 +20,14 @@ document.addEventListener('DOMContentLoaded', function(){
 
         const name = document.getElementById('nomeP').value;
         const gender = document.getElementById('generoP').value;
-        const period = document.getElementById('periodoP').value;
+        const formation = document.getElementById('formacaoP').value;
         const registration = document.getElementById('matriculaP').value;
         const city = document.getElementById('cidade').value;
         const state = document.getElementById('estado').value;
         const institution = document.getElementById('instituicaoP').value;
         
 
-        if(name === "" || gender ==="" || period ==="" || registration === ""  || city === "" ||
+        if(name === "" || gender ==="" || formation ==="" || registration === ""  || city === "" ||
         state === "" || institution ==="" ){
             alert("Preencha todos os campos!!!");
             return;
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function(){
             const data = {
                 name: name,
                 gender: gender,
-                period: period,
+                formation: formation,
                 registration: registration,
                 city: city,
                 state: state,
