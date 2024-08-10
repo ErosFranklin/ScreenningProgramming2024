@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', function(){
         const institution = document.getElementById('instituicao').value;
         
 
-        if(name === "" || gender ==="" || period ==="" || registration === "" || password === "" || city === "" ||
-        state === "" || institution ==="" || passwordNew === ""){
+        if(name === "" || gender ==="" || period ==="" || registration === "" ||  city === "" ||
+        state === "" || institution ==="" ){
             alert("Preencha todos os campos!!!");
             return;
         }
