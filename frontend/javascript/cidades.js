@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
         .then(response => response.json())
         .then(estados => {
-            estadoSelect.innerHTML = '<option value="">Selecione um estado</option>';
+            estadoSelect.innerHTML = '<option value="">Selecione seu estado</option>';
             estados.forEach(estado => {
                 const option = document.createElement('option');
                 option.value = estado.sigla;
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
             fetch(url)
                 .then(response => response.json())
                 .then(cidades => {
-                    cidadeSelect.innerHTML = '<option value="">Selecione um município</option>';
+                    cidadeSelect.innerHTML = '<option value="">Selecione sua cidade</option>';
                     cidades.forEach(cidade => {
                         const option = document.createElement('option');
                         option.value = cidade.id;
