@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function(){
     const name = localStorage.getItem('nome');
     const dataNasc = localStorage.getItem('dataNasc');
     const teacherId = localStorage.getItem('userId'); 
-    const teacherToken = localStorage.getItem('token')
     console.log(teacherId)
     
     if (name) {
@@ -23,8 +22,8 @@ document.addEventListener('DOMContentLoaded', function(){
         const gender = document.getElementById('generoP').value;
         const period = document.getElementById('periodoP').value;
         const registration = document.getElementById('matriculaP').value;
-        const city = document.getElementById('cidadeP').value;
-        const state = document.getElementById('estadoP').value;
+        const city = document.getElementById('cidade').value;
+        const state = document.getElementById('estado').value;
         const institution = document.getElementById('instituicaoP').value;
         
 

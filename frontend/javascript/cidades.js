@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const estadoSelect = document.getElementById('estadoP');
-    const cidadeSelect = document.getElementById('cidadeP');
+    const estadoSelect = document.getElementById('estado');
+    const cidadeSelect = document.getElementById('cidade');
 
     // Carregar estados
     fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')

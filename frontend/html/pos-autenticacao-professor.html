@@ -28,9 +28,9 @@
                 </div>
                 <div class="form-dados">
                     <select name="genero" id="generoP" class="form-style" >
-                        <option value="masc" id="mascP">Outro</option>
+                        <option value="outro" id="outroP">Outro</option>
                         <option value="femi" id="femiP">Feminino</option>
-                        <option value="outro" id="outroP">Masculino</option>
+                        <option value="masc" id="mascP">Masculino</option>
                     </select>
                     <i class="icones-input bi bi-gender-ambiguous"></i>
                     <input type="number" class="form-style" id="periodoP" placeholder="Periodo">
@@ -43,10 +43,10 @@
                     <i class="icones-input2 bi bi-buildings-fill"></i>
                 </div>
                 <div class="form-dados">
-                    <select name="estado" id="estadoP" class="form-style">
+                    <select name="estado" id="estado" class="form-style">
                     </select>
                     <i class="icones-input bi bi-pin-map-fill"></i>
-                    <select name="cidade" id="cidadeP" class="form-style" ></select>
+                    <select name="cidade" id="cidade" class="form-style" ></select>
                     <i class="icones-input2 bi bi-houses-fill"></i>
                     
                 </div>
@@ -61,30 +61,6 @@
             flatpickr("#nascimentoP", {
                 dateFormat: "d/m/Y",
                 altFormat: "d/m/Y"
-            });
-
-            document.getElementById('estadoP').addEventListener('change', function() {
-                const estado = this.value;
-                const cidadeSelect = document.getElementById('cidadeP');
-
-                if (estado) {
-                    const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estado}/municipios`;
-
-                    fetch(url)
-                        .then(response => response.json())
-                        .then(data => {
-                            cidadeSelect.innerHTML = ''; 
-                            data.forEach(municipio => {
-                                const option = document.createElement('option');
-                                option.value = municipio.id;
-                                option.textContent = municipio.nome;
-                                cidadeSelect.appendChild(option);
-                            });
-                        })
-                        .catch(error => console.error('Erro ao carregar municípios:', error));
-                } else {
-                    cidadeSelect.innerHTML = ''; 
-                }
             });
         });
     </script>
