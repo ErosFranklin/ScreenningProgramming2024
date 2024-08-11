@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function(){
     form.addEventListener('submit', async function(event){
         event.preventDefault();
 
-        const name = document.getElementById('nomeP').value;
         const gender = document.getElementById('generoP').value;
         const formation = document.getElementById('formacaoP').value;
         const registration = document.getElementById('matriculaP').value;
@@ -38,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function(){
         try {
             const url = `https://projetodepesquisa.vercel.app/api/teacher/${teacherId}`;
             const data = {
-                name: name,
                 gender: gender,
                 formation: formation,
                 registration: registration,

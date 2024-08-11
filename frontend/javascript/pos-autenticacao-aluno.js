@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', function(){
     const name = localStorage.getItem('nome');
     const dataNasc = localStorage.getItem('dataNasc');
+    const studentId = localStorage.getItem('userId'); 
+    const studentToken = localStorage.getItem('token')
+    
     
     if (name) {
         const nameField = document.querySelector('#nome');
@@ -16,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function(){
     form.addEventListener('submit', async function(event){
         event.preventDefault();
 
-        const name = document.getElementById('nome').value;
         const gender = document.getElementById('genero').value;
         const period = document.getElementById('periodo').value;
         const registration = document.getElementById('matricula').value;
@@ -33,11 +35,10 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
         try {
-            const url = `https://projetodepesquisa.vercel.app/api/update`;
+            const url = `https://projetodepesquisa.vercel.app/api/teacher/${studentIdId}`;
             const data = {
-                name: name,
                 gender: gender,
-                period: period,
+                formation: formation,
                 registration: registration,
                 city: city,
                 state: state,
@@ -46,7 +47,8 @@ document.addEventListener('DOMContentLoaded', function(){
             const response = await fetch(url, {
                 method: 'PATCH',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${studentToken}` 
                 },
                 body: JSON.stringify(data)
             });
@@ -60,8 +62,10 @@ document.addEventListener('DOMContentLoaded', function(){
 
             try {
                 const responseData = await response.json();
+                console.log(responseData)
                 alert('Cadastro realizado com sucesso!');
                 window.location.href = "../html/login.html";
+
             } catch (error) {
                 console.error('JSON parse error:', error);
                 alert('Ocorreu um erro ao processar a resposta do servidor.');
