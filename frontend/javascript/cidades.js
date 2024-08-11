@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     cidadeSelect.innerHTML = '<option value="">Selecione sua cidade</option>';
                     cidades.forEach(cidade => {
                         const option = document.createElement('option');
-                        option.value = cidade.id;
+                        option.value = cidade.nome;
                         option.textContent = cidade.nome;
                         cidadeSelect.appendChild(option);
                     });

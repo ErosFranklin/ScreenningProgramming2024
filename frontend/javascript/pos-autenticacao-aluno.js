@@ -35,10 +35,10 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
         try {
-            const url = `https://projetodepesquisa.vercel.app/api/teacher/${studentIdId}`;
+            const url = `https://projetodepesquisa.vercel.app/api/student`;
             const data = {
                 gender: gender,
-                formation: formation,
+                formation: period,
                 registration: registration,
                 city: city,
                 state: state,

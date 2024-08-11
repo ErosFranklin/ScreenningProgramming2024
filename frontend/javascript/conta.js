@@ -1,34 +1,22 @@
 document.addEventListener('DOMContentLoaded', async function() {
     const userId = localStorage.getItem('userId');
+    const token = localStorage.getItem('token'); // Adicionei a obtenção do token
 
-    if (!userId) {
-        alert('Erro: ID do usuário não encontrado.');
+    if (!userId || !token) {
+        alert('Erro: ID do usuário ou token não encontrado.');
         return;
     }
 
     try {
-        const requisitarEmail = await fetch(`https://api.exemplo.com/usuario/${userId}`);
-
-        if (!requisitarEmail.ok) {
-            throw new Error('Erro ao buscar dados do usuário.');
-        }
-
-        const userData = await requisitarEmail.json();
-        const email = userData.email;
-
-        let url;
-
+        const url = `https://projetodepesquisa.vercel.app/api/teacher`; // URL para buscar os dados específicos do usuário
         
-        if (email.includes('@servidor')) {
-            url = `https://projetodepesquisa.vercel.app/api/teachers/${userId}`;
-        } else if (email.includes('@aluno')) {
-            url = `https://projetodepesquisa.vercel.app/api/students/${userId}`;
-        } else {
-            alert('Erro: Email do usuário não reconhecido.');
-            return;
-        }
-
-        const especificarUser = await fetch(url);
+        const especificarUser = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`, // Passa o token no cabeçalho para autenticação
+                'Content-Type': 'application/json'
+            }
+        });
 
         if (!especificarUser.ok) {
             throw new Error('Erro ao buscar dados específicos do usuário.');
@@ -36,6 +24,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         const specificUserData = await especificarUser.json();
 
+        // Atualiza os elementos na interface com os dados do usuário
         document.querySelector('#nomeUsuario').innerText = specificUserData.name;
         document.querySelector('#generoUsuario').innerText = specificUserData.genero;
         document.querySelector('#periodoUsuario').innerText = specificUserData.periodo;

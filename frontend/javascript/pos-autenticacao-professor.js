@@ -35,14 +35,15 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
         try {
-            const url = `https://projetodepesquisa.vercel.app/api/teacher/${teacherId}`;
+            const url = `https://projetodepesquisa.vercel.app/api/teacher`;
             const data = {
-                gender: gender,
-                formation: formation,
-                registration: registration,
-                city: city,
-                state: state,
-                institution: institution,
+                genderTeacher: gender,
+                institutionTeacher: institution,
+                stateTeacher: state,
+                cityTeacher: city,
+                formationTeacher: formation,
+                registrationTeacher: registration
+                
             };
             const response = await fetch(url, {
                 method: 'PATCH',
