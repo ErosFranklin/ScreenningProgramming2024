@@ -73,19 +73,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
             try {
                 const responseData = await response.json();
+                console.log(responseData)
                 alert('Cadastro realizado com sucesso!');
 
                 localStorage.setItem('nome', nome);
                 localStorage.setItem('dataNasc', dataNasc)
 
-                const userId = responseData.id
-                localStorage.setItem('userId', userId)
-                console.log(responseData.user_id)
-                if(email.includes("@servidor")){
-                    window.location.href ="../html/pos-autenticacao-professor.html"
-                }else{
-                    window.location.href = "../html/pos-autenticacao-aluno.html"
+                if('user_id' in responseData && 'access_token' in responseData){
+
+                    const userId = responseData.user_id
+                    const token = responseData.access_token;
+
+                    localStorage.setItem('userId', userId)
+                    localStorage.setItem('token', token)
+
+                    if(email.includes("@servidor")){
+                        window.location.href ="../html/pos-autenticacao-professor.html"
+                    }else{
+                        window.location.href = "../html/pos-autenticacao-aluno.html"
+                    }
+                }else {
+                    console.error("Campos esperados não estão presentes na resposta:", responseData);
+                    alert('Erro ao processar a resposta do servidor.');
                 }
+                
             } catch (error) {
                 console.error('JSON parse error:', error);
                 alert('Ocorreu um erro ao processar a resposta do servidor.');

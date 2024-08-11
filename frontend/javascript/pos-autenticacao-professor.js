@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const name = localStorage.getItem('nome');
     const dataNasc = localStorage.getItem('dataNasc');
     const teacherId = localStorage.getItem('userId'); 
+    const teacherToken = localStorage.getItem('token')
     console.log(teacherId)
     
     if (name) {
@@ -48,7 +49,8 @@ document.addEventListener('DOMContentLoaded', function(){
             const response = await fetch(url, {
                 method: 'PATCH',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${teacherToken}` 
                 },
                 body: JSON.stringify(data)
             });
@@ -62,8 +64,10 @@ document.addEventListener('DOMContentLoaded', function(){
 
             try {
                 const responseData = await response.json();
+                console.log(responseData)
                 alert('Cadastro realizado com sucesso!');
                 window.location.href = "../html/login.html";
+
             } catch (error) {
                 console.error('JSON parse error:', error);
                 alert('Ocorreu um erro ao processar a resposta do servidor.');
