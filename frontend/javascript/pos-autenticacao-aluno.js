@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function(){
     const name = localStorage.getItem('nome');
     const dataNasc = localStorage.getItem('dataNasc');
-    const studentId = localStorage.getItem('userId'); 
     const studentToken = localStorage.getItem('token')
     
     
@@ -37,12 +36,13 @@ document.addEventListener('DOMContentLoaded', function(){
         try {
             const url = `https://projetodepesquisa.vercel.app/api/student`;
             const data = {
-                gender: gender,
-                formation: period,
-                registration: registration,
-                city: city,
-                state: state,
-                institution: institution,
+                genderStudent: gender,
+                institutionStudent: institution,
+                periodStudent: period,
+                stateStudent: state,
+                cityStudent: city,
+                registrationStudent: registration
+                
             };
             const response = await fetch(url, {
                 method: 'PATCH',
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function(){
             try {
                 const responseData = await response.json();
                 console.log(responseData)
-                alert('Cadastro realizado com sucesso!');
+                alert('Dados atualizados com sucesso!');
                 window.location.href = "../html/login.html";
 
             } catch (error) {
@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function(){
             alert('Ocorreu um erro ao tentar cadastrar. Por favor, tente novamente.');
         }
     });
+
 });
 
 function convertDateFormat(dateStr) {

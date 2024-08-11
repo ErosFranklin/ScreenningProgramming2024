@@ -116,7 +116,7 @@ body{
     display:flex;
     flex-wrap: wrap;
     position:absolute;
-    width: 89%;
+    width: 90%;
     height: auto;
     margin-bottom:20px;
     top:19%;
@@ -130,7 +130,7 @@ body{
 .componentes-basicos {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    grid-gap: 10px;
+    
 }
 
 
@@ -139,16 +139,13 @@ body{
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
 }
-
-.informacao {
-    display: flex;
-    flex-direction: column;
+.informacao{
     position: relative;
-    width: 300px;
+    width: 700px;
     height: 100px;
-    margin-right: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
-
 .informacao.modo-edicao {
     display: flex;
     flex-direction: column;
@@ -158,14 +155,6 @@ body{
     border-radius: 10px;
 }
 
-
-.informacao{
-    display:flex;
-    flex-direction: column;
-    position: relative;
-    width: 300px;
-    height: 100px;
-}
 .informacao label{
     color:var(--cor-4);
     font-weight: bold;
@@ -196,6 +185,8 @@ body{
 .btt-alterar{
     display:flex;
     width: 350px;
+    position: relative;
+    margin-left:355px;
     justify-content: center;
     align-content: center;
 }

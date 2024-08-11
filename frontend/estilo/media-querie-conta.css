@@ -42,8 +42,15 @@ Grandes telas: acima de 1200px
         padding:15px;
         transform: translateX(-50%);
     }
+    .informacao{
+        width: 300px;
+        margin-left: 0;
+    }
     .informacao h3{
         position: relative;
         width: 90%;
+    }
+    .btt-alterar{
+        margin-left:0 ;
     }
 }

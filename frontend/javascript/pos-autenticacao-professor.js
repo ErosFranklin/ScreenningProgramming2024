@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function(){
             try {
                 const responseData = await response.json();
                 console.log(responseData)
-                alert('Cadastro realizado com sucesso!');
+                alert('Dados atualizados com sucesso!');
                 window.location.href = "../html/login.html";
 
             } catch (error) {
