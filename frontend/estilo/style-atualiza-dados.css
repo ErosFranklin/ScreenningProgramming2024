@@ -24,73 +24,7 @@ body{
     color:var(--cor-4);
     font-size: 0.9em;
 }
-.menuLateral{
-    width: 80px;
-    height: 100%;
-    padding:30px 0 30px 1%;
-    background-color: var(--cor-4);
-    box-shadow: 5px 0 0 var(--cor-1);
-    position:fixed;
-    top:0;
-    left:0;
-    transition: .5s;
-    z-index: 1;
-}
 
-.menuLateral.expandir{
-    width: 300px;
-}
-.btn-expandir{
-    width: 100%;
-    padding-left:10px
-}
-.btn-expandir i{
-    color:#fff;
-    font-size: 26px;
-    cursor:pointer;
-}
-.menulateral ul{
-    height: 100%;
-}
-.menuLateral .item-menu{
-    margin-top: 10px;
-    list-style:none;
-    
-}
-.item-menu a{
-    display:flex;
-    left:0;
-    color:#ffffff;
-    font-size: 16px;
-    padding:10px 4%;
-    text-decoration: none;
-    overflow: hidden;
-
-}
-
-.item-menu a:hover{
-    border-radius: 5px;
-    margin-right: 5px;
-    background:#fff;
-    color:var(--cor-4);
-    transition: .35s;
-}
-.item-menu .icone{
-    font-size: 26px;
-    margin:15px 0px;
-    padding-left:10px;
-}
-.item-menu .txt-link{
-    margin-left: 77px;
-    font-size: 20px;
-    transition: .18s;
-    opacity: 0;
-    transform: translateY(18px);
-}
-.menuLateral.expandir .txt-link{
-    margin-left: 40px;
-    opacity: 1;
-}
 .conta{
     background-image: linear-gradient(to top,#fff, #fff);
     overflow: auto;
@@ -99,7 +33,7 @@ body{
 .title-conta h2{
     display:flex;
     font-size: 2em;
-    left:8%;
+    margin-left: 5%;
     top:2%;
     color:var(--cor-4);
     position:absolute;
@@ -108,7 +42,7 @@ body{
     display:flex;
     position:absolute;
     top:12%;
-    left:8%;
+    margin-left:5%;
     color:var(--cor-4);
     font-style: italic;
 }
@@ -130,10 +64,13 @@ body{
 .componentes-basicos {
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    gap: 20px;  
+    gap: 20px;
+    
+    
 }
 
 .informacao{
+   
     position: relative;
     width: 620px;
     height: 100px;
@@ -142,6 +79,7 @@ body{
     padding:10px 20px ;
     
 }
+
 
 .informacao label{
     color:var(--cor-4);
@@ -178,12 +116,10 @@ body{
     right:0;
     justify-content: center;
     align-content: center;
-    text-align: center;
     margin-right: 40px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
-#alterar{
-    text-decoration: none;
+#salvarDados{
     background-color: var(--cor-3);
     color:#fff;
     padding:10px;
@@ -195,7 +131,7 @@ body{
     height: 45px;
     position: relative;
 }
-#alterar:hover{
+#salvarDados:hover{
     background-image: linear-gradient(to right,#023059,#014581,#023059 );
     box-shadow:5px 5px 5px #0230595d;
     color:#dfdfdf;

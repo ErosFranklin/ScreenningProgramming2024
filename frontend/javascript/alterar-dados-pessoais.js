@@ -1,128 +1,124 @@
 document.addEventListener('DOMContentLoaded', async function() {
-    const alterarButton = document.getElementById('alterar');
-    let isEditing = false;
-    const userId = localStorage.getItem('userId');
-    let urlBase;
-
-    if (!userId) {
-        console.error('User ID não encontrado no localStorage');
+    const teacherId = localStorage.getItem('userId');
+    const token = localStorage.getItem('token');
+    
+    if (!teacherId || !token) {
+        alert('Erro: ID do usuário ou token não encontrado.');
         return;
     }
 
     try {
-        const userResponse = await fetch(`https://projetodepesquisa.vercel.app/api/teachers/${userId}`);
-        if (!userResponse.ok) throw new Error('Erro na resposta da API');
+        const url = `https://projetodepesquisa.vercel.app/api/teacher/${teacherId}`;
         
-        const userData = await userResponse.json();
+        const especificarUser = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!especificarUser.ok) {
+            throw new Error('Erro ao buscar dados específicos do usuário.');
+        }
+
+        const specificUserData = await especificarUser.json();
         
-        // Preencher os campos com os dados do usuário
-        document.getElementById('nomeUsuario').textContent = userData.nome;
-        document.getElementById('generoUsuario').textContent = userData.genero;
-        document.getElementById('periodoUsuario').textContent = userData.periodo;
-        document.getElementById('matriculaUsuario').textContent = userData.matricula;
-        document.getElementById('emailUsuario').textContent = userData.email;
-        document.getElementById('cidadeUsuario').textContent = userData.cidade;
-        document.getElementById('estadoUsuario').textContent = userData.estado;
-        document.getElementById('instituicaoUsuario').textContent = userData.instituicao;
-        document.getElementById('senhaUsuario').textContent = userData.senha;
+        // Preenche os campos com os dados recebidos
+        document.querySelector('#nomeProfessor').value = specificUserData.name || '';
+        document.querySelector('#datadenascimentoProfessor').value = formatDateToInputFormat(specificUserData.birth) || '';
+        document.querySelector('#generoProfessor').value = specificUserData.gender || '';
+        document.querySelector('#formacaoProfessor').value = specificUserData.formation || '';
+        document.querySelector('#matriculaProfessor').value = specificUserData.registration || '';
+        document.querySelector('#emailProfessor').value = specificUserData.email || '';
+        document.querySelector('#cidadeProfessor').value = specificUserData.city || '';
+        document.querySelector('#estadoProfessor').value = specificUserData.state || '';
+        document.querySelector('#instituicaoProfessor').value = specificUserData.institution || '';
+        
 
     } catch (error) {
-        console.error('Erro ao obter os dados do usuário:', error);
-        return;
+        console.error('Erro ao buscar dados do usuário:', error);
+        alert('Erro ao buscar dados do usuário.');
     }
-    
-    alterarButton.addEventListener('click', function() {
-        const informacoes = document.querySelectorAll('.dados-basicos .componentes-basicos');
 
-        if (!isEditing) {
-            // Modo de edição ativado
-            informacoes.forEach(informacao => {
-                editarDados(informacao);
-            });
-            alterarButton.textContent = 'Salvar Alteração';
-            isEditing = true;
-        } else {
-            // Salvando alterações
-            let valid = true;
-            let updatedData = {};
-            informacoes.forEach(informacao => {
-                const isValid = salvarDados(informacao, updatedData);
-                if (!isValid) {
-                    valid = false;
-                }
-            });
-            if (valid) {
-                alterarButton.textContent = 'Alterar Dados';
-                isEditing = false;
-                informacoes.forEach(informacao => {
-                    informacao.classList.remove('modo-edicao');
-                });
+    // Adiciona o evento de submit ao formulário
+    document.getElementById('formAtualizaDados').addEventListener('submit', async function(event) {
+        event.preventDefault(); // Evita o comportamento padrão do formulário
 
-                // Enviar apenas os campos alterados no PATCH
-                fetch(`https://projetodepesquisa.vercel.app/api/teachers/${userId}`, {
-                    method: 'PATCH',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(updatedData)
-                })
-                .then(response => {
-                    if (!response.ok) throw new Error('Erro na resposta da API');
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Dados atualizados com sucesso:', data);
-                })
-                .catch(error => {
-                    console.error('Erro ao atualizar os dados do usuário:', error);
-                });
+        const name = document.querySelector('#nomeProfessor').value;
+        const birth = document.querySelector('#datadenascimentoProfessor').value;
+        const gender = document.querySelector('#generoProfessor').value;
+        const formation = document.querySelector('#formacaoProfessor').value;
+        const registration = document.querySelector('#matriculaProfessor').value;
+        const email = document.querySelector('#emailProfessor').value;
+        const city = document.querySelector('#cidadeProfessor').value;
+        const state = document.querySelector('#estadoProfessor').value;
+        const institution = document.querySelector('#instituicaoProfessor').value;
+        const dataNascConverted = convertDateFormat(birth)
+        
+
+        // Coleta os dados do formulário
+        const updatedData = {
+            nameTeacher: name,
+            birthTeacher: dataNascConverted,
+            genderTeacher: gender,
+            formationTeacher: formation,
+            registrationTeacher: registration,
+            emailTeacher: email,
+            cityTeacher: city,
+            stateTeacher: state,
+            institutionTeacher: institution
+        };
+
+        try {
+            const url = `https://projetodepesquisa.vercel.app/api/teacher`;
+            const response = await fetch(url, {
+                method: 'PATCH', // Verifique se a API aceita PATCH para atualização parcial
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(updatedData)
+            });
+
+            if (!response.ok) {
+                throw new Error('Erro ao atualizar dados do usuário.');
             }
+            else{
+                alert('Dados atualizados com sucesso!');
+                window.location.href='../html/conta.html'
+            }
+            
+        } catch (error) {
+            console.error('Erro ao atualizar dados do usuário:', error);
+            alert('Erro ao atualizar dados do usuário.');
         }
     });
+
+    function formatDateToInputFormat(dateStr) {
+        // Verifica se a data está no formato dd/mm/yyyy
+        const dayMonthYearPattern = /^\d{2}\/\d{2}\/\d{4}$/;
+        if (dayMonthYearPattern.test(dateStr)) {
+            const [day, month, year] = dateStr.split('/');
+            return `${year}-${month}-${day}`;
+        }
+        
+        console.error('Formato de data inválido.');
+        return '';
+    }
+    
+    
+    
+    
+    function convertDateFormat(dateStr) {
+        const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+        if (!datePattern.test(dateStr)) {
+            console.error("Formato de data inválido.");
+            return null;
+        }
+
+        const [year, month, day] = dateStr.split('-');
+
+        return `${day}/${month}/${year}`;
+    }
 });
-
-function editarDados(informacao) {
-    const label = informacao.querySelector('label');
-    const h3Dado = informacao.querySelector('h3');
-    const inputDado = document.createElement('input');
-
-    inputDado.type = 'text';
-    inputDado.value = h3Dado ? h3Dado.textContent : ''; 
-    inputDado.className = 'dado-texto';
-
-    informacao.classList.add('informacao', 'modo-edicao'); 
-    informacao.innerHTML = ''; 
-    informacao.appendChild(label);
-    informacao.appendChild(inputDado);
-}
-
-function salvarDados(informacao, updatedData) {
-    const label = informacao.querySelector('label');
-    const inputDado = informacao.querySelector('input');
-    const dado = document.createElement('h3');
-
-    const novoDado = inputDado.value.trim();
-    const campo = label.textContent.replace(':', '').toLowerCase();
-
-    // Verifica se o dado foi alterado em comparação com o valor original
-    const valorOriginal = document.getElementById(`${campo}Usuario`).textContent;
-
-    if (novoDado === '') {
-        alert('Por favor, preencha todos os campos');
-        return false;
-    }
-
-    if (novoDado !== valorOriginal) {
-        // Se o valor foi alterado, adiciona ao updatedData
-        updatedData[campo] = novoDado;
-    }
-
-    dado.textContent = novoDado;
-    dado.className = 'dado-texto';
-
-    informacao.classList.remove('modo-edicao'); 
-    informacao.innerHTML = ''; 
-    informacao.appendChild(label);
-    informacao.appendChild(dado);
-    return true;
-}

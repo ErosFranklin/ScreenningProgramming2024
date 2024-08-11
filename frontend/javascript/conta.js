@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
+                
             }
         });
         console.log(especificarUser)
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         console.log(specificUserData)
         // Atualiza os elementos na interface com os dados do usuário
         document.querySelector('#nomeProfessor').innerText = specificUserData.name || 'Nome não disponível';
-        document.querySelector('#datanascProfessor').innerText = specificUserData.birth || 'Data de nascimento não disponível';
+        document.querySelector('#datadenascimentoProfessor').innerText = specificUserData.birth || 'Data de nascimento não disponível';
         document.querySelector('#generoProfessor').innerText = specificUserData.gender || 'Gênero não disponível';
         document.querySelector('#formacaoProfessor').innerText = specificUserData.formation || 'Formação não disponível';
         document.querySelector('#matriculaProfessor').innerText = specificUserData.registration || 'Matrícula não disponível';
@@ -38,4 +39,5 @@ document.addEventListener('DOMContentLoaded', async function() {
         console.error('Erro ao buscar dados do usuário:', error);
         alert('Erro ao buscar dados do usuário.');
     }
+    
 });
