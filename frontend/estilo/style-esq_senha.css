@@ -29,7 +29,7 @@ body{
     background-color: rgb(255, 255, 255);
     display: flex;
     width: 500px;
-    height: 400px;
+    height: auto;
     margin: auto;
     padding: 30px;
     border-radius: 10px;
@@ -73,7 +73,9 @@ body{
     border-style: groove;
     border:1px solid var(--cor-3);
     border-radius: 5px;
+    margin-bottom: 10px;
 }
+
 .bttsESQ{
     display:flex;
     text-align: center;

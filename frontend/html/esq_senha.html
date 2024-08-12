@@ -7,26 +7,102 @@
     <link rel="stylesheet" href="../estilo/style-esq_senha.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../estilo/media-querie-esq_senha.css">
+    <style>
+        /* Adicione essa regra para garantir que o campo de matrícula não afete o layout quando oculto */
+        #matriculaContainer {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <main>
         <div class="esq-senha" autocomplete="on">
-            <form action="../javascript/script_esq_senha.js">
+            <form id="formEsqSenha">
                 <div class="titles">
                     <h1>Redefinir Senha</h1>
                     <p>Enviaremos um email para o email informado, com os passos para <strong>redifinicao da senha.</strong> </p>
                 </div>
-                <label for="recupera_email">Email de Recuperacao:</label>
+                <label for="recupera_email">Email para Recuperação:</label>
                 <div class="componentesESQ">
                     <i class="bi bi-envelope"></i><input type="email" name="recupera_email" id="recupera_email" placeholder="usuario@gmail.com" required>
+                </div>
+                <div class="componentesESQ" id="matriculaContainer">
+                    <i class="bi bi-person-vcard-fill"></i><input type="text" name="conf_matricula" id="conf_matricula" placeholder="Matricula">
                 </div>
                 <div class="bttsESQ">
                     <input type="submit" value="Enviar" id="Enviar">
                     <a href="login.html" id="Voltar">Voltar</a>
                 </div>
-                    
             </form>
         </div>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('formEsqSenha');
+            const emailInput = document.getElementById('recupera_email');
+            const matriculaInput = document.getElementById('conf_matricula');
+            const matriculaContainer = document.getElementById('matriculaContainer');
+            let userData = null;
+            
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                
+                const email = emailInput.value;
+                let urlApi = '';
+                
+                if (email.includes('@servidor')) {
+                    urlApi = 'api/teacher/email/';
+                } else if (email.includes('@aluno')) {
+                    urlApi = 'api/student/email/';
+                }
+                
+                try {
+                    const response = await fetch(`https://projetodepesquisa.vercel.app/${urlApi}${email}`);
+                    
+                    if (response.ok) {
+                        // Email válido, mostra o campo de matrícula e torna-o obrigatório
+                        matriculaContainer.style.display = 'block';
+                        matriculaInput.required = true;
+                        
+                        // Obtém os dados do usuário
+                        userData = await response.json();
+                        
+                        // Processa os dados do usuário conforme necessário
+                        console.log('Dados do usuário:', userData);
+                        
+                    } else {
+                        // Email não encontrado, mantém o campo de matrícula oculto
+                        matriculaContainer.style.display = 'none';
+                        matriculaInput.required = false;
+                        alert('Usuário não encontrado! Verifique o email e tente novamente.');
+                    }
+                } catch (error) {
+                    console.error('Erro ao validar o email:', error);
+                    alert('Ocorreu um erro ao validar o email. Tente novamente mais tarde.');
+                }
+            });
+
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                
+                if (userData) {
+                    const matricula = String(matriculaInput.value).trim();
+                    const registration = String(userData.registration).trim();
+                    
+                    console.log(`Matrícula: '${matricula}'`);
+                    console.log(`Registro: '${registration}'`);
+                    
+                    if (matricula === registration) {
+                        // Continuação do código para redefinir a senha
+                        alert('Matrícula confirmada. Proceda com a redefinição da senha.');
+                        // Adicione aqui o código para enviar os dados para redefinir a senha
+                    } else {
+                        alert('A matrícula informada não está cadastrada.');
+                    }
+                }
+            });
+
+        });
+    </script>
 </body>
 </html>

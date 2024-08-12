@@ -88,42 +88,47 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    async function salvarGrupoBackend(nomeGrupo, periodo) {
+    async function salvarGrupoBackend(nomeGrupo, periodo, groupId = null) {
         const token = localStorage.getItem('token'); 
         const userId = localStorage.getItem('userId');
-
+    
         if (!userId || !token) {
             alert('Erro: ID do usuário ou token não encontrado.');
             return null;
         }
-
+    
         const data = {
             title: nomeGrupo,
             period: periodo
         };
-
+    
+        const url = groupId 
+            ? `https://projetodepesquisa.vercel.app/api/group/${groupId}`
+            : 'https://projetodepesquisa.vercel.app/api/group';
+    
+        const method = groupId ? 'PATCH' : 'POST';
+    
         try {
-            const response = await fetch('https://projetodepesquisa.vercel.app/api/group', {
-                method: 'POST',
+            const response = await fetch(url, {
+                method: method,
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}` 
                 },
                 body: JSON.stringify(data)
             });
-
+    
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.message);
             }
-
+    
             const savedGroup = await response.json();
-            const groupId = savedGroup.group_id;
-
-            if (groupId) {
-                localStorage.setItem(`groupId_${groupId}`, JSON.stringify(savedGroup));
+    
+            if (method === 'POST' && savedGroup.group_id) {
+                localStorage.setItem(`groupId_${savedGroup.group_id}`, JSON.stringify(savedGroup));
             }
-
+    
             return savedGroup;
         } catch (error) {
             console.error('Erro ao salvar grupo:', error);
@@ -219,31 +224,32 @@ document.addEventListener('DOMContentLoaded', function() {
     function editarGrupo(grupo) {
         const editar = grupo.querySelector('.editar');
         editar.remove();
-
+    
         const a = grupo.querySelector('a');
         const p = grupo.querySelector('p');
-
+    
         const hrefOriginal = a.href;
-
+        const groupId = grupo.dataset.groupId; // Pegando o ID do grupo
+    
         a.removeAttribute('href');
-
+    
         const inputNome = document.createElement('input');
         inputNome.type = 'text';
         inputNome.value = a.textContent;
-
+    
         const inputPeriodo = document.createElement('input');
         inputPeriodo.type = 'text';
         inputPeriodo.value = p.textContent;
-
+    
         a.classList.add('editaG');
         p.classList.add('editaG');
-
+    
         a.innerHTML = '';
         a.appendChild(inputNome);
-
+    
         p.innerHTML = '';
         p.appendChild(inputPeriodo);
-
+    
         const salvar = document.createElement('button');
         salvar.innerHTML = '<i class="bi bi-floppy-fill"></i>';
         salvar.className = 'salvar';
@@ -251,31 +257,31 @@ document.addEventListener('DOMContentLoaded', function() {
         salvar.addEventListener('click', async function() {
             const novoNome = inputNome.value.trim();
             const novoPeriodo = inputPeriodo.value.trim();
-
+    
             if (novoNome === '' || novoPeriodo === '') {
                 alert('Por favor, preencha todos os campos.');
                 return;
             }
-
+    
             if (verificarGrupo(novoNome, novoPeriodo)) {
                 alert('Já existe um grupo com esse nome e período.');
                 return;
             }
-
+    
             const userId = localStorage.getItem('userId');  
-
+    
             if (!userId) {
                 alert('Erro: ID do usuário não encontrado.');
                 return;
             }
-
+    
             try {
-                await salvarGrupoBackend(novoNome, novoPeriodo);
-
+                await salvarGrupoBackend(novoNome, novoPeriodo, groupId);
+    
                 a.textContent = novoNome;
                 p.textContent = novoPeriodo;
                 a.href = hrefOriginal;
-
+    
                 inputNome.remove();
                 inputPeriodo.remove();
                 salvar.remove();
@@ -284,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Erro ao editar grupo:', error);
             }
         });
-
+    
         grupo.appendChild(salvar);
     }
 });
