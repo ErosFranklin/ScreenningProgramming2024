@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         try {
             const savedGroup = await salvarGrupoBackend(nomeGrupo, periodo);
+            
             if (savedGroup) {
                 const novoGrupo = criarGrupo(nomeGrupo, periodo, savedGroup.group_id);
                 gruposContainer.appendChild(novoGrupo);
@@ -141,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const novoGrupo = document.createElement('div');
         novoGrupo.className = 'grupo';
         novoGrupo.dataset.groupId = groupId; // Adicionei o id do grupo na Data para que fique facil de manipular 
-        novoGrupo.innerHTML = `<h2><a href="detalhe-grupo.html">${nome}</a></h2><p>${periodo}</p>`;
+        novoGrupo.innerHTML = `<h2><a href="detalhe-grupo.html?groupId=${groupId}">${nome}</a></h2><p>${periodo}</p>`;
 
         const editar = document.createElement('button');
         editar.innerHTML = '<i class="bi bi-pencil-square"></i>';

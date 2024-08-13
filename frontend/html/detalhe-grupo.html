@@ -7,6 +7,34 @@
     <link rel="stylesheet" href="../estilo/style-grupo.css">
     <link rel="stylesheet" href="../estilo/style-detalhe-grupo.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        /* style.css */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+#paginacao {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#paginacao button {
+    padding: 5px 10px;
+    margin: 0 5px;
+}
+
+    </style>
 </head>
 <body>
     <nav class="menuLateral">
@@ -53,13 +81,32 @@
             <button id="convidarAluno">Convidar Aluno</button>
         </div>
         <div class="titulo-grupo">
-            <h2>Titulo referente ao grupo</h2>
-            <p>Data do periodo</p>
+            <h2 id="nomeGrupo"></h2>
+            <p id="periodoGrupo"></p>
         </div>
-        <div class="container-grupo">
-
+        <div class="container-tabela-aluno">
+            <table id="tabelaAlunos">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Matrícula</th>
+                        <th>Nome</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Linhas dos alunos serão adicionadas aqui -->
+                </tbody>
+            </table>
+            <div id="paginacao">
+                <button id="btnAnterior" disabled>Anterior</button>
+                <span id="paginaAtual">Página 1</span>
+                <button id="btnProximo">Próxima</button>
+            </div>
         </div>
     </main>
     <script src="../javascript/menu.js"></script>
+    <script src="../javascript/detalhe-grupo.js"></script>
+    <script src="../javascript/tabela-aluno.js"></script>
 </body>
 </html>
