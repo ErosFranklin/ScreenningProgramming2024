@@ -101,8 +101,8 @@ body{
 }
 .bttConvidar{
     display: flex;
-    top:2%;
-    right: 2%;
+    top:3%;
+    right: 3%;
     position:fixed;
 }
 #convidarAluno{
@@ -118,4 +118,89 @@ body{
 #convidarAluno:hover{
     background-color: var(--cor-5);
     transition: .3s;
+}
+#addAluno{
+    background-color: var(--cor-4);
+    border-style: none;
+    border-radius: 5px;
+    width: 100px;
+    color:#fff;
+    padding: 5px;
+    cursor:pointer;
+    transition: .3s;
+}
+#addAluno:hover{
+    background-color: var(--cor-5);
+}
+.container-tabela-aluno{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 8%;
+    flex-direction: column;
+    
+}
+#tabelaAlunos {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px 2px var(--cor-5);
+    
+}
+.linha{
+    background-color: red;
+}
+.celula-tabela {
+    padding: 15px;
+    background-color: var(--cor-4);
+    color:#fff;
+    border:2px outset var(--cor-1);
+    text-align: center;
+    font-size: 16px;
+}
+
+.alunos-tabela td{
+    border:1px outset var(--cor-4);
+    text-align: center;
+    padding: 15px;
+}
+.btnExcluir{
+    background-color: transparent;
+    color:var(--cor-4);
+    border-style:none;
+    font-size: 1.2em;
+    cursor:pointer;
+}
+.btnExcluir:hover{
+    color:var(--cor-5);
+}
+#paginacao {
+    margin-top: 30px;
+    text-align: center;
+}
+#paginaAtual{
+    font-weight:bolder;
+    margin:0px 30px;
+}
+#paginacao button {
+    padding: 10px;
+    border-style:none;
+    border-radius:5px;
+    font-size: 1em;
+    background-color: var(--cor-4);
+    text-align: center;
+    color:#fff;
+    cursor:pointer;
+    
+}
+#paginacao button:hover {
+    background-color: var(--cor-5);
+    transition: .3s;
+}
+#paginacao button:disabled{
+    background-color: var(--cor-5);
+    color:gray;
 }

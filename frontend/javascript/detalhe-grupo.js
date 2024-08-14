@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     <td>${aluno.idStudent}</td>
                     <td>${aluno.nameStudent}</td>
                     <td>${aluno.registrationStudent}</td>
-                    <td><button class="btnExcluir" data-id="${aluno.idStudent}">Excluir</button></td>
+                    <td><button class="btnExcluir" data-id="${aluno.idStudent}"><i class="bi bi-trash-fill"></i></button></td>
                 `;
                 tabelaAlunos.appendChild(linha);
             } else {
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             }
         });
 
-        paginaAtualElem.textContent = `Página ${paginaAtual}`;
+        paginaAtualElem.textContent = `PÁGINA ${paginaAtual}`;
         btnAnterior.disabled = paginaAtual === 1;
         btnProximo.disabled = dados.length < alunosPorPagina;
     }
@@ -118,9 +118,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 const id = event.target.getAttribute('data-id');
                 console.log('id do alunbo', id)
                 try {
-                    const response = await fetch(`https://projetodepesquisa.vercel.app/api/group/student
-                        
-                        /25`, {
+                    const response = await fetch(`https://projetodepesquisa.vercel.app/api/group/student/25`, {
                         method: 'DELETE',
                         headers: {
                             'Content-Type': 'application/json',
