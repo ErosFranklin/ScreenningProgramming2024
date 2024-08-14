@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', async function(){
         }
         //Detalhes do Grupo Danado
         const detalhesGrupoData = await response.json()
+        console.log(detalhesGrupoData)
         const grupo = detalhesGrupoData.Group;
         nomeGrupo.textContent = grupo.title;
         periodoGrupo.textContent = grupo.period;

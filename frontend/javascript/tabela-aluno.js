@@ -1,8 +1,8 @@
-// script.js
 document.addEventListener('DOMContentLoaded', async function() {
     const urlParametros = new URLSearchParams(window.location.search);
-    const grupoId = urlParametros.get('groupId')
-    const alunosPorPagina = 4;
+    const groupId = urlParametros.get('groupId'); // Certifique-se de que esta linha esteja correta e que 'groupId' seja obtido da URL.
+    const token = localStorage.getItem('token');
+    const alunosPorPagina = 5;
     let paginaAtual = 1;
     const tabelaAlunos = document.querySelector('#tabelaAlunos tbody');
     const btnAnterior = document.querySelector('#btnAnterior');
@@ -11,14 +11,20 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     async function carregarAlunos(pagina) {
         try {
-            const response = await fetch(`https://projetodepesquisa.vercel.app/api/students?page=${pagina}&limit=${alunosPorPagina}`);
+            // Use o `groupId` aqui corretamente
+            const response = await fetch(`https://projetodepesquisa.vercel.app/api/student/group/${groupId}?page=${pagina}&limit=${alunosPorPagina}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             
             if (!response.ok) {
                 throw new Error('Erro ao carregar alunos');
             }
             const dados = await response.json();
-
-            // Verifica se dados é um array de arrays
+            console.log(dados)
             if (Array.isArray(dados) && dados.length > 0) {
                 atualizarTabela(dados);
             } else {
@@ -50,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         btnProximo.disabled = dados.length < alunosPorPagina; // Desabilita o botão se não há mais páginas
     }
 
-    function configurarEventos(studentId) {
+    function configurarEventos() {
         btnAnterior.addEventListener('click', () => {
             if (paginaAtual > 1) {
                 paginaAtual--;
@@ -65,9 +71,14 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         tabelaAlunos.addEventListener('click', async (event) => {
             if (event.target.classList.contains('btnExcluir')) {
+                const id = event.target.getAttribute('data-id');
                 try {
-                    const response = await fetch(`https://projetodepesquisa.vercel.app/group/${grupoId}/${studentId}`, {
-                        method: 'DELETE'
+                    const response = await fetch(`https://projetodepesquisa.vercel.app/group/student/${groupId}/${id}`, {
+                        method: 'DELETE',
+                        headers:{
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        }
                     });
                     if (!response.ok) {
                         throw new Error('Erro ao excluir aluno');
@@ -80,6 +91,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
     }
 
-    configurarEventos(dados.studentId);
+    configurarEventos();
     carregarAlunos(paginaAtual);
 });
