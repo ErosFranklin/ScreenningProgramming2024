@@ -10,8 +10,12 @@
     <style>
         /* style.css */
 table {
-    width: 100%;
+    position:absolute;
+    width: 80%;
     border-collapse: collapse;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
 }
 
 th, td {
@@ -84,15 +88,15 @@ th {
             <h2 id="nomeGrupo"></h2>
             <p id="periodoGrupo"></p>
         </div>
-        <!--
+
        
         <div class="container-tabela-aluno">
             <table id="tabelaAlunos">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Matrícula</th>
                         <th>Nome</th>
+                        <th>Matrícula</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -106,7 +110,6 @@ th {
                 <button id="btnProximo">Próxima</button>
             </div>
         </div>
-    -->
     </main>
     <script src="../javascript/menu.js"></script>
     <script src="../javascript/detalhe-grupo.js"></script>
