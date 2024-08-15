@@ -48,36 +48,35 @@ body{
 }
 .dados-basicos{
     display: flex;
+    justify-content: center;
     align-items: center;
-    width: 100%;
     position:absolute;
-    width: 90%;
+    width: 60%;
     height: auto;
     top:19%;
-    left:8%;
+    left:50%;
     background: transparent;
     border: 2px solid var(--cor-2);
     border-radius:10px;
     padding:15px;
+    transform: translateX(-50%);
+    
 }
 
 .componentes-basicos {
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    gap: 20px;
-    
-    
+    gap: 20px; 
+    width: 100%;
 }
 
 .informacao{
-   
     position: relative;
-    width: 620px;
+    width: 100%;
     height: 100px;
     margin-left: 10px;
     margin-right: 10px;
     padding:10px 20px ;
-    
 }
 
 
@@ -114,11 +113,12 @@ body{
     position: absolute;
     bottom:0;
     right:0;
-    justify-content: center;
+    justify-content: end;
     align-content: center;
-    margin-right: 40px;
-    margin-bottom: 40px;
+    margin-right: 6%;
+    margin-bottom: 33px;
 }
+
 #salvarDados{
     background-color: var(--cor-3);
     color:#fff;
@@ -129,23 +129,10 @@ body{
     font-size: 1.1em;
     width: 100%;
     height: 45px;
-    position: relative;
 }
 #salvarDados:hover{
     background-image: linear-gradient(to right,#023059,#014581,#023059 );
     box-shadow:5px 5px 5px #0230595d;
     color:#dfdfdf;
     cursor:pointer;
-}
-
-.dados-basicos .componentes-basicos {
-    transition: all 0.3s ease;
-}
-
-.dados-basicos.editando .componentes-basicos {
-    opacity: 0.8; 
-}
-
-.dados-basicos.editando .dado-texto {
-    display: none; 
 }
