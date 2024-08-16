@@ -23,7 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const response = await fetch('https://projetodepesquisa.vercel.app/api/teacher/upload_image',{
                     method:'PATCH',
                     headers:{
-                        'Authorization': `Bearer ${token}`
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${teacherToken}`
                     },
                     body:formData
                 })
