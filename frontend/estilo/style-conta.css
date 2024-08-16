@@ -112,6 +112,20 @@ body{
     color:var(--cor-4);
     font-style: italic;
 }
+.imagem-perfil{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    margin-right:200px;
+    margin-top: 5px;
+    right: 0;
+    top:0;
+    width: 150px;
+    height: 140px;
+    border:2px solid var(--cor-4);
+    border-radius: 10px;
+}
 .dados-basicos{
     display: flex;
     align-items: center;
