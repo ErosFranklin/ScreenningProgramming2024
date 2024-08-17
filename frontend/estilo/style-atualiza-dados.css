@@ -23,13 +23,10 @@ body{
     background-attachment: fixed;
     color:var(--cor-4);
     font-size: 0.9em;
+    height: 120vh;
+   
 }
 
-.conta{
-    background-image: linear-gradient(to top,#fff, #fff);
-    overflow: auto;
-    height:150vh;
-}
 .title-conta h2{
     display:flex;
     font-size: 2em;
@@ -41,7 +38,7 @@ body{
 .titulo-dados-basicos{
     display:flex;
     position:absolute;
-    top:12%;
+    top:8%;
     margin-left:5%;
     color:var(--cor-4);
     font-style: italic;
@@ -53,7 +50,7 @@ body{
     position:absolute;
     width: 60%;
     height: auto;
-    top:19%;
+    top:16%;
     left:50%;
     background: transparent;
     border: 2px solid var(--cor-2);
@@ -62,7 +59,40 @@ body{
     transform: translateX(-50%);
     
 }
-
+#fotoContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 130px;
+    
+}
+#fotoContainer img{
+    width: 150px;
+    height: auto;
+}
+#mudarFotoP{
+    display: none;
+}
+#mudarFotoLabelP{
+    display: block;
+    margin: auto;
+    border-radius: 5px;
+    width: 160px;
+    height: 35px;
+    font-size: 16px;
+    padding:10px;
+    background-color: var(--cor-4);
+    text-decoration: none;
+    text-align: center; 
+    line-height: 15px; 
+    color: #fff;
+}
+#mudarFotoLabelP:hover{
+    background-image: linear-gradient(to right,#023059,#014581,#023059 );
+    box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
+    cursor:pointer;
+}
 .componentes-basicos {
     display: grid;
     grid-template-columns: repeat(2,1fr);
@@ -77,19 +107,19 @@ body{
     margin-left: 10px;
     margin-right: 10px;
     padding:10px 20px ;
+    
 }
 
 
 .informacao label{
     color:var(--cor-4);
     font-weight: bold;
-    font-size:18px;
+    font-size:17px;
 }
 .informacao input{
     width: 100%;
     height:auto;
     padding:10px;
-    padding-left:10px; 
     color:var(--cor-3);
     border:1px solid var(--cor-1);
     font-weight: lighter;

@@ -23,7 +23,14 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
 
         const specificUserData = await especificarUser.json();
-        
+        // Atualiza a imagem de perfil
+        const imageContainer = document.querySelector('#fotoContainer');
+        const elementoImagem = document.createElement('img');
+        elementoImagem.src = specificUserData.image;
+        elementoImagem.alt = 'Foto do Professor';
+           
+        imageContainer.innerHTML = ''; 
+        imageContainer.appendChild(elementoImagem);
         // Preenche os campos com os dados recebidos
         document.querySelector('#nomeProfessor').value = specificUserData.name || '';
         document.querySelector('#datadenascimentoProfessor').value = formatDateToInputFormat(specificUserData.birth) || '';
