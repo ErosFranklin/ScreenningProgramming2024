@@ -10,30 +10,40 @@ document.addEventListener('DOMContentLoaded', async function() {
     try {
         const url = `https://projetodepesquisa.vercel.app/api/teacher/${teacherId}`; // URL para buscar os dados específicos do usuário
         
-        const especificarUser = await fetch(url, {
+        const userEspecifico = await fetch(url, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
                 
             }
         });
-        console.log(especificarUser)
-        if (!especificarUser.ok) {
+        console.log(userEspecifico)
+        if (!userEspecifico.ok) {
             throw new Error('Erro ao buscar dados específicos do usuário.');
         }
 
-        const specificUserData = await especificarUser.json();
-        console.log(specificUserData)
+        const userEspecificoDados = await userEspecifico.json();
+        console.log(userEspecificoDados)
+        // Atualiza a imagem de perfil
+        const imageContainer = document.querySelector('#imagem-perfil');
+        const elementoImagem = document.createElement('img');
+        elementoImagem.src = userEspecificoDados.image;
+        elementoImagem.alt = 'Foto do Professor';
+           
+
+
+        imageContainer.innerHTML = ''; 
+        imageContainer.appendChild(elementoImagem);
         // Atualiza os elementos na interface com os dados do usuário
-        document.querySelector('#nomeProfessor').innerText = specificUserData.name || 'Nome não disponível';
-        document.querySelector('#datadenascimentoProfessor').innerText = specificUserData.birth || 'Data de nascimento não disponível';
-        document.querySelector('#generoProfessor').innerText = specificUserData.gender || 'Gênero não disponível';
-        document.querySelector('#formacaoProfessor').innerText = specificUserData.formation || 'Formação não disponível';
-        document.querySelector('#matriculaProfessor').innerText = specificUserData.registration || 'Matrícula não disponível';
-        document.querySelector('#emailProfessor').innerText = specificUserData.email || 'Email não disponível';
-        document.querySelector('#cidadeProfessor').innerText = specificUserData.city || 'Cidade não disponível';
-        document.querySelector('#estadoProfessor').innerText = specificUserData.state || 'Estado não disponível';
-        document.querySelector('#instituicaoProfessor').innerText = specificUserData.institution || 'Instituição não disponível';
+        document.querySelector('#nomeProfessor').innerText = userEspecificoDados.name || 'Nome não disponível';
+        document.querySelector('#datadenascimentoProfessor').innerText = userEspecificoDados.birth || 'Data de nascimento não disponível';
+        document.querySelector('#generoProfessor').innerText = userEspecificoDados.gender || 'Gênero não disponível';
+        document.querySelector('#formacaoProfessor').innerText = userEspecificoDados.formation || 'Formação não disponível';
+        document.querySelector('#matriculaProfessor').innerText = userEspecificoDados.registration || 'Matrícula não disponível';
+        document.querySelector('#emailProfessor').innerText = userEspecificoDados.email || 'Email não disponível';
+        document.querySelector('#cidadeProfessor').innerText = userEspecificoDados.city || 'Cidade não disponível';
+        document.querySelector('#estadoProfessor').innerText = userEspecificoDados.state || 'Estado não disponível';
+        document.querySelector('#instituicaoProfessor').innerText = userEspecificoDados.institution || 'Instituição não disponível';
 
     } catch (error) {
         console.error('Erro ao buscar dados do usuário:', error);
