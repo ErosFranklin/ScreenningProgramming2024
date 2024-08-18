@@ -100,3 +100,36 @@ body{
     margin-left: 40px;
     opacity: 1;
 }
+.container-grupos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: auto;
+    height: auto;
+    top:10%;
+    left: 50%; /* Ajusta a posição horizontal */
+    transform: translateX(-50%); /* Centraliza horizontalmente */
+    
+    
+}
+.grupos{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 10px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin:100px auto;
+    max-width: 1500px;
+}
+.grupo{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border:1px solid var(--cor-5);
+    border-radius: 10px;
+    
+}
