@@ -12,7 +12,6 @@
 <body>
     <div class="posAutenticacao">
         <div class="professor">
-            
             <div id="fotoContainer">
                 <img id="fotoProfessor" src="../imagens/teste_perfil.jpg" alt="Professor">
             </div>
@@ -49,7 +48,6 @@
                     <i class="icones-input bi bi-pin-map-fill"></i>
                     <select name="cidade" id="cidade" class="form-style" ></select>
                     <i class="icones-input2 bi bi-houses-fill"></i>
-                    
                 </div>
                 <div class="env">
                     <button type="submit" class="btn" id="idProfessor">Confirmar</button>
@@ -57,14 +55,68 @@
             </form>
         </div>
     </div>
+    <!-- Scripts do Firebase (Versão não modular) 
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    -->
+    <!--
     <script>
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: 'AIzaSyBdZv0pfHBnDmt_b9ZTgpubhiGCi2jbvjY',
+            authDomain: 'screen-programing-352a5.firebaseapp.com',
+            projectId: 'screen-programing-352a5',
+            storageBucket: 'screen-programing-352a5.appspot.com',
+            messagingSenderId: '66540431655',
+            appId: '1:66540431655:web:587198e317fd192e74e102',
+            measurementId: 'G-B9ZBSG6016'
+        };
+
+        // Inicializa o Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+        // Função para fazer upload da imagem
+        function uploadImage(file) {
+            const storageRef = storage.ref('images/' + file.name);
+            const uploadTask = storageRef.put(file);
+
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    // Progresso do upload
+                },
+                (error) => {
+                    console.error('Erro no upload:', error);
+                },
+                () => {
+                    // Upload concluído
+                    uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                        console.log('URL da imagem:', downloadURL);
+                        document.getElementById('fotoProfessor').src = downloadURL;
+                    });
+                }
+            );
+        }
+
+        // Evento de mudança no input de arquivo
+        document.getElementById('mudarFotoP').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                uploadImage(file);
+            }
+        });
+    </script>
+    -->
+    <!-- Outros scripts do projeto -->
+     <script>
         document.addEventListener('DOMContentLoaded', function() {
             flatpickr("#nascimentoP", {
                 dateFormat: "d/m/Y",
                 altFormat: "d/m/Y"
             });
         });
-    </script>
+     </script>
     <script src="../javascript/alterar-foto-professor.js"></script>
     <script src="../javascript/pos-autenticacao-professor.js"></script>
     <script src="../javascript/cidades.js"></script>
