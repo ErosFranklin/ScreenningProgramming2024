@@ -1,11 +1,6 @@
 document.addEventListener('DOMContentLoaded', async function(){
-
-    checagemToken()
-
     function checagemToken(){
-        const token = localStorage.getItem('token');
         if(token){
-            const token = localStorage.getItem('token');
             try{
                 const payload = JSON.parse(atob(token.split('.')[1]));
                 const tempo = Date.now() / 1000;
@@ -28,6 +23,7 @@ document.addEventListener('DOMContentLoaded', async function(){
             window.location.href = '../html/login.html'
         }
     }
+    checagemToken()
     
 
 
