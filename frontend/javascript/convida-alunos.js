@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async function(){
 
         if (email) {
             try {
-                // Exemplo de uma chamada para a API para enviar o convite (você precisa substituir pelo seu endpoint real)
+                
                 const response = await fetch('https://projetodepesquisa.vercel.app/api/groupInvite', {
                     method: 'POST',
                     headers: {
