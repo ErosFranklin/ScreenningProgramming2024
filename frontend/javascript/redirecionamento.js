@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', async function(){
+    checagemToken()
     function checagemToken(){
+        const token = localStorage.getItem('token')
         if(token){
             try{
                 const payload = JSON.parse(atob(token.split('.')[1]));
@@ -11,20 +13,16 @@ document.addEventListener('DOMContentLoaded', async function(){
                 }else{
                     //Isso aqui eh para o token expirado ou invalido;
                     localStorage.removeItem('token')
-                    window.location.href = '../html/login/html'
+                    window.location.href = '../html/login.html'
                 }
             }catch(e){
                 //token invalido diretamente
                 localStorage.removeItem('token')
-                window.location.href = '../html/login/html'
+                window.location.href = '../html/login.html'
             }
         }else{
             //token nao existe
             window.location.href = '../html/login.html'
         }
     }
-    checagemToken()
-    
-
-
 })

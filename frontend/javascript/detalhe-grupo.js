@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     async function carregarDetalhesGrupo() {
         try {
-            const response = await fetch(`https://projetodepesquisa.vercel.app/api/group/25`, {
+            const response = await fetch(`https://projetodepesquisa.vercel.app/api/group/${groupId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     async function carregarAlunos(pagina) {
         try {
-            const response = await fetch(`https://projetodepesquisa.vercel.app/api/group/student/25?num_pag=${pagina}`, {
+            const response = await fetch(`https://projetodepesquisa.vercel.app/api/group/student/${groupId}?num_pag=${pagina}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 const id = event.target.getAttribute('data-id');
                 console.log('id do alunbo', id)
                 try {
-                    const response = await fetch(`https://projetodepesquisa.vercel.app/api/group/student/25`, {
+                    const response = await fetch(`https://projetodepesquisa.vercel.app/api/group/student/${groupId}`, {
                         method: 'DELETE',
                         headers: {
                             'Content-Type': 'application/json',

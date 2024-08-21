@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', async function() {
          // Atualiza a imagem de perfil
          const imageContainer = document.querySelector('#imagem-perfil');
          const elementoImagem = document.createElement('img');
-         elementoImagem.src = specificUserData.image;
+         elementoImagem.src = usuarioEspecificoDados.image;
          elementoImagem.alt = 'Foto do Professor';
             
  
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         document.querySelector('#nomeAluno').innerText = usuarioEspecificoDados.name || 'Nome não disponível';
         document.querySelector('#datadenascimentoAluno').innerText = usuarioEspecificoDados.birth || 'Data de nascimento não disponível';
         document.querySelector('#generoAluno').innerText = usuarioEspecificoDados.gender || 'Gênero não disponível';
-        document.querySelector('#formacaoAluno').innerText = usuarioEspecificoDados.period || 'Periodo não disponível';
+        document.querySelector('#periodoAluno').innerText = usuarioEspecificoDados.period || 'Periodo não disponível';
         document.querySelector('#matriculaAluno').innerText = usuarioEspecificoDados.registration || 'Matrícula não disponível';
         document.querySelector('#emailAluno').innerText = usuarioEspecificoDados.email || 'Email não disponível';
         document.querySelector('#cidadeAluno').innerText = usuarioEspecificoDados.city || 'Cidade não disponível';

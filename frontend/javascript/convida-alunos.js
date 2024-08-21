@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', async function(){
                 console.log('Convite enviado com sucesso:', data);
 
                 // Fechar o modal após o convite ser enviado
-                fecharJanela(overlay, modal, emailAluno);
+                fecharJanela(overlay, modal, email);
             } catch (error) {
                 console.error('Erro ao enviar convite:', error);
             }
