@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificando...</title>
+    <style>
+        body{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 100vh;
+            transform: scale(3);
+            overflow: hidden;
+        }
+        .verificando{
+            animation: rotacao 1s infinite;
+            height: 50px;
+            width: 50px;
+            border-radius:50%;
+            border: 6px solid #e5e5e5;
+            border-top-color: #0050b8;
+        }
+        @keyframes rotacao {
+            to{
+                transform:rotate(1turn)
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function(){
+    checagemToken()
+    function checagemToken(){
+        const token = localStorage.getItem('token')
+        if(token){
+            try{
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                const tempo = Date.now() / 1000;
+
+                if(payload.exp && payload.exp > tempo){
+                    // Adiciona um delay para garantir que o redirecionamento seja suave
+                    setTimeout(() => {
+                        window.location.href = '../html/grupo-aluno.html';
+                    }, 5000);
+                    return;
+                }else{
+                    localStorage.removeItem('token')
+                    setTimeout(() => {
+                        window.location.href = '../html/login.html';
+                    }, 5000);
+                }
+            }catch(e){
+                localStorage.removeItem('token')
+                setTimeout(() => {
+                    window.location.href = '../html/login.html';
+                }, 5000);
+            }
+        }else{
+            setTimeout(() => {
+                window.location.href = '../html/login.html';
+            }, 1000);
+        }
+    }
+})
+    </script>
+</head>
+<body>
+    <div class="verificando"></div>
+</body>
+</html>

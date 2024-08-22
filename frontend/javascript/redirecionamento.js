@@ -8,21 +8,27 @@ document.addEventListener('DOMContentLoaded', async function(){
                 const tempo = Date.now() / 1000;
 
                 if(payload.exp && payload.exp > tempo){
-                    window.location.href = '../html/grupo-aluno.html'
+                    // Adiciona um delay para garantir que o redirecionamento seja suave
+                    setTimeout(() => {
+                        window.location.href = '../html/grupo-aluno.html';
+                    }, 100);
                     return;
                 }else{
-                    //Isso aqui eh para o token expirado ou invalido;
                     localStorage.removeItem('token')
-                    window.location.href = '../html/login.html'
+                    setTimeout(() => {
+                        window.location.href = '../html/login.html';
+                    }, 100);
                 }
             }catch(e){
-                //token invalido diretamente
                 localStorage.removeItem('token')
-                window.location.href = '../html/login.html'
+                setTimeout(() => {
+                    window.location.href = '../html/login.html';
+                }, 100);
             }
         }else{
-            //token nao existe
-            window.location.href = '../html/login.html'
+            setTimeout(() => {
+                window.location.href = '../html/login.html';
+            }, 100);
         }
     }
 })

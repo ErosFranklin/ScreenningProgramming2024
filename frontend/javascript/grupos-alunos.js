@@ -24,11 +24,12 @@ document.addEventListener('DOMContentLoaded', function(){
             }
             const gruposData = await response.json();
             console.log('dados do grupo:',gruposData)
-            if (gruposData.groups && Array.isArray(gruposData.groups)) {
+            
+            if (Array.isArray(gruposData)) {
                 const grupos = document.querySelector('#grupos')
                 grupos.innerHTML = ''; // Limpar qualquer conteúdo anterior
-                gruposData.groups.forEach(grupo => {
-                    const novoGrupoMostrado = criarGrupoTela(grupo.group_name, grupo.period, grupo.group_id, grupo.teacher);
+                gruposData.forEach(grupo => {
+                    const novoGrupoMostrado = criarGrupoTela(grupo.title, grupo.period, grupo.id_group, grupo.teacher);
                     grupos.appendChild(novoGrupoMostrado);
                 });
             } else {
@@ -54,4 +55,5 @@ document.addEventListener('DOMContentLoaded', function(){
 
         return grupo;
     }
+        
 })
