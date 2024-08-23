@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizacao de Dados</title>
+    <link rel="stylesheet" href="../estilo/style-atualiza-dados.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../estilo/media-querie-conta.css">
+</head>
+<body>
+    <main>
+        <span class="title-conta">
+            <h2>Atualizacao dos Dados</h2>
+        </span>
+        <span class="titulo-dados-basicos">
+            <h3>Atualize suas informações básicas  necessarias</h3>
+        </span>
+        <div class="dados-basicos" id="dados-basicos">
+            <form method="post" id="formAtualizaDados">
+                 <div id="fotoContainer">
+                    <img id="fotoAluno" src="../imagens/teste_perfil.jpg" alt="Aluno">
+                </div>
+                    <input type="file" id="mudarFotoP" accept="image/*">
+                    <label for="mudarFoto" id="mudarFotoLabel">Alterar Foto</label>
+                
+            
+                <div class="componentes-basicos">
+                    <div class="informacao">
+                        <label for="nomeAluno">Nome:</label>
+                        <input type="text" class="dado-texto" id="nomeAluno">
+                    </div>
+                
+                    <div class="informacao">
+                        <label for="datadenascimentoAluno">Data de Nascimento:</label>
+                        <input type="date" class="dado-texto" id="datadenascimentoAluno">
+                    </div>
+                
+                
+                    <div class="informacao">
+                        <label for="generoAluno">Gênero:</label>
+                        <input type="text" class="dado-texto" id="generoAluno">
+                    </div>
+                
+                
+                    <div class="informacao">
+                        <label for="periodoAluno">Período:</label>
+                        <input type="text" class="dado-texto" id="periodoAluno">
+                    </div>
+                
+                
+                    <div class="informacao">
+                        <label for="matriculaAluno">Matrícula:</label>
+                        <input type="text" class="dado-texto" id="matriculaAluno">
+                    </div>
+                
+               
+                    <div class="informacao">
+                        <label for="emailAluno">Email:</label>
+                        <input type="text" class="dado-texto" id="emailAluno">
+                    </div>
+               
+                
+                    <div class="informacao">
+                        <label for="cidadeAluno">Cidade:</label>
+                        <input type="text" class="dado-texto" id="cidadeAluno">
+                    </div>
+                
+                
+                    <div class="informacao">
+                        <label for="estadoPAluno">Estado:</label>
+                        <input type="text" class="dado-texto" id="estadoAluno">
+                    </div>
+
+                    <div class="informacao">
+                        <label for="instituicaoAluno">Instituição:</label>
+                        <input type="text" class="dado-texto" id="instituicaoAluno">
+                    </div>
+                </div>
+                <div class="btt-alterar">
+                    <button type="submit" id="salvarDados" href="../html/atualizar-dados.html">Salvar Alteracao</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script src="../javascript/alterar-dados-pessoais-aluno.js"></script>
+    <script src="../javascript/alterar-foto-professor.js"></script>
+</body>
+</html>
