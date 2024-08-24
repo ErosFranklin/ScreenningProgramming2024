@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', async function() {
     const urlParametros = new URLSearchParams(window.location.search);
     const groupId = urlParametros.get('groupId');
+    localStorage.setItem('groupId',groupId);
     const token = localStorage.getItem('token');
     const alunosPorPagina = 5;
     let paginaAtual = 1;
