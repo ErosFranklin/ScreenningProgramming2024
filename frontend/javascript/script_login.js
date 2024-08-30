@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const loginForm = document.querySelector("#formLogin");
-
+    const gruposPendentes = JSON.parse(localStorage.getItem('fila')) || [];
+   
     loginForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
@@ -35,6 +36,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (email.includes("@servidor")) {
                     window.location.href = "../html/grupo.html";
                 } else {
+                    if(gruposPendentes.length > 0){
+                        await processarFila(gruposPendentes)
+                    }
                     window.location.href = "../html/grupo-aluno.html";
                 }
 
@@ -77,7 +81,33 @@ document.addEventListener("DOMContentLoaded", function () {
             throw new Error("Erro na requisição fetch.");
         }
     }
-
+    async function processarFila(gruposPendentes){
+        for(const groupId of gruposPendentes){
+            try{
+                await adicionarGrupo(groupId);
+            }catch(error){
+                console.error(`Erro ao adicionar ao grupo com id "${groupId}":`, error)
+            }
+        }
+        localStorage.removeItem('fila')
+    }
+    async function adicionarGrupo(groupId){
+        const token = localStorage.getItem('token');
+        if(!token){
+            throw new Error('Token invalido ou nao encontrado')
+        }
+        const response = await fetch(`https://projetodepesquisa.vercel.app/api/group/student/${groupId}`,{
+            method:'PUT',
+            headers:{
+                'Content-Type':'application/json',
+                'Authorization':`Bearer ${token}`
+            }
+        })
+        if(!response.ok){
+            const errorData = await response.json();
+            throw new Error(errorData.message);
+        }
+    }
     function validarEmail(email) {
         var emailRegex = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/;
         return emailRegex.test(email);

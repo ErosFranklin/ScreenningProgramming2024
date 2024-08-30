@@ -8,33 +8,26 @@ document.addEventListener('DOMContentLoaded', async function() {
     const modalExibido = localStorage.getItem('modalExibido');
 
     if (modalExibido === 'true') {
-        console.log('Modal exibido anteriormente. Abrindo modal.');
         overlay.style.display = 'block';
         modal.style.display = 'block';
-    } else {
-        console.log('Modal não exibido anteriormente.');
     }
 
     convidarAluno.addEventListener('click', function() {
-        console.log('Botão de convidar aluno clicado. Abrindo modal.');
         overlay.style.display = 'block';
         modal.style.display = 'block';
         localStorage.setItem('modalExibido', 'true');
     });
 
     botaoFechar.addEventListener('click', function() {
-        console.log('Botão de fechar clicado. Fechando modal.');
         fecharJanela(overlay, modal, emailAluno);
     });
 
     botaoEnviarConvite.addEventListener('click', async function(event) {
-        event.preventDefault();  // Previne o comportamento padrão do botão dentro de um formulário
+        event.preventDefault(); 
         const email = emailAluno.value.trim();
         console.log('E-mail digitado:', email);
 
         if (email) {
-            console.log('Iniciando envio de convite...');
-            const start = Date.now();
 
             try {
                 const grupo = await carregarDadosGrupo();
@@ -61,17 +54,10 @@ document.addEventListener('DOMContentLoaded', async function() {
                     console.error('Erro ao enviar convite:', errorData);
                     throw new Error('Erro ao enviar convite');
                 }
-
-                const data = await response.json();
-                console.log('Resposta do servidor:', data);
-
-                const duration = Date.now() - start;
-                console.log('Tempo total de execução do envio:', duration, 'ms');
-
-                // Adiciona uma pausa para verificação dos logs
-                setTimeout(() => {
-                    fecharJanela(overlay, modal, emailAluno);
-                }, 2000); // 2 segundos de pausa
+                const dados = await response.json()
+                console.log(dados)
+                fecharJanela(overlay, modal, emailAluno);
+                
 
             } catch (error) {
                 console.error('Erro ao enviar convite:', error);
@@ -104,17 +90,11 @@ document.addEventListener('DOMContentLoaded', async function() {
             }
     
             const dadosGrupo = await response.json();
-            console.log('Dados do grupo:', dadosGrupo);
-    
-            // Ajusta a extração dos dados conforme a estrutura da resposta
             const groupName = dadosGrupo.Group.title;
     
             if (!groupName || !groupId) {
                 throw new Error('Dados do grupo não estão completos.');
             }
-    
-            const duration = Date.now() - start;
-            console.log('Tempo de carregamento dos dados do grupo:', duration, 'ms');
     
             return { groupName, groupId };
         } catch (error) {
@@ -125,7 +105,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     
 
     function fecharJanela(overlay, modal, emailAluno) {
-        console.log('Fechando modal e limpando e-mail.');
         emailAluno.value = "";
         overlay.style.display = 'none';
         modal.style.display = 'none';
