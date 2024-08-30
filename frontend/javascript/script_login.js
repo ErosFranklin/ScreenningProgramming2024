@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
     async function processarFila(gruposPendentes){
+        console.log('Processando fila')
         for(const groupId of gruposPendentes){
             try{
                 await adicionarGrupo(groupId);
@@ -92,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.removeItem('fila')
     }
     async function adicionarGrupo(groupId){
+        console.log('Adicionando ao grupo')
         const token = localStorage.getItem('token');
         if(!token){
             throw new Error('Token invalido ou nao encontrado')
@@ -103,10 +105,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 'Authorization':`Bearer ${token}`
             }
         })
+        
         if(!response.ok){
             const errorData = await response.json();
             throw new Error(errorData.message);
         }
+        console.log('Adicionado ao grupo.')
     }
     function validarEmail(email) {
         var emailRegex = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/;
