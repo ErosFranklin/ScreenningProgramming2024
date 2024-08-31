@@ -61,7 +61,9 @@
         <div class="bttGrupo">
             <button id="novoGrupo">Novo Grupo</button>
         </div>
-        
+        <div id="grupos-container" class="grupos-container">
+            
+        </div>
         <div id="overlay" class="overlay"></div>
         <div id="modal" class="modal">
             <h2>Cadastrar Grupo</h2>
@@ -80,9 +82,17 @@
                 </div>
             </form>
         </div>
-        <div id="grupos-container" class="grupos-container">
-            
+        <div id="confirmaExcluirModal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <h2>Confirmação</h2>
+                <p>Tem certeza de que deseja excluir este grupo?</p>
+                <div class="bttsGrupo">
+                    <button id="confirmarExcluirBotao">Excluir</button>
+                    <button id="cancelarexclusao">Cancelar</button>
+                </div>
+            </div>
         </div>
+        
         <script src="../javascript/add-grupos.js"></script>
         <script src="../javascript/menu.js"></script>
     </main>

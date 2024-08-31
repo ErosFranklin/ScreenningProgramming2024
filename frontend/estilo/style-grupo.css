@@ -315,10 +315,11 @@ body{
     font-size:1.2em;
 }
 
-#criarGrupo{
+#criarGrupo, #confirmarExcluirBotao{
     background-color: var(--cor-4);
     border-style: none;
     border-radius: 5px;
+    margin-top: 20px;
     width: 100px;
     color:#fff;
     padding: 5px;
@@ -328,7 +329,7 @@ body{
 #criarGrupo:hover{
     background-color: var(--cor-5);
 }
-#fechar{
+#fechar, #cancelarexclusao{
     background-color: var(--cor-4);
     border-style: none;
     border-radius: 5px;

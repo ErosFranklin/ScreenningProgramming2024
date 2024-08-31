@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const nomeGrupoInput = document.querySelector('#nomeGrupo');
     const periodoInput = document.querySelector('#periodo');
     const botaoFechar = document.querySelector('#fechar');
+    const confirmaExcluirModal = document.querySelector('#confirmaExcluirModal');
+    const confirmaExcluirBotao = document.querySelector('#confirmarExcluirBotao');
+    const cancelarExclusao = document.querySelector('#cancelarexclusao')
+    let grupoParaExcluir;
 
     carregarGrupos();
 
@@ -158,7 +162,8 @@ document.addEventListener('DOMContentLoaded', function() {
         apagar.className = 'apagar';
         apagar.classList.add('editarGrupo');
         apagar.addEventListener('click', async function() {
-            await excluirGrupo(novoGrupo); 
+            grupoParaExcluir = novoGrupo;
+            exibirModalExcluir();
         });
 
         novoGrupo.appendChild(apagar);
@@ -294,4 +299,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
         grupo.appendChild(salvar);
     }
+    function exibirModalExcluir(){
+        overlay.style.display = 'block'
+        confirmaExcluirModal.style.display = 'block'
+    }
+    function fecharModalExclusao(){
+        overlay.style.display = 'none'
+        confirmaExcluirModal.style.display = 'none'
+    }
+    confirmaExcluirBotao.addEventListener('click', function(){
+        if(grupoParaExcluir){
+            excluirGrupo(grupoParaExcluir);
+            fecharModalExclusao();
+        }
+    })
+    cancelarExclusao.addEventListener('click', function(){
+        fecharModalExclusao();
+    })
 });
