@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const loginForm = document.querySelector("#formLogin");
     const gruposPendentes = JSON.parse(localStorage.getItem('fila')) || [];
-   
+    console.log('GP:', gruposPendentes)
     loginForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
@@ -37,7 +37,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     window.location.href = "../html/grupo.html";
                 } else {
                     if(gruposPendentes.length > 0){
-                        await processarFila(gruposPendentes)
+                        const studentId = localStorage.getItem('userId')
+                        console.log('Entrando na fila...')
+                        await processarFila(gruposPendentes, studentId)
                     }
                     window.location.href = "../html/grupo-aluno.html";
                 }
@@ -81,36 +83,45 @@ document.addEventListener("DOMContentLoaded", function () {
             throw new Error("Erro na requisição fetch.");
         }
     }
-    async function processarFila(gruposPendentes){
+    async function processarFila(gruposPendentes, studentId){
         console.log('Processando fila')
         for(const groupId of gruposPendentes){
             try{
-                await adicionarGrupo(groupId);
+                await adicionarGrupo(groupId, studentId);
             }catch(error){
                 console.error(`Erro ao adicionar ao grupo com id "${groupId}":`, error)
             }
         }
         localStorage.removeItem('fila')
     }
-    async function adicionarGrupo(groupId){
-        console.log('Adicionando ao grupo')
+    async function adicionarGrupo(groupId, studentId) {
+        console.log('Adicionando ao grupo');
         const token = localStorage.getItem('token');
-        if(!token){
-            throw new Error('Token invalido ou nao encontrado')
+        console.log('Token:', token);
+        console.log('id do estudante:', studentId);
+        if (!token || !studentId) {
+            throw new Error('Token inválido ou não encontrado');
         }
-        const response = await fetch(`https://projetodepesquisa.vercel.app/api/group/student/${groupId}`,{
-            method:'PUT',
-            headers:{
-                'Content-Type':'application/json',
-                'Authorization':`Bearer ${token}`
+    
+        try {
+            const response = await fetch(`https://projetodepesquisa.vercel.app/api/group/student/${groupId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({studentId:parseInt(studentId, 10)}) 
+            });
+    
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message);
             }
-        })
-        
-        if(!response.ok){
-            const errorData = await response.json();
-            throw new Error(errorData.message);
+            console.log('Adicionado ao grupo.');
+        } catch (error) {
+            console.error('Erro ao adicionar ao grupo:', error);
+            throw error;
         }
-        console.log('Adicionado ao grupo.')
     }
     function validarEmail(email) {
         var emailRegex = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,})$/;

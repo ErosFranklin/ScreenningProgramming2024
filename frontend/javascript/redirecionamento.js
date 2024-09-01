@@ -1,46 +1,58 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     const tokenParam = new URLSearchParams(window.location.search).get('token');
     const token = localStorage.getItem('token') || tokenParam;
     console.log('Paramentro Url:', tokenParam);
     console.log('Paramentro Local:', token);
 
     if (!token) {
-        // Sem token, redireciona para a tela de login
         window.location.href = '../html/login.html';
         return;
     }
-
-    async function checagemToken(token) {
-        try {
-            const payload = JSON.parse(atob(token.split('.')[1]));
-            const tempo = Date.now() / 1000;
-
-            if (payload.exp && payload.exp > tempo) {
-                // Token válido, armazena groupId na fila e redireciona para o login
-                const groupId = payload.sub.group_id;
-                if (groupId) {
-                    const gruposPendentes = JSON.parse(localStorage.getItem('fila')) || [];
+    try{
+        const url = `https://projetodepesquisa.vercel.app/api/token/groupid?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhdmkuYWxtZWlkYUBhbHVuby51ZXBiLmVkdS5iciIsInVzZXJfdHlwZSI6InN0dWRlbnQiLCJncm91cF9pZCI6MjUsImV4cCI6MTcyNTM5NDMwOX0.jubleFsQ6ZD-Kqq39xgMzStLLC15_BZNiL43HlzXbHE`;
+        const response = await fetch(url,{
+            method:'GET',
+            headers:{
+                'Content-Type': 'application/json',
+            }
+        })
+        if(response.ok){
+            const dadosToken = await response.json();
+            const groupId = dadosToken.groupId;
+            console.log('Id do grupo via token:', groupId)
+            if(groupId){
+                const gruposPendentes = JSON.parse(localStorage.getItem('fila')) || [];
+                console.log('grupos pendentes:', gruposPendentes)
+                if(!gruposPendentes.includes(groupId)){
+                    console.log('Adicionando id do grupo a fila')
                     gruposPendentes.push(groupId);
                     localStorage.setItem('fila', JSON.stringify(gruposPendentes));
                 }
-
-                // Redireciona para a página de login
-                window.location.href = '../html/login.html';
-            } else {
-                // Token expirado, remove e redireciona para o login
-                localStorage.removeItem('token');
                 setTimeout(() => {
                     window.location.href = '../html/login.html';
-                }, 10000); // Ajuste o tempo se necessário
+                }, 20000);
+            }else{
+                localStorage.removeItem('token')
+                setTimeout(() => {
+                    window.location.href = '../html/login.html';
+                }, 20000);
             }
-        } catch (e) {
-            // Token inválido, remove e redireciona para o login
-            localStorage.removeItem('token');
+        }else{
+            localStorage.removeItem('token')
             setTimeout(() => {
                 window.location.href = '../html/login.html';
-            }, 10000); // Ajuste o tempo se necessário
+            }, 20000);
         }
+        
+    }catch(erro){
+        console.erro('Erro ao validar o token:', erro)
+        localStorage.removeItem('token');
+        setTimeout(() => {
+            window.location.href = '../html/login.html';
+        }, 20000);
     }
 
-    checagemToken(token);
+
 });
+
+
