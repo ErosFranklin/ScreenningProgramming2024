@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', async function() {
          const imageContainer = document.querySelector('#imagem-perfil');
          const elementoImagem = document.createElement('img');
          elementoImagem.src = usuarioEspecificoDados.image;
-         elementoImagem.alt = 'Foto do Professor';
+         elementoImagem.alt = 'Foto do Aluno';
             
  
  

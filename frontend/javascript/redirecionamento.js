@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         return;
     }
     try{
-        const url = `https://projetodepesquisa.vercel.app/api/token/groupid?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhdmkuYWxtZWlkYUBhbHVuby51ZXBiLmVkdS5iciIsInVzZXJfdHlwZSI6InN0dWRlbnQiLCJncm91cF9pZCI6MjUsImV4cCI6MTcyNTM5NDMwOX0.jubleFsQ6ZD-Kqq39xgMzStLLC15_BZNiL43HlzXbHE`;
+        const url = `https://projetodepesquisa.vercel.app/api/token/groupid?token=${token}`;
         const response = await fetch(url,{
             method:'GET',
             headers:{
