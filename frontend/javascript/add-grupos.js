@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const nomeGrupoInput = document.querySelector('#nomeGrupo');
     const periodoInput = document.querySelector('#periodo');
     const botaoFechar = document.querySelector('#fechar');
+    const botaoCriarGrupo = document.querySelector("criarGrupo")
     const confirmaExcluirModal = document.querySelector('#confirmaExcluirModal');
     const confirmaExcluirBotao = document.querySelector('#confirmarExcluirBotao');
     const cancelarExclusao = document.querySelector('#cancelarexclusao')
@@ -28,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
     botaoFechar.addEventListener('click', function() {
         fecharJanela(overlay, modal, nomeGrupoInput, periodoInput);
     });
-
     document.querySelector('#formAddGrupo').addEventListener('submit', async function(event) {
         event.preventDefault(); 
 
@@ -38,7 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (verificarGrupo(nomeGrupo, periodo)) {
             alert("Já existe um grupo com esse nome e período!");
             return;
-        } else if (nomeGrupo === "" || periodo === "") {
+        } 
+        if (nomeGrupo === "" || periodo === "") {
             alert("Preencha todas as informações!");
             return;
         }
@@ -194,9 +195,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error(errorData.message);
             }
 
-            novoGrupo.remove(); // Remove o grupo da interface
+            novoGrupo.remove(); 
 
-            localStorage.removeItem(`groupId_${groupId}`); // Remove o grupo do localStorage para que seu id nao fiquei salvo
+            localStorage.removeItem(`groupId_${groupId}`); 
 
             console.log('Grupo excluído com sucesso.');
         } catch (error) {

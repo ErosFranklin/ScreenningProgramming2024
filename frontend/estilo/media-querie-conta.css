@@ -37,13 +37,22 @@ Grandes telas: acima de 1200px
     }
     .dados-basicos{
         width: 80%;
+        height: 180%;
         left:50%;
         margin-left: 30px;
         padding:15px;
+        justify-content: center;
+        align-items: center;
         transform: translateX(-50%);
     }
+    .componentes-basicos{
+        grid-template-columns: repeat(1,1fr);
+        position: absolute;
+        top:10%;
+        transform: translateY(-10%);
+    }
     .informacao{
-        width: 300px;
+        width: 100%;
         margin-left: 0;
     }
     .informacao h3{
@@ -51,6 +60,10 @@ Grandes telas: acima de 1200px
         width: 90%;
     }
     .btt-alterar{
-        margin-left:0 ;
+        margin-right: 0;
+    }
+    #alterar{
+        width: 70%;
+        margin-left: 10%;
     }
 }

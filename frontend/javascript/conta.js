@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         const userEspecificoDados = await userEspecifico.json();
         console.log(userEspecificoDados)
+        /*
         // Atualiza a imagem de perfil
         const imageContainer = document.querySelector('#imagem-perfil');
         const elementoImagem = document.createElement('img');
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         imageContainer.innerHTML = ''; 
         imageContainer.appendChild(elementoImagem);
-        // Atualiza os elementos na interface com os dados do usuário
+        */
         document.querySelector('#nomeProfessor').innerText = userEspecificoDados.name || 'Nome não disponível';
         document.querySelector('#datadenascimentoProfessor').innerText = userEspecificoDados.birth || 'Data de nascimento não disponível';
         document.querySelector('#generoProfessor').innerText = userEspecificoDados.gender || 'Gênero não disponível';

@@ -23,36 +23,11 @@ Grandes telas: acima de 1200px
     }
     .titlesGrupos h2{
         margin:15px 0;
-        left:25%;
+        left:50%;
         top:0;
-        transform: translateX(-25%);
+        transform: translateX(-50%);
     }
-    .grupos-container{
+    .grupos{
         grid-template-columns: repeat(1,1fr);
-    }
-    .modal{
-        width: 95%;
-        height: auto;
-    }
-    .modal label{
-        font-size:16px;
-    }
-    .componentesG input{
-        height: 50px;
-        
-    }
-    .componentesG i{
-        font-size:22px;
-    }
-    #criarGrupo{
-        width: 190px;
-        height:40px;
-        font-size: 20px;
-        margin:20px 0;
-    }
-    #fechar{
-        width: 190px;
-        height:40px;
-        font-size: 20px;
     }
 }
