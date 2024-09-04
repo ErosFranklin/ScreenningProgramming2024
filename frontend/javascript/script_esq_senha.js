@@ -7,52 +7,59 @@ document.addEventListener('DOMContentLoaded', () => {
     
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
-        
-        // Caso o campo de matrícula esteja visível, trata a validação da matrícula
+    
+        const email = emailInput.value.trim();
+        let matricula = matriculaInput.value.trim();
+        let urlApi = '';
+    
         if (matriculaContainer.style.display === 'block' && userData) {
-            const matricula = String(matriculaInput.value).trim();
             const registration = String(userData.registration).trim();
-            
+    
             if (matricula === registration) {
-                
                 alert('Matrícula confirmada. Proceda com a redefinição da senha.');
-                await fetch('https://projetodepesquisa.vercel.app/api/forgetPassword', {
-                    method: 'POST',
-                    headers: {
-                       'Content-Type': 'application/json',
-                        
-                    },
-                     body: JSON.stringify({ email:emailInput.value, matricula:matricula })
-                 });
+    
+                try {
+                    const response = await fetch('https://projetodepesquisa.vercel.app/api/forgetPassword', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({email:email})
+                    });
+    
+                    if (response.ok) {
+                        const result = await response.json();
+                        alert(result.message || 'E-mail enviado com sucesso.');
+                    } else {
+                        const error = await response.json();
+                        alert(error.error || 'Erro ao enviar o e-mail.');
+                    }
+                } catch (error) {
+                    console.error('Erro ao enviar a solicitação de redefinição de senha:', error);
+                    alert('Ocorreu um erro ao processar sua solicitação. Tente novamente mais tarde.');
+                }
             } else {
                 alert('A matrícula informada não está cadastrada.');
             }
         } else {
-            // Caso o campo de matrícula não esteja visível, trata a validação do email
-            const email = emailInput.value;
-            let urlApi = '';
-            
             if (email.includes('@servidor')) {
                 urlApi = 'api/teacher/email/';
             } else if (email.includes('@aluno')) {
                 urlApi = 'api/student/email/';
             }
-            
+    
             try {
                 const response = await fetch(`https://projetodepesquisa.vercel.app/${urlApi}${email}`);
-                
+    
                 if (response.ok) {
                     // Email válido, mostra o campo de matrícula e torna-o obrigatório
                     matriculaContainer.style.display = 'block';
                     matriculaInput.required = true;
-                    
+    
                     // Obtém os dados do usuário
                     userData = await response.json();
-                    
                     console.log('Dados do usuário:', userData);
-                    
                 } else {
-                    // Email não encontrado, mantém o campo de matrícula oculto
                     matriculaContainer.style.display = 'none';
                     matriculaInput.required = false;
                     alert('Usuário não encontrado! Verifique o email e tente novamente.');
@@ -63,5 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+    
 
 });
