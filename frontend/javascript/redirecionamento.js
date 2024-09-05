@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', async function() {
-    const tokenParam = new URLSearchParams(window.location.search).get('token');
-    const token = localStorage.getItem('token') || tokenParam;
-    console.log('Paramentro Url:', tokenParam);
-    console.log('Paramentro Local:', token);
+    const token = new URLSearchParams(window.location.search).get('token');
+    console.log('Paramentro Url:', token);
 
     if (!token) {
         window.location.href = '../html/login.html';
@@ -29,27 +27,29 @@ document.addEventListener('DOMContentLoaded', async function() {
                     localStorage.setItem('fila', JSON.stringify(gruposPendentes));
                 }
                 setTimeout(() => {
+                    localStorage.clear()
+                    console.log('Token:', token)
                     window.location.href = '../html/login.html';
-                }, 20000);
+                }, 10000);
             }else{
                 localStorage.removeItem('token')
                 setTimeout(() => {
                     window.location.href = '../html/login.html';
-                }, 20000);
+                }, 10000);
             }
         }else{
             localStorage.removeItem('token')
             setTimeout(() => {
                 window.location.href = '../html/login.html';
-            }, 20000);
+            }, 10000);
         }
         
     }catch(erro){
-        console.erro('Erro ao validar o token:', erro)
+        console.error('Erro ao validar o token:', erro)
         localStorage.removeItem('token');
         setTimeout(() => {
             window.location.href = '../html/login.html';
-        }, 20000);
+        }, 10000);
     }
 
 
