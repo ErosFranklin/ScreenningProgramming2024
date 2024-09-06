@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
     
         const email = emailInput.value.trim();
+        localStorage.setItem('email', email)
         let matricula = matriculaInput.value.trim();
         let urlApi = '';
     
