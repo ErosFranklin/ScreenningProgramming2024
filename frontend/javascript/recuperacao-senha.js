@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded',  function(){
     document.querySelector('#formNovaSenha').addEventListener('submit', async function(event){
         const email = localStorage.getItem('email');
-        const token = new URLSearchParams(window.location.search).get('token')
         const novaSenha = document.querySelector('senha').value
         const confSenha = document.querySelector('confsenha').value
 
@@ -18,19 +17,15 @@ document.addEventListener('DOMContentLoaded',  function(){
             return;
         }
         try{
-            let urlApi = ''
-            if(email.includes('@aluno')){
-                urlApi = 'api/student/email'
-            } else{
-                urlApi = 'api/teacher/email'
-            }
-            const response = await fetch(`https://projetodepesquisa.vercel.app/${urlApi}`,{
+            const response = await fetch(`https://projetodepesquisa.vercel.app/api/forgetPassword`,{
                 method:'POST',
                 headers:{
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}` 
-                    }
+                    },
+                    body: JSON.stringify({
+                        email:email
+                    })
                 }
             })
             if(!response.ok){
