@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (response.ok) {
                         const result = await response.json();
                         alert(result.message || 'E-mail enviado com sucesso.');
+                        windoe.location.href - "../html/login.html"
                     } else {
                         const error = await response.json();
                         alert(error.error || 'Erro ao enviar o e-mail.');

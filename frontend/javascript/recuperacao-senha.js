@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded',  function(){
     document.querySelector('#formNovaSenha').addEventListener('submit', async function(event){
+        event.preventDefault;
         const email = localStorage.getItem('email');
+        console.log(email)
         const novaSenha = document.querySelector('senha').value
         const confSenha = document.querySelector('confsenha').value
 
@@ -17,26 +19,40 @@ document.addEventListener('DOMContentLoaded',  function(){
             return;
         }
         try{
-            const response = await fetch(`https://projetodepesquisa.vercel.app/api/forgetPassword`,{
-                method:'POST',
-                headers:{
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        email:email
-                    })
+            let url = ''
+            let data = {}
+            if(email.includes('@aluno')){
+                url = 'api/student/password'
+                data ={
+                    email: email,
+                    password:novaSenha,
+                    confirm_password: confSenha
                 }
+            }else{
+                url = 'api/teacher/password'
+                data = {
+                    email: email,
+                    password:novaSenha,
+                    confirm_password: confSenha
+                }
+            }
+            const response = await fetch(`https://projetodepesquisa.vercel.app/${url}`,{
+                method:'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
             })
             if(!response.ok){
                 const errorData = await response.json()
                 console.error('Erro ao tentar redefinir a senha:', errorData)
                 throw new Error(errorData.message)
             }
-            const dados = await response.json()
-            console.log(dados)
-            localStorage.clear()
-            window.location.href = "../html/login.html"
+            setTimeout(() => {
+                localStorage.clear()
+                console.log('Token:', token)
+                window.location.href = '../html/login.html';
+            }, 10000);
 
         }catch(erro){
             console.error('Erro ao tentar redefinir a senha:', erro)
