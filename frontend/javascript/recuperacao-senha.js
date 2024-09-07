@@ -59,13 +59,12 @@ document.addEventListener('DOMContentLoaded',  function(){
         }
     })
     
-
     function validarSenha(novaSenha) {
         var passwordRegex = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{6,20}$/;
-        return passwordRegex.test(senha);
+        return passwordRegex.test(novaSenha);
     }
 
-    function validarSenhas(senha, confsenha) {
-        return senha === confsenha;
+    function validarSenhas(novaSenha, confsenha) {
+        return novaSenha === confsenha;
     }
 })
