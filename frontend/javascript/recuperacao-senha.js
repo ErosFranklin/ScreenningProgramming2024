@@ -1,10 +1,14 @@
 document.addEventListener('DOMContentLoaded',  function(){
+    
+    const email = localStorage.getItem('email');
+    console.log('email recuperado:',email)
+    const token = new URLSearchParams(window.location.search).get('token')
+    console.log('token:', token)
     document.querySelector('#formNovaSenha').addEventListener('submit', async function(event){
-        event.preventDefault;
-        const email = localStorage.getItem('email');
-        console.log(email)
-        const novaSenha = document.querySelector('senha').value
-        const confSenha = document.querySelector('confsenha').value
+        event.preventDefault();
+        
+        const novaSenha = document.querySelector('#senha').value
+        const confSenha = document.querySelector('#confsenha').value
 
         if(novaSenha === "" || confSenha === ""){
             alert('Preencha todos campos')
@@ -36,6 +40,7 @@ document.addEventListener('DOMContentLoaded',  function(){
                     confirm_password: confSenha
                 }
             }
+            console.log('enviando senha nova')
             const response = await fetch(`https://projetodepesquisa.vercel.app/${url}`,{
                 method:'PUT',
                 headers: {
@@ -48,9 +53,8 @@ document.addEventListener('DOMContentLoaded',  function(){
                 console.error('Erro ao tentar redefinir a senha:', errorData)
                 throw new Error(errorData.message)
             }
+            console.log('senha alterada')
             setTimeout(() => {
-                localStorage.clear()
-                console.log('Token:', token)
                 window.location.href = '../html/login.html';
             }, 10000);
 

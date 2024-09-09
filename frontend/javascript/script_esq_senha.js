@@ -7,9 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
-    
         const email = emailInput.value.trim();
         localStorage.setItem('email', email)
+        console.log('email armazenado:',localStorage.getItem('email'))
+
+
         let matricula = matriculaInput.value.trim();
         let urlApi = '';
     
@@ -30,8 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
                     if (response.ok) {
                         const result = await response.json();
+                        console.log('email guardado:', localStorage.getItem('email'))
                         alert(result.message || 'E-mail enviado com sucesso.');
-                        windoe.location.href - "../html/login.html"
+                        window.location.href = "../html/login.html"
                     } else {
                         const error = await response.json();
                         alert(error.error || 'Erro ao enviar o e-mail.');
@@ -66,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     matriculaInput.required = false;
                     alert('Usuário não encontrado! Verifique o email e tente novamente.');
                 }
+                
             } catch (error) {
                 console.error('Erro ao validar o email:', error);
                 alert('Ocorreu um erro ao validar o email. Tente novamente mais tarde.');
