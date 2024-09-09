@@ -24,53 +24,45 @@ Grandes telas: acima de 1200px
     }
     .titles{
         font-size: 15px;
-        
     }
     .titles p{
         font-size:0.9em;
+    }
+    .pagina-login{
+        width: 100%;
+        height: 100%;
+    }
+    .container-login{
+        grid-template-columns: repeat(1, 1fr);
+        width: 100%;
+        height: 100%;
         
     }
     .login1{
         width: 100%;
-        height:35em;
-        margin-bottom: 10px;
-        align-content: center;/* Alinha verticalmente */
-        justify-content: center;/* Alinha horizontalmente */
-        top:56%;
+        height: 100%;
+        max-height: 500px;
+        align-content: center;
+        justify-content: center;
         border-radius: 60px 0px 0px 0px;
-        z-index:2;
+        order:2;
     }
     .login2{
         background-color:transparent;
         border:none;
         box-shadow: none;
-        width: 100%;
-        height: 80%;
-        top:60%;
-        left: 0;
-        z-index: 1;
+        height: 100%;
     }
     .login2 img{
-        display:flex;
-        width: 25%;
-        top:-25%;
-        left: 50%;
-        position: absolute;
-        transform: translate(-50%,25%);
+        width: 45%;
     }
     .login2 h1{
         display: none;
     }
     .login2 p{
-        position: fixed;
+        font-size: 18px;
         text-align: center;
         align-items: center;
-        background-color: #0050b8;
-        bottom: 0;
-        left: 0;
-        font-size: 1.3em;
-        width: 100%;
-        z-index: 1;
     }
     .componentes {
         width: 100%;

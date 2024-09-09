@@ -31,7 +31,6 @@ body{
     background-color: #ffffff;
     overflow-y:auto;
     overflow-x: hidden;
-
 }
 .menuLateral{
     width: 80px;
@@ -100,6 +99,7 @@ body{
     margin-left: 40px;
     opacity: 1;
 }
+
 .grupos-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
