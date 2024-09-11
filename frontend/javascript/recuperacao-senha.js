@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded',  function(){
-    
-    const email = localStorage.getItem('email');
-    console.log('email recuperado:',email)
     const token = new URLSearchParams(window.location.search).get('token')
-    console.log('token:', token)
+    const decode = jwt_decode(token);
+    const email = decode.email
     document.querySelector('#formNovaSenha').addEventListener('submit', async function(event){
         event.preventDefault();
         
@@ -55,6 +53,7 @@ document.addEventListener('DOMContentLoaded',  function(){
             }
             console.log('senha alterada')
             setTimeout(() => {
+                localStorage.clear()
                 window.location.href = '../html/login.html';
             }, 10000);
 

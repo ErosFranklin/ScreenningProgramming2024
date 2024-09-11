@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 const linha = document.createElement('tr');
                 linha.innerHTML = `
                     <td>${aluno.idStudent}</td>
-                    <td>${aluno.nameStudent}</td>
+                    <td><a href="../html/dados-aluno.html?StudentId=${aluno.idStudent}">${aluno.nameStudent}</a></td>
                     <td>${aluno.registrationStudent}</td>
                     <td><button class="btnExcluir" data-id="${aluno.idStudent}"><i class="bi bi-trash-fill"></i></button></td>
                 `;
@@ -115,21 +115,30 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
 
         tabelaAlunos.addEventListener('click', async (event) => {
-            if (event.target.classList.contains('btnExcluir')) {
-                const id = event.target.getAttribute('data-id');
-                console.log('id do alunbo', id)
+            const btn = event.target.closest('.btnExcluir');
+            
+            if (btn) {
+                const id = btn.getAttribute('data-id'); 
+                const groupId = localStorage.getItem('groupId');
+                const token = localStorage.getItem('token');
+        
                 try {
                     const response = await fetch(`https://projetodepesquisa.vercel.app/api/group/student/${groupId}`, {
                         method: 'DELETE',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
+                            'Authorization': `Bearer ${token}` 
                         },
-                        body: JSON.stringify({ studentId: id })
+                        body: JSON.stringify({ studentId: id }) 
                     });
+        
                     if (!response.ok) {
-                        throw new Error('Erro ao excluir aluno');
+                        const errorData = await response.json(); 
+                        console.error('Erro do servidor:', errorData);
+                        throw new Error(errorData.message || 'Erro desconhecido ao excluir aluno');
                     }
+        
+                    // Recarrega os alunos após a exclusão bem-sucedida
                     carregarAlunos(paginaAtual);
                 } catch (error) {
                     console.error('Erro ao excluir aluno:', error);

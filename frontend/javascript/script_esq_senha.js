@@ -8,9 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
         const email = emailInput.value.trim();
-        localStorage.setItem('email', email)
-        console.log('email armazenado:',localStorage.getItem('email'))
-
 
         let matricula = matriculaInput.value.trim();
         let urlApi = '';
