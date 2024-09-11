@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 const linha = document.createElement('tr');
                 linha.innerHTML = `
                     <td>${aluno.idStudent}</td>
-                    <td><a href="../html/dados-aluno.html?StudentId=${aluno.idStudent}">${aluno.nameStudent}</a></td>
+                    <td><a href="../html/dados-aluno.html?studentId=${aluno.idStudent}">${aluno.nameStudent}</a></td>
                     <td>${aluno.registrationStudent}</td>
                     <td><button class="btnExcluir" data-id="${aluno.idStudent}"><i class="bi bi-trash-fill"></i></button></td>
                 `;
