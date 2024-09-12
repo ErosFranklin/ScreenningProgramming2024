@@ -27,8 +27,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     localStorage.setItem('fila', JSON.stringify(gruposPendentes));
                 }
                 setTimeout(() => {
-                    localStorage.clear()
-                    console.log('Token:', token)
+                    localStorage.removeItem('token')
                     window.location.href = '../html/login.html';
                 }, 10000);
             }else{

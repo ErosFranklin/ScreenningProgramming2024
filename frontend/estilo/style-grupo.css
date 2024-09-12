@@ -73,10 +73,31 @@ body{
     padding:10px 4%;
     text-decoration: none;
     overflow: hidden;
-
+    transition: .1s ease-in-out;
 }
 
 .item-menu a:hover{
+    border-radius: 5px;
+    margin-right: 5px;
+    background:#fff;
+    color:var(--cor-4);
+    transition: .35s;
+}
+.item-menu button{
+    display:flex;
+    width: 98%;
+    left:0;
+    color:#ffffff;
+    font-size: 16px;
+    padding:10px 4%;
+    text-decoration: none;
+    overflow: hidden;
+    border: none;
+    background-color: transparent;
+    transition: .1s ease-in-out;
+}
+.item-menu button:hover{
+    cursor:pointer;
     border-radius: 5px;
     margin-right: 5px;
     background:#fff;
@@ -163,9 +184,9 @@ body{
     font-size:0.8em;
     color: #fff;
 }
+
 .grupo .editarGrupo{
     display: flex;
-    
     position: absolute; 
     bottom: 0; 
     right: 0; 

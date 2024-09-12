@@ -167,6 +167,20 @@ body{
     text-align: center;
     padding: 15px;
 }
+.alunoAcesso{
+    overflow-wrap:break-word;
+    transition: .3s ease-in-out;
+}
+.alunoAcesso a{
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: inherit;
+}
+.alunoAcesso:hover{
+    color:#fff;
+    background-color: var(--cor-1);
+}
 .btnExcluir{
     background-color: transparent;
     color:var(--cor-4);

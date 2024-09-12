@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     });
 
     async function carregarDadosGrupo() {
-        const start = Date.now();
+        
         const groupId = localStorage.getItem('groupId');
         const token = localStorage.getItem('token');
         console.log('ID do grupo:', groupId);

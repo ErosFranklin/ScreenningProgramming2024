@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     const paginaAtualElem = document.querySelector('#paginaAtual');
     const nomeGrupo = document.getElementById('nomeGrupo');
     const periodoGrupo = document.getElementById('periodoGrupo');
+    
 
     if (!groupId) {
         console.error('Erro: id do grupo não encontrado na URL');
@@ -86,7 +87,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 const linha = document.createElement('tr');
                 linha.innerHTML = `
                     <td>${aluno.idStudent}</td>
-                    <td><a href="../html/dados-aluno.html?studentId=${aluno.idStudent}">${aluno.nameStudent}</a></td>
+                    <td class='alunoAcesso'><a href="../html/dados-aluno.html?studentId=${aluno.idStudent}">${aluno.nameStudent}</a></td>
                     <td>${aluno.registrationStudent}</td>
                     <td><button class="btnExcluir" data-id="${aluno.idStudent}"><i class="bi bi-trash-fill"></i></button></td>
                 `;
@@ -118,18 +119,17 @@ document.addEventListener('DOMContentLoaded', async function() {
             const btn = event.target.closest('.btnExcluir');
             
             if (btn) {
-                const id = btn.getAttribute('data-id'); 
+                const studentId = btn.getAttribute('data-id'); 
                 const groupId = localStorage.getItem('groupId');
                 const token = localStorage.getItem('token');
-        
+                
                 try {
-                    const response = await fetch(`https://projetodepesquisa.vercel.app/api/group/student/${groupId}`, {
+                    const response = await fetch(`https://projetodepesquisa.vercel.app/api/group/student/${groupId}?studentId=${studentId}`, {
                         method: 'DELETE',
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': `Bearer ${token}` 
                         },
-                        body: JSON.stringify({ studentId: id }) 
                     });
         
                     if (!response.ok) {
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                         throw new Error(errorData.message || 'Erro desconhecido ao excluir aluno');
                     }
         
-                    // Recarrega os alunos após a exclusão bem-sucedida
+                    alert('Aluno excluido do grupo!!!')
                     carregarAlunos(paginaAtual);
                 } catch (error) {
                     console.error('Erro ao excluir aluno:', error);
