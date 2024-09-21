@@ -1,6 +1,6 @@
 {
-    "public": "frontend/html",
     "rewrites": [
+      { "source": "/", "destination": "/frontend/html/index.html" },
       { "source": "/(.*)", "destination": "/frontend/html/$1" }
     ]
   }
