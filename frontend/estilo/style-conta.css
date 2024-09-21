@@ -237,7 +237,7 @@ body{
     font-size: 1.1em;
     width: 100%;
     height: 45px;
-    position: relative;
+    
 }
 #alterar:hover{
     background-image: linear-gradient(to right,#023059,#014581,#023059 );
@@ -246,14 +246,4 @@ body{
     cursor:pointer;
 }
 
-.dados-basicos .componentes-basicos {
-    transition: all 0.3s ease;
-}
 
-.dados-basicos.editando .componentes-basicos {
-    opacity: 0.8; 
-}
-
-.dados-basicos.editando .dado-texto {
-    display: none; 
-}

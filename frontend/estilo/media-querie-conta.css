@@ -21,11 +21,15 @@ Grandes telas: acima de 1200px
     .item-menu a{
         padding:5px 2%;
     }
+    .title-conta{
+        width: 100%;
+        text-align: center;
+    }
     .title-conta h2{
         margin:15px 0;
         left:50%;
         top:0;
-        transform: translateX(-50%);
+        transform: translate(-50%, 0);
     }
     .titulo-dados-basicos{
         margin:0;
@@ -36,26 +40,29 @@ Grandes telas: acima de 1200px
         transform: translateX(-50%);
     }
     .dados-basicos{
-        width: 80%;
-        height: 180%;
+        width: 100vw;
+        height: 140vh;
         border: none;
         box-shadow: none;
+        top:70%;
         left:50%;
         margin-left: 30px;
         padding:15px;
         justify-content: center;
         align-items: center;
-        transform: translateX(-50%);
+        transition: translate(-50%,-70%);
     }
     .componentes-basicos{
         grid-template-columns: repeat(1,1fr);
         position: absolute;
-        top:10%;
-        transform: translateY(-10%);
+        
     }
     .informacao{
-        width: 100%;
-        margin-left: 0;
+        width: 95%;
+        height: 60px;
+        margin-left: 25px;
+        margin-right:0;
+        padding:0;
     }
     .informacao h3{
         position: relative;
@@ -63,9 +70,11 @@ Grandes telas: acima de 1200px
     }
     .btt-alterar{
         margin-right: 0;
+        left:0;
+        margin-left:10px;
     }
     #alterar{
         width: 70%;
-        margin-left: 10%;
+       
     }
 }

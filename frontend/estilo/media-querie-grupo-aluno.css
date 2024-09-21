@@ -30,4 +30,10 @@ Grandes telas: acima de 1200px
     .grupos{
         grid-template-columns: repeat(1,1fr);
     }
+
+    @media (orientation:landscape){
+        .menuLateral{
+            overflow-y: auto;
+        }
+    }
 }

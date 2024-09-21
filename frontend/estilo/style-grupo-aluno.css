@@ -105,7 +105,7 @@ body{
     font-size: 2em;
     left:8%;
     top:2%;
-    position:fixed;
+    position:absolute;
 }
 .container-grupos{
     display: flex;
