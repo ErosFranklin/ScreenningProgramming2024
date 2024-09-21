@@ -1,0 +1,6 @@
+{
+    "public": "frontend/html",
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/frontend/html/$1" }
+    ]
+  }
