@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
 
         const specificUserData = await especificarUser.json();
-        // Atualiza a imagem de perfil
+        /* Atualiza a imagem de perfil
         const imageContainer = document.querySelector('#fotoContainer');
         const elementoImagem = document.createElement('img');
         elementoImagem.src = specificUserData.image;
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async function() {
            
         imageContainer.innerHTML = ''; 
         imageContainer.appendChild(elementoImagem);
-        // Preenche os campos com os dados recebidos
+        */ 
         document.querySelector('#nomeProfessor').value = specificUserData.name || '';
         document.querySelector('#datadenascimentoProfessor').value = formatDateToInputFormat(specificUserData.birth) || '';
         document.querySelector('#generoProfessor').value = specificUserData.gender || '';
@@ -48,9 +48,9 @@ document.addEventListener('DOMContentLoaded', async function() {
         alert('Erro ao buscar dados do usuário.');
     }
 
-    // Adiciona o evento de submit ao formulário
+
     document.getElementById('formAtualizaDados').addEventListener('submit', async function(event) {
-        event.preventDefault(); // Evita o comportamento padrão do formulário
+        event.preventDefault(); 
 
         const name = document.querySelector('#nomeProfessor').value;
         const birth = document.querySelector('#datadenascimentoProfessor').value;
@@ -63,8 +63,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         const institution = document.querySelector('#instituicaoProfessor').value;
         const dataNascConverted = convertDateFormat(birth)
         
-
-        // Coleta os dados do formulário
         const updatedData = {
             nameTeacher: name,
             birthTeacher: dataNascConverted,
@@ -80,7 +78,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         try {
             const url = `https://projetodepesquisa.vercel.app/api/teacher`;
             const response = await fetch(url, {
-                method: 'PATCH', // Verifique se a API aceita PATCH para atualização parcial
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
@@ -101,9 +99,9 @@ document.addEventListener('DOMContentLoaded', async function() {
             alert('Erro ao atualizar dados do usuário.');
         }
     });
-
+    // essa funcao veerifica se a data está no formato dd/mm/yyyy
     function formatDateToInputFormat(dateStr) {
-        // Verifica se a data está no formato dd/mm/yyyy
+        
         const dayMonthYearPattern = /^\d{2}\/\d{2}\/\d{4}$/;
         if (dayMonthYearPattern.test(dateStr)) {
             const [day, month, year] = dateStr.split('/');
@@ -114,9 +112,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         return '';
     }
     
-    
-    
-    
+    //Essa aqui converte a data
     function convertDateFormat(dateStr) {
         const datePattern = /^\d{4}-\d{2}-\d{2}$/;
         if (!datePattern.test(dateStr)) {

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async function() {
     const teacherId = localStorage.getItem('userId');
-    const token = localStorage.getItem('token'); // Adicionei a obtenção do token
+    const token = localStorage.getItem('token'); 
     console.log(teacherId)
     if (!teacherId || !token) {
         alert('Erro: ID do usuário ou token não encontrado.');
@@ -8,8 +8,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     try {
-        const url = `https://projetodepesquisa.vercel.app/api/teacher/${teacherId}`; // URL para buscar os dados específicos do usuário
-        
+        const url = `https://projetodepesquisa.vercel.app/api/teacher/${teacherId}`; 
         const userEspecifico = await fetch(url, {
             method: 'GET',
             headers: {

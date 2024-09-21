@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         const specificUserData = await especificarUser.json();
         console.log(specificUserData)
-        // Atualiza a imagem de perfil
+        /*
+        // Atualiza a imagem de perfil ainda nao incrementado
         const imageContainer = document.querySelector('#fotoContainer');
         const elementoImagem = document.createElement('img');
         elementoImagem.src = specificUserData.image;
@@ -32,7 +33,8 @@ document.addEventListener('DOMContentLoaded', async function() {
            
         imageContainer.innerHTML = ''; 
         imageContainer.appendChild(elementoImagem);
-        // Preenche os campos com os dados recebidos
+        
+        */
         document.querySelector('#nomeAluno').value = specificUserData.name || '';
         document.querySelector('#datadenascimentoAluno').value = formatDateToInputFormat(specificUserData.birth) || '';
         document.querySelector('#generoAluno').value = specificUserData.gender || '';
@@ -49,9 +51,9 @@ document.addEventListener('DOMContentLoaded', async function() {
         alert('Erro ao buscar dados do usuário.');
     }
 
-    // Adiciona o evento de submit ao formulário
+    
     document.getElementById('formAtualizaDados').addEventListener('submit', async function(event) {
-        event.preventDefault(); // Evita o comportamento padrão do formulário
+        event.preventDefault(); 
 
         const name = document.querySelector('#nomeAluno').value;
         const birth = document.querySelector('#datadenascimentoAluno').value;
@@ -64,8 +66,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         const institution = document.querySelector('#instituicaoAluno').value;
         const dataNascConverted = convertDateFormat(birth)
         
-
-        // Coleta os dados do formulário
         const updatedData = {
             nameStudent: name,
             birthStudent: dataNascConverted,
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         try {
             const url = `https://projetodepesquisa.vercel.app/api/student`;
             const response = await fetch(url, {
-                method: 'PATCH', // Verifique se a API aceita PATCH para atualização parcial
+                method: 'PATCH', 
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
@@ -102,9 +102,9 @@ document.addEventListener('DOMContentLoaded', async function() {
             alert('Erro ao atualizar dados do usuário.');
         }
     });
-
+    //Funcao que verifica se a data está no formato dd/mm/yyyy
     function formatDateToInputFormat(dateStr) {
-        // Verifica se a data está no formato dd/mm/yyyy
+        
         const dayMonthYearPattern = /^\d{2}\/\d{2}\/\d{4}$/;
         if (dayMonthYearPattern.test(dateStr)) {
             const [day, month, year] = dateStr.split('/');
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         console.error('Formato de data inválido.');
         return '';
     }
-    
+    //Verifica se a data esta no formato certo
     function convertDateFormat(dateStr) {
         const datePattern = /^\d{4}-\d{2}-\d{2}$/;
         if (!datePattern.test(dateStr)) {

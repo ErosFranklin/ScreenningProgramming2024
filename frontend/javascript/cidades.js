@@ -1,8 +1,9 @@
+//Api usada para pegar as cidades referentes ao estado selecionado
 document.addEventListener('DOMContentLoaded', function() {
     const estadoSelect = document.getElementById('estado');
     const cidadeSelect = document.getElementById('cidade');
 
-    // Carregar estados
+    // Fetch para carregar os estados
     fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
         .then(response => response.json())
         .then(estados => {

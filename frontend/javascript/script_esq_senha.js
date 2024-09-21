@@ -54,11 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const response = await fetch(`https://projetodepesquisa.vercel.app/${urlApi}${email}`);
     
                 if (response.ok) {
-                    // Email válido, mostra o campo de matrícula e torna-o obrigatório
+                    // So mostra o campo de matricula se o email for valido
                     matriculaContainer.style.display = 'block';
                     matriculaInput.required = true;
     
-                    // Obtém os dados do usuário
                     userData = await response.json();
                     console.log('Dados do usuário:', userData);
                 } else {

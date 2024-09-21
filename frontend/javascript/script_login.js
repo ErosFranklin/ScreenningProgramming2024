@@ -28,10 +28,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (responseData && responseData.access_token) {
 
-                localStorage.setItem('token', responseData.access_token); // Armazene o token
+                localStorage.setItem('token', responseData.access_token);
                 const decode = jwt_decode(responseData.access_token);
-                const userId = decode.sub.id; // Obtenha o userId do token
-                localStorage.setItem('userId', userId); // Armazene o userId
+                const userId = decode.sub.id; 
+                localStorage.setItem('userId', userId); 
 
                 if (email.includes("@servidor")) {
                     window.location.href = "../html/grupo.html";

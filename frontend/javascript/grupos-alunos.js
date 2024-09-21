@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function(){
             
             if (Array.isArray(gruposData)) {
                 const grupos = document.querySelector('#grupos')
-                grupos.innerHTML = ''; // Limpar qualquer conteúdo anterior
+                grupos.innerHTML = ''; 
                 gruposData.forEach(grupo => {
                     const novoGrupoMostrado = criarGrupoTela(grupo.title, grupo.period, grupo.id_group, grupo.teacher);
                     grupos.appendChild(novoGrupoMostrado);
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function(){
     function criarGrupoTela(nome, periodo, groupId, teacherName) {
         const grupo = document.createElement('div');
         grupo.className = 'grupo';
-        grupo.dataset.groupId = groupId; // Adicionei o id do grupo na Data para que fique facil de manipular 
+        grupo.dataset.groupId = groupId;
         grupo.innerHTML = 
         `<h2><a href="atividades.html?groupId=${groupId}">${nome}</a></h2>
         <p>Professor: ${teacherName}</p>

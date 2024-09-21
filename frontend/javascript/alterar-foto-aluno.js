@@ -1,4 +1,4 @@
-// Seleciona os elementos do DOM
+// Por enquanto esse js nao esta incrementado no sistema, sera incrementado na cota futura do projeto
 const fotoInput = document.getElementById('mudarFotoA');
 const fotoAluno = document.getElementById('fotoAluno');
 const token = localStorage.getItem('token');
@@ -11,7 +11,7 @@ function uploadImage(file) {
     fetch('https://projetodepesquisa.vercel.app/api/student/upload_image', {
         method: 'PATCH',
         headers: {
-            'Authorization': `Bearer ${token}`, // Substitua 'token' pelo seu token JWT
+            'Authorization': `Bearer ${token}`,
         },
         body: formData
     })
@@ -26,7 +26,6 @@ function uploadImage(file) {
         } else {
             console.log('Sucesso:', data.message);
             console.log('URL da imagem:', data.file_url);
-            // Atualiza a imagem no DOM com a nova imagem carregada
             fotoProfessor.src = data.file_url;
         }
     })
@@ -40,7 +39,6 @@ fotoInput.addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (file) {
         console.log('Arquivo selecionado:', file);
-        // Realiza o upload da imagem selecionada
         uploadImage(file);
     } else {
         console.log('Nenhum arquivo selecionado');

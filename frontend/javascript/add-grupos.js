@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const nomeGrupoInput = document.querySelector('#nomeGrupo');
     const periodoInput = document.querySelector('#periodo');
     const botaoFechar = document.querySelector('#fechar');
-    const botaoCriarGrupo = document.querySelector("criarGrupo")
     const confirmaExcluirModal = document.querySelector('#confirmaExcluirModal');
     const confirmaExcluirBotao = document.querySelector('#confirmarExcluirBotao');
     const cancelarExclusao = document.querySelector('#cancelarexclusao')
@@ -146,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function criarGrupo(nome, periodo, groupId) {
         const novoGrupo = document.createElement('div');
         novoGrupo.className = 'grupo';
-        novoGrupo.dataset.groupId = groupId; // Adicionei o id do grupo na Data para que fique facil de manipular 
+        novoGrupo.dataset.groupId = groupId;  
         novoGrupo.innerHTML = `<h2><a href="detalhe-grupo.html?groupId=${groupId}">${nome}</a></h2><p>${periodo}</p>`;
 
         const editar = document.createElement('button');
@@ -172,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     async function excluirGrupo(novoGrupo) {
-        const groupId = novoGrupo.dataset.groupId; // Recupera o groupId do atributo data, importante para o groupos quando for excluir ou editar
+        const groupId = novoGrupo.dataset.groupId; 
         const token = localStorage.getItem('token');
 
 
@@ -236,7 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const p = grupo.querySelector('p');
     
         const hrefOriginal = a.href;
-        const groupId = grupo.dataset.groupId; // Pegando o ID do grupo
+        const groupId = grupo.dataset.groupId; 
     
         a.removeAttribute('href');
     

@@ -1,4 +1,3 @@
-
 var btnExpandir = document.querySelector('#btnExpandir');
 var menu = document.querySelector('.menuLateral');
 
