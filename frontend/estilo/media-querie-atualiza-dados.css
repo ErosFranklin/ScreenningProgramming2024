@@ -1,0 +1,51 @@
+@media screen and (max-width:767px){
+    @media (orientation:portrait){
+        
+        .dados-basicos{
+            border:none;
+            padding:0;
+            width: 100%;
+            height: auto;
+        }
+        .componentes-basicos{
+            grid-template-columns: repeat(1,1fr);
+        }
+        .informacao{
+            margin-left: 0;
+        }
+        .btt-alterar{
+            position:relative;
+            left:50%;
+            margin-right: 0;
+            transform: translateX(-50%);
+        }
+    }
+    @media (orientation:landscape){
+        .titulo-dados-basicos{
+            top:15%;
+           
+        }
+        .dados-basicos{
+            border:none;
+            padding:0;
+            width: 100%;
+            top:20%;
+            height: auto;
+        }
+        .componentes-basicos{
+            grid-template-columns: repeat(2,1fr);
+        }
+        .informacao{
+            margin-left: 0;
+        }
+        .btt-alterar{
+            position:relative;
+            left:50%;
+            margin-right: 0;
+            transform: translateX(-50%);
+        }
+    }
+
+
+
+}

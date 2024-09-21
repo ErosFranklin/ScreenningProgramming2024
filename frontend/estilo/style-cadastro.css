@@ -96,8 +96,8 @@ body{
 .componentesCads {
     display:flex;
     flex-direction: row;
-    align-items: center; /* Centraliza o conteúdo horizontalmente */
-    justify-content: flex-end; /* Alinha o conteúdo no final do container */
+    align-items: center; 
+    justify-content: flex-end; 
     background-color: #fff;
     width: 350px;
     margin-left: 5%;
@@ -160,10 +160,10 @@ body{
 
 .cadastro2{
     background-color:var(--cor-3);
-    display: flex; /* Torna o container flexível */
-    flex-direction:column; /* Empilha os elementos verticalmente */
-    align-items: center; /* Centraliza o conteúdo horizontalmente */
-    justify-content: flex-end; /* Alinha o conteúdo no final do container */
+    display: flex; 
+    flex-direction:column; 
+    align-items: center; 
+    justify-content: center; 
     width: 400px;
     height: 100%;
     margin: auto;
@@ -179,6 +179,7 @@ body{
 }
 .cadastro2 img{
     width: 80%;
+    
 }
 .cadastro2 h1 {
     color: #fff;

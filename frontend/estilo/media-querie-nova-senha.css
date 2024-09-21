@@ -1,0 +1,48 @@
+@media screen and  (max-width:1024px){
+    @media (orientation:portrait){
+    
+        .telaNovaSenha{
+            width: 100%;
+            height: 100%;
+            padding:0;
+            border-radius: none;
+        }
+        label{
+            font-size: 18px;
+        }
+        .componentes{
+            padding: 10px;
+            margin-left:0;
+    
+        }
+        .esq-env{
+            left:0;
+            
+        }
+        .esq-env #Enviar{
+            font-size: 20px;
+            height: 50%;
+        }
+    }
+    @media (orientation:landscape){
+        body{
+            overflow-y: auto;
+            height: 100vh;
+        }
+        .titles{
+            margin-top: 15%;
+        }
+        .telaNovaSenha{
+            width: 100%;
+            height: auto;
+            padding:0;
+            border-radius: none;
+        }
+        .esq-env{
+            margin-top: 0;
+            padding-top: 0;
+            margin-bottom:30px;
+        }
+    }
+
+}

@@ -1,13 +1,5 @@
-/*Typical Device Breakpoint
-----------------------------
-Telas pequenas: ate 600px
-Celular:de 600px ate 750px
-Tablet: 768px ate 993px
-Desktop: 992px ate 1200px
-Grandes telas: acima de 1200px
-*/
-
 @media screen and (max-width:1024px){
+    
     .menuLateral{
         width:50px;
         overflow-y: auto;
@@ -22,18 +14,16 @@ Grandes telas: acima de 1200px
     .item-menu a{
         padding:5px 2%;
     }
-    .titlesGrupos h2{
-        position: absolute;
-        margin:15px 0;
-        left:25%;
-        top:0;
-        transform: translateX(-25%);
+    .titulo-grupo{
+        left:20%;
     }
-    .bttGrupo{
-        position: absolute;
+    .container-tabela-aluno{
+        width: 80%;
+        margin-left: 17%;
+        margin-top: 20%;
     }
-    .grupos-container{
-        grid-template-columns: repeat(1,1fr);
+    #celulaID{
+        display:none;
     }
     .modal{
         width: 95%;
@@ -49,7 +39,7 @@ Grandes telas: acima de 1200px
     .componentesG i{
         font-size:22px;
     }
-    #criarGrupo{
+    #addAluno{
         width: 190px;
         height:40px;
         font-size: 20px;
