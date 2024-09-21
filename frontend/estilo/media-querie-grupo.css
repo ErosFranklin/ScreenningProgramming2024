@@ -10,6 +10,7 @@ Grandes telas: acima de 1200px
 @media screen and (max-width:767px){
     .menuLateral{
         width:50px;
+        overflow-y: auto;
     }
     .item-menu .icone{
         font-size: 22px;
