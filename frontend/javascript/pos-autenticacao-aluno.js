@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 const responseData = await response.json();
                 console.log(responseData)
                 alert('Dados atualizados com sucesso!');
-                window.location.href = "../html/login.html";
+                window.location.href = "../html/index.html";
 
             } catch (error) {
                 console.error('JSON parse error:', error);

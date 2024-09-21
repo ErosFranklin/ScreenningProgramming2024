@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded',  function(){
             console.log('senha alterada')
             setTimeout(() => {
                 localStorage.clear()
-                window.location.href = '../html/login.html';
+                window.location.href = '../html/index.html';
             }, 10000);
 
         }catch(erro){

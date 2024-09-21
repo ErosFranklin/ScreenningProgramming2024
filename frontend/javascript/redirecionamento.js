@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     console.log('Paramentro Url:', token);
 
     if (!token) {
-        window.location.href = '../html/login.html';
+        window.location.href = '../html/index.html';
         return;
     }
     try{
@@ -28,18 +28,18 @@ document.addEventListener('DOMContentLoaded', async function() {
                 }
                 setTimeout(() => {
                     localStorage.removeItem('token')
-                    window.location.href = '../html/login.html';
+                    window.location.href = '../html/index.html';
                 }, 10000);
             }else{
                 localStorage.removeItem('token')
                 setTimeout(() => {
-                    window.location.href = '../html/login.html';
+                    window.location.href = '../html/index.html';
                 }, 10000);
             }
         }else{
             localStorage.removeItem('token')
             setTimeout(() => {
-                window.location.href = '../html/login.html';
+                window.location.href = '../html/index.html';
             }, 10000);
         }
         
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         console.error('Erro ao validar o token:', erro)
         localStorage.removeItem('token');
         setTimeout(() => {
-            window.location.href = '../html/login.html';
+            window.location.href = '../html/index.html';
         }, 10000);
     }
 

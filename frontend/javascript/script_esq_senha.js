@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const result = await response.json();
                         console.log('email guardado:', localStorage.getItem('email'))
                         alert(result.message || 'E-mail enviado com sucesso.');
-                        window.location.href = "../html/login.html"
+                        window.location.href = "../html/index.html"
                     } else {
                         const error = await response.json();
                         alert(error.error || 'Erro ao enviar o e-mail.');
