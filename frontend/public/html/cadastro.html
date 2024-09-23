@@ -1,59 +1,101 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro</title>
-    <link rel="stylesheet" href="../estilo/style-cadastro.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../estilo/media-querie-cadastro.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../style/style-cadastro.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="../style/media-querie-cadastro.css" />
+  </head>
+  <body>
     <main>
-        <div class="cadastro" autocomplete="on">
-            <form method="post" id="formCadastro">
-                <div class="titles">
-                    <h3>Bem-vindo!</h3>
-                    <h1>Criar Conta</h1>
-                    <p>Insira algumas informacoes e comece conosco!</p>
-                </div>
-                <label for="enome">Nome Completo:</label>
-                <div class="componentesCads">
-                    <i class="bi bi-person-fill"></i><input type="text" name="nome" id="nome" placeholder="Nome Sobrenome" required>
-                </div>
-                <label for="email">Email:</label>
-                <div class="componentesCads">
-                    <i class="bi bi-envelope"></i><input type="email" name="email" id="email" placeholder="usuario@gmail.com" required>
-                </div>
-                <label for="dataNasc">Data de Nascimento:</label>
-                <div class="componentesCads">
-                    <i class="bi bi-calendar-check-fill"></i><input type="date" name="dataNasc" id="dataNasc" placeholder="Data" required>
-                </div>
-                <label for="password">Senha:</label>
-                <div class="componentesCads">
-                    <i class="bi bi-lock-fill"></i><input type="password" name="password" id="senha" placeholder="********" required><i class="bi bi-eye-fill" id="eyes" onclick="mostrarSenha()"  ></i>
-                </div>
-                <label for="confsenha">Confirmar Senha:</label>
-                <div class="componentesCads">
-                    <i class="bi bi-lock-fill"></i><input type="password" name="confsenha" id="confsenha" placeholder="" required><i class="bi bi-eye-fill" id="eyes2" onclick="mostrarConfSenha()"  ></i>
-                </div>
-                <div class="env">
-                    <input type="submit" value="Cadastre-se" id="Enviar">
-                    <a href="../html/index.html" id="Voltar">Voltar</a>
-                </div>
-            </form>
-            <div class="cadastro2">
-                <img src="../imagens/logoSC.png" alt="SC">
-                <h1>Screen Programming</h1>
-                <p>
-                    <span><a href="sobre.html">SOBRE</a></span>
-                    <span><a href="">CONTATOS</a></span>
-                    <span><a href="">CREDITOS</a></span>
-                </p>
-            </div>
+      <div class="cadastro" autocomplete="on">
+        <form method="post" id="formCadastro">
+          <div class="titles">
+            <h3>Bem-vindo!</h3>
+            <h1>Criar Conta</h1>
+            <p>Insira algumas informacoes e comece conosco!</p>
+          </div>
+          <label for="enome">Nome Completo:</label>
+          <div class="componentesCads">
+            <i class="bi bi-person-fill"></i
+            ><input
+              type="text"
+              name="nome"
+              id="nome"
+              placeholder="Nome Sobrenome"
+              required
+            />
+          </div>
+          <label for="email">Email:</label>
+          <div class="componentesCads">
+            <i class="bi bi-envelope"></i
+            ><input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="usuario@gmail.com"
+              required
+            />
+          </div>
+          <label for="dataNasc">Data de Nascimento:</label>
+          <div class="componentesCads">
+            <i class="bi bi-calendar-check-fill"></i
+            ><input
+              type="date"
+              name="dataNasc"
+              id="dataNasc"
+              placeholder="Data"
+              required
+            />
+          </div>
+          <label for="password">Senha:</label>
+          <div class="componentesCads">
+            <i class="bi bi-lock-fill"></i
+            ><input
+              type="password"
+              name="password"
+              id="senha"
+              placeholder="********"
+              required
+            /><i class="bi bi-eye-fill" id="eyes" onclick="mostrarSenha()"></i>
+          </div>
+          <label for="confsenha">Confirmar Senha:</label>
+          <div class="componentesCads">
+            <i class="bi bi-lock-fill"></i
+            ><input
+              type="password"
+              name="confsenha"
+              id="confsenha"
+              placeholder=""
+              required
+            /><i
+              class="bi bi-eye-fill"
+              id="eyes2"
+              onclick="mostrarConfSenha()"
+            ></i>
+          </div>
+          <div class="env">
+            <input type="submit" value="Cadastre-se" id="Enviar" />
+            <a href="../html/index.html" id="Voltar">Voltar</a>
+          </div>
+        </form>
+        <div class="cadastro2">
+          <img src="../image/logoSC.png" alt="SC" />
+          <h1>Screen Programming</h1>
+          <p>
+            <span><a href="sobre.html">SOBRE</a></span>
+            <span><a href="">CONTATOS</a></span>
+            <span><a href="">CREDITOS</a></span>
+          </p>
         </div>
+      </div>
     </main>
     <script src="../javascript/script_eyes.js"></script>
     <script src="../javascript/script_cadastro.js"></script>
-</body>
+  </body>
 </html>

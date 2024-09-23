@@ -1,59 +1,95 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pos Autenticacao Professor</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../estilo/style-pos-autenticacao.css">
-    <link rel="stylesheet" href="../estilo/media-querie-pos-autenticacao.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="../style/style-pos-autenticacao.css" />
+    <link rel="stylesheet" href="../style/media-querie-pos-autenticacao.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+  </head>
+  <body>
     <div class="posAutenticacao">
-        <div class="professor">
-            <div id="fotoContainer">
-                <img id="fotoProfessor" src="../imagens/teste_perfil.jpg" alt="Professor">
-            </div>
-            <input type="file" id="mudarFotoP" accept="image/*">
-            <label for="mudarFotoP" id="mudarFotoLabelP">Alterar Foto</label>
-
-            <p>Insira mais algumas informacoes para seguir.</p>
-            <form method="post" id="formPosAutentProfessor">
-                <div class="form-dados">
-                    <input type="text" class="form-style" id="nomeP" placeholder="Nome Completo">
-                    <i class="icones-input bi bi-person-fill"></i>
-                    <input type="date" class="form-style" id="nascimentoP" placeholder="Nascimento">
-                    <i class="icones-input2 bi bi-calendar-check-fill"></i>
-                </div>
-                <div class="form-dados">
-                    <select name="genero" id="generoP" class="form-style" >
-                        <option value="Outro" id="outroP">Outro</option>
-                        <option value="Feminino" id="femiP">Feminino</option>
-                        <option value="Masculino" id="mascP">Masculino</option>
-                    </select>
-                    <i class="icones-input bi bi-gender-ambiguous"></i>
-                    <input type="text" class="form-style" id="formacaoP" placeholder="Formação">
-                    <i class=" icones-input2 bi bi-mortarboard-fill"></i>
-                </div>
-                <div class="form-dados">
-                    <input type="number" class="form-style" id="matriculaP" placeholder="Matricula">
-                    <i class="icones-input bi bi-person-vcard-fill"></i>
-                    <input type="text" class="form-style" id="instituicaoP" placeholder="Instituicao">
-                    <i class="icones-input2 bi bi-buildings-fill"></i>
-                </div>
-                <div class="form-dados">
-                    <select name="estado" id="estado" class="form-style">
-                    </select>
-                    <i class="icones-input bi bi-pin-map-fill"></i>
-                    <select name="cidade" id="cidade" class="form-style" ></select>
-                    <i class="icones-input2 bi bi-houses-fill"></i>
-                </div>
-                <div class="env">
-                    <button type="submit" class="btn" id="idProfessor">Confirmar</button>
-                </div>
-            </form>
+      <div class="professor">
+        <div id="fotoContainer">
+          <img
+            id="fotoProfessor"
+            src="../image/teste_perfil.jpg"
+            alt="Professor"
+          />
         </div>
+        <input type="file" id="mudarFotoP" accept="image/*" />
+        <label for="mudarFotoP" id="mudarFotoLabelP">Alterar Foto</label>
+
+        <p>Insira mais algumas informacoes para seguir.</p>
+        <form method="post" id="formPosAutentProfessor">
+          <div class="form-dados">
+            <input
+              type="text"
+              class="form-style"
+              id="nomeP"
+              placeholder="Nome Completo"
+            />
+            <i class="icones-input bi bi-person-fill"></i>
+            <input
+              type="date"
+              class="form-style"
+              id="nascimentoP"
+              placeholder="Nascimento"
+            />
+            <i class="icones-input2 bi bi-calendar-check-fill"></i>
+          </div>
+          <div class="form-dados">
+            <select name="genero" id="generoP" class="form-style">
+              <option value="Outro" id="outroP">Outro</option>
+              <option value="Feminino" id="femiP">Feminino</option>
+              <option value="Masculino" id="mascP">Masculino</option>
+            </select>
+            <i class="icones-input bi bi-gender-ambiguous"></i>
+            <input
+              type="text"
+              class="form-style"
+              id="formacaoP"
+              placeholder="Formação"
+            />
+            <i class="icones-input2 bi bi-mortarboard-fill"></i>
+          </div>
+          <div class="form-dados">
+            <input
+              type="number"
+              class="form-style"
+              id="matriculaP"
+              placeholder="Matricula"
+            />
+            <i class="icones-input bi bi-person-vcard-fill"></i>
+            <input
+              type="text"
+              class="form-style"
+              id="instituicaoP"
+              placeholder="Instituicao"
+            />
+            <i class="icones-input2 bi bi-buildings-fill"></i>
+          </div>
+          <div class="form-dados">
+            <select name="estado" id="estado" class="form-style"></select>
+            <i class="icones-input bi bi-pin-map-fill"></i>
+            <select name="cidade" id="cidade" class="form-style"></select>
+            <i class="icones-input2 bi bi-houses-fill"></i>
+          </div>
+          <div class="env">
+            <button type="submit" class="btn" id="idProfessor">
+              Confirmar
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
     <!-- Scripts do Firebase (Versão não modular) 
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -109,17 +145,17 @@
     </script>
     -->
     <!-- Outros scripts do projeto -->
-     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            flatpickr("#nascimentoP", {
-                dateFormat: "d/m/Y",
-                altFormat: "d/m/Y"
-            });
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        flatpickr("#nascimentoP", {
+          dateFormat: "d/m/Y",
+          altFormat: "d/m/Y",
         });
-     </script>
+      });
+    </script>
     <script src="../javascript/alterar-foto-professor.js"></script>
     <script src="../javascript/pos-autenticacao-professor.js"></script>
     <script src="../javascript/cidades.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-</body>
+  </body>
 </html>

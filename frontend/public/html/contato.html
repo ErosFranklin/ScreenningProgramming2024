@@ -1,62 +1,94 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contato</title>
-    <link rel="stylesheet" href="../estilo/style-contato.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../estilo/media-querie-contato.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../style/style-contato.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="../style/media-querie-contato.css" />
+  </head>
+  <body>
     <header>
-            <nav class="menuS">
-                <h1>SC</h1>
-                <i id="burguer" class="bi bi-list"></i>
-                <ul class="itens-menu">
-                    <li class="item-menus">
-                        <a href="../html/sobre.html">Sobre <i class="bi bi-info-circle"></i></a>
-                    </li>
-                    <li class="item-menus">
-                        <a href="../html/creditos.html">Creditos <i class="bi bi-person-lines-fill"></i></a>
-                    </li>
-                    <li class="item-menus">
-                        <a href="../html/index.html">Entrar <i class="bi bi-box-arrow-in-right"></i></a>
-                    </li>
-                </ul>
-            </nav>
+      <nav class="menuS">
+        <h1>SC</h1>
+        <i id="burguer" class="bi bi-list"></i>
+        <ul class="itens-menu">
+          <li class="item-menus">
+            <a href="../html/sobre.html"
+              >Sobre <i class="bi bi-info-circle"></i
+            ></a>
+          </li>
+          <li class="item-menus">
+            <a href="../html/creditos.html"
+              >Creditos <i class="bi bi-person-lines-fill"></i
+            ></a>
+          </li>
+          <li class="item-menus">
+            <a href="../html/index.html"
+              >Entrar <i class="bi bi-box-arrow-in-right"></i
+            ></a>
+          </li>
+        </ul>
+      </nav>
     </header>
-            <div class="titlespage">
-                <h1>Contacte-nos</h1>
-                <p>Nao tem certeza de algo?Ou precisa de ajuda?</p>
-                <p>A equipe do Screen Programming tera o prazer em ajuda-lo.</p>
-            </div>
-            <div class="contato">
-                <div class="titles">
-                    <h1>Contato</h1>
-                </div>
-                <form  method="post" id="formContato">
-                    <label for="name">Nome Completo:</label>
-                    <label for="email">Email:</label>
-                    <div class="componentesCTT">
-                        <input type="text" name="name" id="name" placeholder="Nome Sobrenome" required>
-                        <input type="email" name="email" id="email" placeholder="usuario@gmail" required>
-                    </div>
-                    <label for="assunto">Assunto:</label>
-                    <div class="componentesCTT">
-                        <input type="text" name="assunto" id="assunto" placeholder="Titulo do Asssunto" required>
-                    </div>
-                    <label for="mensagem">Descricao:</label>
-                    <div class="componentesCTT">
-                        <textarea name="mensagem" id="mensagem" cols="59" rows="5" placeholder="Descreva com detalhes"></textarea>
-                    </div>
-                    <div class="envCTT">
-                        <input type="submit" value="Enviar" id="Enviar">
-                    </div>
-                </form>
-                
-            </div>
-        <script src="../javascript/script_contatos.js"></script>
-        <script src="../javascript/menu-burguer.js"></script>
-</body>
+    <div class="titlespage">
+      <h1>Contacte-nos</h1>
+      <p>Nao tem certeza de algo?Ou precisa de ajuda?</p>
+      <p>A equipe do Screen Programming tera o prazer em ajuda-lo.</p>
+    </div>
+    <div class="contato">
+      <div class="titles">
+        <h1>Contato</h1>
+      </div>
+      <form method="post" id="formContato">
+        <label for="name">Nome Completo:</label>
+        <label for="email">Email:</label>
+        <div class="componentesCTT">
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Nome Sobrenome"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="usuario@gmail"
+            required
+          />
+        </div>
+        <label for="assunto">Assunto:</label>
+        <div class="componentesCTT">
+          <input
+            type="text"
+            name="assunto"
+            id="assunto"
+            placeholder="Titulo do Asssunto"
+            required
+          />
+        </div>
+        <label for="mensagem">Descricao:</label>
+        <div class="componentesCTT">
+          <textarea
+            name="mensagem"
+            id="mensagem"
+            cols="59"
+            rows="5"
+            placeholder="Descreva com detalhes"
+          ></textarea>
+        </div>
+        <div class="envCTT">
+          <input type="submit" value="Enviar" id="Enviar" />
+        </div>
+      </form>
+    </div>
+    <script src="../javascript/script_contatos.js"></script>
+    <script src="../javascript/menu-burguer.js"></script>
+  </body>
 </html>
