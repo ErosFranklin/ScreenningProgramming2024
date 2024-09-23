@@ -2,9 +2,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const token = new URLSearchParams(window.location.search).get("token");
   const decode = jwt_decode(token);
   const email = decode.email;
-  document
-    .querySelector("#formNovaSenha")
-    .addEventListener("submit", async function (event) {
+
+  const url = new URL(window.location.href);
+  url.searchParams.delete("token");
+  window.history.replaceState({}, document.title, url);
+
+  localStorage.setItem('email', email)
+  localStorage.setItem('token', token)
+  document.querySelector("#formNovaSenha").addEventListener("submit", async function (event) {
       event.preventDefault();
 
       const novaSenha = document.querySelector("#senha").value;
@@ -59,10 +64,8 @@ document.addEventListener("DOMContentLoaded", function () {
           throw new Error(errorData.message);
         }
         console.log("senha alterada");
-        setTimeout(() => {
-          localStorage.clear();
-          window.location.href = "../index.html";
-        }, 10000);
+        localStorage.clear()
+        window.location.href = "../index.html";
       } catch (erro) {
         console.error("Erro ao tentar redefinir a senha:", erro);
       }

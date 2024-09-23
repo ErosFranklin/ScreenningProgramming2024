@@ -2,10 +2,16 @@ document.addEventListener("DOMContentLoaded", async function () {
   const token = new URLSearchParams(window.location.search).get("token");
   console.log("Paramentro Url:", token);
 
+  const url = new URL(window.location.href);
+  url.searchParams.delete("token");
+  window.history.replaceState({}, document.title, url);
+
   if (!token) {
     window.location.href = "../index.html";
     return;
   }
+
+  localStorage.setItem('token', token)
   try {
     const url = `https://projetodepesquisa.vercel.app/api/token/groupid?token=${token}`;
     const response = await fetch(url, {
@@ -29,24 +35,24 @@ document.addEventListener("DOMContentLoaded", async function () {
         setTimeout(() => {
           localStorage.removeItem("token");
           window.location.href = "../index.html";
-        }, 10000);
+        }, 1000);
       } else {
         localStorage.removeItem("token");
         setTimeout(() => {
           window.location.href = "../index.html";
-        }, 10000);
+        }, 1000);
       }
     } else {
       localStorage.removeItem("token");
       setTimeout(() => {
         window.location.href = "../index.html";
-      }, 10000);
+      }, 1000);
     }
   } catch (erro) {
     console.error("Erro ao validar o token:", erro);
     localStorage.removeItem("token");
     setTimeout(() => {
       window.location.href = "../index.html";
-    }, 10000);
+    }, 1000);
   }
 });
