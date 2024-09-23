@@ -1,73 +1,79 @@
-document.addEventListener('DOMContentLoaded',  function(){
-    const token = new URLSearchParams(window.location.search).get('token')
-    const decode = jwt_decode(token);
-    const email = decode.email
-    document.querySelector('#formNovaSenha').addEventListener('submit', async function(event){
-        event.preventDefault();
-        
-        const novaSenha = document.querySelector('#senha').value
-        const confSenha = document.querySelector('#confsenha').value
+document.addEventListener("DOMContentLoaded", function () {
+  const token = new URLSearchParams(window.location.search).get("token");
+  const decode = jwt_decode(token);
+  const email = decode.email;
+  document
+    .querySelector("#formNovaSenha")
+    .addEventListener("submit", async function (event) {
+      event.preventDefault();
 
-        if(novaSenha === "" || confSenha === ""){
-            alert('Preencha todos campos')
-            return;
-        }
-        if(!validarSenha(novaSenha)){
-            alert("A senha deve conter entre 6 e 20 caracteres, pelo menos um número e uma letra.");
-            return;
-        }
-        if(!validarSenhas(novaSenha, confSenha)){
-            alert("As senhas sao diferentes")
-            return;
-        }
-        try{
-            let url = ''
-            let data = {}
-            if(email.includes('@aluno')){
-                url = 'api/student/password'
-                data ={
-                    email: email,
-                    password:novaSenha,
-                    confirm_password: confSenha
-                }
-            }else{
-                url = 'api/teacher/password'
-                data = {
-                    email: email,
-                    password:novaSenha,
-                    confirm_password: confSenha
-                }
-            }
-            console.log('enviando senha nova')
-            const response = await fetch(`https://projetodepesquisa.vercel.app/${url}`,{
-                method:'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            if(!response.ok){
-                const errorData = await response.json()
-                console.error('Erro ao tentar redefinir a senha:', errorData)
-                throw new Error(errorData.message)
-            }
-            console.log('senha alterada')
-            setTimeout(() => {
-                localStorage.clear()
-                window.location.href = '../html/index.html';
-            }, 10000);
+      const novaSenha = document.querySelector("#senha").value;
+      const confSenha = document.querySelector("#confsenha").value;
 
-        }catch(erro){
-            console.error('Erro ao tentar redefinir a senha:', erro)
+      if (novaSenha === "" || confSenha === "") {
+        alert("Preencha todos campos");
+        return;
+      }
+      if (!validarSenha(novaSenha)) {
+        alert(
+          "A senha deve conter entre 6 e 20 caracteres, pelo menos um número e uma letra."
+        );
+        return;
+      }
+      if (!validarSenhas(novaSenha, confSenha)) {
+        alert("As senhas sao diferentes");
+        return;
+      }
+      try {
+        let url = "";
+        let data = {};
+        if (email.includes("@aluno")) {
+          url = "api/student/password";
+          data = {
+            email: email,
+            password: novaSenha,
+            confirm_password: confSenha,
+          };
+        } else {
+          url = "api/teacher/password";
+          data = {
+            email: email,
+            password: novaSenha,
+            confirm_password: confSenha,
+          };
         }
-    })
-    
-    function validarSenha(novaSenha) {
-        var passwordRegex = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{6,20}$/;
-        return passwordRegex.test(novaSenha);
-    }
+        console.log("enviando senha nova");
+        const response = await fetch(
+          `https://projetodepesquisa.vercel.app/${url}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        );
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.error("Erro ao tentar redefinir a senha:", errorData);
+          throw new Error(errorData.message);
+        }
+        console.log("senha alterada");
+        setTimeout(() => {
+          localStorage.clear();
+          window.location.href = "../index.html";
+        }, 10000);
+      } catch (erro) {
+        console.error("Erro ao tentar redefinir a senha:", erro);
+      }
+    });
 
-    function validarSenhas(novaSenha, confsenha) {
-        return novaSenha === confsenha;
-    }
-})
+  function validarSenha(novaSenha) {
+    var passwordRegex = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{6,20}$/;
+    return passwordRegex.test(novaSenha);
+  }
+
+  function validarSenhas(novaSenha, confsenha) {
+    return novaSenha === confsenha;
+  }
+});
