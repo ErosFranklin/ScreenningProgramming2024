@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             }
             else{
                 alert('Dados atualizados com sucesso!');
-                window.location.href='../html/conta.html'
+                window.location.href='../html/conta-aluno.html'
             }
             
         } catch (error) {
