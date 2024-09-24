@@ -30,18 +30,23 @@
             padding:0;
             width: 100%;
             top:20%;
+            margin-top: 20px;
             height: auto;
+           
         }
         .componentes-basicos{
             grid-template-columns: repeat(2,1fr);
+        
         }
         .informacao{
-            margin-left: 0;
+            margin:0;
+            padding: 5px 20px;
+            height: auto;
         }
         .btt-alterar{
             position:relative;
             left:50%;
-            margin-right: 0;
+            margin: 20px 0px;
             transform: translateX(-50%);
         }
     }

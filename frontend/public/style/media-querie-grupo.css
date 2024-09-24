@@ -64,6 +64,13 @@ Grandes telas: acima de 1200px
         .grupos-container{
             grid-template-columns: repeat(2,1fr);
         }
+        .titlesGrupos h2{
+            left:15%;
+         
+        }
+        .bttGrupo{
+            margin-top:1%;
+        }
     }
 
 }

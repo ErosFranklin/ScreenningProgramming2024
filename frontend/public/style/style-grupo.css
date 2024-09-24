@@ -259,7 +259,7 @@ body{
     display: flex;
     top:2%;
     right: 2%;
-    position:fixed;
+    position:absolute;
     z-index: 2;
     
 }
@@ -268,7 +268,7 @@ body{
     font-size: 2em;
     left:8%;
     top:2%;
-    position:fixed;
+    position:absolute;
 }
 #novoGrupo{
     padding: 10px;
