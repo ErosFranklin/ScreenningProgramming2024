@@ -71,6 +71,13 @@ Grandes telas: acima de 1200px
         .bttGrupo{
             margin-top:1%;
         }
+        .modal{
+            width: 70%;
+            height: auto;
+            position: absolute;
+            overflow-y: auto;
+            margin-top: 20%;
+        }
     }
 
 }
