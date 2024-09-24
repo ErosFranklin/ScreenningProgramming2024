@@ -1,0 +1,33 @@
+@media screen and  (max-width:1024px){
+        .container-dados{
+            position: absolute;
+            width: 100vw;
+            height: 110vh;
+            top:35%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .dados-basicos{
+            width: 90%;
+            bottom: 10%;
+        }
+        .componentes-basicos{
+            grid-template-columns: repeat(1,1fr);
+        }
+        .informacao{
+            margin:0;
+        }
+    @media (orientation:landscape){
+        .titulo-dados h2{
+            left:5%;
+        }
+        .container-dados{
+            height: 120vh;
+            top:30%;
+        }
+        
+        .componentes-basicos{
+            grid-template-columns: repeat(2,1fr);
+        }        
+    }
+}

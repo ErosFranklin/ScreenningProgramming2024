@@ -50,5 +50,24 @@
         height:40px;
         font-size: 20px;
     }
+    .alunoId{
+        display: none;
+    }
+    @media (orientation:landscape){
+        .titulo-grupo{
+            left:10%;
+        }
+        .container-tabela-aluno{
+            margin-top: 10%;
+            margin-left: 15%;
+        }
+        #celulaID{
+            display:block;
+            
+        }
+        .alunoId{
+            display: block;
+        }
+    }
 
 }

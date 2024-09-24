@@ -7,7 +7,7 @@ Desktop: 992px ate 1200px
 Grandes telas: acima de 1200px
 */
 
-@media screen and  (max-width:767px){
+@media screen and  (max-width:1024px){
     :root {
         --cor-1: #275AF2;
         --cor-2: #5079F2;

@@ -85,8 +85,9 @@ document.addEventListener('DOMContentLoaded', async function() {
         dados.forEach(aluno => {
             if (aluno.idStudent && aluno.nameStudent && aluno.registrationStudent) {
                 const linha = document.createElement('tr');
+                
                 linha.innerHTML = `
-                    <td>${aluno.idStudent}</td>
+                    <td class='alunoId'>${aluno.idStudent}</td>
                     <td class='alunoAcesso'><a href="../html/dados-aluno.html?studentId=${aluno.idStudent}">${aluno.nameStudent}</a></td>
                     <td>${aluno.registrationStudent}</td>
                     <td><button class="btnExcluir" data-id="${aluno.idStudent}"><i class="bi bi-trash-fill"></i></button></td>
