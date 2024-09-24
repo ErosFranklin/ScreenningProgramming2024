@@ -109,7 +109,7 @@ body{
 .aluno, .professor a:hover {
 	text-decoration: none;
 }
-.aluno p {
+.aluno p , .professor p{
     color:var(--cor-5);
     padding:10px;
     font-weight: 500;
@@ -120,15 +120,13 @@ body{
     display: block;
     text-align: center;
 }
-.professor h4{
-    margin-bottom: 20px;
-}
+
 .aluno{
     display: block;
     text-align: center;
 }
-.aluno h2{
-    color:var(--cor-5);
+.aluno h2, .professor h2{
+    color:var(--cor-4);
     margin-bottom: 20px;
 }
 .form-dados{
