@@ -36,6 +36,11 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Preencha todos os campos!!!");
       return;
     }
+    if (registration.length !== 9) {
+      alert('Matrícula inválida. A matrícula deve conter exatamente 8 dígitos.');
+      return;
+  }
+  
 
     try {
       const url = `https://projetodepesquisa.vercel.app/api/student`;
