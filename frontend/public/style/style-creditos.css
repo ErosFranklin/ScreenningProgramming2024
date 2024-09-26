@@ -93,16 +93,20 @@ body{
     width: 200px;
     padding:10px 20px ;
     border-radius: 10px;
+    transition: .3s ease-in-out;
 }
 
 .item-intelectuais:hover {
     cursor: pointer;
-    transition: .3s ease-in-out;
-    transform: scale(1.1); /* Escala o item em 110% ao passar o mouse */
+    transform: scale(1.1); 
 }
 
 .item-intelectuais img {
     width: 150px; 
+    height: 150px;
+    object-fit: cover; 
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 134, 0.5);
 }
 
 .item-intelectuais h1 {
@@ -132,16 +136,20 @@ body{
     padding:10px 20px ;
     margin-bottom: 6%;
     border-radius: 10px;
+    transition: .3s ease-in-out;
 }
 
 .item-producao-desenvolvimento:hover {
     cursor: pointer;
-    transition: .3s ease-in-out;
-    transform: scale(1.1); /* Escala o item em 110% ao passar o mouse */
+    transform: scale(1.1); 
 }
 
 .item-producao-desenvolvimento img {
     width: 150px; 
+    height: 150px;
+    object-fit: cover; 
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 134, 0.5);
 }
 
 .item-producao-desenvolvimento h1 {
