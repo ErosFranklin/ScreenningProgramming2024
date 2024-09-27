@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     async function login(email, password) {
-        const url = `https://projetodepesquisa.vercel.app/api/login`;
+        const url = `https://projetodepesquisa.onrender.com/api/login`;
         const data = {
             email: email,
             password: password,
