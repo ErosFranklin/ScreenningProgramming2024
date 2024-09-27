@@ -151,6 +151,11 @@ body{
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 0, 134, 0.5);
 }
+#photo-giordanni{
+    width: 150px;
+    height: 150px;
+    object-fit:unset;
+}
 
 .item-producao-desenvolvimento h1 {
     margin-top: 10px; 
@@ -185,7 +190,6 @@ body{
 }
 #imgCredito img{
     max-width: 600px;
-    
 }
 #creditos i{
     padding:5px;
