@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     return;
   }
 
-  localStorage.setItem('token', token)
+  localStorage.setItem("token", token);
   try {
-    const url = `https://projetodepesquisa.vercel.app/api/token/groupid?token=${token}`;
+    const url = `https://projetodepesquisa.onrender.com/api/token/groupid?token=${token}`;
     const response = await fetch(url, {
       method: "GET",
       headers: {

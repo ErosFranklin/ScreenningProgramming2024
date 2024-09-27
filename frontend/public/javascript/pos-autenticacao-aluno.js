@@ -37,13 +37,14 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
     if (registration.length !== 9) {
-      alert('Matrícula inválida. A matrícula deve conter exatamente 8 dígitos.');
+      alert(
+        "Matrícula inválida. A matrícula deve conter exatamente 8 dígitos."
+      );
       return;
-  }
-  
+    }
 
     try {
-      const url = `https://projetodepesquisa.vercel.app/api/student`;
+      const url = `https://projetodepesquisa.onrender.com/api/student`;
       const data = {
         genderStudent: gender,
         institutionStudent: institution,

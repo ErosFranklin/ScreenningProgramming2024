@@ -7,9 +7,11 @@ document.addEventListener("DOMContentLoaded", function () {
   url.searchParams.delete("token");
   window.history.replaceState({}, document.title, url);
 
-  localStorage.setItem('email', email)
-  localStorage.setItem('token', token)
-  document.querySelector("#formNovaSenha").addEventListener("submit", async function (event) {
+  localStorage.setItem("email", email);
+  localStorage.setItem("token", token);
+  document
+    .querySelector("#formNovaSenha")
+    .addEventListener("submit", async function (event) {
       event.preventDefault();
 
       const novaSenha = document.querySelector("#senha").value;
@@ -49,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         console.log("enviando senha nova");
         const response = await fetch(
-          `https://projetodepesquisa.vercel.app/${url}`,
+          `https://projetodepesquisa.onrender.com/${url}`,
           {
             method: "PUT",
             headers: {
@@ -64,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
           throw new Error(errorData.message);
         }
         console.log("senha alterada");
-        localStorage.clear()
+        localStorage.clear();
         window.location.href = "../index.html";
       } catch (erro) {
         console.error("Erro ao tentar redefinir a senha:", erro);
