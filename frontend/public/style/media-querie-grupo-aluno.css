@@ -7,33 +7,32 @@ Desktop: 992px ate 1200px
 Grandes telas: acima de 1200px
 */
 
-@media screen and (max-width:767px){
-    .menuLateral{
-        width:50px;
-    }
-    .item-menu .icone{
-        font-size: 22px;
-    }
-    .item-menu .txt-link{
-        
-        font-size: 19px;
-    }
-    .item-menu a{
-        padding:5px 2%;
-    }
-    .titlesGrupos h2{
-        margin:15px 0;
-        left:50%;
-        top:0;
-        transform: translateX(-50%);
-    }
-    .grupos{
-        grid-template-columns: repeat(1,1fr);
-    }
+@media screen and (max-width: 1024px) {
+  .menuLateral {
+    width: 50px;
+  }
+  .item-menu .icone {
+    font-size: 22px;
+  }
+  .item-menu .txt-link {
+    font-size: 19px;
+  }
+  .item-menu a {
+    padding: 5px 2%;
+  }
+  .titlesGrupos h2 {
+    margin: 15px 0;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+  }
+  .grupos {
+    grid-template-columns: repeat(1, 1fr);
+  }
 
-    @media (orientation:landscape){
-        .menuLateral{
-            overflow-y: auto;
-        }
+  @media (orientation: landscape) {
+    .menuLateral {
+      overflow-y: auto;
     }
+  }
 }

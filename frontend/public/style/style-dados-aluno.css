@@ -19,6 +19,8 @@ body{
     background-color: #ffffff;
     height: 100vh;
     width: 100vw;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .titulo-dados h2{
@@ -29,22 +31,29 @@ body{
     color:var(--cor-4);
     position:absolute;
 }
+.titulo-dados-resp{
+    display: none;
+    color:var(--cor-4);
+}
 .container-dados{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top:4%;
     height: 100vh;
+    width: 100vw;
 }
 .dados-basicos{
     display: flex;
     align-items: center;
     position:relative;
+    flex-direction: column;
     width: 80%;
     height: auto;
     max-width: 1000px;
-    max-height: 800px;
+    max-height: 600px;
     bottom: 50px;
+    margin-top: 3%;
     background: transparent;
     border: 2px solid var(--cor-2);
     border-radius:10px;
@@ -63,10 +72,11 @@ body{
     position: relative;
     width: 100%;
     margin: 5px 10px;
-    padding:10px 20px ;
-    
+    padding: 5px;
 }
-
+.titulo-dados-resp{
+    display: none;
+}
 .informacao label{
     color:var(--cor-4);
     font-weight: bold;

@@ -1,56 +1,49 @@
-@media screen and (max-width:767px){
-    @media (orientation:portrait){
-        
-        .dados-basicos{
-            border:none;
-            padding:0;
-            width: 100%;
-            height: auto;
-        }
-        .componentes-basicos{
-            grid-template-columns: repeat(1,1fr);
-        }
-        .informacao{
-            margin-left: 0;
-        }
-        .btt-alterar{
-            position:relative;
-            left:50%;
-            margin-right: 0;
-            transform: translateX(-50%);
-        }
+@media screen and (max-width: 1024px) {
+  @media (orientation: portrait) {
+    .dados-basicos {
+      border: none;
+      padding: 0;
+      width: 100%;
+      height: auto;
     }
-    @media (orientation:landscape){
-        .titulo-dados-basicos{
-            top:15%;
-           
-        }
-        .dados-basicos{
-            border:none;
-            padding:0;
-            width: 100%;
-            top:20%;
-            margin-top: 20px;
-            height: auto;
-           
-        }
-        .componentes-basicos{
-            grid-template-columns: repeat(2,1fr);
-        
-        }
-        .informacao{
-            margin:0;
-            padding: 5px 20px;
-            height: auto;
-        }
-        .btt-alterar{
-            position:relative;
-            left:50%;
-            margin: 20px 0px;
-            transform: translateX(-50%);
-        }
+    .componentes-basicos {
+      grid-template-columns: repeat(1, 1fr);
     }
-
-
-
+    .informacao {
+      margin-left: 0;
+    }
+    .btt-alterar {
+      position: relative;
+      left: 50%;
+      margin-right: 0;
+      transform: translateX(-50%);
+    }
+  }
+  @media (orientation: landscape) {
+    .titulo-dados-basicos {
+      top: 15%;
+    }
+    .dados-basicos {
+      border: none;
+      padding: 0;
+      width: 100%;
+      top: 20%;
+      margin-top: 20px;
+      height: auto;
+    }
+    .componentes-basicos {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .informacao {
+      margin: 0;
+      padding: 5px 20px;
+      height: auto;
+    }
+    .btt-alterar {
+      position: relative;
+      left: 50%;
+      margin: 20px 0px;
+      transform: translateX(-50%);
+    }
+  }
 }
