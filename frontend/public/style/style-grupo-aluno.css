@@ -163,6 +163,7 @@ body{
     border-radius: 10px;
     border: 5px solid var(--cor-4);
     perspective: 2500px;
+    transition: .3s ease-in-out;
 }
 .grupo a{
     text-decoration: none;
@@ -181,6 +182,6 @@ body{
     background-color: var(--cor-4);
     color:#fff;
     box-shadow: 10px 10px var(--cor-5);
-    transition: .3s ease-in-out;
+   
     cursor:default;
 }
