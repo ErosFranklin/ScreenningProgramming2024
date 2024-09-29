@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         fecharJanela(overlay, modal, emailAluno);
       } catch (error) {
         console.error("Erro ao enviar convite:", error);
+        alert("Houve um erro ao enviar o convite. Tente novamente mais tarde.");
       }
     } else {
       alert("Por favor, insira um e-mail válido.");
