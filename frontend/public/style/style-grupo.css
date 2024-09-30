@@ -173,7 +173,7 @@ body{
 }
 .grupo h2 a:hover{
     text-decoration: underline;
-    color: var(--cor-5);
+    color:#ffffffb9 ;
 }
 .grupo input{
     display:flex;
