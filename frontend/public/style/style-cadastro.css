@@ -68,9 +68,10 @@ body{
     outline: none;
 }
 
-.componentesCads input:focus {
-    border-color: #02305900; 
-    color:var(--cor-5);
+.componentesCads:focus {
+    border-color: var(--cor-2); 
+    box-shadow: 0 0 5px var(--cor-2); 
+    outline: none;
 }
 
 .componentesCads i {

@@ -119,6 +119,7 @@ body{
     background-color: var(--cor-5);
     transition: .3s;
 }
+
 #addAluno{
     background-color: var(--cor-4);
     border-style: none;
