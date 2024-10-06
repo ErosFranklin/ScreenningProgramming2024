@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const dataNasc = localStorage.getItem("dataNasc");
   const teacherId = localStorage.getItem("userId");
   const teacherToken = localStorage.getItem("token");
+  const institution = 'UEPB'
   console.log(teacherId);
 
   if (name) {
@@ -14,6 +15,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const dataNascField = document.querySelector("#nascimentoP");
     dataNascField.value = dataNascConverted;
   }
+  if(institution){
+    const institutionField = document.getElementById('instituicaoP') 
+    institutionField.value = institution;
+    institutionField.readOnly = true;
+  }
 
   const form = document.querySelector("#formPosAutentProfessor");
   form.addEventListener("submit", async function (event) {
@@ -24,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const registration = document.getElementById("matriculaP").value;
     const city = document.getElementById("cidade").value;
     const state = document.getElementById("estado").value;
-    const institution = document.getElementById("instituicaoP").value;
+    
 
     if (
       name === "" ||

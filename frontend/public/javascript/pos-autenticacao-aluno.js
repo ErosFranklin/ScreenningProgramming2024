@@ -16,9 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
     dataNascField.readOnly = true;
   }
   if(institution){
-    const instituicionField = document.getElementById("instituicao")
-    instituicionField.value = 'UEPB';
-    instituicionField.readOnly = true;
+    const institutionField = document.getElementById("instituicao")
+    institutionField.value = 'UEPB';
+    institutionField.readOnly = true;
   }
 
   const form = document.querySelector("#formPosAutentAluno");
