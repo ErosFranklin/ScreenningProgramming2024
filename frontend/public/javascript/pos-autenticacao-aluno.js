@@ -2,15 +2,23 @@ document.addEventListener("DOMContentLoaded", function () {
   const name = localStorage.getItem("nome");
   const dataNasc = localStorage.getItem("dataNasc");
   const studentToken = localStorage.getItem("token");
+  const institution = 'UEPB';
 
   if (name) {
     const nameField = document.querySelector("#nome");
     nameField.value = name;
+    nameField.readOnly = true;
   }
   if (dataNasc) {
     const dataNascConverted = convertDateFormat(dataNasc);
     const dataNascField = document.querySelector("#nascimento");
     dataNascField.value = dataNascConverted;
+    dataNascField.readOnly = true;
+  }
+  if(institution){
+    const instituicionField = document.getElementById("instituicao")
+    instituicionField.value = 'UEPB';
+    instituicionField.readOnly = true;
   }
 
   const form = document.querySelector("#formPosAutentAluno");
@@ -22,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const registration = document.getElementById("matricula").value;
     const city = document.getElementById("cidade").value;
     const state = document.getElementById("estado").value;
-    const institution = document.getElementById("instituicao").value;
+
 
     if (
       name === "" ||
