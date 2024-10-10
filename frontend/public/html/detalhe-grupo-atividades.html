@@ -50,10 +50,34 @@
       </ul>
     </nav>
     <main>
+      <div class="bttConvidar">
+        <button id="convidarAluno">Criar Atividade</button>
+      </div>
       <div class="titulo-grupo">
         <h2>Atividades</h2>
       </div>
-      <div class="container-grupo"></div>
+      <div id="overlay" class="overlay"></div>
+      <div id="modal" class="modal">
+        <h2>Criar Atividade</h2>
+        <form method="post" id="formAddAtt">
+          <label for="nomeAtt">Nome da Atividade</label>
+          <div class="componentesAtividade">
+            <i class="bi bi-people-fill"></i>
+            <select name="assunto" id="description">
+              <option value="Funcao">Funções</option>
+              <option value=""></option>
+            </select>
+          </div>
+          <div class="componenteData">
+            <input type="date" name="deadline" id="deadline">
+          </div>
+          <div class="bttsCriarAtt">
+            <button id="addAtividade">Criar</button>
+            <button id="fechar">Fechar</button>
+          </div>
+        </form>
+      </div>
+      
     </main>
     <script src="../javascript/menu.js"></script>
     <script src="../javascript/logout.js"></script>

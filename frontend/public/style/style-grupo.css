@@ -109,6 +109,9 @@ body{
     margin:15px 0px;
     padding-left:10px;
 }
+.icone{
+    font-size: 17px;
+}
 .item-menu .txt-link{
     margin-left: 77px;
     font-size: 20px;

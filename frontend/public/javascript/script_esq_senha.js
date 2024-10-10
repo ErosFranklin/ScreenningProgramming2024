@@ -69,7 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
           matriculaInput.required = true;
 
           userData = await response.json();
-          console.log("Dados do usuário:", userData);
         } else {
           matriculaContainer.style.display = "none";
           matriculaInput.required = false;

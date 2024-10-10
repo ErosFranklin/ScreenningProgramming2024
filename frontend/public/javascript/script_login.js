@@ -45,7 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
           window.location.href = "../html/grupo-aluno.html";
         }
 
-        alert("Login realizado com sucesso!");
       } else {
         console.error("Erro ao realizar login.");
         alert("Erro ao realizar login.");
