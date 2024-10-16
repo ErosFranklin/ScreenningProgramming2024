@@ -87,33 +87,13 @@ document.addEventListener("DOMContentLoaded", function () {
           return;
         }
 
+        // Se a resposta for ok, redirecionar para a página de verificação de código
         try {
           const responseData = await response.json();
-          console.log(responseData);
-          alert("Cadastro realizado com sucesso!");
+          alert("Código de verificação enviado para o email!");
 
-          localStorage.setItem("nome", nome);
-          localStorage.setItem("dataNasc", dataNasc);
+          window.location.href = "../html/validacao_codigo.html?email=" + encodeURIComponent(email);
 
-          if ("user_id" in responseData && "access_token" in responseData) {
-            const userId = responseData.user_id;
-            const token = responseData.access_token;
-
-            localStorage.setItem("userId", userId);
-            localStorage.setItem("token", token);
-
-            if (email.includes("@servidor")) {
-              window.location.href = "../html/pos-autenticacao-professor.html";
-            } else {
-              window.location.href = "../html/pos-autenticacao-aluno.html";
-            }
-          } else {
-            console.error(
-              "Campos esperados não estão presentes na resposta:",
-              responseData
-            );
-            alert("Erro ao processar a resposta do servidor.");
-          }
         } catch (error) {
           console.error("JSON parse error:", error);
           alert("Ocorreu um erro ao processar a resposta do servidor.");

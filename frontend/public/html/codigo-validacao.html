@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificacao</title>
+    <title>Verificação</title>
     <link rel="stylesheet" href="../style/style-codigo-validacao.css">
     <link
       rel="stylesheet"
@@ -15,19 +15,21 @@
         <div class="container-validacao">
             <div class="container-modal-validacao">
                 <div class="titulo">
-                    <h1>Validação de EMAIL  <i class="bi bi-envelope"></i></h1>
+                    <h1>Validação de EMAIL <i class="bi bi-envelope"></i></h1>
                     <p>Um código de verificação foi enviado para o e-mail <strong><span id="email-input">''</span></strong>. Por favor, verifique seu e-mail e digite o código no campo abaixo.</p>
                 </div>
-                <div class="validar-codigo">
-                    <input type="number" name="codigo" id="codigo">
-                </div>
-                <div class="erro">
-                    <p><small id="reenviar"></small></p>
-                    <p><small id="erro"></small></p>
-                </div>
-                <div class="container-btn">
-                    <button id="btn-env-cdg">ENVIAR</button>
-                </div>
+                <form id="formCodigo">
+                    <div class="validar-codigo">
+                        <input type="text" name="codigo" id="codigo" placeholder="Digite o código aqui">
+                    </div>
+                    <div class="erro">
+                        <p><small id="reenviar"></small></p>
+                        <p><small id="error-message"></small></p> <!-- Mudei para "error-message" para corresponder ao JS -->
+                    </div>
+                    <div class="container-btn">
+                        <button type="submit" id="btnenviarCodigo" >ENVIAR</button> <!-- Atualizado para corresponder ao JS -->
+                    </div>
+                </form>
             </div>
         </div>
     </main>

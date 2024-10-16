@@ -64,7 +64,7 @@ body{
     color:var(--cor-5);
 }
 
-.container-btn #btn-env-cdg{
+.container-btn #btnenviarCodigo{
     background-color: var(--cor-3);
     color:#fff;
     padding:10px;
@@ -77,7 +77,7 @@ body{
     height: 45px;
     transition: .3s ease-in-out;
 }
-.container-btn #btn-env-cdg:hover{
+.container-btn #btnenviarCodigo:hover{
     background-image: linear-gradient(to right,#023059,#014581,#023059 );
     box-shadow:5px 5px 5px #0230595d;
     cursor:pointer;
