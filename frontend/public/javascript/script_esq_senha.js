@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
           const response = await fetch(
-            "https://projetodepesquisa.onrender.com/api/forgetPassword",
+            "https://projetodepesquisa-w8nz.onrender.com/api/forgetPassword",
             {
               method: "POST",
               headers: {
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
         const response = await fetch(
-          `https://projetodepesquisa.onrender.com/${urlApi}${email}`
+          `https://projetodepesquisa-w8nz.onrender.com/${urlApi}${email}`
         );
 
         if (response.ok) {

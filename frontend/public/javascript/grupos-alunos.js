@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     try {
       const response = await fetch(
-        "https://projetodepesquisa.onrender.com/api/student/groups",
+        "https://projetodepesquisa-w8nz.onrender.com/api/student/groups",
         {
           method: "GET",
           headers: {

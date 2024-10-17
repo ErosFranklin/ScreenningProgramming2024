@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const dataNasc = localStorage.getItem("dataNasc");
   const teacherId = localStorage.getItem("userId");
   const teacherToken = localStorage.getItem("token");
-  const institution = 'UEPB'
+  const institution = "UEPB";
   console.log(teacherId);
 
   if (name) {
@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const dataNascField = document.querySelector("#nascimentoP");
     dataNascField.value = dataNascConverted;
   }
-  if(institution){
-    const institutionField = document.getElementById('instituicaoP') 
+  if (institution) {
+    const institutionField = document.getElementById("instituicaoP");
     institutionField.value = institution;
     institutionField.readOnly = true;
   }
@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const registration = document.getElementById("matriculaP").value;
     const city = document.getElementById("cidade").value;
     const state = document.getElementById("estado").value;
-    
 
     if (
       name === "" ||
@@ -52,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     try {
-      const url = `https://projetodepesquisa.onrender.com/api/teacher`;
+      const url = `https://projetodepesquisa-w8nz.onrender.com/api/teacher`;
       const data = {
         genderTeacher: gender,
         institutionTeacher: institution,

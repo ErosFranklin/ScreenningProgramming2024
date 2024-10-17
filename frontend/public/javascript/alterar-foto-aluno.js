@@ -8,13 +8,16 @@ function uploadImage(file) {
   const formData = new FormData();
   formData.append("image", file);
 
-  fetch("https://projetodepesquisa.onrender.com/api/student/upload_image", {
-    method: "PATCH",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    body: formData,
-  })
+  fetch(
+    "https://projetodepesquisa-w8nz.onrender.com/api/student/upload_image",
+    {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    }
+  )
     .then((response) => {
       console.log("Status da resposta:", response.status);
       return response.json();

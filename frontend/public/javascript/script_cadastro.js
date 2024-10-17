@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
           };
         }
 
-        const url = `https://projetodepesquisa.onrender.com${url_api}`;
+        const url = `https://projetodepesquisa-w8nz.onrender.com${url_api}`;
 
         const response = await fetch(url, {
           method: "POST",
@@ -92,8 +92,8 @@ document.addEventListener("DOMContentLoaded", function () {
           const responseData = await response.json();
           alert("Código de verificação enviado para o email!");
 
-          window.location.href = "../html/validacao_codigo.html?email=" + encodeURIComponent(email);
-
+          window.location.href =
+            "../html/validacao_codigo.html?email=" + encodeURIComponent(email);
         } catch (error) {
           console.error("JSON parse error:", error);
           alert("Ocorreu um erro ao processar a resposta do servidor.");

@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const name = localStorage.getItem("nome");
   const dataNasc = localStorage.getItem("dataNasc");
   const studentToken = localStorage.getItem("token");
-  const institution = 'UEPB';
+  const institution = "UEPB";
 
   if (name) {
     const nameField = document.querySelector("#nome");
@@ -15,9 +15,9 @@ document.addEventListener("DOMContentLoaded", function () {
     dataNascField.value = dataNascConverted;
     dataNascField.readOnly = true;
   }
-  if(institution){
-    const institutionField = document.getElementById("instituicao")
-    institutionField.value = 'UEPB';
+  if (institution) {
+    const institutionField = document.getElementById("instituicao");
+    institutionField.value = "UEPB";
     institutionField.readOnly = true;
   }
 
@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const registration = document.getElementById("matricula").value;
     const city = document.getElementById("cidade").value;
     const state = document.getElementById("estado").value;
-
 
     if (
       name === "" ||
@@ -52,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     try {
-      const url = `https://projetodepesquisa.onrender.com/api/student`;
+      const url = `https://projetodepesquisa-w8nz.onrender.com/api/student`;
       const data = {
         genderStudent: gender,
         institutionStudent: institution,

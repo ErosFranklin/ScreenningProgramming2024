@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   localStorage.setItem("token", token);
   try {
-    const url = `https://projetodepesquisa.onrender.com/api/token/groupid?token=${token}`;
+    const url = `https://projetodepesquisa-w8nz.onrender.com/api/token/groupid?token=${token}`;
     const response = await fetch(url, {
       method: "GET",
       headers: {

@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
       try {
-        let url = "https://projetodepesquisa.onrender.com/api/message";
+        let url = "https://projetodepesquisa-w8nz.onrender.com/api/message";
         let data = {
           name: nome,
           email: email,

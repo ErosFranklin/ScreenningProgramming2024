@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   console.log(studentId);
   try {
     const response = await fetch(
-      `https://projetodepesquisa.onrender.com/api/student/${studentId}`,
+      `https://projetodepesquisa-w8nz.onrender.com/api/student/${studentId}`,
       {
         method: "GET",
         headers: {

@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   try {
-    const url = `https://projetodepesquisa.onrender.com/api/student/${studentId}`;
+    const url = `https://projetodepesquisa-w8nz.onrender.com/api/student/${studentId}`;
 
     const especificarUser = await fetch(url, {
       method: "GET",
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       };
 
       try {
-        const url = `https://projetodepesquisa.onrender.com/api/student`;
+        const url = `https://projetodepesquisa-w8nz.onrender.com/api/student`;
         const response = await fetch(url, {
           method: "PATCH",
           headers: {

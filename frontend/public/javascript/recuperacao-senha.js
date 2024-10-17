@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         console.log("enviando senha nova");
         const response = await fetch(
-          `https://projetodepesquisa.onrender.com/${url}`,
+          `https://projetodepesquisa-w8nz.onrender.com/${url}`,
           {
             method: "PUT",
             headers: {

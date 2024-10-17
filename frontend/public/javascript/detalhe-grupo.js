@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   async function carregarDetalhesGrupo() {
     try {
       const response = await fetch(
-        `https://projetodepesquisa.onrender.com/api/group/${groupId}`,
+        `https://projetodepesquisa-w8nz.onrender.com/api/group/${groupId}`,
         {
           method: "GET",
           headers: {
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   async function carregarAlunos(pagina) {
     try {
       const response = await fetch(
-        `https://projetodepesquisa.onrender.com/api/group/student/${groupId}?num_pag=${pagina}`,
+        `https://projetodepesquisa-w8nz.onrender.com/api/group/student/${groupId}?num_pag=${pagina}`,
         {
           method: "GET",
           headers: {
@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         try {
           const response = await fetch(
-            `https://projetodepesquisa.onrender.com/api/group/student/${groupId}?studentId=${studentId}`,
+            `https://projetodepesquisa-w8nz.onrender.com/api/group/student/${groupId}?studentId=${studentId}`,
             {
               method: "DELETE",
               headers: {
