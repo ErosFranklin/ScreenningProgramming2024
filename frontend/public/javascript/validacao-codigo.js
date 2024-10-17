@@ -39,16 +39,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const responseData = await response.json();
       alert("Código verificado com sucesso!");
+      if ("user_id" in responseData && "access_token" in responseData) {
+        const userId = responseData.user_id;
+        const token = responseData.access_token;
 
-      // Redireciona para a página de sucesso ou dashboard
-      window.location.href = "/dashboard.html";
+        localStorage.setItem("userId", userId);
+        localStorage.setItem("token", token);
+        console.log(userId, token)
+        if(email.includes('@servidor')){
+          window.location.href = "../html/pos-autenticacao-professor.html";
+        }else{
+          window.location.href = "../html/pos-autenticacao-aluno.html";
+        }
+    }
     } catch (error) {
       console.error("Erro ao verificar o código:", error);
       errorMessage.innerText = "Ocorreu um erro ao verificar o código.";
     }
   });
 
-  // Evento para reenviar o código
   btnReenviarCodigo.addEventListener("click", async function (event) {
     event.preventDefault();
 

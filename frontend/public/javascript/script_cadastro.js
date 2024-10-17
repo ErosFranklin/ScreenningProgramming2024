@@ -87,13 +87,17 @@ document.addEventListener("DOMContentLoaded", function () {
           return;
         }
 
-        // Se a resposta for ok, redirecionar para a página de verificação de código
+       
+
         try {
           const responseData = await response.json();
+          console.log('dados do servidor',responseData)
+          
           alert("Código de verificação enviado para o email!");
+          localStorage.setItem('nome', nome);
+          localStorage.setItem('dataNasc', dataNasc);
+          window.location.href ="../html/codigo-validacao.html?email=" + encodeURIComponent(email);
 
-          window.location.href =
-            "../html/validacao_codigo.html?email=" + encodeURIComponent(email);
         } catch (error) {
           console.error("JSON parse error:", error);
           alert("Ocorreu um erro ao processar a resposta do servidor.");

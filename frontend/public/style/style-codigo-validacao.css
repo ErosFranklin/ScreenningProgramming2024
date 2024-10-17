@@ -58,12 +58,24 @@ body{
     border-color: var(--cor-2); 
     box-shadow: 0 0 5px var(--cor-2); 
 }
-
+#error-message{
+    font-size: 18px;
+    color:red;
+    font-weight: bolder;
+}
 .titles{
     margin-bottom: 20px;
     color:var(--cor-5);
 }
-
+.container-btn{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.container-btn #reenviar{
+    display:none;
+}
 .container-btn #btnenviarCodigo{
     background-color: var(--cor-3);
     color:#fff;
