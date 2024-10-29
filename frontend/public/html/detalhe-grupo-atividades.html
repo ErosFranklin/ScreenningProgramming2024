@@ -51,10 +51,14 @@
     </nav>
     <main>
       <div class="bttConvidar">
-        <button id="convidarAluno">Criar Atividade</button>
+        <button id="criarAtividade">Criar Atividade</button>
       </div>
       <div class="titulo-grupo">
         <h2>Atividades</h2>
+      </div>
+
+      <div class="atividades-container">
+
       </div>
       <div id="overlay" class="overlay"></div>
       <div id="modal" class="modal">
@@ -64,22 +68,25 @@
           <div class="componentesAtividade">
             <i class="bi bi-people-fill"></i>
             <select name="assunto" id="description">
-              <option value="Funcao">Funções</option>
-              <option value=""></option>
+              <option value="1">Entrada e Saída de Dados</option>
+              <option value="2">Comandos de Iteração</option>
+              <option value="3">Comandos de Seleção</option>
+              <option value="4">Funções</option>
             </select>
           </div>
           <div class="componenteData">
             <input type="date" name="deadline" id="deadline">
           </div>
           <div class="bttsCriarAtt">
-            <button id="addAtividade">Criar</button>
-            <button id="fechar">Fechar</button>
+            <button id="btnAddAtividade">Criar</button>
           </div>
         </form>
+        <button id="btnFechar">Fechar</button>
       </div>
       
     </main>
     <script src="../javascript/menu.js"></script>
     <script src="../javascript/logout.js"></script>
+    <script src="../javascript/atividades.js"></script>
   </body>
 </html>

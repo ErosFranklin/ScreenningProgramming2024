@@ -105,7 +105,7 @@ body{
     right: 3%;
     position:fixed;
 }
-#convidarAluno{
+#convidarAluno, #criarAtividade{
     padding: 10px;
     border-style:none;
     border-radius:5px;
@@ -131,6 +131,20 @@ body{
     transition: .3s;
 }
 #addAluno:hover{
+    background-color: var(--cor-5);
+}
+#fechar{
+    background-color: var(--cor-4);
+    border-style: none;
+    border-radius: 5px;
+    width: 100px;
+    color:#fff;
+    padding: 5px;
+    margin-top: 10px;
+    cursor:pointer;
+    transition: .3s;
+}
+#fechar:hover{
     background-color: var(--cor-5);
 }
 .container-tabela-aluno{
