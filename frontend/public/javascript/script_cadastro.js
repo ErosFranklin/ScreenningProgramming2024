@@ -96,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
           alert("Código de verificação enviado para o email!");
           localStorage.setItem('nome', nome);
           localStorage.setItem('dataNasc', dataNasc);
+          localStorage.setItem('email', email)
           window.location.href ="../html/codigo-validacao.html?email=" + encodeURIComponent(email);
 
         } catch (error) {

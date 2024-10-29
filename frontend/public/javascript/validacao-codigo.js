@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const email = urlParams.get("email");
   emailInput.innerHTML = email;
 
-  // Evento para verificar o código
   formCodigo.addEventListener("submit", async function (event) {
     event.preventDefault();
 
