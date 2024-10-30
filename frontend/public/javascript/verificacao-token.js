@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
             loginToken.href = '../html/grupo-aluno.html';
             loginToken.innerHTML = 'Início <i class="bi bi-house"></i>';
         } else {
-            loginToken.href = '../html/dashboard.html';
+            loginToken.href = '../index.html';
             loginToken.innerHTML = 'Início <i class="bi bi-house"></i>';
         }
     } else {
