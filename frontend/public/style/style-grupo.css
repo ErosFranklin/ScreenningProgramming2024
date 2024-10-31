@@ -132,6 +132,26 @@ body{
     padding-left:1%;
     margin:100px;
 }
+.loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: -9999;
+}
+.verificando{
+    animation: rotacao 1s infinite;
+    height: 100px;
+    width: 100px;
+    border-radius:50%;
+    border: 6px solid #e5e5e5;
+    border-top-color: #0050b8;
+}
+@keyframes rotacao {
+    to{
+        transform:rotate(1turn)
+    }
+}
 .overlay {
     display: none;
     position: fixed;

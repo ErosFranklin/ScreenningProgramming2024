@@ -59,6 +59,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
   async function carregarGrupos() {
+    const loader = document.querySelector(".verificando");
+    loader.style.display = "block";
+
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
 
@@ -95,12 +98,18 @@ document.addEventListener("DOMContentLoaded", function () {
           gruposContainer.appendChild(novoGrupo);
         });
       } else {
+        const mensagem = document.createElement("p");
+        mensagem.textContent = "Nenhuma atividade cadastrada.";
+        gruposContainer.appendChild(mensagem);
         console.error(
           'A resposta da API não contém a propriedade "groups" ou não é um array.'
         );
       }
     } catch (error) {
       console.error("Erro ao carregar grupos:", error);
+    }
+    finally {
+      loader.style.display = "none"; 
     }
   }
 
