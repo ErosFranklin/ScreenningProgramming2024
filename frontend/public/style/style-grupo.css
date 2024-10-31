@@ -132,12 +132,17 @@ body{
     padding-left:1%;
     margin:100px;
 }
+#mensagem{
+    font-size: 17px;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
 .loader{
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    z-index: -9999;
+    z-index: 9999;
 }
 .verificando{
     animation: rotacao 1s infinite;

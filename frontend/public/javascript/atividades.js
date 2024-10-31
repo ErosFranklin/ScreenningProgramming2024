@@ -94,7 +94,8 @@ document.addEventListener('DOMContentLoaded', function(){
           });
         } else {
           const mensagem = document.createElement("p");
-          mensagem.textContent = "Nenhuma atividade cadastrada.";
+          mensagem.textContent = "Nenhuma atividade cadastrada!!!";
+          mensagem.id = 'mensagem'
           atividadeContainer.appendChild(mensagem);
           console.error(
             'A resposta da API não contém a propriedade "atividade" ou não é um array.'
