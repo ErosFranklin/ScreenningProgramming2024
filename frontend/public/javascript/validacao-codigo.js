@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const formCodigo = document.querySelector("#formCodigo");
   const btnReenviarCodigo = document.querySelector("#btnReenviarCodigo");
+  const btnEnviarCodigo = document.querySelector('#btnenviarCodigo')
   const errorMessage = document.querySelector("#error-message");
   const emailInput = document.querySelector("#email-input");
   const urlParams = new URLSearchParams(window.location.search);
@@ -11,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
 
     const codigo = document.querySelector("#codigo").value;
+    btnEnviarCodigo.textContent = "Carregando..."; 
+    btnEnviarCodigo.disabled = true; 
 
     if (codigo === "") {
       errorMessage.innerText = "Por favor, insira o código de verificação.";
@@ -54,6 +57,9 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (error) {
       console.error("Erro ao verificar o código:", error);
       errorMessage.innerText = "Ocorreu um erro ao verificar o código.";
+    }finally{
+      btnEnviarCodigo.textContent = "ENVIAR";
+      btnEnviarCodigo.disabled = false;
     }
   });
 

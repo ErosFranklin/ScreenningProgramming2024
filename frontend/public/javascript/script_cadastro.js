@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const dataNasc = document.querySelector("#dataNasc").value;
       const password = document.querySelector("#senha").value;
       const confsenha = document.querySelector("#confsenha").value;
+      const enviarButton = document.getElementById("Enviar");
+      const originalText = enviarButton.value;
+      enviarButton.value = "Carregando...";
+      enviarButton.disabled = true;
 
       const dataNascConverted = convertDateFormat(dataNasc);
 
@@ -108,6 +112,8 @@ document.addEventListener("DOMContentLoaded", function () {
         alert(
           "Ocorreu um erro ao tentar cadastrar. Por favor, tente novamente."
         );
+      }finally{
+        enviarButton = originalText;
       }
     });
 

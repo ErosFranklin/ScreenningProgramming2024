@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const email = document.querySelector("#email").value;
     const password = document.querySelector("#senha").value;
+    const enviarButton = document.getElementById("Enviar");
+    const originalText = enviarButton.value;
+    enviarButton.value = "Carregando...";
+    enviarButton.disabled = true;
 
     if (email === "" || password === "") {
       alert("Preencha todos os campos!");
@@ -53,6 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
       alert(
         "Ocorreu um erro ao tentar fazer login. Por favor, tente novamente."
       );
+    }finally{
+      enviarButton.value = originalText;
     }
   });
 
