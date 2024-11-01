@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="../style/style-grupo.css" />
     <link rel="stylesheet" href="../style/style-detalhe-grupo.css" />
     <link rel="stylesheet" href="../style/style-atividades.css">
-    <link rel="stylesheet" href="../style/media-querie-grupo.css">
-    <link rel="stylesheet" href="../style/media-querie-detalhe-grupo.css">
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
@@ -75,15 +73,18 @@
         <form method="post" id="formAddAtt">
           <label for="nomeAtt">Nome da Atividade</label>
           <div class="componentesAtividade">
-            <i class="bi bi-people-fill"></i>
-            <select name="assunto" id="description">
+            <i class="icones-att bi bi-people-fill"></i>
+            <select name="assunto" id="description" class="form-style">
+              <option value="" disabled selected hidden>Selecione um Assunto</option>
               <option value="1">Entrada e Saída de Dados</option>
               <option value="2">Comandos de Iteração</option>
               <option value="3">Comandos de Seleção</option>
               <option value="4">Funções</option>
             </select>
           </div>
+          <label for="nomeAtt">Data de Término:</label>
           <div class="componenteData">
+            <i class="icones-att bi bi-calendar-check-fill"></i>
             <input type="date" name="deadline" id="deadline">
           </div>
           <div class="bttsCriarAtt">
@@ -94,6 +95,7 @@
       </div>
       
     </main>
+    
     <script src="../javascript/menu.js"></script>
     <script src="../javascript/logout.js"></script>
     <script src="../javascript/atividades.js"></script>

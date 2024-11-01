@@ -86,7 +86,13 @@ document.addEventListener('DOMContentLoaded', function(){
           atividadeData.activity.forEach((atividade) => {
             const id_activity = atividade[0]
             const description = atividade[1];
-            const deadline = convertDateFormat(atividade[2]);
+            let deadline = atividade[2];
+            const isYYYYMMDD = /^\d{4}-\d{2}-\d{2}$/.test(deadline);
+
+            if (isYYYYMMDD) {
+              deadline = convertDateFormat(deadline);
+            }
+            
             const id_content = atividade[3]
             const atividadeGrupo = criarAtividade(description, deadline, id_content, id_activity);
             console.log(atividadeGrupo)
@@ -117,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function(){
         };
     
         try {
-          const response = await fetch('https://projetodepesquisa-w8nz.onrender.com//api/activity', {
+          const response = await fetch('https://projetodepesquisa-w8nz.onrender.com/api/activity', {
             method: 'POST',
             headers: {
               "Content-Type": "application/json"
@@ -144,6 +150,7 @@ document.addEventListener('DOMContentLoaded', function(){
         const novaAtividade = document.createElement("div");
         novaAtividade.className = "atividade";
         novaAtividade.dataset.id_activity = id_activity;
+        novaAtividade.dataset.id_content = id_content;
         if (id_content === 1) {
           icone = '<i class="bi bi-database"></i>';
         } else if (id_content === 2) {
@@ -153,13 +160,14 @@ document.addEventListener('DOMContentLoaded', function(){
         } else if (id_content === 4) {
           icone = '<i class="bi bi-keyboard"></i>';
         }
-        novaAtividade.innerHTML = `<h2><a href="questoes.html?idAtividade=${id_activity}">${description} ${icone}</a></h2><p>Data de Encerramento: ${deadline}</p>`;
+        novaAtividade.innerHTML = `<h2><a href="questoes.html?idAtividade=${id_activity}">${description} ${icone}</a></h2><p class="dataAtt">Data de Encerramento: ${deadline}</p>`;
     
         const editar = document.createElement("button");
         editar.innerHTML = '<i class="bi bi-pencil-square"></i>';
         editar.className = "editar";
         editar.classList.add("editarAtividade");
         editar.addEventListener("click", function () {
+          console.log('Botao clicado')
           editarAtividade(novaAtividade);
         });
         novaAtividade.appendChild(editar);
@@ -206,6 +214,70 @@ document.addEventListener('DOMContentLoaded', function(){
 
         return descriptionTotal
     }
+    function editarAtividade(atividade) {
+      const editar = atividade.querySelector(".editar");
+      editar.remove();
+    
+      const p = atividade.querySelector("p");
+      const id_activity = atividade.dataset.id_activity; 
+      const description = atividade.querySelector("h2 a").textContent.trim(); 
+      const id_content = atividade.dataset.id_content; 
+    
+      const inputDeadline = document.createElement("input");
+      inputDeadline.type = "date"; 
+      const textoData = p.textContent.split(": ")[1]; 
+      const dataFormatada = textoData.split("/").reverse().join("-"); 
+      inputDeadline.value = dataFormatada;
+    
+      p.classList.add("editaAtt");
+      p.innerHTML = ""; 
+      p.appendChild(inputDeadline); 
+    
+      const salvar = document.createElement("button");
+      salvar.innerHTML = '<i class="bi bi-floppy-fill"></i>';
+      salvar.className = 'salvarAtt'
+      salvar.classList.add("editarAtividade")
+      
+      salvar.addEventListener("click", async function () {
+        const novaDeadline = inputDeadline.value;
+    
+        if (novaDeadline === "") {
+          alert("Por favor, preencha todos os campos.");
+          return;
+        }
+    
+
+        try {
+          const response = await fetch('https://projetodepesquisa-w8nz.onrender.com/api/activity', {
+            method: 'PATCH', 
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              id_activity,
+              deadline: novaDeadline, 
+            }),
+          });
+    
+          if (!response.ok) {
+            const errorResponse = await response.json(); 
+            throw new Error(errorResponse.message || 'Erro ao salvar a atividade');
+          }
+    
+          p.textContent = `Data de Encerramento: ${convertDateFormat(novaDeadline)}`;
+          inputDeadline.remove(); 
+          salvar.remove(); 
+          atividade.appendChild(editar);
+        } catch (error) {
+          console.error("Erro ao editar a atividade:", error);
+          alert("Erro ao atualizar a atividade: " + error.message);
+        }
+      });
+    
+      atividade.appendChild(salvar);
+    }
+    
+    
     function fecharJanela(overlay, modal, nomeGrupoInput, periodoInput) {
         nomeGrupoInput.value = "";
         periodoInput.value = "";

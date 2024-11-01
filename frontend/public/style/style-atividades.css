@@ -22,12 +22,11 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    z-index: -9999;
+    
 }.loaderAtividade{
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
 }
 .verificando{
     animation: rotacao 1s infinite;
@@ -50,6 +49,7 @@ body{
 .atividade{
     position: relative;
     width: 80%;
+    height: 20%;
     background-color: var(--cor-4);
     border-radius: 10px;
     padding: 10px;
@@ -67,3 +67,109 @@ body{
 .atividade p{
     color: #fff;
 }
+.atividade .editarAtividade{
+    display: flex;
+    position: absolute; 
+    bottom: 0; 
+    right: 5px; 
+    padding:5px;
+    font-size: 1.1rem;
+}
+.componentesAtividade{
+    display:flex;
+    align-items: center;
+    padding-left:10px;
+    margin: 10px;
+    width: 95%;
+    height: auto;
+    margin-top:10px;
+    background-color: #ffffff;
+    border:1px solid var(--cor-5);
+    border-radius:10px;
+}
+.componenteData{
+    display:flex;
+    align-items: center;
+    padding-left:10px;
+    margin: 10px;
+    width: 95%;
+    height: auto;
+    margin-top:10px;
+    background-color: #ffffff;
+    border:1px solid var(--cor-5);
+    border-radius:10px; 
+}
+.form-style {
+    position:relative;
+    width: calc(100% - 30px);
+    outline: none;
+    transition: 0.3s;
+    padding:10px;
+    height: auto;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color:var(--cor-5);
+    border-radius:10px;
+    border: 2px solid transparent;
+    background-color: #b7daf800;
+}
+.componenteData input[type="date"]{
+    position:relative;
+    border: 2px solid transparent;
+    background-color: #b7daf800;
+    padding: 10px;
+    width: calc(100% - 30px);
+    outline: none;
+    transition: 0.3s;
+    color:var(--cor-5);
+}
+
+.icones-att{
+    font-size: 15px;
+    padding:5px;
+}
+#btnAddAtividade, #confirmarExcluirBotao{
+    background-color: var(--cor-4);
+    border-style: none;
+    border-radius: 5px;
+    margin: 20px 0;
+    width: 100px;
+    color:#fff;
+    padding: 5px;
+    cursor:pointer;
+    transition: .3s;
+}
+#btnAddAtividade:hover{
+    background-color: var(--cor-5);
+}
+#btnFechar, #cancelarexclusao{
+    background-color: var(--cor-4);
+    border-style: none;
+    border-radius: 5px;
+    width: 100px;
+    color:#fff;
+    padding: 5px;
+    cursor:pointer;
+    transition: .3s;
+}
+#btnFechar:hover{
+    background-color: var(--cor-5);
+}
+
+.salvarAtt{
+    background-color: transparent;
+    color:#ffffff;
+    border-style:none;
+    font-size: 1.2em;
+    position:relative;
+    width: 20px;
+    margin-right: 40px;
+    padding: 10px;
+    cursor:pointer;
+}
+.salvarAtt:hover{
+    color: var(--cor-5);
+    transition: .3s;
+}
+
+
