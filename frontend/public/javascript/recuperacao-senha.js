@@ -9,26 +9,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
   localStorage.setItem("email", email);
   localStorage.setItem("token", token);
-  document
-    .querySelector("#formNovaSenha")
-    .addEventListener("submit", async function (event) {
+  document.querySelector("#formNovaSenha").addEventListener("submit", async function (event) {
       event.preventDefault();
+
+      const enviarButton = document.querySelector("#Enviar");
+      const originalText = enviarButton.value;
+      enviarButton.value = "Carregando...";
+      enviarButton.disabled = true;
 
       const novaSenha = document.querySelector("#senha").value;
       const confSenha = document.querySelector("#confsenha").value;
 
       if (novaSenha === "" || confSenha === "") {
-        alert("Preencha todos campos");
+        alert("Preencha todos os campos");
+        enviarButton.value = originalText;
+        enviarButton.disabled = false;
         return;
       }
       if (!validarSenha(novaSenha)) {
         alert(
           "A senha deve conter entre 6 e 20 caracteres, pelo menos um número e uma letra."
         );
+        enviarButton.value = originalText;
+        enviarButton.disabled = false;
         return;
       }
       if (!validarSenhas(novaSenha, confSenha)) {
-        alert("As senhas sao diferentes");
+        alert("As senhas são diferentes");
+        enviarButton.value = originalText;
+        enviarButton.disabled = false;
         return;
       }
       try {
@@ -49,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
             confirm_password: confSenha,
           };
         }
-        console.log("enviando senha nova");
         const response = await fetch(
           `https://projetodepesquisa-w8nz.onrender.com/${url}`,
           {
@@ -70,6 +78,8 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "../index.html";
       } catch (erro) {
         console.error("Erro ao tentar redefinir a senha:", erro);
+      }finally{
+        enviarButton.value = originalText;
       }
     });
 

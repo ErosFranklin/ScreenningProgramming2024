@@ -24,11 +24,15 @@ document.addEventListener("DOMContentLoaded", function () {
         confsenha === ""
       ) {
         alert("Preencha todos os campos!");
+        enviarButton.value = originalText;
+        enviarButton.disabled = false;
         return;
       }
 
       if (!validarEmail(email)) {
         alert("Email inválido!");
+        enviarButton.value = originalText;
+        enviarButton.disabled = false;
         return;
       }
 
@@ -36,11 +40,15 @@ document.addEventListener("DOMContentLoaded", function () {
         alert(
           "A senha deve conter entre 6 e 20 caracteres, pelo menos um número e uma letra."
         );
+        enviarButton.value = originalText;
+        enviarButton.disabled = false;
         return;
       }
 
       if (!validarSenhas(password, confsenha)) {
         alert("As senhas não coincidem!");
+        enviarButton.value = originalText;
+        enviarButton.disabled = false;
         return;
       }
 
