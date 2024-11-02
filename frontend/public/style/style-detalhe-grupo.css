@@ -150,21 +150,20 @@ body{
 }
 .container-tabela-aluno{
     display:flex;
-    justify-content: center;
     align-items: center;
     position: absolute;
+    height: 70%;
     width: 80%;
     margin-left: 10%;
     margin-top: 8%;
     flex-direction: column;
-    
 }
 #tabelaAlunos {
+    position: relative;
     width: 100%;
     border-collapse: collapse;
     border-radius: 5px;
     box-shadow: 2px 2px 5px 2px var(--cor-5);
-    
 }
 .linha{
     background-color: red;

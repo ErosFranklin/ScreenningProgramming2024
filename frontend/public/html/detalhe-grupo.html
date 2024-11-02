@@ -81,9 +81,13 @@
         <h2 id="nomeGrupo"></h2>
         <p id="periodoGrupo"></p>
       </div>
-
-      <div class="container-tabela-aluno">
-        <table id="tabelaAlunos">
+      
+      <div class="container-tabela-aluno" >
+        <div class="mensagem-erro" id="mensagem-erro" style="display: none;"> <p id="mensagem">Nenhum estudante cadastrado!</p></div>
+        <div class="loader-detalhe-alunos" id="verificando"  style="display: none;">
+          <div class="verificando"></div>
+        </div>
+        <table id="tabelaAlunos" style="display: none;">
           <thead>
             <tr class="linha">
               <th class="celula-tabela" id="celulaID">ID</th>
@@ -94,12 +98,13 @@
           </thead>
           <tbody class="alunos-tabela"></tbody>
         </table>
-        <div id="paginacao">
+        <div id="paginacao" style="display: none;">
           <button id="btnAnterior" disabled>Anterior</button>
           <span id="paginaAtual">PÁGINA 1</span>
           <button id="btnProximo">Próxima</button>
         </div>
       </div>
+      
     </main>
     <script src="../javascript/menu.js"></script>
     <script src="../javascript/detalhe-grupo.js"></script>

@@ -142,7 +142,13 @@ body{
     justify-content: center;
     align-items: center;
     position: relative;
-    z-index: 9999;
+}
+.loader-detalhe-alunos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: -9999;
 }
 .verificando{
     animation: rotacao 1s infinite;
