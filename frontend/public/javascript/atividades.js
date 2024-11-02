@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function(){
     const groupId = localStorage.getItem('groupId');
     const formAddAtt = document.querySelector('#formAddAtt');
     const atividadeContainer = document.querySelector('.atividades-container')
+    const confirmaExcluirModal = document.querySelector("#confirmaExcluirModal");
+    const confirmaExcluirBotao = document.querySelector("#confirmarExcluirBotao");
+    const cancelarExclusao = document.querySelector("#cancelarexclusao");
 
     carregarAtividades(groupId);
 
@@ -276,6 +279,31 @@ document.addEventListener('DOMContentLoaded', function(){
     
       atividade.appendChild(salvar);
     }
+    async function excluirAtividade(excluirAtt) {
+      const id_activity = excluirAtt.dataset.id_activity;
+  
+      try {
+        const response = await fetch(
+          `https://projetodepesquisa-w8nz.onrender.com/api/activity/${id_activity}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json"
+            },
+          }
+        );
+  
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message);
+        }
+        
+        excluirAtt.remove();
+        alert('Atividade deletada com sucesso!!!');
+      } catch (error) {
+        console.error("Erro ao excluir grupo:", error);
+      }
+    }
     
     
     function fecharJanela(overlay, modal, nomeGrupoInput, periodoInput) {
@@ -296,6 +324,23 @@ document.addEventListener('DOMContentLoaded', function(){
   
       return `${day}/${month}/${year}`;
     }
+    function exibirModalExcluir() {
+      overlay.style.display = "block";
+      confirmaExcluirModal.style.display = "block";
+    }
+    function fecharModalExclusao() {
+      overlay.style.display = "none";
+      confirmaExcluirModal.style.display = "none";
+    }
+    confirmaExcluirBotao.addEventListener("click", function () {
+      if (atividadeParaExcluir) {
+        excluirAtividade(atividadeParaExcluir);
+        fecharModalExclusao();
+      }
+    });
+    cancelarExclusao.addEventListener("click", function () {
+      fecharModalExclusao();
+    });
     
 
 

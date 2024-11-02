@@ -233,3 +233,7 @@ body{
     background-color: var(--cor-5);
     color:gray;
 }
+.mensagem-erro, .loader-detalhe-alunos{
+    display: block;
+    margin: auto;
+}
