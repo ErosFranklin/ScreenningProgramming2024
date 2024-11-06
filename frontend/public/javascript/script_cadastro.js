@@ -89,10 +89,13 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!response.ok) {
           const errorData = await response.json();
           console.error("Error:", errorData.message);
+          enviarButton.value = originalText;
+          enviarButton.disabled = false;
           if (errorData.message === "invalid date") {
             alert(
               "Idade inválida. A idade mínima para se cadastrar no sistema é 15 anos. "
             );
+            enviarButton.disabled = false;
             return;
           }
           alert("Erro: " + errorData.message);
@@ -122,6 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
       }finally{
         enviarButton = originalText;
+        enviarButton.disabled = false;
       }
     });
 

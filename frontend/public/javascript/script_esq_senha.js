@@ -8,9 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const email = emailInput.value.trim();
-
     let matricula = matriculaInput.value.trim();
     let urlApi = "";
+
+    const enviarButton = document.getElementById("Enviar");
+    const originalText = enviarButton.value;
+    enviarButton.value = "Carregando...";
+    enviarButton.disabled = true;
 
     if (matriculaContainer.style.display === "block" && userData) {
       const registration = String(userData.registration).trim();
@@ -35,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("email guardado:", localStorage.getItem("email"));
             alert(result.message || "E-mail enviado com sucesso.");
             window.location.href = "../index.html";
+
           } else {
             const error = await response.json();
             alert(error.error || "Erro ao enviar o e-mail.");
@@ -50,6 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       } else {
         alert("A matrícula informada não está cadastrada.");
+        enviarButton.value = originalText;
+        enviarButton.disabled = false;
       }
     } else {
       if (email.includes("@servidor")) {
@@ -64,7 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         if (response.ok) {
-          // So mostra o campo de matricula se o email for valido
+          enviarButton.value = originalText;
+          enviarButton.disabled = false;
           matriculaContainer.style.display = "block";
           matriculaInput.required = true;
 
@@ -73,12 +81,16 @@ document.addEventListener("DOMContentLoaded", () => {
           matriculaContainer.style.display = "none";
           matriculaInput.required = false;
           alert("Usuário não encontrado! Verifique o email e tente novamente.");
+          enviarButton.value = originalText;
+          enviarButton.disabled = false;
         }
       } catch (error) {
         console.error("Erro ao validar o email:", error);
         alert(
           "Ocorreu um erro ao validar o email. Tente novamente mais tarde."
         );
+        enviarButton.value = originalText;
+        enviarButton.disabled = false;
       }
     }
   });

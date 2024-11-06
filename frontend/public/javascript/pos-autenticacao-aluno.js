@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const dataNasc = localStorage.getItem("dataNasc");
   const studentToken = localStorage.getItem("token");
   const institution = "UEPB";
+  
 
   if (name) {
     const nameField = document.querySelector("#nome");
@@ -31,6 +32,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const city = document.getElementById("cidade").value;
     const state = document.getElementById("estado").value;
 
+    const enviarButton = document.querySelector(".btn");
+    const originalText = enviarButton.value;
+    enviarButton.value = "Carregando...";
+    enviarButton.disabled = true;
+
     if (
       name === "" ||
       gender === "" ||
@@ -41,12 +47,16 @@ document.addEventListener("DOMContentLoaded", function () {
       institution === ""
     ) {
       alert("Preencha todos os campos!!!");
+      enviarButton.value = originalText;
+      enviarButton.disabled = false;
       return;
     }
     if (registration.length !== 9) {
       alert(
         "Matrícula inválida. A matrícula deve conter exatamente 8 dígitos."
       );
+      enviarButton.value = originalText;
+      enviarButton.disabled = false;
       return;
     }
 
@@ -73,6 +83,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const errorData = await response.json();
         console.error("Error:", errorData.message);
         alert("Erro: " + errorData.message);
+        enviarButton.value = originalText;
+        enviarButton.disabled = false;
         return;
       }
 
@@ -84,10 +96,16 @@ document.addEventListener("DOMContentLoaded", function () {
       } catch (error) {
         console.error("JSON parse error:", error);
         alert("Ocorreu um erro ao processar a resposta do servidor.");
+      }finally{
+        enviarButton.value = originalText;
+        enviarButton.disabled = false;
       }
     } catch (error) {
       console.error("Fetch error:", error);
       alert("Ocorreu um erro ao tentar cadastrar. Por favor, tente novamente.");
+    }finally{
+      enviarButton.value = originalText;
+      enviarButton.disabled = false;
     }
   });
 });

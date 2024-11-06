@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   async function carregarDetalhesGrupo() {
-    // Exibe o loader
     document.getElementById("verificando").style.display = "flex";
 
     try {

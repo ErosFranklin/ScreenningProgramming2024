@@ -14,11 +14,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (email === "" || password === "") {
       alert("Preencha todos os campos!");
+      enviarButton.disabled = false;
       return;
     }
 
     if (!validarEmail(email)) {
       alert("Email inválido!");
+      enviarButton.disabled = false;
       return;
     }
 
@@ -26,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
       alert(
         "A senha deve conter entre 6 e 20 caracteres, pelo menos um número e uma letra."
       );
+      enviarButton.disabled = false;
       return;
     }
 
@@ -59,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
     }finally{
       enviarButton.value = originalText;
+      enviarButton.disabled = false;
     }
   });
 
