@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const token = new URLSearchParams(window.location.search).get("token");
   console.log("Parâmetro URL:", token);
 
-  // Remove o token da URL após capturá-lo
+  
   const url = new URL(window.location.href);
   url.searchParams.delete("token");
   window.history.replaceState({}, document.title, url);
@@ -15,17 +15,17 @@ document.addEventListener("DOMContentLoaded", async function () {
   localStorage.setItem("token", token);
   let email;
   try {
-    // Decodifique o token para extrair o email
+    
     const decodedToken = jwt_decode(token); 
     console.log("Token decodificado:", decodedToken);
     email = decodedToken.email;
     console.log("Email extraído do token:", email);
 
-    // Construa a URL da requisição com o email
+    
     const apiUrl = `https://projetodepesquisa-w8nz.onrender.com/api/token/groupid?email=${encodeURIComponent(email)}`;
     console.log("URL da API:", apiUrl);
 
-    // Faça a requisição GET para o endpoint
+    
     const response = await fetch(apiUrl, {
       method: "GET",
       headers: {
@@ -48,11 +48,8 @@ document.addEventListener("DOMContentLoaded", async function () {
           localStorage.setItem("fila", JSON.stringify(gruposPendentes));
         }
 
-        // Redirecionar após salvar o ID na fila
-        setTimeout(() => {
           localStorage.removeItem("token");
           window.location.href = "../index.html";
-        }, 10000); // Espera 3 segundos para garantir que tudo foi processado
       } else {
         console.warn("Group ID não encontrado no retorno.");
         redirecionarParaLogin();
@@ -66,11 +63,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     redirecionarParaLogin();
   }
 
-  // Função para redirecionar ao login
   function redirecionarParaLogin() {
     localStorage.removeItem("token");
-    setTimeout(() => {
-      window.location.href = "../index.html";
-    },10000)
+    window.location.href = "../index.html";
   }
 })
