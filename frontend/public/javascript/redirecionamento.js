@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   localStorage.setItem("token", token);
   let email;
+  let groupId;
   try {
     // Decodifique o token para extrair o email
     const decodedToken = jwt_decode(token); 
@@ -35,6 +36,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     if (response.ok) {
       const dadosToken = await response.json();
+      console.log(dadosToken)
       const groupId = dadosToken.groupId;
       console.log("ID do grupo via token:", groupId);
 
@@ -70,7 +72,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   function redirecionarParaLogin() {
     localStorage.removeItem("token");
     setTimeout(() => {
-      window.location.href = "../index";
+      window.location.href = "../index.html";
     },10000)
   }
 })
