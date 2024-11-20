@@ -35,24 +35,24 @@ document.addEventListener("DOMContentLoaded", async function () {
         setTimeout(() => {
           localStorage.removeItem("token");
           window.location.href = "../index.html";
-        }, 1000);
+        }, 10000);
       } else {
         localStorage.removeItem("token");
         setTimeout(() => {
           window.location.href = "../index.html";
-        }, 1000);
+        }, 10000);
       }
     } else {
       localStorage.removeItem("token");
       setTimeout(() => {
         window.location.href = "../index.html";
-      }, 1000);
+      }, 10000);
     }
   } catch (erro) {
     console.error("Erro ao validar o token:", erro);
     localStorage.removeItem("token");
     setTimeout(() => {
       window.location.href = "../index.html";
-    }, 1000);
+    }, 10000);
   }
 });
