@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   localStorage.setItem("token", token);
   try {
+    const decodedToken = jwt_decode(token); // Decodifica o token (biblioteca jwt-decode)
+    console.log(decodedToken)
+    email = decodedToken.email; // Extraia o email (ou a chave que contém o email)
+    console.log("Email extraído do token:", email);
     const url = `https://projetodepesquisa-w8nz.onrender.com/api/token/groupid?token=${token}`;
     const response = await fetch(url, {
       method: "GET",
