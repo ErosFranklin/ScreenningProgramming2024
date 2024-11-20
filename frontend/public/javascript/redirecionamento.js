@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", async function () {
   const token = new URLSearchParams(window.location.search).get("token");
-  console.log("Paramentro Url:", token);
+  console.log("Parâmetro URL:", token);
 
+  // Remove o token da URL após capturá-lo
   const url = new URL(window.location.href);
   url.searchParams.delete("token");
   window.history.replaceState({}, document.title, url);
@@ -12,51 +13,60 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   localStorage.setItem("token", token);
+  let email;
   try {
-    const decodedToken = jwt_decode(token); // Decodifica o token (biblioteca jwt-decode)
-    console.log(decodedToken)
-    email = decodedToken.email; // Extraia o email (ou a chave que contém o email)
+    // Decodifique o token para extrair o email
+    const decodedToken = jwt_decode(token); 
+    console.log("Token decodificado:", decodedToken);
+    email = decodedToken.email;
     console.log("Email extraído do token:", email);
-    const url = `https://projetodepesquisa-w8nz.onrender.com/api/token/groupid?token=${token}`;
-    const response = await fetch(url, {
+
+    // Construa a URL da requisição com o email
+    const apiUrl = `https://projetodepesquisa-w8nz.onrender.com/api/token/groupid?email=${encodeURIComponent(email)}`;
+    console.log("URL da API:", apiUrl);
+
+    // Faça a requisição GET para o endpoint
+    const response = await fetch(apiUrl, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     });
+
     if (response.ok) {
       const dadosToken = await response.json();
       const groupId = dadosToken.groupId;
-      console.log("Id do grupo via token:", groupId);
+      console.log("ID do grupo via token:", groupId);
+
       if (groupId) {
         const gruposPendentes = JSON.parse(localStorage.getItem("fila")) || [];
-        console.log("grupos pendentes:", gruposPendentes);
+        console.log("Grupos pendentes:", gruposPendentes);
+
         if (!gruposPendentes.includes(groupId)) {
-          console.log("Adicionando id do grupo a fila");
+          console.log("Adicionando ID do grupo à fila");
           gruposPendentes.push(groupId);
           localStorage.setItem("fila", JSON.stringify(gruposPendentes));
         }
-        setTimeout(() => {
-          localStorage.removeItem("token");
-          window.location.href = "../index.html";
-        }, 10000);
-      } else {
+
+        // Redireciona após a requisição ser concluída
         localStorage.removeItem("token");
-        setTimeout(() => {
-          window.location.href = "../index.html";
-        }, 10000);
+        window.location.href = "../index.html";
+      } else {
+        console.warn("Group ID não encontrado no retorno.");
+        redirecionarParaLogin();
       }
     } else {
-      localStorage.removeItem("token");
-      setTimeout(() => {
-        window.location.href = "../index.html";
-      }, 10000);
+      console.error("Resposta não OK da API:", response.statusText);
+      redirecionarParaLogin();
     }
   } catch (erro) {
-    console.error("Erro ao validar o token:", erro);
+    console.error("Erro ao processar o token:", erro);
+    redirecionarParaLogin();
+  }
+
+  // Função para redirecionar ao login caso algo dê errado
+  function redirecionarParaLogin() {
     localStorage.removeItem("token");
-    setTimeout(() => {
-      window.location.href = "../index.html";
-    }, 10000);
+    window.location.href = "../index.html";
   }
 });
