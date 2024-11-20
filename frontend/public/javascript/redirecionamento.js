@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   localStorage.setItem("token", token);
   let email;
-  let groupId;
   try {
     // Decodifique o token para extrair o email
     const decodedToken = jwt_decode(token); 
@@ -35,9 +34,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
 
     if (response.ok) {
-      const dadosToken = await response.json();
-      console.log(dadosToken)
-      const groupId = dadosToken.groupId;
+      const dados = await response.json();
+      const groupId = dados;
       console.log("ID do grupo via token:", groupId);
 
       if (groupId) {
