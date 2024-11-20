@@ -1,13 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const groupContainer = document.querySelector('#container-grupos');
   carregarGrupo();
+
   async function carregarGrupo() {
+    const loader = document.querySelector(".verificando");
+    loader.style.display = "block";
+
     const studentToken = localStorage.getItem("token");
     const studentId = localStorage.getItem("userId");
     console.log(studentId, studentToken);
+   
     if (!studentId || !studentToken) {
-      console.error("Error: ID do estudante ou token invalidos");
+      console.error("Error: ID do estudante ou token inválidos");
+      loader.style.display = "none"; 
       return;
     }
+
     try {
       const response = await fetch(
         "https://projetodepesquisa-w8nz.onrender.com/api/student/groups",
@@ -20,17 +28,22 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       );
       console.log(response);
+
+      
       if (!response.ok) {
         const errorData = await response.json();
         console.error("Erro na resposta da API:", errorData);
         throw new Error(errorData.message);
       }
+
       const gruposData = await response.json();
       console.log("dados do grupo:", gruposData);
 
-      if (Array.isArray(gruposData)) {
-        const grupos = document.querySelector("#grupos");
-        grupos.innerHTML = "";
+      
+      const grupos = document.querySelector("#grupos");
+      grupos.innerHTML = ""; 
+
+      if (Array.isArray(gruposData) && gruposData.length > 0) {
         gruposData.forEach((grupo) => {
           const novoGrupoMostrado = criarGrupoTela(
             grupo.title,
@@ -41,27 +54,36 @@ document.addEventListener("DOMContentLoaded", function () {
           grupos.appendChild(novoGrupoMostrado);
         });
       } else {
-        console.error(
-          'A resposta da API não contém a propriedade "groups" ou não é um array.'
-        );
+        exibirMensagem("Você não está cadastrado em nenhum grupo!!!");
       }
     } catch (error) {
       console.error("Erro ao carregar os grupos:", error);
-
-      const grupos = document.querySelector("#grupos");
-      if (grupos) {
-        grupos.innerHTML = "<p>Erro ao carregar os grupos.</p>";
-      }
+      exibirMensagem("Erro ao carregar os grupos.");
+    } finally {
+      loader.style.display = "none"; 
     }
   }
+
+ 
+  function exibirMensagem(mensagemTexto) {
+    let mensagem = document.querySelector("#mensagem");
+    if (!mensagem) {
+      mensagem = document.createElement("p");
+      mensagem.id = "mensagem";
+      groupContainer.appendChild(mensagem);
+    }
+    mensagem.textContent = mensagemTexto;
+  }
+
+ 
   function criarGrupoTela(nome, periodo, groupId, teacherName) {
     const grupo = document.createElement("div");
     grupo.className = "grupo";
     grupo.dataset.groupId = groupId;
-    grupo.innerHTML = `<h2><a href="atividades.html?groupId=${groupId}">${nome}</a></h2>
-        <p>Professor: ${teacherName}</p>
-        <p>Período: ${periodo}</p>`;
-
+    grupo.innerHTML = `
+      <h2><a href="atividades.html?groupId=${groupId}">${nome}</a></h2>
+      <p>Professor: ${teacherName}</p>
+      <p>Período: ${periodo}</p>`;
     return grupo;
   }
 });

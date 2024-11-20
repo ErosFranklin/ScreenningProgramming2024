@@ -128,6 +128,37 @@ body{
     top:2%;
     position:absolute;
 }
+#mensagem{
+    font-size: 17px;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+.loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.loader-detalhe-alunos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: -9999;
+}
+.verificando{
+    animation: rotacao 1s infinite;
+    height: 100px;
+    width: 100px;
+    border-radius:50%;
+    border: 6px solid #e5e5e5;
+    border-top-color: #0050b8;
+}
+@keyframes rotacao {
+    to{
+        transform:rotate(1turn)
+    }
+}
 .container-grupos{
     display: flex;
     align-items: center;
