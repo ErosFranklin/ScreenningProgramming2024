@@ -48,9 +48,11 @@ document.addEventListener("DOMContentLoaded", async function () {
           localStorage.setItem("fila", JSON.stringify(gruposPendentes));
         }
 
-        // Redireciona após a requisição ser concluída
-        localStorage.removeItem("token");
-        window.location.href = "../index.html";
+        // Redirecionar após salvar o ID na fila
+        setTimeout(() => {
+          localStorage.removeItem("token");
+          window.location.href = "../index.html";
+        }, 10000); // Espera 3 segundos para garantir que tudo foi processado
       } else {
         console.warn("Group ID não encontrado no retorno.");
         redirecionarParaLogin();
@@ -64,9 +66,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     redirecionarParaLogin();
   }
 
-  // Função para redirecionar ao login caso algo dê errado
+  // Função para redirecionar ao login
   function redirecionarParaLogin() {
     localStorage.removeItem("token");
-    window.location.href = "../index.html";
+    setTimeout(() => {
+      window.location.href = "../index";
+    },10000)
   }
-});
+})
