@@ -54,11 +54,40 @@
       <div class="titulo-grupo">
         <h2>Atividades</h2>
       </div>
+      <div class="bttConvidar">
+        <button id="criarAtividade">Criar Atividade</button>
+      </div>
      
       <div class="atividades-container">
         <div class="loaderAtividade">
           <div class="verificando" style="display: none;"></div>
         </div>
+      </div>
+      <div id="overlay" class="overlay"></div>
+      <div id="modal" class="modal">
+        <h2>Criar Atividade</h2>
+        <form method="post" id="formAddAtt">
+          <label for="nomeAtt">Nome da Atividade</label>
+          <div class="componentesAtividade">
+            <i class="icones-att bi bi-people-fill"></i>
+            <select name="assunto" id="description" class="form-style">
+              <option value="" disabled selected hidden>Selecione um Assunto</option>
+              <option value="1">Entrada e Saída de Dados</option>
+              <option value="2">Comandos de Iteração</option>
+              <option value="3">Comandos de Seleção</option>
+              <option value="4">Funções</option>
+            </select>
+          </div>
+          <label for="nomeAtt">Data de Término:</label>
+          <div class="componenteData">
+            <i class="icones-att bi bi-calendar-check-fill"></i>
+            <input type="date" name="deadline" id="deadline">
+          </div>
+          <div class="bttsCriarAtt">
+            <button id="btnAddAtividade">Criar</button>
+          </div>
+        </form>
+        <button id="btnFechar">Fechar</button>
       </div>
       <div id="confirmaExcluirModal" class="modal" style="display: none">
         <div class="modal-content">
@@ -75,6 +104,6 @@
     
     <script src="../javascript/menu.js"></script>
     <script src="../javascript/logout.js"></script>
-    <script src="../javascript/atividades-aluno.js"></script>
+    <script src="../javascript/atividades.js"></script>
   </body>
 </html>
