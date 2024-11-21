@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded',function(){
         }
 
         try {
-            const response = await fetch(`https://projetodepesquisa-w8nz.onrender.com/api/activity/all?id_group=${groupId}`,{
+            const response = await fetch(`https://screenning-programming.onrender.com/api/activity/all?id_group=${groupId}`,{
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json"

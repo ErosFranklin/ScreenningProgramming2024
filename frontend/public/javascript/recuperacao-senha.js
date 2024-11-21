@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
           };
         }
         const response = await fetch(
-          `https://projetodepesquisa-w8nz.onrender.com/${url}`,
+          `https://screenning-programming.onrender.com/${url}`,
           {
             method: "PUT",
             headers: {

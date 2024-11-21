@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   async function login(email, password) {
-    const url = `https://projetodepesquisa-w8nz.onrender.com/api/login`;
+    const url = `https://screenning-programming.onrender.com/api/login`;
     const data = {
       email: email,
       password: password,
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     try {
       const response = await fetch(
-        `https://projetodepesquisa-w8nz.onrender.com/api/group/student/${groupId}`,
+        `https://screenning-programming.onrender.com/api/group/student/${groupId}`,
         {
           method: "PUT",
           headers: {

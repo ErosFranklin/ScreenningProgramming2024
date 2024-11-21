@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.log("Email extraído do token:", email);
 
     
-    const apiUrl = `https://projetodepesquisa-w8nz.onrender.com/api/token/groupid?email=${encodeURIComponent(email)}`;
+    const apiUrl = `https://screenning-programming.onrender.com/api/token/groupid?email=${encodeURIComponent(email)}`;
     console.log("URL da API:", apiUrl);
 
     

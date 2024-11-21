@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     try {
       const response = await fetch(
-        `https://projetodepesquisa-w8nz.onrender.com/api/send_verification_code/${email}`,
+        `https://screenning-programming.onrender.com/api/send_verification_code/${email}`,
         {
           method: "POST",
           headers: {

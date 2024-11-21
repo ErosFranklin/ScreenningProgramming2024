@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
           };
         }
 
-        const url = `https://projetodepesquisa-w8nz.onrender.com${url_api}`;
+        const url = `https://screenning-programming.onrender.com${url_api}`;
 
         const response = await fetch(url, {
           method: "POST",

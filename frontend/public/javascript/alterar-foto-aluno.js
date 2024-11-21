@@ -9,7 +9,7 @@ function uploadImage(file) {
   formData.append("image", file);
 
   fetch(
-    "https://projetodepesquisa-w8nz.onrender.com/api/student/upload_image",
+    "https://screenning-programming.onrender.com/api/student/upload_image",
     {
       method: "PATCH",
       headers: {

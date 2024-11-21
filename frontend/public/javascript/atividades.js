@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function(){
   
       try {
         const response = await fetch(
-          `https://projetodepesquisa-w8nz.onrender.com/api/activity/all?id_group=${groupId}`,
+          `https://screenning-programming.onrender.com/api/activity/all?id_group=${groupId}`,
           {
             method: "GET",
             headers: {
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function(){
         };
     
         try {
-          const response = await fetch('https://projetodepesquisa-w8nz.onrender.com/api/activity', {
+          const response = await fetch('https://screenning-programming.onrender.com/api/activity', {
             method: 'POST',
             headers: {
               "Content-Type": "application/json"
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function(){
     
 
         try {
-          const response = await fetch('https://projetodepesquisa-w8nz.onrender.com/api/activity', {
+          const response = await fetch('https://screenning-programming.onrender.com/api/activity', {
             method: 'PATCH', 
             headers: {
               'Content-Type': 'application/json',
@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function(){
   
       try {
         const response = await fetch(
-          `https://projetodepesquisa-w8nz.onrender.com/api/activity/${id_activity}`,
+          `https://screenning-programming.onrender.com/api/activity/${id_activity}`,
           {
             method: "DELETE",
             headers: {

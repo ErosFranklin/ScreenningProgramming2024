@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
         const response = await fetch(
-          "https://projetodepesquisa-w8nz.onrender.com/api/groupInvite",
+          "https://screenning-programming.onrender.com/api/groupInvite",
           {
             method: "POST",
             headers: {
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     try {
       const response = await fetch(
-        `https://projetodepesquisa-w8nz.onrender.com/api/group/${groupId}`,
+        `https://screenning-programming.onrender.com/api/group/${groupId}`,
         {
           method: "GET",
           headers: {

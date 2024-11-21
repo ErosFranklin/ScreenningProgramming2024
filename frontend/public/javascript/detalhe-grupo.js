@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     try {
       const response = await fetch(
-        `https://projetodepesquisa-w8nz.onrender.com/api/group/${groupId}`,
+        `https://screenning-programming.onrender.com/api/group/${groupId}`,
         {
           method: "GET",
           headers: {
@@ -69,7 +69,7 @@ async function carregarAlunos(pagina) {
 
     try {
       const response = await fetch(
-        `https://projetodepesquisa-w8nz.onrender.com/api/group/student/${groupId}?num_pag=${pagina}`,
+        `https://screenning-programming.onrender.com/api/group/student/${groupId}?num_pag=${pagina}`,
         {
           method: "GET",
           headers: {
@@ -152,7 +152,7 @@ async function carregarAlunos(pagina) {
 
         try {
           const response = await fetch(
-            `https://projetodepesquisa-w8nz.onrender.com/api/group/student/${groupId}?studentId=${studentId}`,
+            `https://screenning-programming.onrender.com/api/group/student/${groupId}?studentId=${studentId}`,
             {
               method: "DELETE",
               headers: {

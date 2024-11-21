@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     try {
       const response = await fetch(
-        "https://projetodepesquisa-w8nz.onrender.com/api/group/teacher",
+        "https://screenning-programming.onrender.com/api/group/teacher",
         {
           method: "GET",
           headers: {
@@ -130,8 +130,8 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     const url = groupId
-      ? `https://projetodepesquisa-w8nz.onrender.com/api/group/${groupId}`
-      : "https://projetodepesquisa-w8nz.onrender.com/api/group";
+      ? `https://screenning-programming.onrender.com/api/group/${groupId}`
+      : "https://screenning-programming.onrender.com/api/group";
 
     const method = groupId ? "PATCH" : "POST";
 
@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     try {
       const response = await fetch(
-        `https://projetodepesquisa-w8nz.onrender.com/api/group/${groupId}`,
+        `https://screenning-programming.onrender.com/api/group/${groupId}`,
         {
           method: "DELETE",
           headers: {

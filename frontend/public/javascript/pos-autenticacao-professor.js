@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     try {
-      const url = `https://projetodepesquisa-w8nz.onrender.com/api/teacher`;
+      const url = `https://screenning-programming.onrender.com/api/teacher`;
       const data = {
         genderTeacher: gender,
         institutionTeacher: institution,
