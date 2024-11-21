@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const token = localStorage.getItem('token');
     const loginToken = document.querySelector('#login-token');
     const email = localStorage.getItem('email');
-    console.log(token, email)
     if (token && email) {
         if (email.endsWith('@servidor.uepb.edu.br')) {
             loginToken.href = '../html/grupo.html';

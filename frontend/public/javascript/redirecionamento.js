@@ -8,8 +8,11 @@ document.addEventListener("DOMContentLoaded", async function () {
   window.history.replaceState({}, document.title, url);
 
   if (!token) {
-    window.location.href = "../index.html";
+    setTimeout(()=>{
+      window.location.href = "../index.html";
     return;
+    },10000)
+    
   }
 
   localStorage.setItem("token", token);
@@ -47,9 +50,11 @@ document.addEventListener("DOMContentLoaded", async function () {
           gruposPendentes.push(groupId);
           localStorage.setItem("fila", JSON.stringify(gruposPendentes));
         }
-
+        setTimeout(()=>{
           localStorage.removeItem("token");
           window.location.href = "../index.html";
+        },10000)
+          
       } else {
         console.warn("Group ID não encontrado no retorno.");
         redirecionarParaLogin();
@@ -64,7 +69,10 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   function redirecionarParaLogin() {
-    localStorage.removeItem("token");
-    window.location.href = "../index.html";
+    setTimeout(()=>{
+      localStorage.removeItem("token");
+      window.location.href = "../index.html";
+    },10000)
+    
   }
 })

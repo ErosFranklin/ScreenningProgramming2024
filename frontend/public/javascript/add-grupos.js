@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
-
+    console.log('userId:',userId)
     console.log('token:',token)
     if (!userId || !token) {
       console.error("Erro: ID do usuário ou token não encontrado.");

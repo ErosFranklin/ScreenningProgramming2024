@@ -34,15 +34,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
     try {
       const responseData = await login(email, password);
+      console.log("Access Token:", responseData.access_token);
+
 
       if (responseData && responseData.access_token) {
         localStorage.setItem("token", responseData.access_token);
         const decode = jwt_decode(responseData.access_token);
-        const userId = decode.sub.id;
+        const userId = decode.user_id;
         localStorage.setItem("userId", userId);
+        localStorage.setItem("email", email)
 
         if (email.includes("@servidor")) {
+          console.log(decode)
           window.location.href = "../html/grupo.html";
+          
         } else {
           if (gruposPendentes.length > 0) {
             const studentId = localStorage.getItem("userId");
