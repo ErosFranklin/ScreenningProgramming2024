@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${teacherToken}`,
+          "Authorization": `Bearer ${teacherToken}`,
         },
         body: JSON.stringify(data),
       });

@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              "Authorization": `Bearer ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify({ recipient: email, groupName, groupId }),
           }
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            "Authorization": `Bearer ${token}`,
           },
         }
       );

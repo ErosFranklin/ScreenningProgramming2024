@@ -13,7 +13,7 @@ function uploadImage(file) {
     {
       method: "PATCH",
       headers: {
-        Authorization: `Bearer ${token}`,
+        "Authorization": `Bearer ${token}`,
       },
       body: formData,
     }

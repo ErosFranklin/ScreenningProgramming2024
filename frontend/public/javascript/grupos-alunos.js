@@ -7,8 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
     loader.style.display = "block";
 
     const studentToken = localStorage.getItem("token");
+    const decode = jwt_decode(studentToken)
     const studentId = localStorage.getItem("userId");
-    console.log(studentId, studentToken);
+    console.log("dados:", decode);
    
     if (!studentId || !studentToken) {
       console.error("Error: ID do estudante ou token inválidos");
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${studentToken}`,
+            "Authorization": `Bearer ${studentToken}`,
           },
         }
       );

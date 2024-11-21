@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
 
+    console.log('token:',token)
     if (!userId || !token) {
       console.error("Erro: ID do usuário ou token não encontrado.");
       return;
@@ -77,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            "Authorization": `Bearer ${token}`,
           },
         }
       );
@@ -139,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
         method: method,
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`,
         },
         body: JSON.stringify(data),
       });
@@ -210,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            "Authorization": `Bearer ${token}`,
           },
         }
       );
