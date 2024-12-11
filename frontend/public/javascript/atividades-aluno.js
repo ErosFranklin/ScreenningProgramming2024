@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded',function(){
     const groupId = urlParametros.get("groupId");
     carregarAtividades();
 
-
     async function carregarAtividades(groupId) {
         const studentToken = localStorage.getItem("token");
         const studentId = localStorage.getItem("userId");
@@ -57,34 +56,57 @@ document.addEventListener('DOMContentLoaded',function(){
         }
     }
     function criarAtividade(description, deadline, id_content, id_activity) {
-        let icone = "";
-        const novaAtividade = document.createElement("div");
-        novaAtividade.className = "atividade";
-        novaAtividade.dataset.id_activity = id_activity;
-        novaAtividade.dataset.id_content = id_content;
-        if (id_content === 1) {
-          icone = '<i class="bi bi-database"></i>';
-        } else if (id_content === 2) {
-          icone = '<i class="bi bi-arrow-repeat"></i>';
-        } else if (id_content === 3) {
-          icone = '<i class="bi bi-code-slash"></i>';
-        } else if (id_content === 4) {
-          icone = '<i class="bi bi-keyboard"></i>';
-        }
-        novaAtividade.innerHTML = `<h2><a href="questoes.html?idAtividade=${id_activity}">${description} ${icone}</a></h2><p class="dataAtt">Data de Encerramento: ${deadline}</p>`;
-        return novaAtividade;
+      let icone = "";
+      const novaAtividade = document.createElement("div");
+      novaAtividade.className = "atividade";
+      novaAtividade.dataset.id_activity = id_activity;
+      novaAtividade.dataset.id_content = id_content;
+      if (id_content === 1) {
+        icone = '<i class="bi bi-database"></i>';
+      } else if (id_content === 2) {
+        icone = '<i class="bi bi-arrow-repeat"></i>';
+      } else if (id_content === 3) {
+        icone = '<i class="bi bi-code-slash"></i>';
+      } else if (id_content === 4) {
+        icone = '<i class="bi bi-keyboard"></i>';
       }
-    function convertDateFormat(dateStr) {
-        const datePattern = /^\d{4}-\d{2}-\d{2}$/;
-        if (!datePattern.test(dateStr)) {
-          console.error("Formato de data inválido.");
-          return null;
-        }
-    
-        const [year, month, day] = dateStr.split("-");
-    
-        return `${day}/${month}/${year}`;
+      
+      const prazoRestante = deadlineTime(deadline);
+      let linkContent = `<a href="questoes.html?idAtividade=${id_activity}">${description} ${icone}</a>`;
+      if (prazoRestante === "Encerrada") {
+        linkContent = `${description} ${icone}`;
+      }
+      
+      novaAtividade.innerHTML = `<h2>${linkContent}</h2><p class="dataAtt">Data de Encerramento: ${deadline}</p><p>Prazo Restante: ${prazoRestante}</p>`;
+      return novaAtividade;
     }
+
+    function convertDateFormat(dateStr) {
+      const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+      if (!datePattern.test(dateStr)) {
+        console.error("Formato de data inválido.");
+        return null;
+      }
+    
+      const [year, month, day] = dateStr.split("-");
+    
+      return `${day}/${month}/${year}`;
+    }
+
+    function deadlineTime(deadline){
+      const date = new Date(deadline);
+      const now = new Date();
+      const diff = date - now;
+      let messageDate = '';
+      const diffInDays = diff / (1000 * 60 * 60 * 24);
+      if (diffInDays < 0) {
+        messageDate = "Encerrada";
+        return messageDate;
+      }
+      messageDate = `${Math.ceil(diffInDays)} dias`;
+      return messageDate;
+    }
+    
 
 
 

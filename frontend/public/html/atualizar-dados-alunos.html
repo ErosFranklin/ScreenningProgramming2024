@@ -46,7 +46,11 @@
 
             <div class="informacao">
               <label for="generoAluno">Gênero:</label>
-              <input type="text" class="dado-texto" id="generoAluno" />
+              <select name="generoAluno" class="dado-texto" id="generoAluno" >
+                  <option value="Outro" id="outro">Outro</option>
+                  <option value="Feminino" id="femi">Feminino</option>
+                  <option value="Masculino" id="masc">Masculino</option>
+              </select>
             </div>
 
             <div class="informacao">
@@ -66,12 +70,11 @@
 
             <div class="informacao">
               <label for="cidadeAluno">Cidade:</label>
-              <input type="text" class="dado-texto" id="cidadeAluno" />
+              <input type="text" id="cidadeAluno" class="dado-texto"></input>
             </div>
-
             <div class="informacao">
-              <label for="estadoPAluno">Estado:</label>
-              <input type="text" class="dado-texto" id="estadoAluno" />
+              <label for="estadoAluno">Estado:</label>
+              <select name="estadoAluno" id="estadoAluno" class="dado-texto"></select>
             </div>
 
             <div class="informacao">
@@ -92,6 +95,7 @@
       </div>
     </main>
     <script src="../javascript/alterar-dados-pessoais-aluno.js"></script>
+    <script src="../javascript/cidades.js"></script>
     <!--<script src="../javascript/alterar-foto-professor.js"></script>-->
   </body>
 </html>
