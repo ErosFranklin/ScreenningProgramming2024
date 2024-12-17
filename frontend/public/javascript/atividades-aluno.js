@@ -1,13 +1,21 @@
 document.addEventListener('DOMContentLoaded',function(){
     const urlParametros = new URLSearchParams(window.location.search);
     const groupId = urlParametros.get("groupId");
-    carregarAtividades();
+    const mensagem = document.querySelector("#mensagem");
+    const atividadeContainer = document.querySelector(".atividades-container");
+    
+    carregarAtividades(groupId);
 
     async function carregarAtividades(groupId) {
+      const loader = document.querySelector(".verificando");
+      loader.style.display = "block";
+     
+
         const studentToken = localStorage.getItem("token");
         const studentId = localStorage.getItem("userId");
         if(!studentToken || !studentId){
-            alert('Erro: Id ou Token invalidos')
+            alert('Erro: Id ou Token invalidos');
+            loader.style.display = "none";
             return;
         }
 
@@ -23,9 +31,10 @@ document.addEventListener('DOMContentLoaded',function(){
                 throw new Error(errorData.message);
             }
             const atividadeDataAluno = await response.json();
-            console.log(atividadeDataAluno)
+            console.log("isso aqui:",atividadeDataAluno)
 
             if (Array.isArray(atividadeDataAluno.activity) && atividadeDataAluno.activity.length > 0) {
+              console.log('entrou')
                 atividadeDataAluno.activity.forEach((atividade) => {
                   const id_activity = atividade[0]
                   const description = atividade[1];
@@ -42,9 +51,7 @@ document.addEventListener('DOMContentLoaded',function(){
                   atividadeContainer.appendChild(atividadeGrupo);
                 });
               } else {
-                const mensagem = document.createElement("p");
                 mensagem.textContent = "Nenhuma atividade cadastrada!!!";
-                mensagem.id = 'mensagem'
                 atividadeContainer.appendChild(mensagem);
                 console.error(
                   'A resposta da API não contém a propriedade "atividade" ou não é um array.'
@@ -52,7 +59,9 @@ document.addEventListener('DOMContentLoaded',function(){
               }
             
         } catch (error) {
-            
+          console.error("Erro ao carregar atividade:", error);
+        }finally {
+          loader.style.display = "none"; 
         }
     }
     function criarAtividade(description, deadline, id_content, id_activity) {
@@ -61,6 +70,7 @@ document.addEventListener('DOMContentLoaded',function(){
       novaAtividade.className = "atividade";
       novaAtividade.dataset.id_activity = id_activity;
       novaAtividade.dataset.id_content = id_content;
+    
       if (id_content === 1) {
         icone = '<i class="bi bi-database"></i>';
       } else if (id_content === 2) {
@@ -70,17 +80,21 @@ document.addEventListener('DOMContentLoaded',function(){
       } else if (id_content === 4) {
         icone = '<i class="bi bi-keyboard"></i>';
       }
-      
+    
       const prazoRestante = deadlineTime(deadline);
-      let linkContent = `<a href="questoes.html?idAtividade=${id_activity}">${description} ${icone}</a>`;
+      let linkContent;
       if (prazoRestante === "Encerrada") {
-        linkContent = `${description} ${icone}`;
+        // Link desativado: Sem href, mas com conteúdo visual intacto
+        novaAtividade.style.backgroundColor = "#708090"; // Estilo aplicado no novo elemento
+        linkContent = `<span class='titulos-atividade'>${description} ${icone}</span>`;
+      } else {
+        // Link ativo com href
+        linkContent = `<a id="link-atividade" href="questoes.html?idAtividade=${id_activity}">${description} ${icone}</a>`;
       }
-      
+    
       novaAtividade.innerHTML = `<h2>${linkContent}</h2><p class="dataAtt">Data de Encerramento: ${deadline}</p><p>Prazo Restante: ${prazoRestante}</p>`;
       return novaAtividade;
     }
-
     function convertDateFormat(dateStr) {
       const datePattern = /^\d{4}-\d{2}-\d{2}$/;
       if (!datePattern.test(dateStr)) {
@@ -94,7 +108,9 @@ document.addEventListener('DOMContentLoaded',function(){
     }
 
     function deadlineTime(deadline){
-      const date = new Date(deadline);
+      const [day, month, year] = deadline.split("/");
+      const formattedDate = `${year}-${month}-${day}`;
+      const date = new Date(formattedDate);
       const now = new Date();
       const diff = date - now;
       let messageDate = '';

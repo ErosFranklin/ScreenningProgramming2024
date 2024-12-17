@@ -61,8 +61,12 @@ body{
     color: #fff;
     transition: .3s ease-in-out
 }
+.titulos-atividade{
+    color: #fff;
+}
 .atividade a:hover{
     color:#ffffff9a ;
+    cursor:pointer;
 }
 .atividade p{
     color: #fff;

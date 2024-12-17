@@ -19,21 +19,15 @@
         </div>
         <ul>
         <li class="item-menu">
-            <a href="../html/grupo.html">
+            <a href="../html/grupo-aluno.html">
             <span class="icone"><i class="bi bi-people-fill"></i></span>
             <span class="txt-link">Grupos</span>
             </a>
         </li>
         <li class="item-menu">
-            <a href="../html/detalhe-grupo-atividades.html">
-            <span class="icone"><i class="bi bi-person-raised-hand"></i></span>
-            <span class="txt-link">Atividades</span>
-            </a>
-        </li>
-        <li class="item-menu">
-            <a href="../html/detalhe-grupo-estatisticas.html">
+            <a href="../html/detalhe-resultados-aluno.html">
             <span class="icone"><i class="bi bi-clipboard-data-fill"></i></span>
-            <span class="txt-link">Estatísticas</span>
+            <span class="txt-link">Resultados</span>
             </a>
         </li>
         <li class="item-menu">
@@ -50,44 +44,15 @@
         </div>
         
         <div class="atividades-container">
+            <div class="mensagem-erro" id="mensagem-erro" style="display: none;"> <p id="mensagem"></p></div>
         <div class="loaderAtividade">
             <div class="verificando" style="display: none;"></div>
         </div>
         </div>
+
         <div id="overlay" class="overlay"></div>
         <div id="modal" class="modal">
-        <h2>Criar Atividade</h2>
-        <form method="post" id="formAddAtt">
-            <label for="nomeAtt">Nome da Atividade</label>
-            <div class="componentesAtividade">
-            <i class="icones-att bi bi-people-fill"></i>
-            <select name="assunto" id="description" class="form-style">
-                <option value="" disabled selected hidden>Selecione um Assunto</option>
-                <option value="1">Entrada e Saída de Dados</option>
-                <option value="2">Comandos de Iteração</option>
-                <option value="3">Comandos de Seleção</option>
-                <option value="4">Funções</option>
-            </select>
-            </div>
-            <label for="nomeAtt">Data de Término:</label>
-            <div class="componenteData">
-            <i class="icones-att bi bi-calendar-check-fill"></i>
-            <input type="date" name="deadline" id="deadline">
-            </div>
-            <div class="bttsCriarAtt">
-            <button id="btnAddAtividade">Criar</button>
-            </div>
-        </form>
-        <button id="btnFechar">Fechar</button>
-        </div>
-        <div id="confirmaExcluirModal" class="modal" style="display: none">
-        <div class="modal-content">
-            <h2>Confirmação</h2>
-            <p>Tem certeza de que deseja excluir este grupo?</p>
-            <div class="bttsGrupo">
-            <button id="confirmarExcluirBotao">Excluir</button>
-            <button id="cancelarexclusao">Cancelar</button>
-            </div>
+        
         </div>
         </div>
     
