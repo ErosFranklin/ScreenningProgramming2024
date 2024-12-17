@@ -163,7 +163,18 @@ document.addEventListener('DOMContentLoaded', function(){
         } else if (id_content === 4) {
           icone = '<i class="bi bi-keyboard"></i>';
         }
-        novaAtividade.innerHTML = `<h2><a href="questoes.html?idAtividade=${id_activity}">${description} ${icone}</a></h2><p class="dataAtt">Data de Encerramento: ${deadline}</p>`;
+
+        const prazoRestante = deadlineTime(deadline);
+        let linkContent;
+        if (prazoRestante === "Encerrada") {
+          // Link desativado: Sem href, mas com conteúdo visual intacto
+          novaAtividade.style.backgroundColor = "#708090"; // Estilo aplicado no novo elemento
+          linkContent = `<span class='titulos-atividade'>${description} ${icone}</span>`;
+        } else {
+          // Link ativo com href
+          linkContent = `<a id="link-atividade" href="questoes.html?idAtividade=${id_activity}">${description} ${icone}</a>`;
+        }
+        novaAtividade.innerHTML = `<h2><a href="questoes.html?idAtividade=${id_activity}">${description} ${icone}</a></h2><p class="dataAtt">Data de Encerramento: ${deadline}</p><p>Prazo Restante: ${prazoRestante}</p>`;
     
         const editar = document.createElement("button");
         editar.innerHTML = '<i class="bi bi-pencil-square"></i>';
@@ -303,6 +314,33 @@ document.addEventListener('DOMContentLoaded', function(){
       } catch (error) {
         console.error("Erro ao excluir grupo:", error);
       }
+    }
+    function convertDateFormat(dateStr) {
+      const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+      if (!datePattern.test(dateStr)) {
+        console.error("Formato de data inválido.");
+        return null;
+      }
+    
+      const [year, month, day] = dateStr.split("-");
+    
+      return `${day}/${month}/${year}`;
+    }
+
+    function deadlineTime(deadline){
+      const [day, month, year] = deadline.split("/");
+      const formattedDate = `${year}-${month}-${day}`;
+      const date = new Date(formattedDate);
+      const now = new Date();
+      const diff = date - now;
+      let messageDate = '';
+      const diffInDays = diff / (1000 * 60 * 60 * 24);
+      if (diffInDays < 0) {
+        messageDate = "Encerrada";
+        return messageDate;
+      }
+      messageDate = `${Math.ceil(diffInDays)} dias`;
+      return messageDate;
     }
     
     
