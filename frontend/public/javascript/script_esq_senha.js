@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let urlApi = "";
 
     const enviarButton = document.getElementById("Enviar");
+    const messageErro = document.getElementById("message");
     const originalText = enviarButton.value;
     enviarButton.value = "Carregando...";
     enviarButton.disabled = true;
@@ -33,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
               body: JSON.stringify({ email: email }),
             }
           );
-
           if (response.ok) {
             const result = await response.json();
             console.log("email guardado:", localStorage.getItem("email"));
@@ -42,19 +42,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
           } else {
             const error = await response.json();
-            alert(error.error || "Erro ao enviar o e-mail.");
+            console.error("Erro ao enviar o e-mail:", error);
           }
         } catch (error) {
           console.error(
             "Erro ao enviar a solicitação de redefinição de senha:",
             error
           );
-          alert(
-            "Ocorreu um erro ao processar sua solicitação. Tente novamente mais tarde."
-          );
+          messageErro.innerHTML = "Ocorreu um erro ao processar sua solicitação. Tente novamente mais tarde."
         }
       } else {
-        alert("A matrícula informada não está cadastrada.");
+        messageErro.innerHTML = "A matrícula informada não está cadastrada.";
         enviarButton.value = originalText;
         enviarButton.disabled = false;
       }
@@ -75,20 +73,20 @@ document.addEventListener("DOMContentLoaded", () => {
           enviarButton.disabled = false;
           matriculaContainer.style.display = "block";
           matriculaInput.required = true;
+          messageErro.innerHTML = "";
 
           userData = await response.json();
         } else {
           matriculaContainer.style.display = "none";
           matriculaInput.required = false;
-          alert("Usuário não encontrado! Verifique o email e tente novamente.");
+          messageErro.innerHTML = "Usuário não encontrado! Verifique o email e tente novamente."; 
           enviarButton.value = originalText;
           enviarButton.disabled = false;
         }
       } catch (error) {
+        
         console.error("Erro ao validar o email:", error);
-        alert(
-          "Ocorreu um erro ao validar o email. Tente novamente mais tarde."
-        );
+        messageErro.innerHTML = "Ocorreu um erro ao validar o email. Tente novamente mais tarde.";
         enviarButton.value = originalText;
         enviarButton.disabled = false;
       }

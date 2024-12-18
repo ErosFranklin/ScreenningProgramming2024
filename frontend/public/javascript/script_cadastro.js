@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const password = document.querySelector("#senha").value;
       const confsenha = document.querySelector("#confsenha").value;
       const enviarButton = document.getElementById("Enviar");
+      const messageErro = document.getElementById("message");
       const originalText = enviarButton.value;
       enviarButton.value = "Carregando...";
       enviarButton.disabled = true;
@@ -23,30 +24,28 @@ document.addEventListener("DOMContentLoaded", function () {
         password === "" ||
         confsenha === ""
       ) {
-        alert("Preencha todos os campos!");
+        messageErro.innerHTML = "Preencha todos os campos!";
         enviarButton.value = originalText;
         enviarButton.disabled = false;
         return;
       }
 
       if (!validarEmail(email)) {
-        alert("Email inválido!");
+        messageErro.innerHTML = "Email inválido!";
         enviarButton.value = originalText;
         enviarButton.disabled = false;
         return;
       }
 
       if (!validarPassword(password)) {
-        alert(
-          "A senha deve conter entre 6 e 20 caracteres, pelo menos um número e uma letra."
-        );
+        messageErro.innerHTML = "Senha inválida!";
         enviarButton.value = originalText;
         enviarButton.disabled = false;
         return;
       }
 
       if (!validarSenhas(password, confsenha)) {
-        alert("As senhas não coincidem!");
+        messageErro.innerHTML = "As senhas não coincidem!";
         enviarButton.value = originalText;
         enviarButton.disabled = false;
         return;
@@ -92,9 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
           enviarButton.value = originalText;
           enviarButton.disabled = false;
           if (errorData.message === "invalid date") {
-            alert(
-              "Idade inválida. A idade mínima para se cadastrar no sistema é 15 anos. "
-            );
+            messageErro.innerHTML = "Idade inválida. A idade mínima para se cadastrar no sistema é 15 anos. "
             enviarButton.disabled = false;
             return;
           }
@@ -116,13 +113,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         } catch (error) {
           console.error("JSON parse error:", error);
-          alert("Ocorreu um erro ao processar a resposta do servidor.");
         }
       } catch (error) {
         console.error("Fetch error:", error);
-        alert(
-          "Ocorreu um erro ao tentar cadastrar. Por favor, tente novamente."
-        );
+        messageErro.innerHTML = "Ocorreu um erro ao tentar cadastrar. Por favor, tente novamente.";
       }finally{
         enviarButton = originalText;
         enviarButton.disabled = false;

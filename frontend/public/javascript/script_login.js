@@ -8,26 +8,25 @@ document.addEventListener("DOMContentLoaded", function () {
     const email = document.querySelector("#email").value;
     const password = document.querySelector("#senha").value;
     const enviarButton = document.getElementById("Enviar");
+    const messageErro = document.getElementById("message");
     const originalText = enviarButton.value;
     enviarButton.value = "Carregando...";
     enviarButton.disabled = true;
 
     if (email === "" || password === "") {
-      alert("Preencha todos os campos!");
+      messageErro.innerHTML = "Preencha todos os campos!";
       enviarButton.disabled = false;
       return;
     }
 
     if (!validarEmail(email)) {
-      alert("Email inválido!");
+      messageErro.innerHTML = "Email inválido!";
       enviarButton.disabled = false;
       return;
     }
 
     if (!validarPassword(password)) {
-      alert(
-        "A senha deve conter entre 6 e 20 caracteres, pelo menos um número e uma letra."
-      );
+      messageErro.innerHTML = "Senha inválida!";
       enviarButton.disabled = false;
       return;
     }
@@ -62,9 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     } catch (error) {
       console.error("Erro no processo de login:", error);
-      alert(
-        "Ocorreu um erro ao tentar fazer login. Por favor, tente novamente."
-      );
+      messageErro.innerHTML = "Ocorreu um erro ao tentar fazer login. Por favor, tente novamente.";
     }finally{
       enviarButton.value = originalText;
       enviarButton.disabled = false;

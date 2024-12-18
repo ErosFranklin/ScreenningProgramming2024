@@ -111,6 +111,12 @@ body{
     color: var(--cor-2);
     margin-top: 10px;
 }
+
+#message{
+    color:red;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
 .env{
     display: flex; 
     flex-direction:row-reverse; 
