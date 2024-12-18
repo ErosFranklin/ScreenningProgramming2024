@@ -73,6 +73,7 @@
       
       
       <div id="overlay" class="overlay"></div>
+      <!--Modal para cadastro do Grupo-->
       <div id="modal" class="modal">
         <h2>Cadastrar Grupo</h2>
         <form method="post" id="formAddGrupo">
@@ -96,12 +97,14 @@
               placeholder="ex:2024.1"
             />
           </div>
+          <div class="container-erro"><p id="message"></p></div>
           <div class="bttsGrupo">
             <button id="criarGrupo">Criar</button>
           </div>
         </form>
         <button id="fechar">Fechar</button>
       </div>
+      <!--Modal para exclusao do Grupo-->
       <div id="confirmaExcluirModal" class="modal" style="display: none">
         <div class="modal-content">
           <h2>Confirmação</h2>
@@ -110,6 +113,39 @@
             <button id="confirmarExcluirBotao">Excluir</button>
             <button id="cancelarexclusao">Cancelar</button>
           </div>
+        </div>
+      </div>
+      <!--Modal para edicao do Grupo-->
+      <div id="editarGrupo" class="modal" style="display: none;">
+        <div class="modal-content">
+          <h2>Editar Grupo</h2>
+          <form method="post" id="formEditGrupo">
+            <label for="nomeGrupo">Título do grupo</label>
+            <div class="componentesG">
+              <i class="bi bi-people-fill"></i> 
+              <input
+                type="text"
+                name="nomeGrupoEditado"
+                id="nomeGrupoEditado"
+                placeholder="Nome do Grupo"
+              />
+            </div>
+            <label for="periodo">Período, ex:2024.1</label>
+            <div class="componentesG">
+              <i class="bi bi-calendar-week-fill"></i
+              ><input
+                type="text"
+                name="periodoEditado"
+                id="periodoEditado"
+                placeholder="ex:2024.1"
+              />
+            </div>
+            <div class="container-erro"><p id="message">aaa</p></div>
+            <div class="bttsGrupo">
+              <button id="editarGrupoBotao">Editar</button>
+            </div>
+          </form>
+          <button id="fecharEditar">Fechar</button>
         </div>
       </div>
 

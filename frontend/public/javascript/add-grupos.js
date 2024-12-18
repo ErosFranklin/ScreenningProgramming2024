@@ -6,9 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const nomeGrupoInput = document.querySelector("#nomeGrupo");
   const periodoInput = document.querySelector("#periodo");
   const botaoFechar = document.querySelector("#fechar");
+  //Exclusao
   const confirmaExcluirModal = document.querySelector("#confirmaExcluirModal");
   const confirmaExcluirBotao = document.querySelector("#confirmarExcluirBotao");
   const cancelarExclusao = document.querySelector("#cancelarexclusao");
+  const messageErro = document.getElementById("message");
   let grupoParaExcluir;
 
   carregarGrupos();
@@ -35,13 +37,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const nomeGrupo = nomeGrupoInput.value;
       const periodo = periodoInput.value;
+      const messageErro = document.getElementById("message");
 
       if (verificarGrupo(nomeGrupo, periodo)) {
-        alert("Já existe um grupo com esse nome e período!");
+        messageErro.innerHTML = "Já existe um grupo com esse nome e período!";
         return;
       }
       if (nomeGrupo === "" || periodo === "") {
-        alert("Preencha todas as informações!");
+        messageErro.innerHTML = "Preencha todos os campos!";
         return;
       }
 
@@ -54,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
           fecharJanela(overlay, modal, nomeGrupoInput, periodoInput);
         }
       } catch (error) {
+        messageErro.innerHTML = "Erro ao criar grupo, tente novamenete mais tarde";
         console.error("Erro ao criar grupo:", error);
       }
     });
@@ -198,6 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
   async function excluirGrupo(novoGrupo) {
     const groupId = novoGrupo.dataset.groupId;
     const token = localStorage.getItem("token");
+    const messageErro = document.getElementById("message"); 
 
     if (!groupId || !token) {
       console.error("Erro: ID do grupo ou token não encontrado.");
@@ -227,6 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       console.log("Grupo excluído com sucesso.");
     } catch (error) {
+      messageErro.innerHTML = "Erro ao excluir grupo: " + error;
       console.error("Erro ao excluir grupo:", error);
     }
   }
@@ -255,77 +261,72 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function editarGrupo(grupo) {
-    const editar = grupo.querySelector(".editar");
-    editar.remove();
+    
+    const modal = document.getElementById("editarGrupo");
+    const inputNome = document.getElementById("nomeGrupoEditado");
+    const inputPeriodo = document.getElementById("periodoEditado");
+    const botaoFechar = document.getElementById("fecharEditar");
+    const botaoEditar = document.getElementById("editarGrupoBotao");
+    
+    overlay.style.display = "block";
 
-    const a = grupo.querySelector("a");
-    const p = grupo.querySelector("p");
-
-    const hrefOriginal = a.href;
+    
     const groupId = grupo.dataset.groupId;
+    const nomeAtual = grupo.querySelector("a").textContent.trim();
+    const periodoAtual = grupo.querySelector("p").textContent.trim();
+    console.log(groupId, nomeAtual, periodoAtual);
 
-    a.removeAttribute("href");
+    
+    inputNome.value = nomeAtual;
+    inputPeriodo.value = periodoAtual;
 
-    const inputNome = document.createElement("input");
-    inputNome.type = "text";
-    inputNome.value = a.textContent;
+    
+    modal.style.display = "block";
 
-    const inputPeriodo = document.createElement("input");
-    inputPeriodo.type = "text";
-    inputPeriodo.value = p.textContent;
+    
+    botaoFechar.onclick = () => {
+        modal.style.display = "none";
+        overlay.style.display = "none";
+    };
 
-    a.classList.add("editaG");
-    p.classList.add("editaG");
+    
+    botaoEditar.onclick = async (event) => {
+        event.preventDefault();
 
-    a.innerHTML = "";
-    a.appendChild(inputNome);
+        const novoNome = inputNome.value.trim();
+        const novoPeriodo = inputPeriodo.value.trim();
 
-    p.innerHTML = "";
-    p.appendChild(inputPeriodo);
+        if (novoNome === "" || novoPeriodo === "") {
 
-    const salvar = document.createElement("button");
-    salvar.innerHTML = '<i class="bi bi-floppy-fill"></i>';
-    salvar.className = "salvar";
-    salvar.classList.add("editarGrupo");
-    salvar.addEventListener("click", async function () {
-      const novoNome = inputNome.value.trim();
-      const novoPeriodo = inputPeriodo.value.trim();
+          alert("Preencha todos os campos!");
+          return;
+        }
 
-      if (novoNome === "" || novoPeriodo === "") {
-        alert("Por favor, preencha todos os campos.");
-        return;
-      }
 
-      if (verificarGrupo(novoNome, novoPeriodo)) {
-        alert("Já existe um grupo com esse nome e período.");
-        return;
-      }
+        const userId = localStorage.getItem("userId");
 
-      const userId = localStorage.getItem("userId");
+        if (!userId) {
+          alert("Erro: ID do usuário não encontrado.");
+          return;
+        }
 
-      if (!userId) {
-        alert("Erro: ID do usuário não encontrado.");
-        return;
-      }
+        try {
+            await salvarGrupoBackend(novoNome, novoPeriodo, groupId);
 
-      try {
-        await salvarGrupoBackend(novoNome, novoPeriodo, groupId);
+            // Atualizar os elementos do grupo com os novos valores
+            grupo.querySelector("a").textContent = novoNome;
+            grupo.querySelector("p").textContent = novoPeriodo;
 
-        a.textContent = novoNome;
-        p.textContent = novoPeriodo;
-        a.href = hrefOriginal;
+            // Fechar o modal
+            overlay.style.display = "none";
+            modal.style.display = "none";
+        } catch (error) {
+          console.error("Erro ao editar grupo:", error);
 
-        inputNome.remove();
-        inputPeriodo.remove();
-        salvar.remove();
-        grupo.appendChild(editar);
-      } catch (error) {
-        console.error("Erro ao editar grupo:", error);
-      }
-    });
+        }
+    };
+}
 
-    grupo.appendChild(salvar);
-  }
   function exibirModalExcluir() {
     overlay.style.display = "block";
     confirmaExcluirModal.style.display = "block";

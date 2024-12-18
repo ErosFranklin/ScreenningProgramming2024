@@ -369,7 +369,7 @@ body{
     font-size:1.2em;
 }
 
-#criarGrupo, #confirmarExcluirBotao{
+#criarGrupo, #confirmarExcluirBotao, #editarGrupoBotao{
     background-color: var(--cor-4);
     border-style: none;
     border-radius: 5px;
@@ -383,7 +383,13 @@ body{
 #criarGrupo:hover{
     background-color: var(--cor-5);
 }
-#fechar, #cancelarexclusao{
+#confirmarExcluirBotao:hover{
+    background-color: var(--cor-5);
+}   
+#editarGrupoBotao:hover{
+    background-color: var(--cor-5);
+}
+#fechar, #cancelarexclusao, #fecharEditar{
     background-color: var(--cor-4);
     border-style: none;
     border-radius: 5px;
@@ -395,4 +401,15 @@ body{
 }
 #fechar:hover{
     background-color: var(--cor-5);
+}
+#fecharEditar:hover{
+    background-color: var(--cor-5);
+}
+#cancelarexclusao:hover{
+    background-color: var(--cor-5);
+}
+
+#message{
+    color:red;
+    font-size:0.9rem;
 }
