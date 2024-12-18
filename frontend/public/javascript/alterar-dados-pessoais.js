@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     const specificUserData = await especificarUser.json();
+    console.log(specificUserData)
     /* Atualiza a imagem de perfil
         const imageContainer = document.querySelector('#fotoContainer');
         const elementoImagem = document.createElement('img');
