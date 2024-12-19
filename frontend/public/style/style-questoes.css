@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,800;0,900;1,500&display=swap');
+*{
+    
+    margin:0;
+    padding:0;
+    font-family:'Poppins', sans-serif;
+    box-sizing:border-box;
+}
+:root {
+    --cor-1: #275AF2;
+    --cor-2: #5079F2;
+    --cor-3: #035AA6;
+    --cor-4: #0050b8;
+    --cor-5: #023059;
+    --cor-text: #fff;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+}
+#titulo-atividade{
+    font-size: 1.5rem;
+    color:var(--cor-4);
+    margin: 15px;
+}
+.alternativas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 10px;
+    position: relative;
+    padding-left:1%;
+    margin:100px;
+}
+#alternativa1, #alternativa2, #alternativa3, #alternativa4{
+    border: 1px solid #87a2f4;
+    border-radius: 10px;
+    padding:10px;
+    background-color:var(--cor-3);
+    color:#ffff;
+    font-size:1.2rem;
+    font-weight: bolder;
+    transition: .2s ease-in-out
+}
+#alternativa1:hover, #alternativa2:hover, #alternativa3:hover, #alternativa4:hover{
+    background-color:var(--cor-2);
+    color:#ffff;
+    cursor:pointer;
+}

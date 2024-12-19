@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded',function(){
         linkContent = `<span class='titulos-atividade'>${description} ${icone}</span>`;
       } else {
         // Link ativo com href
-        linkContent = `<a id="link-atividade" href="questoes.html?idAtividade=${id_activity}">${description} ${icone}</a>`;
+        linkContent = `<a id="link-atividade" href="questoes-aluno.html?idAtividade=${id_activity}&id_content=${id_content}&groupId=${groupId}">${description} ${icone}</a>`;
       }
     
       novaAtividade.innerHTML = `<h2>${linkContent}</h2><p class="dataAtt">Data de Encerramento: ${deadline}</p><p>Prazo Restante: ${prazoRestante}</p>`;
