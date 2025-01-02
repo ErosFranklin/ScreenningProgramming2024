@@ -15,18 +15,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (email === "" || password === "") {
       messageErro.innerHTML = "Preencha todos os campos!";
+      enviarButton.value = originalText;
       enviarButton.disabled = false;
       return;
     }
 
     if (!validarEmail(email)) {
       messageErro.innerHTML = "Email inválido!";
+      enviarButton.value = originalText;
       enviarButton.disabled = false;
       return;
     }
 
     if (!validarPassword(password)) {
       messageErro.innerHTML = "Senha inválida!";
+      enviarButton.value = originalText;
       enviarButton.disabled = false;
       return;
     }

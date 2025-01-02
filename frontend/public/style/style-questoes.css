@@ -27,44 +27,49 @@ body{
 }
 .container-alternativas {
     display: flex;
-    justify-content: center; /* Centraliza horizontalmente o grid */
-    align-items: center; /* Centraliza verticalmente */
-    width: 100%; /* O container ocupa toda a largura */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     padding: 20px;
-    box-sizing: border-box; /* Inclui o padding no cálculo da largura */
+    box-sizing: border-box;
 }
 
 .alternativas {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajusta dinamicamente o número de colunas */
-    gap: 20px; /* Espaço entre os itens */
-    width: 100%; /* Ocupa toda a largura do container */
-    max-width: 80%; /* Limita a largura máxima para melhor centralização */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 80%;
     padding: 20px;
     box-sizing: border-box;
 }
 
 .alternativa {
-    display: flex; /* Garante que o botão ocupe todo o espaço da div */
-    justify-content: center; /* Centraliza horizontalmente o botão */
-    align-items: center; /* Centraliza verticalmente o botão */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#alternativa1, #alternativa2, #alternativa3, #alternativa4 {
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"] + label {
+    display: inline-block;
+    padding: 10px 20px;
     border: 1px solid #87a2f4;
     border-radius: 10px;
-    padding: 10px;
     background-color: var(--cor-3);
     color: #fff;
     font-size: 1.2rem;
     font-weight: bolder;
-    width: 50%; /* Garante que o botão ocupe toda a largura disponível */
-    transition: 0.2s ease-in-out;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
 }
-#alternativa1:hover, #alternativa2:hover, #alternativa3:hover, #alternativa4:hover{
-    background-color:var(--cor-2);
-    color:#ffff;
-    cursor:pointer;
+
+input[type="radio"]:checked + label {
+    background-color: var(--cor-2);
+    color: #fff;
 }
 .enunciado{
     display: flex;
@@ -79,6 +84,23 @@ body{
     border: 10px solid var(--cor-3);
     border-radius: 10px;
 }
+#enviar-resposta {
+    display: block;
+    margin: 5px auto;
+    padding: 10px 20px;
+    background-color: #0050b8;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#enviar-resposta:hover {
+    background-color: #003a8c;
+}
+
 .overlay {
     display: none; 
     position: fixed;
@@ -108,5 +130,5 @@ body{
 }
 
 .overlay.active, .spinner.active {
-    display: flex; /* Mostra a overlay e o spinner */
+    display: flex; 
 }
