@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded',function(){
     carregarAtividades(groupId);
 
     async function carregarAtividades(groupId) {
-      const loader = document.querySelector(".verificando");
+      const loader = document.querySelector(".container-spinner");
       loader.style.display = "block";
      
 

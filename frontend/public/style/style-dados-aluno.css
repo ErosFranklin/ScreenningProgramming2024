@@ -53,7 +53,7 @@ body{
     max-width: 1000px;
     max-height: 600px;
     bottom: 50px;
-    margin-top: 3%;
+    margin-top: 5%;
     background: transparent;
     border: 2px solid var(--cor-2);
     border-radius:10px;

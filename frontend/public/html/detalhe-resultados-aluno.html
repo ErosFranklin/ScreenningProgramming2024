@@ -4,12 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Detalhes do Grupo(Estatisticas)</title>
-    <link rel="stylesheet" href="../style/style-grupo.css" />
+    <link rel="stylesheet" href="../style/style-grupo-estatisticas.css" />
     <link rel="stylesheet" href="../style/style-detalhe-grupo.css" />
+   
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
   </head>
   <body>
     <nav class="menuLateral">
@@ -54,11 +56,18 @@
       <div class="titulo-grupo">
         <h2>Estatisticas</h2>
       </div>
-      <div class="container-grupo"></div>
+      <div class="container-spinner">
+        <div class="overlay-spinner" >
+            <div class="spinner"></div>
+          </div>
+    </div>
+      <div class="container-grupos" id="container-grupos">
+        <div id="grupos" class="grupos">
+        </div>
+      </div>
     </main>
     <script src="../javascript/menu.js"></script>
     <script src="../javascript/logout.js"></script>
     <script src="../javascript/estatisticas.js"></script>
-    <script src="../javascript/grupos-alunos.js"></script>
   </body>
 </html>

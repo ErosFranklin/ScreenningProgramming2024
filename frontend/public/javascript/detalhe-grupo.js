@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   async function carregarDetalhesGrupo() {
-    document.getElementById("verificando").style.display = "flex";
+    document.querySelector(".container-spinner").style.display = "block";
 
     try {
       const response = await fetch(
@@ -56,13 +56,13 @@ document.addEventListener("DOMContentLoaded", async function () {
       console.error("Erro ao carregar detalhes do grupo:", error);
     } finally {
       // Esconde o loader após a conclusão
-      document.getElementById("verificando").style.display = "none";
+      document.querySelector(".container-spinner").style.display = "none";
     }
 }
 
 async function carregarAlunos(pagina) {
     // Exibe o loader e oculta a tabela e a mensagem de erro
-    document.getElementById("verificando").style.display = "flex";
+    document.querySelector(".container-spinner").style.display = "block";
     document.getElementById("mensagem-erro").style.display = "none";
     document.getElementById("tabelaAlunos").style.display = "none";
     document.getElementById("paginacao").style.display = "none";
@@ -86,13 +86,13 @@ async function carregarAlunos(pagina) {
       const dadosAlunos = await response.json();
       if (Array.isArray(dadosAlunos.Students) && dadosAlunos.Students.length > 0) {
         // Oculta o loader e exibe a tabela e paginação caso haja alunos
-        document.getElementById("verificando").style.display = "none";
+        document.querySelector(".container-spinner").style.display = "none";
         document.getElementById("tabelaAlunos").style.display = "table";
         document.getElementById("paginacao").style.display = "flex";
         atualizarTabela(dadosAlunos.Students);
       } else {
         // Oculta o loader e exibe a mensagem de erro caso não haja alunos
-        document.getElementById("verificando").style.display = "none";
+        document.querySelector(".container-spinner").style.display = "none";
         document.getElementById("mensagem-erro").style.display = "flex";
       }
     } catch (error) {

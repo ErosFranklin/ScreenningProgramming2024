@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   carregarGrupo();
 
   async function carregarGrupo() {
-    const loader = document.querySelector(".verificando");
+    const loader = document.querySelector(".container-spinner");
     loader.style.display = "block";
 
     const studentToken = localStorage.getItem("token");
@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!studentId || !studentToken) {
       console.error("Error: ID do estudante ou token inválidos");
       loader.style.display = "none"; 
+      
       return;
     }
 
@@ -36,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("Erro na resposta da API:", errorData);
         throw new Error(errorData.message);
       }
-
+      loader.style.display = "none";
       const gruposData = await response.json();
       console.log("dados do grupo:", gruposData);
 

@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
   async function carregarGrupos() {
-    const loader = document.querySelector(".verificando");
+    const loader = document.querySelector(".container-spinner");
     loader.style.display = "block";
 
     const token = localStorage.getItem("token");
