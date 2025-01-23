@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded',function(){
       novaAtividade.className = "atividade";
       novaAtividade.dataset.id_activity = id_activity;
       novaAtividade.dataset.id_content = id_content;
-    
+      localStorage.setItem("id_activity", id_activity);
       if (id_content === 1) {
         icone = '<i class="bi bi-database"></i>';
       } else if (id_content === 2) {

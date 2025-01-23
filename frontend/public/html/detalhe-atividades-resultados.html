@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados</title>
+</head>
+<body>
+    <div class="container-tabelaresultados" >
+        <div class="mensagem-erro" id="mensagem-erro" style="display: none;"> <p id="mensagem">Nenhum estudante cadastrado!</p></div>
+        <div class="container-spinner">
+          <div class="overlay-spinner" >
+              <div class="spinner"></div>
+            </div>
+      </div>
+        <table id="tabelaResultados" style="display: none;">
+          <thead>
+            <tr class="linha">
+              <th class="celula-tabela" id="celulaID">Atividades</th>
+              <th class="celula-tabela">Lembrar</th>
+              <th class="celula-tabela">Compreender</th>
+              <th class="celula-tabela">Aplicar</th>
+              <th class="celula-tabela">Analisar</th>
+              <th class="celula-tabela">Avaliar</th>
+              <th class="celula-tabela">Criar</th>
+            </tr>
+          </thead>
+          <tbody class="alunos-tabela"></tbody>
+        </table>
+        <script src="../javascript/resultados-aluno.js"></script>
+</body>
+</html>

@@ -12,11 +12,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const originalText = enviarButton.value;
     enviarButton.value = "Carregando...";
     enviarButton.disabled = true;
+    const loader = document.querySelector(".container-spinner");
+    loader.style.display = "block";
 
     if (email === "" || password === "") {
       messageErro.innerHTML = "Preencha todos os campos!";
       enviarButton.value = originalText;
       enviarButton.disabled = false;
+      loader.style.display = "none";
       return;
     }
 
@@ -24,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
       messageErro.innerHTML = "Email inválido!";
       enviarButton.value = originalText;
       enviarButton.disabled = false;
+      loader.style.display = "none";
       return;
     }
 
@@ -31,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
       messageErro.innerHTML = "Senha inválida!";
       enviarButton.value = originalText;
       enviarButton.disabled = false;
+      loader.style.display = "none";
       return;
     }
 
@@ -68,6 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }finally{
       enviarButton.value = originalText;
       enviarButton.disabled = false;
+      loader.style.display = "none";
     }
   });
 
