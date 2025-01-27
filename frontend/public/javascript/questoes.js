@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             const questionId = questionImageElement.getAttribute("data-question-id");
 
             try {
+                overlay.classList.add("active");
+                spinner.classList.add("active");
                 const response = await fetch('https://screenning-programming.onrender.com/api/question/aswner', {
                     method: "POST",
                     headers: {
@@ -50,6 +52,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             } catch (error) {
                 console.error("Erro ao enviar resposta", error);
                 alert("Erro ao enviar resposta: " + error.message);
+            } finally{
+                overlay.classList.remove("active");
+                spinner.classList.remve("active");
             }
         } else {
             alert("Por favor, selecione uma alternativa.");
