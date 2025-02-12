@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const originalText = enviarButton.value;
       enviarButton.value = "Carregando...";
       enviarButton.disabled = true;
+      const loader = document.querySelector(".container-spinner");
+      loader.style.display = "block";
 
       const dataNascConverted = convertDateFormat(dataNasc);
 
@@ -27,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         messageErro.innerHTML = "Preencha todos os campos!";
         enviarButton.value = originalText;
         enviarButton.disabled = false;
+        loader.style.display = "none";
         return;
       }
 
@@ -34,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         messageErro.innerHTML = "Email inválido!";
         enviarButton.value = originalText;
         enviarButton.disabled = false;
+        loader.style.display = "none";
         return;
       }
 
@@ -41,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         messageErro.innerHTML = "Senha inválida!";
         enviarButton.value = originalText;
         enviarButton.disabled = false;
+        loader.style.display = "none";
         return;
       }
 
@@ -48,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
         messageErro.innerHTML = "As senhas não coincidem!";
         enviarButton.value = originalText;
         enviarButton.disabled = false;
+        loader.style.display = "none";
         return;
       }
 
@@ -90,9 +96,11 @@ document.addEventListener("DOMContentLoaded", function () {
           console.error("Error:", errorData.message);
           enviarButton.value = originalText;
           enviarButton.disabled = false;
+          loader.style.display = "none";
           if (errorData.message === "invalid date") {
             messageErro.innerHTML = "Idade inválida. A idade mínima para se cadastrar no sistema é 15 anos. "
             enviarButton.disabled = false;
+            loader.style.display = "none";
             return;
           }
           alert("Erro: " + errorData.message);
@@ -113,6 +121,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         } catch (error) {
           console.error("JSON parse error:", error);
+        }finally{
+          enviarButton.value = originalText;
+          enviarButton.disabled = false;
+          loader.style.display = "none";
         }
       } catch (error) {
         console.error("Fetch error:", error);
@@ -120,6 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }finally{
         enviarButton = originalText;
         enviarButton.disabled = false;
+        loader.style.display = "none";
       }
     });
 
