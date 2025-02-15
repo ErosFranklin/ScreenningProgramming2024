@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", async function () {
   const studentId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
+  const enviarButton = document.querySelector("#salvarDados");
 
   if (!studentId || !token) {
     alert("Erro: ID do usuário ou token não encontrado.");
@@ -69,6 +70,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       const state = document.querySelector("#estadoAluno").value;
       const institution = document.querySelector("#instituicaoAluno").value;
       const dataNascConverted = convertDateFormat(birth);
+      enviarButton.disabled = true;
+      const loader = document.querySelector(".container-spinner");
+      loader.style.display = "block";
 
       const updatedData = {
         nameStudent: name,
@@ -98,10 +102,14 @@ document.addEventListener("DOMContentLoaded", async function () {
         } else {
           alert("Dados atualizados com sucesso!");
           window.location.href = "../html/conta-aluno.html";
+
         }
       } catch (error) {
         console.error("Erro ao atualizar dados do usuário:", error);
         alert("Erro ao atualizar dados do usuário.");
+      }finally{
+        enviarButton.disabled = false;
+        loader.style.display = "none";
       }
     });
   //Funcao que verifica se a data está no formato dd/mm/yyyy

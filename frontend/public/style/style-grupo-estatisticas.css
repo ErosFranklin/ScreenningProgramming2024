@@ -79,6 +79,17 @@ body{
     font-size:1rem;
     color: #fff;
 }
+#mensagem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 1.2rem;
+    color: var(--cor-4);
+    font-weight: bolder;
+    text-transform: uppercase;
+}
 .container-spinner{
     display: none;
     justify-content: center;

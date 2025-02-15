@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", async function () {
   const teacherId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
-
+  const enviarButton = document.querySelector("#salvarDados");
+  
   if (!teacherId || !token) {
     alert("Erro: ID do usuário ou token não encontrado.");
     return;
@@ -36,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     document.querySelector("#nomeProfessor").value =
       specificUserData.name || "";
     document.querySelector("#datadenascimentoProfessor").value =
-      formatDateToInputFormat(specificUserData.birth) || "";
+      formatDateTtFormat(specificUserData.birth) || "";
     document.querySelector("#generoProfessor").value =
       specificUserData.gender || "";
     document.querySelector("#formacaoProfessor").value =
@@ -71,6 +72,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       const state = document.querySelector("#estadoProfessor").value;
       const institution = document.querySelector("#instituicaoProfessor").value;
       const dataNascConverted = convertDateFormat(birth);
+      enviarButton.disabled = true;
+      const loader = document.querySelector(".container-spinner");
+      loader.style.display = "block";
 
       const updatedData = {
         nameTeacher: name,
@@ -104,6 +108,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       } catch (error) {
         console.error("Erro ao atualizar dados do usuário:", error);
         alert("Erro ao atualizar dados do usuário.");
+      }finally{
+        enviarButton.disabled = false;
+        loader.style.display = "none";
       }
     });
   // essa funcao veerifica se a data está no formato dd/mm/yyyy
@@ -129,5 +136,5 @@ document.addEventListener("DOMContentLoaded", async function () {
     const [year, month, day] = dateStr.split("-");
 
     return `${day}/${month}/${year}`;
-  }
+  }oInpu
 });
