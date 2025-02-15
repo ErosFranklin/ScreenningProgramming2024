@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const btnFechar = document.querySelector('#btnFechar');
     const selectDescription = document.querySelector('#description');
     const deadlineInput = document.querySelector('#deadline');
+    const amountQuestions = document.querySelector('#amountQuestions');
     const groupId = localStorage.getItem('groupId');
     const formAddAtt = document.querySelector('#formAddAtt');
     const atividadeContainer = document.querySelector('.atividades-container')
@@ -38,19 +39,24 @@ document.addEventListener('DOMContentLoaded', function(){
         const dataDescription = getId_Content(selectDescription);
         const description = dataDescription.description;
         const id_content = dataDescription.id_content;
+        
 
         if(verificarAtividade(description, deadline)){
             alert('Essa atividade ja foi criada nesse grupo!!!');
             return;
         }
+        if(amountQuestions.value < 20){
+          alert('Quantidade de questões inválida. Valor mínimo é 20 questões!!!');
+          return;
+        }
         
         try {
-            const salvarAtividade = await salvarAtividadeBackend(description, deadline, id_content);
+            const salvarAtividade = await salvarAtividadeBackend(description, deadline, id_content, amountQuestions.value);
     
             if (salvarAtividade) {
-              const novaAtividade = criarAtividade(description, deadline, salvarAtividade.id_activity);
+              const novaAtividade = criarAtividade(description, deadline, salvarAtividade.id_activity, amountQuestions.value);
               atividadeContainer.appendChild(novaAtividade);
-              fecharJanela(overlay, modal, description, deadline);
+              fecharJanela(overlay, modal, description, deadline, amountQuestions);
             }
           } catch (error) {
             console.error("Erro ao criar grupo:", error);
@@ -116,13 +122,14 @@ document.addEventListener('DOMContentLoaded', function(){
         loader.style.display = "none"; 
       }
     }
-    async function salvarAtividadeBackend(description, deadline, id_content) {
+    async function salvarAtividadeBackend(description, deadline, id_content, amountQuestions) {
     
         const activityData = {
           description: description,
           deadline: deadline,
           id_content:id_content,
-          id_group: groupId
+          id_group: groupId,
+          amount_questions: amountQuestions
         };
     
         try {
