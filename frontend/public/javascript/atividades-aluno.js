@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded',function(){
                   atividadeContainer.appendChild(atividadeGrupo);
                 });
               } else {
+                mensagem.style.display = "block";
                 mensagem.textContent = "Nenhuma atividade cadastrada!!!";
                 atividadeContainer.appendChild(mensagem);
                 console.error(
