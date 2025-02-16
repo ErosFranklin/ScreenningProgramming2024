@@ -26,6 +26,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     event.preventDefault();
     const email = emailAluno.value.trim();
     console.log("E-mail digitado:", email);
+    const loader = document.querySelector(".container-spinner");  
+    botaoEnviarConvite.disabled = true;
+    loader.style.display = "block";
 
     if (email) {
       try {
@@ -55,6 +58,9 @@ document.addEventListener("DOMContentLoaded", async function () {
           const errorData = await response.json();
           console.error("Erro ao enviar convite:", errorData);
           throw new Error("Erro ao enviar convite");
+          loader.style.display = "none";
+          botaoEnviarConvite.disabled = false;
+
         }
         const dados = await response.json();
         console.log(dados);
@@ -62,9 +68,14 @@ document.addEventListener("DOMContentLoaded", async function () {
       } catch (error) {
         console.error("Erro ao enviar convite:", error);
         alert("Houve um erro ao enviar o convite. Tente novamente mais tarde.");
+      }finally{
+        loader.style.display = "none";
+        botaoEnviarConvite.disabled = false;
       }
     } else {
       alert("Por favor, insira um e-mail válido.");
+      loader.style.display = "none";
+      botaoEnviarConvite.disabled = false;
     }
   });
 

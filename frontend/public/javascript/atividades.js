@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function(){
         }
         
         try {
-            const salvarAtividade = await salvarAtividadeBackend(description, deadline, id_content, amountQuestions.value);
+            const salvarAtividade = await salvarAtividadeBackend(description, deadline, id_content,groupId, amountQuestions.value);
     
             if (salvarAtividade) {
               const novaAtividade = criarAtividade(description, deadline, salvarAtividade.id_activity, amountQuestions.value);
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     })
     async function carregarAtividades(groupId) {
-      const loader = document.querySelector(".verificando");
+      const loader = document.querySelector(".container-spinner");
       loader.style.display = "block";
       
       if (!groupId) {
@@ -79,7 +79,8 @@ document.addEventListener('DOMContentLoaded', function(){
           {
             method: "GET",
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${localStorage.getItem("token")}`,
             },
           }
         );
@@ -122,7 +123,9 @@ document.addEventListener('DOMContentLoaded', function(){
         loader.style.display = "none"; 
       }
     }
-    async function salvarAtividadeBackend(description, deadline, id_content, amountQuestions) {
+    async function salvarAtividadeBackend(description, deadline, id_content,groupId,amountQuestions) {
+      const loader = document.querySelector(".container-spinner");
+      loader.style.display = "block";
     
         const activityData = {
           description: description,
@@ -136,7 +139,8 @@ document.addEventListener('DOMContentLoaded', function(){
           const response = await fetch('https://screenning-programming.onrender.com/api/activity', {
             method: 'POST',
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify(activityData),
           });
@@ -153,6 +157,9 @@ document.addEventListener('DOMContentLoaded', function(){
           console.error("Erro ao salvar atividade:", error);
           alert("Erro ao salvar atividade: " + error.message);
           return null;
+        }finally{
+          loader.style.display = "none";
+          
         }
       }
       function criarAtividade(description, deadline, id_content, id_activity) {
