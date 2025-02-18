@@ -69,7 +69,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             const response = await fetch(`https://screenning-programming.onrender.com/api/activity?id_content=${id_content}&id_group=${groupId}`, {
                 method: "GET",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
                 }
             });
 

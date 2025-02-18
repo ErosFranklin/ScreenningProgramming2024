@@ -122,6 +122,8 @@ document.addEventListener("DOMContentLoaded", function () {
   async function salvarGrupoBackend(nomeGrupo, periodo, groupId = null) {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
+    const loader = document.querySelector(".container-spinner");
+    loader.style.display = "block";
 
     if (!userId || !token) {
       alert("Erro: ID do usuário ou token não encontrado.");
@@ -168,6 +170,8 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Erro ao salvar grupo:", error);
       alert("Erro ao salvar grupo: " + error.message);
       return null;
+    }finally{
+      loader.style.display = "none";
     }
   }
 
@@ -202,7 +206,9 @@ document.addEventListener("DOMContentLoaded", function () {
   async function excluirGrupo(novoGrupo) {
     const groupId = novoGrupo.dataset.groupId;
     const token = localStorage.getItem("token");
-    const messageErro = document.getElementById("message"); 
+    const messageErro = document.getElementById("message");
+    const loader = document.querySelector(".container-spinner");
+    loader.style.display = "block"; 
 
     if (!groupId || !token) {
       console.error("Erro: ID do grupo ou token não encontrado.");
@@ -234,6 +240,8 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (error) {
       messageErro.innerHTML = "Erro ao excluir grupo: " + error;
       console.error("Erro ao excluir grupo:", error);
+    }finally{
+      loader.style.display = "none";
     }
   }
 

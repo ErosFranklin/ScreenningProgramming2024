@@ -279,14 +279,14 @@ document.addEventListener('DOMContentLoaded', function(){
     
 
         try {
-          const response = await fetch('https://screenning-programming.onrender.com/api/activity', {
+          const response = await fetch(`https://screenning-programming.onrender.com/api/activity/${id_activity}`, {
             method: 'PATCH', 
             headers: {
               'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({
-              id_activity,
-              deadline: novaDeadline, 
+              deadline: novaDeadline
             }),
           });
     

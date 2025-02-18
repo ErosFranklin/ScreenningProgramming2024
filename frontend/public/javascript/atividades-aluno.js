@@ -23,7 +23,8 @@ document.addEventListener('DOMContentLoaded',function(){
             const response = await fetch(`https://screenning-programming.onrender.com/api/activity/all?id_group=${groupId}`,{
                 method: "GET",
                 headers: {
-                  "Content-Type": "application/json"
+                  "Content-Type": "application/json",
+                  "Authorization": `Bearer ${studentToken}`,
                 },
             })
             if(!response.ok) {
