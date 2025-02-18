@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function(){
         const dataDescription = getId_Content(selectDescription);
         const description = dataDescription.description;
         const id_content = dataDescription.id_content;
+        const amountQuestionsValue = parseInt(amountQuestions.value, 10);
         
 
         if(verificarAtividade(description, deadline)){
@@ -51,12 +52,13 @@ document.addEventListener('DOMContentLoaded', function(){
         }
         
         try {
-            const salvarAtividade = await salvarAtividadeBackend(description, deadline, id_content,groupId, amountQuestions.value);
+            const salvarAtividade = await salvarAtividadeBackend(description, deadline, id_content,groupId, amountQuestionsValue);
     
             if (salvarAtividade) {
-              const novaAtividade = criarAtividade(description, deadline, salvarAtividade.id_activity, amountQuestions.value);
+              const novaAtividade = criarAtividade(description, deadline, salvarAtividade.id_activity, amountQuestionsValue);
               atividadeContainer.appendChild(novaAtividade);
               fecharJanela(overlay, modal, description, deadline, amountQuestions);
+              mensagem.style.display = "none";
             }
           } catch (error) {
             console.error("Erro ao criar grupo:", error);
@@ -124,6 +126,7 @@ document.addEventListener('DOMContentLoaded', function(){
       }
     }
     async function salvarAtividadeBackend(description, deadline, id_content,groupId,amountQuestions) {
+      console.log(description, deadline, id_content,groupId,amountQuestions)
       const loader = document.querySelector(".container-spinner");
       loader.style.display = "block";
     
