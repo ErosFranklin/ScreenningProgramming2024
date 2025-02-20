@@ -26,14 +26,15 @@ document.addEventListener("DOMContentLoaded", async function () {
             try {
                 overlay.classList.add("active");
                 spinner.classList.add("active");
-                const response = await fetch('https://screenning-programming.onrender.com/api/question/aswner', {
+                const response = await fetch(`https://screenning-programming.onrender.com/api/question/aswner`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${token}`
                     },
-                    body: JSON.stringify({ ID: questionId, student_answer: resposta })
+                    body: JSON.stringify({ ID: questionId, student_answer: resposta, id_activity: id_activity })
                 });
+                
 
                 if (!response.ok) throw new Error("Erro ao enviar resposta");
 
@@ -54,7 +55,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 alert("Erro ao enviar resposta: " + error.message);
             } finally{
                 overlay.classList.remove("active");
-                spinner.classList.remve("active");
+                spinner.classList.remove("active");
             }
         } else {
             alert("Por favor, selecione uma alternativa.");
