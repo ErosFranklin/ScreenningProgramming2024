@@ -10,10 +10,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     const id_content = urlParametros.get("id_content");
     const groupId = urlParametros.get("groupId");
 
-    let questoes_carregadas = 0;
-    const total_questoes = 3;
+   
 
-    await carregarDadosAtividade();
+    let questoes_carregadas = 0;
+    const total_questoes = await carregarDadosAtividade();
+    console.log("Total de questões:", total_questoes);
     await carregarAlternativa();
 
     document.getElementById("enviar-resposta").addEventListener("click", async () => {
@@ -40,7 +41,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
                 const result = await response.json();
                 console.log("Resposta enviada com sucesso:", result);
-                alert("Resposta enviada com sucesso!");
 
                 questoes_carregadas++;
                 if (questoes_carregadas < total_questoes) {
@@ -80,6 +80,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             const atividadeData = await response.json();
             console.log(atividadeData);
             tituloAtividade.textContent = atividadeData.activity[0][1];
+            return atividadeData.activity[0][6];
         } catch (error) {
             console.error("Erro ao buscar dados da atividade", error);
             alert("Erro ao buscar dados da atividade");
