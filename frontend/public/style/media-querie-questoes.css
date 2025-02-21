@@ -1,0 +1,35 @@
+@media screen and (max-width:1024px){
+    .titulo-atividade h2{
+        font-size: 1.2rem;
+    }
+    
+    .enunciado{
+        width: 200%;
+        left: 50%;
+        top:0;
+        transform: translateX(-50%)
+    }
+    .alternativas{
+        grid-template-columns: repeat(2,1fr);;
+    }
+    @media (orientation:landscape){
+        .grupos-container{
+            grid-template-columns: repeat(2,1fr);
+        }
+        .titlesGrupos h2{
+            left:15%;
+         
+        }
+        .bttGrupo{
+            margin-top:1%;
+        }
+        .modal{
+            width: 70%;
+            height: auto;
+            position: absolute;
+            overflow-y: auto;
+            margin-top: 20%;
+        }
+    }
+
+}

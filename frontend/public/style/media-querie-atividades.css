@@ -1,0 +1,83 @@
+@media screen and (max-width:1024px){
+    body{
+        overflow-y: scroll;
+    }
+    .menuLateral{
+        width:50px;
+        overflow-y: auto;
+    }
+    .item-menu .icone{
+        font-size: 22px;
+    }
+    .item-menu .txt-link{
+        
+        font-size: 19px;
+    }
+    .item-menu a{
+        padding:5px 2%;
+    }
+    .titulo-grupo{
+        position: absolute;
+        margin:20px 0;
+        left:50%;
+        top:0;
+        transform: translateX(-50%);
+    }
+    .titulo-grupo h2{
+        font-size: 1.5rem;
+    }
+    .atividade {
+        width: 60%;
+        height: 30%;
+        word-wrap: break-word; 
+    }
+    .atividade p, h2 {
+        font-size: 1.1rem;
+        overflow-wrap: break-word;
+      
+    }
+    
+    .bttGrupo{
+        position: absolute;
+    }
+    .atividades-container{
+        grid-template-columns: repeat(1,1fr);
+        margin-top: 20%;
+        height: 90%;
+        
+    }
+    .modal{
+        width: 95%;
+        height: auto;
+    }
+    .modal label{
+        font-size:16px;
+    }
+    .componentesG input{
+        height: 50px;
+        
+    }
+    .componentesG i{
+        font-size:22px;
+    }
+    @media (orientation:landscape){
+        .grupos-container{
+            grid-template-columns: repeat(2,1fr);
+        }
+        .titlesGrupos h2{
+            left:15%;
+         
+        }
+        .bttGrupo{
+            margin-top:1%;
+        }
+        .modal{
+            width: 70%;
+            height: auto;
+            position: absolute;
+            overflow-y: auto;
+            margin-top: 20%;
+        }
+    }
+
+}
