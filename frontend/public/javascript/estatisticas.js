@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
       grupo.className = "grupo";
       grupo.dataset.groupId = groupId;
       grupo.innerHTML = `
-        <h2><a href="detalhe-atividades-resultados.html?groupId=${groupId}&studentId=${studentId}">${nome}</a></h2>
+        <h2><a href="atividades-resultados.html?groupId=${groupId}&studentId=${studentId}">${nome}</a></h2>
         <p>Professor: ${teacherName}</p>
         <p>Período: ${periodo}</p>`;
       return grupo;

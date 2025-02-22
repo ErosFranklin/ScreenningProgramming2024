@@ -14,6 +14,11 @@ body{
     --cor-5: #023059;
     --cor-text: #fff;
 }
+.titulo-atividade{
+    position: relative;
+    margin-top: 1%;
+    margin-left:2%;
+}
 .atividades-container{
     width: 100vw;
     height: 100vh;
@@ -56,11 +61,38 @@ body{
     margin-bottom: 5px;
     top:5%;
 }
+.atividade-resultado{
+    position: relative;
+    width: 80%;
+    height: 20%;
+    border:5px solid var(--cor-4);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 5px;
+    top:5%;
+    transition: .3s ease-in-out;
+}
+.atividade-resultado a{
+    text-decoration: none;
+    color: var(--cor-4);
+    color:inherit;
+}
+.atividade-resultado:hover{
+    background-color: var(--cor-4);
+    color:#fff;
+    box-shadow: 10px 10px var(--cor-5);
+    cursor:default;
+}
+.atividade-resultado a:hover{
+    text-decoration: underline;
+    cursor:pointer;
+}
 .atividade a{
     text-decoration: none;
     color: #fff;
     transition: .3s ease-in-out
 }
+
 .titulos-atividade{
     color: #fff;
 }

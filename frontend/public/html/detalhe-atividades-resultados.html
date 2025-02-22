@@ -7,25 +7,28 @@
 </head>
 <body>
     <div class="container-tabelaresultados" >
-        <div class="mensagem-erro" id="mensagem-erro" style="display: none;"> <p id="mensagem">Nenhum estudante cadastrado!</p></div>
+        <div class="mensagem-erro" id="mensagem-erro" style="display: none;"> <p id="mensagem"></p></div>
         <div class="container-spinner">
           <div class="overlay-spinner" >
               <div class="spinner"></div>
             </div>
       </div>
-        <table id="tabelaResultados" style="display: none;">
-          <thead>
+        <table id="tabelaResultados" style="display: block;">
+            <thead>
             <tr class="linha">
-              <th class="celula-tabela" id="celulaID">Atividades</th>
+              <th class="celula-tabela">Atividades</th>
               <th class="celula-tabela">Lembrar</th>
               <th class="celula-tabela">Compreender</th>
               <th class="celula-tabela">Aplicar</th>
               <th class="celula-tabela">Analisar</th>
               <th class="celula-tabela">Avaliar</th>
               <th class="celula-tabela">Criar</th>
+              <th class="celula-tabela">Total</th>
             </tr>
-          </thead>
-          <tbody class="alunos-tabela"></tbody>
+            </thead>
+          <tbody class="resultados-tabela">
+            <tr class="celula-tabela"></tr>
+          </tbody>
         </table>
         <script src="../javascript/resultados-aluno.js"></script>
 </body>
