@@ -5,9 +5,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     const token = localStorage.getItem("token");
     const id_activity = localStorage.getItem("id_activity");
     const id_content = localStorage.getItem("id_content");
-  
+    const nivelTotal = document.querySelector('#nivel-total');
     const containerTabela = document.querySelector('.container-tabelaresultados');
-    const tabelaResultados = document.querySelector("#tabelaResultados tbody");
     const modal = document.querySelector('.modal');
     const conteudoDinamico = document.querySelector('#conteudoDinamico');
     const overlay = document.querySelector('.overlay');
@@ -34,7 +33,8 @@ document.addEventListener("DOMContentLoaded", async function () {
           throw new Error(errorData.message || "Erro desconhecido");
         }
         const dadosResultados = await response.json();
-        atualizarTabela(dadosResultados);
+        nivelTotal.textContent = 'Nivel Total do Aluno:' + dadosResultados.percentage_overall + '%';
+        atualizarCards(dadosResultados);
         console.log("Dados recebidos:", dadosResultados);
         return dadosResultados;
       } catch (error) {
@@ -43,84 +43,119 @@ document.addEventListener("DOMContentLoaded", async function () {
       return 0;
     }
   
-    async function atualizarTabela(dados) {
-      tabelaResultados.innerHTML = "";
-  
+    function atualizarCards(dados) {
+      containerTabela.innerHTML = "";
+    
+      // Verifica se os dados são válidos
       if (dados.correct_answers && dados.name_student && dados.percentage_overall) {
-        const linha = document.createElement("tr");
-  
-        linha.innerHTML = `
-            <td><button id='lembrar'>${dados.percentage_overall}</button></td>
-            <td><button id='compreender'>${dados.percentage_overall}</button></td>
-            <td><button id='aplicar'>${dados.percentage_overall}</button></td>
-            <td><button id='analisar'>${dados.percentage_overall}</button></td>
-            <td><button id='avaliar'>${dados.percentage_overall}</button></td>
-            <td><button id='criar'>${dados.percentage_overall}</button></td>
-            <td id='nivel_total'>${dados.percentage_overall}</td>
-        `;
-        tabelaResultados.appendChild(linha);
+        
+       
+        const dimensoes = [
+          'Lembrar <i class="bi bi-book"></i>',
+          'Compreender <i class="bi bi-lightbulb"></i>',
+          'Aplicar <i class="bi bi-play-circle"></i>',
+          'Analisar <i class="bi bi-bar-chart"></i>',
+          'Avaliar <i class="bi bi-check2-circle"></i>',
+          'Criar <i class="bi bi-pencil-square"></i>'
+        ];
+        
+        
+        dimensoes.forEach((dimensao) => {
+          const card = document.createElement("div");
+          card.classList.add("card-resultado"); 
+    
+          
+          card.innerHTML = `
+            <h3>${dimensao}</h3>
+            <p>Nivel: ${dados.percentage_overall}</p>
+            <button id="${dimensao.toLowerCase()}">Ver Detalhes</button>
+          `;
+          
+        
+          card.addEventListener("click", (event) => {
+            const botao = event.target;
+            if (botao.tagName === 'BUTTON') {
+              const skillName = botao.id; 
+              console.log('skillName:', skillName);
+              
+            
+              conteudoDinamico.innerHTML = '';
+    
+          
+              const skillContainer = document.createElement('div');
+              skillContainer.classList.add('skill-container');
+              
+             
+              if (skillName === 'lembrar <i class=') {
+                // Primeiro skill
+                const skil1 = document.createElement('div');
+                const porcentagem = document.createElement('h2');
+                porcentagem.textContent = dadosAtuais.skill_percentage.ATTRIBUTING + '%';
+                skil1.classList.add('skill');
+                skil1.id = 'reconhecer';
+                skil1.textContent = 'Reconhecer';
+                skil1.appendChild(porcentagem);
+    
+                const grafico1 = document.createElement('div');
+                grafico1.classList.add('grafico1');
+                criacaoGrafico(dadosAtuais, grafico1, skil1, 'ATTRIBUTING');
+                
+                // Segundo skill
+                const skil2 = document.createElement('div');
+                const porcentagem2 = document.createElement('h2');
+                porcentagem2.textContent = dadosAtuais.skill_percentage.CHECKING + '%';
+                skil2.classList.add('skill');
+                skil2.id = 'lembrar';
+                skil2.textContent = 'Lembrar';
+                skil2.appendChild(porcentagem2);
+    
+                const grafico2 = document.createElement('div');
+                grafico2.classList.add('grafico2');
+                criacaoGrafico(dadosAtuais, grafico2, skil2, 'CHECKING');
+    
+                // Terceiro skill
+                const skil3 = document.createElement('div');
+                const porcentagem3 = document.createElement('h2');
+                porcentagem3.textContent = dadosAtuais.skill_percentage.INTERPRETING + '%';
+                skil3.classList.add('skill');
+                skil3.id = 'interpretar';
+                skil3.textContent = 'Interpretar';
+                skil3.appendChild(porcentagem3);
+    
+                const grafico3 = document.createElement('div');
+                grafico3.classList.add('grafico3');
+                criacaoGrafico(dadosAtuais, grafico3, skil3, 'INTERPRETING');
+    
+               
+                skillContainer.appendChild(skil1);
+                skillContainer.appendChild(skil2);
+                skillContainer.appendChild(skil3);
+    
+                // ... Continuar com o resto!!!!!
+              }
+    
+             
+              conteudoDinamico.appendChild(skillContainer);
+    
+              
+              modal.style.display = 'block';
+              overlay.style.display = 'block';
+            }
+          });
+    
+          containerTabela.appendChild(card);
+        });
+    
       } else {
         console.error("Dados não estão no formato esperado:", dados);
       }
-    } 
-  
-    // Usando os dados já carregados (dadosAtuais)
-    tabelaResultados.addEventListener('click', function(event) {
-      const botao = event.target;
-  
-      if (botao.tagName === 'BUTTON') {
-        const skillName = botao.id;
-        
-        // Limpa apenas a área de conteúdo dinâmico
-        conteudoDinamico.innerHTML = '';
+    }
     
-        // Cria um container específico para a skill
-        const skillContainer = document.createElement('div');
-        skillContainer.classList.add('skill-container');
-        
-        if (skillName === 'lembrar') {
-            //Skill Lembrar
-            const skil1 = document.createElement('div');
-            const porcentagem = document.createElement('h2');
-            porcentagem.textContent = dadosAtuais.skill_percentage.ATTRIBUTING + '%';
-            skil1.classList.add('skill');
-            skil1.id = 'reconhecer';
-            skil1.textContent = 'Reconhecer';
-            skil1.appendChild(porcentagem);
-            // Supondo que o objeto ATTRIBUTING seja:
-            const grafico1 = document.createElement('div');
-            grafico1.classList.add('grafico1');
-            criacaoGrafico(dadosAtuais, grafico1, skil1, 'ATTRIBUTING');
-        
-            const skil2 = document.createElement('div');
-            skil2.classList.add('skill');
-            skil2.textContent = 'Lembrar';
-        
-            const skil3 = document.createElement('div');
-            skil3.classList.add('skill');
-            skil3.textContent = 'Interpretar';
-        
-            skillContainer.appendChild(skil1);
-            skillContainer.appendChild(skil2);
-            skillContainer.appendChild(skil3);
-        }
-        // else if (...) para outras skills
-    
-        // Adiciona o container dentro do modal (somente na área dinâmica)
-        conteudoDinamico.appendChild(skillContainer);
-    
-        // Exibe modal e overlay
-        modal.style.display = 'block';
-        overlay.style.display = 'block';
-      }
-    });
-    
-    // Botão de fechar
     fecharModal.addEventListener('click', function() {
       modal.style.display = 'none';
       overlay.style.display = 'none';
     });
-
+    
     async function criacaoGrafico(dadosAtuais, grafico, skill, name_skill){
         
          const canvas = document.createElement('canvas');
@@ -156,7 +191,7 @@ document.addEventListener("DOMContentLoaded", async function () {
            }
          };
          
-         // Após adicionar o canvas ao DOM, pegue o contexto e crie o gráfico
+         
          const ctx = canvas.getContext('2d');
          const attributingChart = new Chart(ctx, config);
     }
