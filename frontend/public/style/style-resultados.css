@@ -25,6 +25,7 @@
     border: 1px solid black;
     text-align: center;
     box-shadow: 5px 5px 5px  #0230594a;
+    
 }
 #tabelaResultados th {
     border:1px outset var(--cor-4);
@@ -67,13 +68,20 @@
     position: relative;
 }
 .skill{
-    background-color: var(--cor-4);
-    color: #fff;
+    border: 2px solid var(--cor-4);
+    border-radius: 5px;
+    color: var(--cor-4);
     padding: 10px;
     text-align: center;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: bolder;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 2px #0230594a;
     height: 100%;
+}
+.skill h2{
+    font-size: 1.3rem;
+    text-transform: uppercase;
 }
 .linha{
     background-color: red;
@@ -99,6 +107,25 @@
     padding: 20px;
     border-radius: 5px;
     z-index: 2;
+}
+.modal-header{
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 30px;
+}
+.close-btn{
+    border:none;
+    width: 50px;
+    height: 50px;
+    border:1px solid var(--cor-4);
+    border-radius: 10px;
+    background-color: #fff;
+    transition: 0.3s ease-in-out;
+}
+.close-btn:hover{
+    background-color: var(--cor-4);
+    color: #fff;
+    cursor: pointer;
 }
 .overlay{
     position: fixed;
