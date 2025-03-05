@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded',function(){
     const urlParametros = new URLSearchParams(window.location.search);
     const groupId = urlParametros.get("groupId");
+    const studentId = urlParametros.get("studentId");
+    console.log("ID do grupo:", studentId);
     const mensagem = document.querySelector("#mensagem");
     const atividadeContainer = document.querySelector(".atividades-container");
     
@@ -12,7 +14,7 @@ document.addEventListener('DOMContentLoaded',function(){
      
 
         const studentToken = localStorage.getItem("token");
-        const studentId = localStorage.getItem("userId");
+        
         if(!studentToken || !studentId){
             alert('Erro: Id ou Token invalidos');
             loader.style.display = "none";
@@ -47,7 +49,7 @@ document.addEventListener('DOMContentLoaded',function(){
                   }
                   
                   const id_content = atividade[3]
-                  const atividadeGrupo = criarAtividade(description, deadline, id_content, id_activity);
+                  const atividadeGrupo = criarAtividade(description, deadline, id_content, id_activity, studentId);
                   console.log(atividadeGrupo)
                   atividadeContainer.appendChild(atividadeGrupo);
                 });
@@ -66,7 +68,7 @@ document.addEventListener('DOMContentLoaded',function(){
           loader.style.display = "none"; 
         }
     }
-    function criarAtividade(description, deadline, id_content, id_activity) {
+    function criarAtividade(description, deadline, id_content, id_activity, student_id) {
       let icone = "";
       const novaAtividade = document.createElement("div");
       novaAtividade.className = "atividade-resultado";
@@ -83,17 +85,9 @@ document.addEventListener('DOMContentLoaded',function(){
         icone = '<i class="bi bi-keyboard"></i>';
       }
     
-      const prazoRestante = deadlineTime(deadline);
       let linkContent;
-      if (prazoRestante === "Encerrada") {
-        novaAtividade.style.backgroundColor = "#708090"; 
-        linkContent = `<span class='titulos-atividade-resultado'>${description} ${icone}</span>`;
-      } else {
-        
-        linkContent = `<a id="link-atividade" href="detalhe-atividades-resultados.html?idAtividade=${id_activity}&id_content=${id_content}&groupId=${groupId}">${description} ${icone}</a>`;
-      }
-    
-      novaAtividade.innerHTML = `<h2>${linkContent}</h2><p class="dataAtt">Data de Encerramento: ${deadline}</p><p>Prazo Restante: ${prazoRestante}</p>`;
+      linkContent = `<a id="link-atividade" href="detalhe-atividades-resultados.html?idAtividade=${id_activity}&id_content=${id_content}&groupId=${groupId}&studentId=${student_id}">${description} ${icone}</a>`;
+      novaAtividade.innerHTML = `<h2>${linkContent}</h2><p class="dataAtt">Data de Encerramento: ${deadline}</p>`;
       return novaAtividade;
     }
     function convertDateFormat(dateStr) {
@@ -108,21 +102,7 @@ document.addEventListener('DOMContentLoaded',function(){
       return `${day}/${month}/${year}`;
     }
 
-    function deadlineTime(deadline){
-      const [day, month, year] = deadline.split("/");
-      const formattedDate = `${year}-${month}-${day}`;
-      const date = new Date(formattedDate);
-      const now = new Date();
-      const diff = date - now;
-      let messageDate = '';
-      const diffInDays = diff / (1000 * 60 * 60 * 24);
-      if (diffInDays < 0) {
-        messageDate = "Encerrada";
-        return messageDate;
-      }
-      messageDate = `${Math.ceil(diffInDays)} dias`;
-      return messageDate;
-    }
+    
     
 
 

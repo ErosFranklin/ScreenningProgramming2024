@@ -5,10 +5,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     const token = localStorage.getItem("token");
     const id_activity = localStorage.getItem("id_activity");
     const id_content = localStorage.getItem("id_content");
-    console.log("ID do grupo:", id_content);
+
     const containerTabela = document.querySelector('.container-tabelaresultados')
     const tabelaResultados = document.querySelector("#tabelaResultados tbody");
-    console.log("ID da atividade:", id_activity);
+    const modal = document.querySelector('.modal')
+    const conteudoDinamico = document.querySelector('#conteudoDinamico');
+    const overlay = document.querySelector('.overlay')
 
     carregarResultadosAluno(studentId, groupId, token, id_activity);
 
@@ -30,7 +32,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 throw new Error(errorData.message || "Erro desconhecido");
             }
             const dadosResultados = await response.json();
-            //atualizarTabela(dadosResultados)
+            atualizarTabela(dadosResultados)
             console.log("Dados recebidos:", dadosResultados);
         }catch(error){
             console.error("Erro ao carregar resultados do aluno:", error);
@@ -38,32 +40,68 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
     function atualizarTabela(dados) {
         tabelaResultados.innerHTML = "";
-    
-        dados.forEach((aluno) => {
-          if (aluno.idStudent && aluno.nameStudent && aluno.registrationStudent) {
+
+        if (dados.correct_answers && dados.name_student && dados.percentage_overall) {
             const linha = document.createElement("tr");
-    
+
             linha.innerHTML = `
-                        <td class='alunoId'></td>
-                        <td class='alunoAcesso'><a href="../html/dados-aluno.html?studentId=${aluno.idStudent}">${aluno.nameStudent}</a></td>
-                        <td>${aluno.registrationStudent}</td>
-                        <td><button class="btnExcluir" data-id="${aluno.idStudent}"><i class="bi bi-trash-fill"></i></button></td>
-                    `;
-                    tabelaResultados.appendChild(linha);
-          } else {
-            console.error(
-              "Item do array de alunos não está no formato esperado:",
-              aluno
-            );
-          }
-        });
-    
-        paginaAtualElem.textContent = `PÁGINA ${paginaAtual}`;
-        btnAnterior.disabled = paginaAtual === 1;
-        btnProximo.disabled = dados.length < alunosPorPagina;
-      }
+                <td><button id='lembrar'>${dados.percentage_overall}</button></td>
+                <td><button id='compreender'>${dados.percentage_overall}</button></td>
+                <td><button id='aplicar'>${dados.percentage_overall}</button></td>
+                <td><button id='analisar'>${dados.percentage_overall}</button></td>
+                <td><button id='avaliar'>${dados.percentage_overall}</button></td>
+                <td><button id='criar'>${dados.percentage_overall}</button></td>
+                <td id='nivel_total'>${dados.percentage_overall}</td>
+            `;
+            tabelaResultados.appendChild(linha);
+        } else {
+            console.error("Dados não estão no formato esperado:", dados);
+        }
+    }
+    tabelaResultados.addEventListener('click', function(event) {
+        const botao = event.target;
+        
+        if (botao.tagName === 'BUTTON') {
+          const skillName = botao.id;
+          
+          // Limpa apenas a área de conteúdo dinâmico
+          conteudoDinamico.innerHTML = '';
       
-
-
-
+          // Cria um container específico para a skill
+          const skillContainer = document.createElement('div');
+          skillContainer.classList.add('skill-container');
+          
+          if (skillName === 'lembrar') {
+            const skil1 = document.createElement('div');
+            skil1.classList.add('skill');
+            skil1.textContent = 'Reconhecer';
+      
+            const skil2 = document.createElement('div');
+            skil2.classList.add('skill');
+            skil2.textContent = 'Lembrar';
+      
+            const skil3 = document.createElement('div');
+            skil3.classList.add('skill');
+            skil3.textContent = 'Interpretar';
+      
+            skillContainer.appendChild(skil1);
+            skillContainer.appendChild(skil2);
+            skillContainer.appendChild(skil3);
+          }
+          // else if (...) para outras skills
+      
+          // Adiciona o container dentro do modal (somente na área dinâmica)
+          conteudoDinamico.appendChild(skillContainer);
+      
+          // Exibe modal e overlay
+          modal.style.display = 'block';
+          overlay.style.display = 'block';
+        }
+      });
+      
+      // Botão de fechar
+      fecharModal.addEventListener('click', function() {
+        modal.style.display = 'none';
+        overlay.style.display = 'none';
+      });
 });

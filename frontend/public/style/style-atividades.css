@@ -68,7 +68,7 @@ body{
     border:5px solid var(--cor-4);
     border-radius: 10px;
     padding: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 12px;
     top:5%;
     transition: .3s ease-in-out;
 }
@@ -80,7 +80,7 @@ body{
 .atividade-resultado:hover{
     background-color: var(--cor-4);
     color:#fff;
-    box-shadow: 10px 10px var(--cor-5);
+    box-shadow: 5px 5px var(--cor-5);
     cursor:default;
 }
 .atividade-resultado a:hover{

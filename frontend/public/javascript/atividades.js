@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function(){
           }
 
     })
+    
     async function carregarAtividades(groupId) {
       const loader = document.querySelector(".container-spinner");
       loader.style.display = "block";
@@ -74,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function(){
         loader.style.display = "none";
         return;
       }
-  
+      buscarAtividadesConcluidas(groupId);
       try {
         const response = await fetch(
           `https://screenning-programming.onrender.com/api/activity/all?id_group=${groupId}`,
@@ -165,6 +166,7 @@ document.addEventListener('DOMContentLoaded', function(){
           
         }
       }
+      
       function criarAtividade(description, deadline, id_content, id_activity) {
         let icone = "";
         const novaAtividade = document.createElement("div");

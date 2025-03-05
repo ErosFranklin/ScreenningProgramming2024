@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded',function(){
     async function carregarAtividades(groupId) {
       const loader = document.querySelector(".container-spinner");
       loader.style.display = "block";
-     
+      
 
         const studentToken = localStorage.getItem("token");
         const studentId = localStorage.getItem("userId");
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded',function(){
         }
 
         try {
-            const response = await fetch(`https://screenning-programming.onrender.com/api/activity/all?id_group=${groupId}`,{
+            const response = await fetch(`https://screenning-programming.onrender.com/api/activity/complete?id_group=${groupId}`,{
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",
@@ -34,20 +34,16 @@ document.addEventListener('DOMContentLoaded',function(){
             const atividadeDataAluno = await response.json();
             console.log("isso aqui:",atividadeDataAluno)
 
-            if (Array.isArray(atividadeDataAluno.activity) && atividadeDataAluno.activity.length > 0) {
+            if (Array.isArray(atividadeDataAluno) && atividadeDataAluno.length > 0) {
               console.log('entrou')
-                atividadeDataAluno.activity.forEach((atividade) => {
-                  const id_activity = atividade[0]
-                  const description = atividade[1];
-                  let deadline = atividade[2];
-                  const isYYYYMMDD = /^\d{4}-\d{2}-\d{2}$/.test(deadline);
-      
-                  if (isYYYYMMDD) {
-                    deadline = convertDateFormat(deadline);
-                  }
+                atividadeDataAluno.forEach((atividade) => {
+                  const id_activity = atividade.id_activity
+                  const description = atividade.description;
+                  let deadline = atividade.deadline;
+                  let status = atividade.status_activity;
                   
-                  const id_content = atividade[3]
-                  const atividadeGrupo = criarAtividade(description, deadline, id_content, id_activity);
+                  const id_content = atividade.id_content
+                  const atividadeGrupo = criarAtividade(description, deadline, id_content, id_activity, status);
                   console.log(atividadeGrupo)
                   atividadeContainer.appendChild(atividadeGrupo);
                 });
@@ -66,7 +62,8 @@ document.addEventListener('DOMContentLoaded',function(){
           loader.style.display = "none"; 
         }
     }
-    function criarAtividade(description, deadline, id_content, id_activity) {
+    function criarAtividade(description, deadline, id_content, id_activity, status) {
+      
       let icone = "";
       const novaAtividade = document.createElement("div");
       novaAtividade.className = "atividade";
@@ -85,7 +82,7 @@ document.addEventListener('DOMContentLoaded',function(){
     
       const prazoRestante = deadlineTime(deadline);
       let linkContent;
-      if (prazoRestante === "Encerrada") {
+      if (prazoRestante === "Encerrada" || status === "Fechado") {
         // Link desativado: Sem href, mas com conteúdo visual intacto
         novaAtividade.style.backgroundColor = "#708090"; // Estilo aplicado no novo elemento
         linkContent = `<span class='titulos-atividade'>${description} ${icone}</span>`;
@@ -96,17 +93,6 @@ document.addEventListener('DOMContentLoaded',function(){
     
       novaAtividade.innerHTML = `<h2>${linkContent}</h2><p class="dataAtt">Data de Encerramento: ${deadline}</p><p>Prazo Restante: ${prazoRestante}</p>`;
       return novaAtividade;
-    }
-    function convertDateFormat(dateStr) {
-      const datePattern = /^\d{4}-\d{2}-\d{2}$/;
-      if (!datePattern.test(dateStr)) {
-        console.error("Formato de data inválido.");
-        return null;
-      }
-    
-      const [year, month, day] = dateStr.split("-");
-    
-      return `${day}/${month}/${year}`;
     }
 
     function deadlineTime(deadline){
