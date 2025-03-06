@@ -16,8 +16,15 @@ document.addEventListener("DOMContentLoaded", async function () {
     let dadosAtuais = await carregarResultadosAluno(studentId, groupId, token, id_activity);
   
     async function carregarResultadosAluno(studentId, groupId, token, id_activity) {
+      const loader = document.querySelector(".container-spinner");
+      loader.style.display = "block";
+      const mensagem = document.querySelector("#mensagem");
+      mensagem.style.display = "block";
+
       if (studentId === null || groupId === null) {
         console.error("Erro: id do aluno ou grupo não encontrados");
+        loader.style.display = "none";
+        
         return;
       }
       try {
@@ -39,6 +46,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         return dadosResultados;
       } catch (error) {
         console.error("Erro ao carregar resultados do aluno:", error);
+      } finally{
+        loader.style.display = "none";
       }
       return 0;
     }
