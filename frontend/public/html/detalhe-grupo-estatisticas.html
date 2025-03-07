@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Detalhes do Grupo(Estatisticas)</title>
     <link rel="stylesheet" href="../style/style-grupo.css" />
+    <link rel="stylesheet" href="../style/style-grupo-estatisticas.css" />
     <link rel="stylesheet" href="../style/style-detalhe-grupo.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
   </head>
   <body>
     <nav class="menuLateral">
@@ -18,27 +20,21 @@
       </div>
       <ul>
         <li class="item-menu">
+          <a href="../html/conta.html">
+            <span class="icone"><i class="bi bi-person-fill"></i></span>
+            <span class="txt-link">Conta</span>
+          </a>
+        </li>
+        <li class="item-menu">
           <a href="../html/grupo.html">
             <span class="icone"><i class="bi bi-people-fill"></i></span>
             <span class="txt-link">Grupos</span>
           </a>
         </li>
         <li class="item-menu">
-          <a href="../html/detalhe-grupo.html">
-            <span class="icone"><i class="bi bi-info-circle-fill"></i></span>
-            <span class="txt-link">Detalhes</span>
-          </a>
-        </li>
-        <li class="item-menu">
           <a href="../html/detalhe-grupo-atividades.html">
             <span class="icone"><i class="bi bi-person-raised-hand"></i></span>
             <span class="txt-link">Atividades</span>
-          </a>
-        </li>
-        <li class="item-menu">
-          <a href="../html/detalhe-grupo-estatisticas.html">
-            <span class="icone"><i class="bi bi-clipboard-data-fill"></i></span>
-            <span class="txt-link">Estatísticas</span>
           </a>
         </li>
         <li class="item-menu">
@@ -50,15 +46,38 @@
       </ul>
     </nav>
 
+    <body>
     <main>
-      <div class="titulo-grupo">
-        <h2>Estatisticas</h2>
+      <div class="container-spinner">
+        <div class="overlay-spinner" >
+            <div class="spinner"></div>
+          </div>
       </div>
-      <div class="container-grupo"></div>
+      <div class="container-tabela-aluno" >
+        <div class="mensagem-erro" id="mensagem-erro" style="display: none;"> <p id="mensagem">Nenhum estudante cadastrado!</p></div>
+        
+        <table id="tabelaAlunos" style="display: none;">
+          <thead>
+            <tr class="linha">
+              <th class="celula-tabela" id="celulaID">ID</th>
+              <th class="celula-tabela">Nome</th>
+              <th class="celula-tabela">Matrícula</th>
+              <th class="celula-tabela">Nivel do Aluno</th>
+            </tr>
+          </thead>
+          <tbody class="alunos-tabela"></tbody>
+        </table>
+        <div id="paginacao" style="display: none;">
+          <button id="btnAnterior" disabled>Anterior</button>
+          <span id="paginaAtual">PÁGINA 1</span>
+          <button id="btnProximo">Próxima</button>
+        </div>
+      </div>
+    
     </main>
+    
     <script src="../javascript/menu.js"></script>
     <script src="../javascript/logout.js"></script>
-    <script src="../javascript/estatisticas.js"></script>
-    <script src="../javascript/grupos-alunos.js"></script>
-  </body>
+    <script src="../javascript/detalhes-alunos-resultado.js"></script>
+    </body>
 </html>

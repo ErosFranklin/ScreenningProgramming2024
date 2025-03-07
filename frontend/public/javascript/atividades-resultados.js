@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded',function(){
         }
 
         try {
-            const response = await fetch(`https://screenning-programming.onrender.com/api/activity/all?id_group=${groupId}`,{
+            const response = await fetch(`https://screenning-programming.onrender.com/api/activity/complete?id_group=${groupId}`,{
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",
@@ -36,19 +36,19 @@ document.addEventListener('DOMContentLoaded',function(){
             const atividadeDataAluno = await response.json();
             console.log("isso aqui:",atividadeDataAluno)
 
-            if (Array.isArray(atividadeDataAluno.activity) && atividadeDataAluno.activity.length > 0) {
+            if (Array.isArray(atividadeDataAluno) && atividadeDataAluno.length > 0) {
               console.log('entrou')
-                atividadeDataAluno.activity.forEach((atividade) => {
-                  const id_activity = atividade[0]
-                  const description = atividade[1];
-                  let deadline = atividade[2];
-                  const isYYYYMMDD = /^\d{4}-\d{2}-\d{2}$/.test(deadline);
-      
+                atividadeDataAluno.forEach((atividade) => {
+                  const id_activity = atividade.id_activity;
+                  const description = atividade.description;
+                  let deadline = atividade.deadline;
+                  /*const isYYYYMMDD = /^\d{4}-\d{2}-\d{2}$/.test(deadline);
+                  
                   if (isYYYYMMDD) {
                     deadline = convertDateFormat(deadline);
-                  }
+                  }*/
                   
-                  const id_content = atividade[3]
+                  const id_content = atividade.id_content;
                   const atividadeGrupo = criarAtividade(description, deadline, id_content, id_activity, studentId);
                   console.log(atividadeGrupo)
                   atividadeContainer.appendChild(atividadeGrupo);

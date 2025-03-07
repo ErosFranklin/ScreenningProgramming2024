@@ -3,8 +3,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     const groupId = urlParametros.get("groupId");
     const studentId = urlParametros.get("studentId");
     const token = localStorage.getItem("token");
-    const id_activity = localStorage.getItem("id_activity");
-    const id_content = localStorage.getItem("id_content");
+    const id_activity = urlParametros.get("idAtividade");
+    const id_content = urlParametros.get("id_content");
+    console.log(groupId, studentId, id_activity, id_content);
     const nivelTotal = document.querySelector('#nivel-total');
     const containerTabela = document.querySelector('.container-tabelaresultados');
     const modal = document.querySelector('.modal');
@@ -18,8 +19,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     async function carregarResultadosAluno(studentId, groupId, token, id_activity) {
       const loader = document.querySelector(".container-spinner");
       loader.style.display = "block";
-      const mensagem = document.querySelector("#mensagem");
-      mensagem.style.display = "block";
 
       if (studentId === null || groupId === null) {
         console.error("Erro: id do aluno ou grupo não encontrados");
@@ -28,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         return;
       }
       try {
-        const response = await fetch(`https://screenning-programming.onrender.com/api/activity/${studentId}?id_activity=${id_activity}`, {
+        const response = await fetch(`https://screenning-programming.onrender.com/api/statistic/${studentId}?id_activity=${id_activity}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -60,12 +59,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         
        
         const dimensoes = [
-          'Lembrar <i class="bi bi-book"></i>',
-          'Compreender <i class="bi bi-lightbulb"></i>',
-          'Aplicar <i class="bi bi-play-circle"></i>',
-          'Analisar <i class="bi bi-bar-chart"></i>',
-          'Avaliar <i class="bi bi-check2-circle"></i>',
-          'Criar <i class="bi bi-pencil-square"></i>'
+          { nome: 'Lembrar', icon: '<i class="bi bi-book"></i>' },
+          { nome: 'Compreender', icon: '<i class="bi bi-lightbulb"></i>' },
+          { nome: 'Aplicar', icon: '<i class="bi bi-play-circle"></i>' },
+          { nome: 'Analisar', icon: '<i class="bi bi-bar-chart"></i>' },
+          { nome: 'Avaliar', icon: '<i class="bi bi-check2-circle"></i>' },
+          { nome: 'Criar', icon: '<i class="bi bi-pencil-square"></i>' }
         ];
         
         
@@ -75,9 +74,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     
           
           card.innerHTML = `
-            <h3>${dimensao}</h3>
+            <h3>${dimensao.nome} ${dimensao.icon}</h3>
             <p>Nivel: ${dados.percentage_overall}</p>
-            <button id="${dimensao.toLowerCase()}">Ver Detalhes</button>
+            <button id="${dimensao.nome.toLowerCase()}">Ver Detalhes</button>
           `;
           
         
@@ -95,7 +94,8 @@ document.addEventListener("DOMContentLoaded", async function () {
               skillContainer.classList.add('skill-container');
               
              
-              if (skillName === 'lembrar <i class=') {
+              if (skillName === 'lembrar') {
+                console.log('entrou aqui');
                 // Primeiro skill
                 const skil1 = document.createElement('div');
                 const porcentagem = document.createElement('h2');

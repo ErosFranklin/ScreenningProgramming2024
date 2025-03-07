@@ -14,14 +14,12 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     let questoes_carregadas = 0;
     const total_questoes = await carregarDadosAtividade();
-    console.log("Total de questões:", total_questoes);
     await carregarAlternativa();
 
     document.getElementById("enviar-resposta").addEventListener("click", async () => {
         const opcaoSelecionada = document.querySelector('input[name="alternativa"]:checked');
         if (opcaoSelecionada) {
             const resposta = opcaoSelecionada.value;
-            console.log("Resposta selecionada:", resposta);
             const questionId = questionImageElement.getAttribute("data-question-id");
 
             try {

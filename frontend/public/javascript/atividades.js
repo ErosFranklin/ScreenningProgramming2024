@@ -75,10 +75,10 @@ document.addEventListener('DOMContentLoaded', function(){
         loader.style.display = "none";
         return;
       }
-      buscarAtividadesConcluidas(groupId);
+      
       try {
         const response = await fetch(
-          `https://screenning-programming.onrender.com/api/activity/all?id_group=${groupId}`,
+          `https://screenning-programming.onrender.com/api/activity/complete?id_group=${groupId}`,
           {
             method: "GET",
             headers: {
@@ -95,18 +95,18 @@ document.addEventListener('DOMContentLoaded', function(){
   
         const atividadeData = await response.json();
         console.log(atividadeData);
-        if (Array.isArray(atividadeData.activity) && atividadeData.activity.length > 0) {
-          atividadeData.activity.forEach((atividade) => {
-            const id_activity = atividade[0]
-            const description = atividade[1];
-            let deadline = atividade[2];
-            const isYYYYMMDD = /^\d{4}-\d{2}-\d{2}$/.test(deadline);
-
+        if (Array.isArray(atividadeData) && atividadeData.length > 0) {
+          atividadeData.forEach((atividade) => {
+            const id_activity = atividade.id_activity;
+            const description = atividade.description;
+            let deadline = atividade.deadline;
+            //const isYYYYMMDD = /^\d{4}-\d{2}-\d{2}$/.test(deadline);
+            /*
             if (isYYYYMMDD) {
               deadline = convertDateFormat(deadline);
-            }
+            }*/
             
-            const id_content = atividade[3]
+            const id_content = atividade.id_content;
             const atividadeGrupo = criarAtividade(description, deadline, id_content, id_activity);
             console.log(atividadeGrupo)
             atividadeContainer.appendChild(atividadeGrupo);
@@ -173,6 +173,7 @@ document.addEventListener('DOMContentLoaded', function(){
         novaAtividade.className = "atividade";
         novaAtividade.dataset.id_activity = id_activity;
         novaAtividade.dataset.id_content = id_content;
+      
         if (id_content === 1) {
           icone = '<i class="bi bi-database"></i>';
         } else if (id_content === 2) {
@@ -182,29 +183,49 @@ document.addEventListener('DOMContentLoaded', function(){
         } else if (id_content === 4) {
           icone = '<i class="bi bi-keyboard"></i>';
         }
-
+      
         const prazoRestante = deadlineTime(deadline);
-        let linkContent;
+        let innerContent = "";
+        
+        // Se a atividade estiver encerrada, mostra apenas o título (sem link)
         if (prazoRestante === "Encerrada") {
-          // Link desativado: Sem href, mas com conteúdo visual intacto
-          novaAtividade.style.backgroundColor = "#708090"; // Estilo aplicado no novo elemento
-          linkContent = `<span class='titulos-atividade'>${description} ${icone}</span>`;
+          innerContent += `<h2 class='titulos-atividade'>${description} ${icone}</h2>`;
         } else {
-          // Link ativo com href
-          linkContent = `<a id="link-atividade" href="questoes.html?idAtividade=${id_activity}">${description} ${icone}</a>`;
+          innerContent += `<h2 class='titulos-atividade'>${description} ${icone}</h2>`;
         }
-        novaAtividade.innerHTML = `<h2><a href="questoes.html?idAtividade=${id_activity}">${description} ${icone}</a></h2><p class="dataAtt">Data de Encerramento: ${deadline}</p><p>Prazo Restante: ${prazoRestante}</p>`;
-    
+        
+        innerContent += `<p class="dataAtt">Data de Encerramento: ${deadline}</p>`;
+        innerContent += `<p>Prazo Restante: ${prazoRestante}</p>`;
+        
+        novaAtividade.innerHTML = innerContent;
+        
+        // Se a atividade estiver encerrada, adiciona o botão "Ver Estatísticas" abaixo do conteúdo
+        if (prazoRestante === "Encerrada") {
+          // Define o estilo de fundo para atividades encerradas, se desejado
+          novaAtividade.style.backgroundColor = "#708090";
+          const verEstatisticasBtn = document.createElement('button');
+          verEstatisticasBtn.className = 'verEstatisticasBtn';
+          verEstatisticasBtn.innerText = "Ver Estatísticas";
+          verEstatisticasBtn.addEventListener('click', function(){
+            console.log(id_content)
+            window.location.href = `detalhe-grupo-estatisticas.html?idAtividade=${id_activity}&groupId=${groupId}&id_content=${id_content}`;
+            
+          });
+          novaAtividade.appendChild(verEstatisticasBtn);
+        }
+        
+        // Botão de editar
         const editar = document.createElement("button");
         editar.innerHTML = '<i class="bi bi-pencil-square"></i>';
         editar.className = "editar";
         editar.classList.add("editarAtividade");
         editar.addEventListener("click", function () {
-          console.log('Botao clicado')
+          console.log('Botão editar clicado');
           editarAtividade(novaAtividade);
         });
         novaAtividade.appendChild(editar);
-    
+        
+        // Botão de apagar
         const apagar = document.createElement("button");
         apagar.innerHTML = '<i class="bi bi-trash"></i>';
         apagar.className = "apagar";
@@ -213,25 +234,34 @@ document.addEventListener('DOMContentLoaded', function(){
           atividadeParaExcluir = novaAtividade;
           exibirModalExcluir();
         });
-    
         novaAtividade.appendChild(apagar);
+        
         return novaAtividade;
       }
-
-    function verificarAtividade(descriptionInput, deadlineInput) {
+      
+      
+      function verificarAtividade(descriptionInput, deadlineInput) {
         var atividades = document.querySelectorAll(".atividade");
-    
+      
         for (var i = 0; i < atividades.length; i++) {
           var atividade = atividades[i];
-          var description = atividade.querySelector("a").innerText.trim();
-          var deadline = atividade.querySelector("p").innerText.trim();
-    
+          
+          // Tenta selecionar o elemento <a> e o <p>
+          var aElement = atividade.querySelector("a");
+          var pElement = atividade.querySelector("p");
+      
+          // Se não encontrar algum dos elementos, pula para a próxima iteração
+          if (!aElement || !pElement) continue;
+      
+          var description = aElement.innerText.trim();
+          var deadline = pElement.innerText.trim();
+      
           if (description === descriptionInput.trim() && deadline === deadlineInput.trim()) {
             return true;
           }
         }
         return false;
-    }
+      }
     
     function getId_Content(description){
         const selectElement = description;
@@ -318,7 +348,8 @@ document.addEventListener('DOMContentLoaded', function(){
           {
             method: "DELETE",
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              'Authorization': `Bearer ${localStorage.getItem('token')}`,
             },
           }
         );
