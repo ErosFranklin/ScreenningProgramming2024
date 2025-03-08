@@ -83,24 +83,39 @@ body{
     font-size: 1.5rem;
     text-transform: uppercase;
     margin-bottom: 15px;
-    color: var(--cor-5);
-    text-decoration:double;
+    color: var(--cor-4);
+    text-decoration:underline;
 }
 
 .modal {
-    display: none;
-    position: fixed;
-    width: 80%;
-    height: 80%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    z-index: 2;
+  display: none;
+  position: fixed;
+  min-width: 400px; /* Evita que fique pequeno demais */
+  max-width: 90%; /* Garante que não ultrapasse a tela */
+  height: auto; /* Altura ajustável conforme o conteúdo */
+  max-height: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 2;
+  overflow-y: auto; /* Adiciona rolagem se necessário */
 }
 
+.modal-body {
+  display: flex; /* Usa flexbox para os gráficos ocuparem espaço */
+  flex-wrap: wrap; /* Permite que os gráficos fiquem lado a lado */
+  justify-content: center; /* Centraliza os gráficos */
+  gap: 15px; /* Espaçamento entre os gráficos */
+  padding: 10px;
+}
+
+canvas {
+  width: 300px !important;
+  height: 300px !important;
+}
 .modal-header{
     display: flex;
     flex-direction: row-reverse;
@@ -153,6 +168,7 @@ body{
   .card-resultado {
     display: flex;
     justify-content:space-around;
+    align-items: center;
     flex-direction: column;
     background-color: #fff;
     height: 50vh;
@@ -186,6 +202,7 @@ body{
   }
   .card-resultado button{
     background-color: var(--cor-4);
+    width: 60%;
     color: #fff;
     border: none;
     padding: 10px;
