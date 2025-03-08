@@ -5,6 +5,8 @@
 body{
     width:100vw;
     height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 :root {
     --cor-1: #275AF2;
@@ -16,8 +18,15 @@ body{
 }
 .titulo-atividade{
     position: relative;
-    margin-top: 1%;
-    margin-left:2%;
+    background-color: var(--cor-4);
+    padding: 15px;
+    border: 2px double var(--cor-5);
+}
+.titulo-atividade h2{
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    text-transform: uppercase;
 }
 .atividades-container{
     width: 100vw;

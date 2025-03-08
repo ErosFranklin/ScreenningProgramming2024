@@ -334,7 +334,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                   // Decima Primeira skill
                   const skil11 = document.createElement('div');
                   porcentagem = document.createElement('h2');
-                  valorImplementing = dadosAtuais.percentagem_level?.ANALYSE?.Skills?.ORGANIZING ;
+                  valorImplementing = dadosAtuais.percentagem_level?.ANALYSE?.Skills?.ORGANIZING;
                   porcentagem.textContent = (valorImplementing !== undefined && valorImplementing !== null)
                     ? valorImplementing + '%'
                     : 'Nível não atingido';
@@ -345,7 +345,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       
                   const grafico11 = document.createElement('div');
                   grafico11.classList.add('grafico11');
-                  criacaoGrafico(dadosAtuais, grafico11, skil11,'ANALYSE','ORGANIZING ');
+                  criacaoGrafico(dadosAtuais, grafico11, skil11,'ANALYSE','ORGANIZING');
 
                   // Decima Segunda skill
                   const skil12 = document.createElement('div');
@@ -419,6 +419,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                   skillContainer.appendChild(skil13);
                   skillContainer.appendChild(skil14);
                   skillContainer.appendChild(skil15);
+                  break;
                 //Habilidade Aplicar
                 case 'aplicar':
                   
@@ -463,7 +464,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                    const skil18 = document.createElement('div');
                    porcentagem = document.createElement('h2');
                    
-                   valorImplementing = dadosAtuais.percentagem_level?.EVALUETE?.Skills?.CHECKING;
+                   valorImplementing = dadosAtuais.percentagem_level?.EVALUATE?.Skills?.CHECKING;
                    porcentagem.textContent = (valorImplementing !== undefined && valorImplementing !== null)
                      ? valorImplementing + '%'
                      : 'Nível não atingido';
@@ -474,13 +475,14 @@ document.addEventListener("DOMContentLoaded", async function () {
        
                    const grafico18 = document.createElement('div');
                    grafico18.classList.add('grafico18');
-                   criacaoGrafico(dadosAtuais, grafico18, skil18,'EVALUETE','CHECKING');
+                   criacaoGrafico(dadosAtuais, grafico18, skil18,'EVALUATE','CHECKING');
 
                    // Decima Nona skill
                    const skil19 = document.createElement('div');
                    porcentagem = document.createElement('h2');
                    
-                   valorImplementing = dadosAtuais.percentagem_level?.EVALUETE?.Skills?.CRITIQUING;
+                   valorImplementing = dadosAtuais.percentagem_level?.EVALUATE?.Skills?.CRITIQUING;
+                   console.log('valorImplementing:', valorImplementing);
                    porcentagem.textContent = (valorImplementing !== undefined && valorImplementing !== null)
                      ? valorImplementing + '%'
                      : 'Nível não atingido';
@@ -491,7 +493,7 @@ document.addEventListener("DOMContentLoaded", async function () {
        
                    const grafico19 = document.createElement('div');
                    grafico19.classList.add('grafico19');
-                   criacaoGrafico(dadosAtuais, grafico19, skil19,'EVALUETE','CRITIQUING');
+                   criacaoGrafico(dadosAtuais, grafico19, skil19,'EVALUATE','CRITIQUING');
 
                   skillContainer.appendChild(skil18);
                   skillContainer.appendChild(skil19);
