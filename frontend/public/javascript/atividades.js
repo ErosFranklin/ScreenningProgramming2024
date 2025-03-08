@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function(){
     
       const p = atividade.querySelector("p");
       const id_activity = atividade.dataset.id_activity; 
-      const description = atividade.querySelector("h2 a").textContent.trim(); 
+      const description = atividade.querySelector("h2").textContent.trim(); 
       const id_content = atividade.dataset.id_content; 
     
       const inputDeadline = document.createElement("input");
@@ -309,7 +309,6 @@ document.addEventListener('DOMContentLoaded', function(){
           return;
         }
     
-
         try {
           const response = await fetch(`https://screenning-programming.onrender.com/api/activity/${id_activity}`, {
             method: 'PATCH', 
@@ -318,7 +317,7 @@ document.addEventListener('DOMContentLoaded', function(){
               'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify({
-              deadline: novaDeadline
+              deadline: convertDateFormat(novaDeadline)
             }),
           });
     
@@ -334,6 +333,8 @@ document.addEventListener('DOMContentLoaded', function(){
         } catch (error) {
           console.error("Erro ao editar a atividade:", error);
           alert("Erro ao atualizar a atividade: " + error.message);
+        }finally{
+          window.location.reload();
         }
       });
     

@@ -90,21 +90,5 @@ document.addEventListener('DOMContentLoaded',function(){
       novaAtividade.innerHTML = `<h2>${linkContent}</h2><p class="dataAtt">Data de Encerramento: ${deadline}</p>`;
       return novaAtividade;
     }
-    function convertDateFormat(dateStr) {
-      const datePattern = /^\d{4}-\d{2}-\d{2}$/;
-      if (!datePattern.test(dateStr)) {
-        console.error("Formato de data inválido.");
-        return null;
-      }
-    
-      const [year, month, day] = dateStr.split("-");
-    
-      return `${day}/${month}/${year}`;
-    }
-
-    
-    
-
-
 
 })
