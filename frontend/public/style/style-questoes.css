@@ -17,7 +17,7 @@
 
 body{
     width: 100vw;
-    height: 100vh;
+    height: 120vh;
     overflow-x: hidden;
 }
 #titulo-atividade{
@@ -57,10 +57,10 @@ input[type="radio"] {
 input[type="radio"] + label {
     display: inline-block;
     padding: 10px 20px;
-    border: 1px solid #87a2f4;
+    border: 3px solid var(--cor-4);
     border-radius: 10px;
-    background-color: var(--cor-3);
-    color: #fff;
+    background-color: none;
+    color: var(--cor-4);
     font-size: 1.2rem;
     font-weight: bolder;
     cursor: pointer;
@@ -68,7 +68,7 @@ input[type="radio"] + label {
 }
 
 input[type="radio"]:checked + label {
-    background-color: var(--cor-2);
+    background-color: var(--cor-3);
     color: #fff;
 }
 .enunciado{
@@ -80,7 +80,8 @@ input[type="radio"]:checked + label {
     position: relative;
 }
 .enunciado > #questao-imagem{
-    width: 50%;
+    
+    max-width: 70%;
     border: 10px solid var(--cor-3);
     border-radius: 10px;
 }

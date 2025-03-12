@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     function carregarQuestaoAtual(data) {
-        console.log("Carregando questão:", data);
+        //console.log("Carregando questão:", data);
 
         const questionImageUrl = data["Question Image"];
         questionImageElement.src = questionImageUrl;

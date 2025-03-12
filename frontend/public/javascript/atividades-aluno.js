@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded',function(){
         }
 
         try {
-            const response = await fetch(`https://screenning-programming.onrender.com/api/activity/complete?id_group=${groupId}`,{
+            const response = await fetch(`https://screenning-programming.onrender.com/api/activity/student/all?id_group=${groupId}&id_student=${studentId}`,{
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",
@@ -32,15 +32,17 @@ document.addEventListener('DOMContentLoaded',function(){
                 throw new Error(errorData.message);
             }
             const atividadeDataAluno = await response.json();
-            console.log("isso aqui:",atividadeDataAluno)
+            
+            const atividades = atividadeDataAluno[0];
+            console.log(atividades)
 
-            if (Array.isArray(atividadeDataAluno) && atividadeDataAluno.length > 0) {
+            if (Array.isArray(atividades) && atividades.length > 0) {
               console.log('entrou')
-                atividadeDataAluno.forEach((atividade) => {
-                  const id_activity = atividade.id_activity
+              atividades.forEach((atividade) => {
+                  const id_activity = atividade.id_activity;
                   const description = atividade.description;
                   let deadline = atividade.deadline;
-                  let status = atividade.status_activity;
+                  let status = atividade.student_activity_status;
                   
                   const id_content = atividade.id_content
                   const atividadeGrupo = criarAtividade(description, deadline, id_content, id_activity, status);
@@ -80,18 +82,26 @@ document.addEventListener('DOMContentLoaded',function(){
         icone = '<i class="bi bi-keyboard"></i>';
       }
     
-      const prazoRestante = deadlineTime(deadline);
+      let prazoRestante = deadlineTime(deadline);
+      let prazoRestanteTxt = 'Prazo Restante: ';
       let linkContent;
-      if (prazoRestante === "Encerrada" || status === "Fechado") {
+      if (prazoRestante === "Encerrada" ) {
         // Link desativado: Sem href, mas com conteúdo visual intacto
         novaAtividade.style.backgroundColor = "#708090"; // Estilo aplicado no novo elemento
         linkContent = `<span class='titulos-atividade'>${description} ${icone}</span>`;
-      } else {
+        prazoRestanteTxt = 'Status da Atividade';
+      } else if(status === "concluída"){
+        novaAtividade.style.backgroundColor = "#708090";
+        prazoRestante = "Concluída";
+        prazoRestanteTxt = 'Status da Atividade';
+        linkContent = `<span class='titulos-atividade'>${description} ${icone}</span>`;
+      }
+      else {
         // Link ativo com href
         linkContent = `<a id="link-atividade" href="questoes-aluno.html?idAtividade=${id_activity}&id_content=${id_content}&groupId=${groupId}">${description} ${icone}</a>`;
       }
     
-      novaAtividade.innerHTML = `<h2>${linkContent}</h2><p class="dataAtt">Data de Encerramento: ${deadline}</p><p>Prazo Restante: ${prazoRestante}</p>`;
+      novaAtividade.innerHTML = `<h2>${linkContent}</h2><p class="dataAtt">Data de Encerramento: ${deadline}</p><p style="text-decoration: underline">${prazoRestanteTxt}: ${prazoRestante}</p>`;
       return novaAtividade;
     }
 

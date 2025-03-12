@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded',function(){
         }
 
         try {
-            const response = await fetch(`https://screenning-programming.onrender.com/api/activity/complete?id_group=${groupId}`,{
+            const response = await fetch(`https://screenning-programming.onrender.com/api/activity/student/all?id_group=${groupId}&id_student=${studentId}`,{
                 method: "GET",
                 headers: {
                   "Content-Type": "application/json",
@@ -35,10 +35,11 @@ document.addEventListener('DOMContentLoaded',function(){
             }
             const atividadeDataAluno = await response.json();
             console.log("isso aqui:",atividadeDataAluno)
+            const atividades = atividadeDataAluno[0];
 
-            if (Array.isArray(atividadeDataAluno) && atividadeDataAluno.length > 0) {
+            if (Array.isArray(atividades) && atividades.length > 0) {
               console.log('entrou')
-                atividadeDataAluno.forEach((atividade) => {
+                atividades.forEach((atividade) => {
                   const id_activity = atividade.id_activity;
                   const description = atividade.description;
                   let deadline = atividade.deadline;
@@ -86,7 +87,7 @@ document.addEventListener('DOMContentLoaded',function(){
       }
     
       let linkContent;
-      linkContent = `<a id="link-atividade" href="detalhe-atividades-resultados.html?idAtividade=${id_activity}&id_content=${id_content}&groupId=${groupId}&studentId=${student_id}">${description} ${icone}</a>`;
+      linkContent = `<a id="link-atividade-resultados" href="detalhe-atividades-resultados.html?idAtividade=${id_activity}&id_content=${id_content}&groupId=${groupId}&studentId=${student_id}">${description} ${icone}</a>`;
       novaAtividade.innerHTML = `<h2>${linkContent}</h2><p class="dataAtt">Data de Encerramento: ${deadline}</p>`;
       return novaAtividade;
     }

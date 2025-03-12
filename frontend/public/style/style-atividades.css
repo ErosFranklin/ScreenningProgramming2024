@@ -28,6 +28,13 @@ body{
     font-weight: bolder;
     text-transform: uppercase;
 }
+#link-atividade{
+    text-decoration: none;
+    color: #fff;
+}
+#link-atividade:hover{
+    color: #ffffff9a;
+}
 .atividades-container{
     width: 100vw;
     height: 100vh;

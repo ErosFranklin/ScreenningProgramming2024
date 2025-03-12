@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         
        
         const dimensoes = [
-          { nome: 'Lembrar', icon: '<i class="bi bi-book"></i>', chave: 'REMENBER' },
+          { nome: 'Lembrar', icon: '<i class="bi bi-book"></i>', chave: 'REMEMBER' },
           { nome: 'Compreender', icon: '<i class="bi bi-lightbulb"></i>', chave: 'UNDERSTAND' },
           { nome: 'Aplicar', icon: '<i class="bi bi-play-circle"></i>', chave: 'APPLY' },
           { nome: 'Analisar', icon: '<i class="bi bi-bar-chart"></i>', chave: 'ANALYSE' },
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           
           
           if(dimensao.nome === 'Lembrar'){
-            const nivel = dados.percentagem_level?.REMENBER?.percentagem;
+            const nivel = dados.percentagem_level?.REMEMBER?.percentagem;
             const isDisabled = nivel === undefined;
             const disabledAttr = isDisabled ? 'disabled' : '';
             const buttonStyle = isDisabled ? 'background-color: gray; cursor: not-allowed;' : '';
@@ -88,50 +88,60 @@ document.addEventListener("DOMContentLoaded", async function () {
           
           if(dimensao.nome === 'Compreender'){
             const nivel = dados.percentagem_level?.UNDERSTAND?.percentagem;
-            const disabledAttr = nivel === undefined ? 'disabled' : '';
+            const isDisabled = nivel === undefined;
+            const disabledAttr = isDisabled ? 'disabled' : '';
+            const buttonStyle = isDisabled ? 'background-color: gray; cursor: not-allowed;' : '';
             card.innerHTML = `
             <h3>${dimensao.nome} ${dimensao.icon}</h3>
             <p> ${nivel !== undefined ? nivel + '%' : 'Nível não atingido'} </p>
-            <button id="${dimensao.nome.toLowerCase()}" ${disabledAttr}>Ver Detalhes</button>
+            <button id="${dimensao.nome.toLowerCase()}" ${disabledAttr} style="${buttonStyle}">Ver Detalhes</button>
           `;
           }
           else if(dimensao.nome === 'Aplicar'){
             const nivel = dados.percentagem_level?.APPLY?.percentagem;
-            const disabledAttr = nivel === undefined ? 'disabled' : '';
+            const isDisabled = nivel === undefined;
+            const disabledAttr = isDisabled ? 'disabled' : '';
+            const buttonStyle = isDisabled ? 'background-color: gray; cursor: not-allowed;' : '';
             card.innerHTML = `
             <h3>${dimensao.nome} ${dimensao.icon}</h3>
             <p>${nivel !== undefined ? nivel + '%' : 'Nível não atingido'} </p>
-            <button id="${dimensao.nome.toLowerCase()}" ${disabledAttr}>Ver Detalhes</button>
+            <button id="${dimensao.nome.toLowerCase()}" ${disabledAttr} style="${buttonStyle}}">Ver Detalhes</button>
           `;
           }
 
           else if(dimensao.nome === 'Analisar'){
             const nivel = dados.percentagem_level?.ANALYSE?.percentagem;
-            const disabledAttr = nivel === undefined ? 'disabled' : '';
+            const isDisabled = nivel === undefined;
+            const disabledAttr = isDisabled ? 'disabled' : '';
+            const buttonStyle = isDisabled ? 'background-color: gray; cursor: not-allowed;' : '';
             card.innerHTML = `
             <h3>${dimensao.nome} ${dimensao.icon}</h3>
             <p> ${nivel !== undefined ? nivel + '%' : 'Nível não atingido'} </p>
-            <button id="${dimensao.nome.toLowerCase()}" ${disabledAttr}>Ver Detalhes</button>
+            <button id="${dimensao.nome.toLowerCase()}" ${disabledAttr} style="${buttonStyle}">Ver Detalhes</button>
           `;
           }
           
           else if(dimensao.nome === 'Avaliar'){
             const nivel = dados.percentagem_level?.EVALUATE?.percentagem;
-            const disabledAttr = nivel === undefined ? 'disabled' : '';
+            const isDisabled = nivel === undefined;
+            const disabledAttr = isDisabled ? 'disabled' : '';
+            const buttonStyle = isDisabled ? 'background-color: gray; cursor: not-allowed;' : '';
             card.innerHTML = `
             <h3>${dimensao.nome} ${dimensao.icon}</h3>
             <p>${nivel !== undefined ? nivel + '%' : 'Nível não atingido'} </p>
-            <button id="${dimensao.nome.toLowerCase()}" ${disabledAttr}>Ver Detalhes</button>
+            <button id="${dimensao.nome.toLowerCase()}" ${disabledAttr} style="${buttonStyle}">Ver Detalhes</button>
           `;
           }
           
           else if(dimensao.nome === 'Criar'){
             const nivel = dados.percentagem_level?.CREATE?.percentagem;
-            const disabledAttr = nivel === undefined ? 'disabled' : '';
+            const isDisabled = nivel === undefined;
+            const disabledAttr = isDisabled ? 'disabled' : '';
+            const buttonStyle = isDisabled ? 'background-color: gray; cursor: not-allowed;' : '';
             card.innerHTML = `
             <h3>${dimensao.nome} ${dimensao.icon}</h3>
             <p> ${nivel !== undefined ? nivel + '%' : 'Nível não atingido'} </p>
-            <button id="${dimensao.nome.toLowerCase()}" ${disabledAttr}>Ver Detalhes</button>
+            <button id="${dimensao.nome.toLowerCase()}" ${disabledAttr} style="${buttonStyle}">Ver Detalhes</button>
           `;
           }
           else{
