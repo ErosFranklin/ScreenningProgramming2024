@@ -39,11 +39,13 @@ document.addEventListener("DOMContentLoaded", async function () {
           throw new Error(errorData.message || "Erro desconhecido");
         }
         const dadosResultados = await response.json();
-        if(dadosResultados.percentage_overall !== undefined){
-          nivelTotal.textContent = 'Nivel Total do Aluno:' + dadosResultados.percentage_overall + '%';
-          
+        console.log('dadosResultados:', dadosResultados.percentage_overall);
+
+        if (dadosResultados.percentage_overall === undefined || dadosResultados.percentage_overall === null) {
+          nivelTotal.textContent = 'Sem resultados';
+        } else {
+          nivelTotal.textContent = 'Nível Total do Aluno: ' + dadosResultados.percentage_overall + '%';
         }
-        nivelTotal.textContent = dadosResultados.percentage_overall = 'Sem resultados';
         
         atualizarCards(dadosResultados);
         console.log("Dados recebidos:", dadosResultados);

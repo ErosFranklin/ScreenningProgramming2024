@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                         <td class='alunoId'>${aluno.idStudent}</td>
                         <td class='alunoAcesso'><a href="../html/detalhe-atividades-resultados.html?idAtividade=${id_activity}&id_content=${id_content}&groupId=${groupId}&studentId=${aluno.idStudent}">${aluno.nameStudent} <i class="bi bi-info-circle"></i></a></td>
                         <td>${aluno.registrationStudent}</td>
-                        <td>${carregarNivelAluno(id_activity, groupId)}</td>
+                        
                     `;
             tabelaAlunos.appendChild(linha);
         } else {
