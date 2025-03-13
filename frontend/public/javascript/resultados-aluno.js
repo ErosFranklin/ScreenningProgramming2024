@@ -39,7 +39,12 @@ document.addEventListener("DOMContentLoaded", async function () {
           throw new Error(errorData.message || "Erro desconhecido");
         }
         const dadosResultados = await response.json();
-        nivelTotal.textContent = 'Nivel Total do Aluno:' + dadosResultados.percentage_overall + '%';
+        if(dadosResultados.percentage_overall !== undefined){
+          nivelTotal.textContent = 'Nivel Total do Aluno:' + dadosResultados.percentage_overall + '%';
+          
+        }
+        nivelTotal.textContent = dadosResultados.percentage_overall = 'Sem resultados';
+        
         atualizarCards(dadosResultados);
         console.log("Dados recebidos:", dadosResultados);
         return dadosResultados;
@@ -53,7 +58,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   
     function atualizarCards(dados) {
       containerTabela.innerHTML = "";
-    
       // Verifica se os dados são válidos
       if (dados.correct_answers && dados.name_student && dados.percentage_overall) {
         
@@ -145,15 +149,18 @@ document.addEventListener("DOMContentLoaded", async function () {
           `;
           }
           else{
-
+            console.error("Dimensão não encontrada:", dimensao.nome);
           }
           
         
           card.addEventListener("click", (event) => {
+            
             const botao = event.target;
             if (botao.tagName === 'BUTTON') {
               const skillName = botao.id; 
               console.log('skillName:', skillName);
+
+             
               
             
               conteudoDinamico.innerHTML = '';
@@ -513,10 +520,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                   break;
               
               }
-             
-    
-    
-             
               conteudoDinamico.appendChild(skillContainer);
     
               

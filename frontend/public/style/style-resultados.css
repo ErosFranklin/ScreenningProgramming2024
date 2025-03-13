@@ -140,10 +140,19 @@ canvas {
     color: #fff;
     cursor: pointer;
 }
-#mensagem{
-    display: flex;
+.mensagem-erro{
+    display: none;
     justify-content: center;
     align-items: center;
+    background-color: red;
+    width: 100%;
+    height: auto;
+    font-size: 1.2rem;
+    color: var(--cor-4);
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+#mensagem{
     width: 100%;
     height: 100%;
     font-size: 1.2rem;
