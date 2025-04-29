@@ -23,6 +23,7 @@ body{
     background-attachment: fixed;
     color:var(--cor-4);
     font-size: 0.9em;
+    min-height: 100vh;
 }
 .menuLateral{
     width: 80px;
@@ -53,7 +54,7 @@ body{
     height: 100%;
 }
 .menuLateral .item-menu{
-    margin-top: 10px;
+   
     list-style:none;
     
 }
@@ -98,6 +99,9 @@ body{
     left:8%;
     flex-direction: column;
     position:absolute;
+}
+.titulo-grupo h2{
+    font-size:2em;
 }
 .bttConvidar{
     display: flex;

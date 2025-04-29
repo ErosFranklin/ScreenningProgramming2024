@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded',function(){
     const urlParametros = new URLSearchParams(window.location.search);
-    const groupId = urlParametros.get("groupId");
+    const groupId = urlParametros.get("groupId") || localStorage.getItem("groupId");
     const mensagem = document.querySelector("#mensagem");
     const atividadeContainer = document.querySelector(".atividades-container");
     

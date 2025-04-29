@@ -8,7 +8,7 @@
 body{
     background-color:  #f9f9f9;
     width: 100vw;
-    height: 150vh;
+    min-height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -95,9 +95,9 @@ body{
 .modal {
   display: none;
   position: fixed;
-  min-width: 400px; /* Evita que fique pequeno demais */
-  max-width: 90%; /* Garante que não ultrapasse a tela */
-  height: auto; /* Altura ajustável conforme o conteúdo */
+  min-width: 400px; 
+  max-width: 90%; 
+  height: auto; 
   max-height: 80%;
   top: 50%;
   left: 50%;
@@ -106,14 +106,14 @@ body{
   padding: 20px;
   border-radius: 5px;
   z-index: 2;
-  overflow-y: auto; /* Adiciona rolagem se necessário */
+  overflow-y: auto; 
 }
 
 .modal-body {
-  display: flex; /* Usa flexbox para os gráficos ocuparem espaço */
-  flex-wrap: wrap; /* Permite que os gráficos fiquem lado a lado */
-  justify-content: center; /* Centraliza os gráficos */
-  gap: 15px; /* Espaçamento entre os gráficos */
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 15px; 
   padding: 10px;
 }
 

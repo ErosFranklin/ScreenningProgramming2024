@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const grupo = document.createElement("div");
     grupo.className = "grupo";
     grupo.dataset.groupId = groupId;
+    localStorage.setItem("groupId", groupId);
     grupo.innerHTML = `
       <h2><a href="detalhe-grupo-aluno.html?groupId=${groupId}">${nome}</a></h2>
       <p>Professor: ${teacherName}</p>

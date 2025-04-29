@@ -24,6 +24,7 @@ body{
     background-attachment: fixed;
     color:var(--cor-4);
     font-size: 0.9em;
+    min-height:100vh ;
 }
 .Grupo{
     width: 100vw;
@@ -61,7 +62,7 @@ body{
     height: 100%;
 }
 .menuLateral .item-menu{
-    margin-top: 10px;
+    
     list-style:none;
     
 }

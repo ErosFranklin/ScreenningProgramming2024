@@ -23,8 +23,7 @@ body{
     background-attachment: fixed;
     color:var(--cor-4);
     font-size: 0.9em;
-    height: 120vh;
-   
+    min-height: 100vh;
 }
 
 .title-conta h2{
@@ -43,12 +42,17 @@ body{
     color:var(--cor-4);
     font-style: italic;
 }
+main{
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+}
 .dados-basicos{
     display: flex;
     justify-content: center;
     align-items: center;
     position:absolute;
-    width: 60%;
+    width: 80%;
     height: auto;
     top:16%;
     left:50%;
@@ -95,7 +99,7 @@ body{
 }
 .componentes-basicos {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(3,1fr);
     gap: 20px; 
     width: 100%;
 }
@@ -144,25 +148,20 @@ body{
 }
 .btt-alterar{
     display:flex;
-    width: 350px;
-    position: absolute;
-    bottom:0;
-    right:0;
-    justify-content: end;
+    justify-content: right;
     align-content: center;
-    margin-right: 6%;
-    margin-bottom: 33px;
+    width: 100%;
 }
 
 #salvarDados{
     background-color: var(--cor-3);
     color:#fff;
     padding:10px;
+    margin-right: 10px;
     border-radius: 5px;
     border-style: none;
     font-weight: bold;
     font-size: 1.1em;
-    width: 100%;
     height: 45px;
 }
 #salvarDados:hover{
