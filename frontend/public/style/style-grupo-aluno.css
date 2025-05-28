@@ -269,7 +269,6 @@ body{
 }
 .bttsGrupo{
     display: flex;
-    background-color: red;
     justify-content: center;
     align-items: center;
     margin:20px 0px;
