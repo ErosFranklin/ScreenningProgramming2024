@@ -89,6 +89,9 @@ document.addEventListener("DOMContentLoaded", () => {
         messageErro.innerHTML = "Ocorreu um erro ao validar o email. Tente novamente mais tarde.";
         enviarButton.value = originalText;
         enviarButton.disabled = false;
+      }finally{
+        enviarButton.value = originalText;
+        enviarButton.disabled = false;
       }
     }
   });
