@@ -93,7 +93,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       const gruposData = await response.json();
-      if (gruposData.groups && Array.isArray(gruposData.groups)) {
+      console.log(gruposData);
+      if (Array.isArray(gruposData.groups) && gruposData.groups.length > 0) {
         gruposData.groups.forEach((grupo) => {
           const novoGrupo = criarGrupo(
             grupo.title,
@@ -104,9 +105,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       } else {
         const mensagem = document.createElement("p");
-        mensagem.textContent = "Nenhum groupo cadastrada!!!";
+        const containerMensagem = document.createElement('div');
+        containerMensagem.className = 'container-mensagem';
+        mensagem.textContent = "Nenhum grupo cadastrado.";
         mensagem.id = 'mensagem'
-        gruposContainer.appendChild(mensagem);
+        containerMensagem.appendChild(mensagem);
+        gruposContainer.appendChild(containerMensagem);
         console.error(
           'A resposta da API não contém a propriedade "groups" ou não é um array.'
         );

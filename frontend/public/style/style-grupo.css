@@ -422,8 +422,15 @@ body{
 #cancelarexclusao:hover{
     background-color: var(--cor-5);
 }
-
-#message{
-    color:red;
-    font-size:0.9rem;
+.container-mensagem{
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+.container-mensagem #mensagem{
+    font-size: 0.9rem;
+    font-weight: bolder;
+    text-transform: uppercase;
 }
