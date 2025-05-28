@@ -57,8 +57,30 @@
       </ul>
     </nav>
     <main>
+      <div id="overlay" class="overlay"></div>
+      <div id="modal" class="modal">
+        <h2>Entrar em um grupo</h2>
+        <form  id="formAddGrupo">
+          <label for="codigoGrupo">Código do Grupo</label>
+          <div class="componentesG">
+            <i class="bi bi-qr-code-scan"></i>
+            <input
+              type="text"
+              name="codigoGrupo"
+              id="codigoGrupo"
+              placeholder="ex: 12Fghj"
+            />
+          </div>
+          <div class="container-erro"><p id="message"></p></div>
+          <div class="bttsGrupo">
+            <button id="entrarGrupo">Entrar via Código</button>
+          </div>
+        </form>
+        <button type="button" id="fechar" >Fechar</button>
+      </div>
       <span class="titlesGrupos">
         <h2>Grupos</h2>
+        <button id="add-grupo-codigo">Entrar <span class="icone"><i class="bi bi-people-fill"></i><i class="bi bi-plus-circle"></i></button>
       </span>
       <div class="container-spinner">
         <div class="overlay-spinner" >
@@ -73,6 +95,7 @@
     </main>
     <script src="../javascript/menu.js"></script>
     <script src="../javascript/grupos-alunos.js"></script>
+    <script src="../javascript/codigo-grupo.js"></script>
     <script src="../javascript/logout.js"></script>
   </body>
 </html>
