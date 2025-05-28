@@ -99,9 +99,11 @@ document.addEventListener("DOMContentLoaded", function () {
           const novoGrupo = criarGrupo(
             grupo.title,
             grupo.period,
-            grupo.group_id
+            grupo.group_id,
+            grupo.code
           );
           gruposContainer.appendChild(novoGrupo);
+          window.refresh = true;
         });
       } else {
         const mensagem = document.createElement("p");
@@ -111,6 +113,11 @@ document.addEventListener("DOMContentLoaded", function () {
         mensagem.id = 'mensagem'
         containerMensagem.appendChild(mensagem);
         gruposContainer.appendChild(containerMensagem);
+        gruposContainer.style.display = "flex";
+        gruposContainer.style.justifyContent = "center";
+        gruposContainer.style.alignItems = "center";
+        gruposContainer.style.height = "100%";
+
         console.error(
           'A resposta da API não contém a propriedade "groups" ou não é um array.'
         );
@@ -179,11 +186,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  function criarGrupo(nome, periodo, groupId) {
+  function criarGrupo(nome, periodo, groupId, code) {
     const novoGrupo = document.createElement("div");
     novoGrupo.className = "grupo";
     novoGrupo.dataset.groupId = groupId;
-    novoGrupo.innerHTML = `<h2><a href="detalhe-grupo.html?groupId=${groupId}">${nome}</a></h2><p>${periodo}</p>`;
+    novoGrupo.innerHTML = `<h2><a href="detalhe-grupo.html?groupId=${groupId}">${nome}</a></h2><p>${periodo}</p><p>Código: ${code}</p>`;
 
     const editar = document.createElement("button");
     editar.innerHTML = '<i class="bi bi-pencil-square"></i>';
@@ -239,8 +246,8 @@ document.addEventListener("DOMContentLoaded", function () {
       novoGrupo.remove();
 
       localStorage.removeItem(`groupId_${groupId}`);
-
       console.log("Grupo excluído com sucesso.");
+      window.refresh = true;
     } catch (error) {
       messageErro.innerHTML = "Erro ao excluir grupo: " + error;
       console.error("Erro ao excluir grupo:", error);
