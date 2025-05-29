@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const nomeGrupo = document.getElementById("nomeGrupo");
   const periodoGrupo = document.getElementById("periodoGrupo");
   const containerMensagem = document.querySelector('.mensagem-erro')
+  const loader = document.querySelector(".container-spinner")
 
   if (!groupId) {
     console.error("Erro: id do grupo não encontrado na URL");
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   async function carregarDetalhesGrupo() {
-    document.querySelector(".container-spinner").style.display = "block";
+    loader.style.display = "block";
 
     try {
       const response = await fetch(
@@ -56,13 +57,13 @@ document.addEventListener("DOMContentLoaded", async function () {
       console.error("Erro ao carregar detalhes do grupo:", error);
     } finally {
       // Esconde o loader após a conclusão
-      document.querySelector(".container-spinner").style.display = "none";
+      loader.style.display = "none";
     }
 }
 
 async function carregarAlunos(pagina) {
     // Exibe o loader e oculta a tabela e a mensagem de erro
-    document.querySelector(".container-spinner").style.display = "block";
+    loader.style.display = "block";
     document.getElementById("mensagem-erro").style.display = "none";
     document.getElementById("tabelaAlunos").style.display = "none";
     document.getElementById("paginacao").style.display = "none";
@@ -86,13 +87,13 @@ async function carregarAlunos(pagina) {
       const dadosAlunos = await response.json();
       if (Array.isArray(dadosAlunos.Students) && dadosAlunos.Students.length > 0) {
         // Oculta o loader e exibe a tabela e paginação caso haja alunos
-        document.querySelector(".container-spinner").style.display = "none";
+        loader.style.display = "none";
         document.getElementById("tabelaAlunos").style.display = "table";
         document.getElementById("paginacao").style.display = "flex";
         atualizarTabela(dadosAlunos.Students);
       } else {
         // Oculta o loader e exibe a mensagem de erro caso não haja alunos
-        document.querySelector(".container-spinner").style.display = "none";
+        loader.style.display = "none";
         document.getElementById("mensagem-erro").style.display = "flex";
       }
     } catch (error) {
@@ -113,7 +114,7 @@ async function carregarAlunos(pagina) {
                     <td class='alunoId'>${aluno.idStudent}</td>
                     <td class='alunoAcesso'><a href="../html/dados-aluno.html?studentId=${aluno.idStudent}">${aluno.nameStudent}</a></td>
                     <td>${aluno.registrationStudent}</td>
-                    <td><button class="btnExcluir" data-id="${aluno.idStudent}"><i class="bi bi-trash-fill"></i></button></td>
+                    <td><button type="button" class="btnExcluir" data-id="${aluno.idStudent}"><i class="bi bi-trash-fill"></i></button></td>
                 `;
         tabelaAlunos.appendChild(linha);
       } else {
@@ -130,6 +131,7 @@ async function carregarAlunos(pagina) {
   }
 
   function configurarEventos() {
+
     btnAnterior.addEventListener("click", () => {
       if (paginaAtual > 1) {
         paginaAtual--;
@@ -142,42 +144,67 @@ async function carregarAlunos(pagina) {
       carregarAlunos(paginaAtual);
     });
 
-    tabelaAlunos.addEventListener("click", async (event) => {
-      const btn = event.target.closest(".btnExcluir");
+    let studentIdParaExcluir = null;
 
-      if (btn) {
-        const studentId = btn.getAttribute("data-id");
-        const groupId = localStorage.getItem("groupId");
-        const token = localStorage.getItem("token");
+  tabelaAlunos.addEventListener("click", (event) => {
+    const btn = event.target.closest(".btnExcluir");
+  
 
-        try {
-          const response = await fetch(
-            `https://screenning-programming.onrender.com/api/group/student/${groupId}?studentId=${studentId}`,
-            {
-              method: "DELETE",
-              headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`,
-              },
-            }
-          );
+    if (btn) {
+      studentIdParaExcluir = btn.getAttribute("data-id");
+      localStorage.setItem("studentIdParaExcluir", studentIdParaExcluir);
+      overlay.style.display = "block";
+      document.querySelector(".modal-exclusao").style.display = "flex";
+    }
+  });
 
-          if (!response.ok) {
-            const errorData = await response.json();
-            console.error("Erro do servidor:", errorData);
-            throw new Error(
-              errorData.message || "Erro desconhecido ao excluir aluno"
-            );
-          }
 
-          alert("Aluno excluido do grupo!!!");
-          carregarAlunos(paginaAtual);
-        } catch (error) {
-          console.error("Erro ao excluir aluno:", error);
+  document.querySelector("#btnConfirmarExclusao").addEventListener("click", async () => {
+    const studentIdParaExcluir = localStorage.getItem("studentIdParaExcluir");
+    const groupId = localStorage.getItem("groupId");
+    const token = localStorage.getItem("token");
+    
+    console.log(studentIdParaExcluir, groupId, token);
+    loader.style.display = "flex";
+
+    try {
+      const response = await fetch(
+        `https://screenning-programming.onrender.com/api/group/student/${groupId}?studentId=${studentIdParaExcluir}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
         }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Erro do servidor:", errorData);
+        throw new Error(
+          errorData.message || "Erro desconhecido ao excluir aluno"
+        );
       }
-    });
+
+      alert("Aluno excluído do grupo!");
+      document.querySelector(".modal-exclusao").style.display = "none";
+      overlay.style.display = "none";
+      localStorage.removeItem("studentIdParaExcluir");
+      carregarAlunos(paginaAtual); // Recarrega os alunos
+    } catch (error) {
+      console.error("Erro ao excluir aluno:", error);
+    } finally {
+      loader.style.display = "none";
+    }
+  });
+
   }
+  document.querySelector("#btnCancelarExclusao").addEventListener("click", () => {
+    document.querySelector(".modal-exclusao").style.display = "none";
+    overlay.style.display = "none";
+    localStorage.removeItem("studentIdParaExcluir");
+  })
 
   carregarDetalhesGrupo();
   configurarEventos();

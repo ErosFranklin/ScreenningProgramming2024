@@ -241,3 +241,51 @@ body{
     display: block;
     margin: auto;
 }
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+.modal-exclusao{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 2;
+}
+.modal-exclusao .bttsExclusao{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin:20px 0px;
+}
+.modal-exclusao .bttsExclusao #btnConfirmarExclusao,
+.modal-exclusao .bttsExclusao #btnCancelarExclusao{
+    background-color: var(--cor-4);
+    border-style: none;
+    border-radius: 5px;
+    width: 100px;
+    color:#fff;
+    padding: 5px;
+    margin-bottom:10px;
+    cursor:pointer;
+    transition: .3s;
+}
+
+.modal-exclusao .bttsExclusao #btnConfirmarExclusao:hover,
+.modal-exclusao .bttsExclusao #btnCancelarExclusao:hover{
+    background-color: var(--cor-5);
+}
