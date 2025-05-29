@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${studentToken}`,
             },
-            body: JSON.stringify({ groupCode: codigoGrupo }),
+            body: JSON.stringify({code_to_group: codigoGrupo }),
         })
         .then(response => {
             if (!response.ok) {
