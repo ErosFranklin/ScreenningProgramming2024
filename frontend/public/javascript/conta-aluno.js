@@ -1,11 +1,22 @@
 document.addEventListener("DOMContentLoaded", async function () {
   const studentId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
-  console.log(studentId);
+  const spinner = document.querySelector(".container-spinner");
+
+  function showSpinner() {
+    if (spinner) spinner.style.display = "flex";
+  }
+
+  function hideSpinner() {
+    if (spinner) spinner.style.display = "none";
+  }
+
   if (!studentId || !token) {
     alert("Erro: ID do usuário ou token não encontrado.");
     return;
   }
+
+  showSpinner();
 
   try {
     const url = `https://screenning-programming.onrender.com/api/student/${studentId}`;
@@ -15,26 +26,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         "Content-Type": "application/json",
       },
     });
-    console.log(usuarioEspecifico);
+
     if (!usuarioEspecifico.ok) {
       throw new Error("Erro ao buscar dados específicos do usuário.");
     }
 
     const usuarioEspecificoDados = await usuarioEspecifico.json();
-    console.log(usuarioEspecificoDados);
-    /*
-         // Atualiza a imagem de perfil
-         const imageContainer = document.querySelector('#imagem-perfil');
-         const elementoImagem = document.createElement('img');
-         elementoImagem.src = usuarioEspecificoDados.image;
-         elementoImagem.alt = 'Foto do Aluno';
-            
- 
- 
-         imageContainer.innerHTML = ''; 
-         imageContainer.appendChild(elementoImagem);
-         // Atualiza os elementos na interface com os dados do usuário
-         */
+
     document.querySelector("#nomeAluno").innerText =
       usuarioEspecificoDados.name || "Nome não disponível";
     document.querySelector("#datadenascimentoAluno").innerText =
@@ -56,5 +54,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   } catch (error) {
     console.error("Erro ao buscar dados do usuário:", error);
     alert("Erro ao buscar dados do usuário.");
+  } finally {
+    hideSpinner();
   }
 });

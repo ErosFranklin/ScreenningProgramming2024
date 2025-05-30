@@ -2,15 +2,24 @@ document.addEventListener("DOMContentLoaded", async function () {
   const studentId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
   const enviarButton = document.querySelector("#salvarDados");
+  const spinner = document.querySelector(".container-spinner");
+
+  function showSpinner() {
+    if (spinner) spinner.style.display = "flex";
+  }
+
+  function hideSpinner() {
+    if (spinner) spinner.style.display = "none";
+  }
 
   if (!studentId || !token) {
     alert("Erro: ID do usuário ou token não encontrado.");
     return;
   }
 
+  showSpinner();
   try {
     const url = `https://screenning-programming.onrender.com/api/student/${studentId}`;
-
     const especificarUser = await fetch(url, {
       method: "GET",
       headers: {
@@ -24,18 +33,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     const specificUserData = await especificarUser.json();
-    console.log(specificUserData);
-    /*
-        // Atualiza a imagem de perfil ainda nao incrementado
-        const imageContainer = document.querySelector('#fotoContainer');
-        const elementoImagem = document.createElement('img');
-        elementoImagem.src = specificUserData.image;
-        elementoImagem.alt = 'Foto do Professor';
-           
-        imageContainer.innerHTML = ''; 
-        imageContainer.appendChild(elementoImagem);
-        
-        */
+
     document.querySelector("#nomeAluno").value = specificUserData.name || "";
     document.querySelector("#datadenascimentoAluno").value =
       formatDateToInputFormat(specificUserData.birth) || "";
@@ -53,6 +51,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   } catch (error) {
     console.error("Erro ao buscar dados do usuário:", error);
     alert("Erro ao buscar dados do usuário.");
+  } finally {
+    hideSpinner();
   }
 
   document
@@ -71,8 +71,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       const institution = document.querySelector("#instituicaoAluno").value;
       const dataNascConverted = convertDateFormat(birth);
       enviarButton.disabled = true;
-      const loader = document.querySelector(".container-spinner");
-      loader.style.display = "block";
+      showSpinner();
 
       const updatedData = {
         nameStudent: name,
@@ -102,37 +101,33 @@ document.addEventListener("DOMContentLoaded", async function () {
         } else {
           alert("Dados atualizados com sucesso!");
           window.location.href = "../html/conta-aluno.html";
-
         }
       } catch (error) {
         console.error("Erro ao atualizar dados do usuário:", error);
         alert("Erro ao atualizar dados do usuário.");
-      }finally{
+      } finally {
         enviarButton.disabled = false;
-        loader.style.display = "none";
+        hideSpinner();
       }
     });
-  //Funcao que verifica se a data está no formato dd/mm/yyyy
+
   function formatDateToInputFormat(dateStr) {
     const dayMonthYearPattern = /^\d{2}\/\d{2}\/\d{4}$/;
     if (dayMonthYearPattern.test(dateStr)) {
       const [day, month, year] = dateStr.split("/");
       return `${year}-${month}-${day}`;
     }
-
     console.error("Formato de data inválido.");
     return "";
   }
-  //Verifica se a data esta no formato certo
+
   function convertDateFormat(dateStr) {
     const datePattern = /^\d{4}-\d{2}-\d{2}$/;
     if (!datePattern.test(dateStr)) {
       console.error("Formato de data inválido.");
       return null;
     }
-
     const [year, month, day] = dateStr.split("-");
-
     return `${day}/${month}/${year}`;
   }
 });

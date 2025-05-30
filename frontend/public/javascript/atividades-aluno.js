@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded',function(){
             const atividadeDataAluno = await response.json();
             
             const atividades = atividadeDataAluno[0];
-            console.log(atividades)
+            
 
             if (Array.isArray(atividades) && atividades.length > 0) {
               console.log('entrou')
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded',function(){
                   
                   const id_content = atividade.id_content
                   const atividadeGrupo = criarAtividade(description, deadline, id_content, id_activity, status);
-                  console.log(atividadeGrupo)
+                  
                   atividadeContainer.appendChild(atividadeGrupo);
                 });
               } else {

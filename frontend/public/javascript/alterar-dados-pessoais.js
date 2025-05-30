@@ -2,9 +2,20 @@ document.addEventListener("DOMContentLoaded", async function () {
   const teacherId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
   const enviarButton = document.querySelector("#salvarDados");
-  
+  const spinner = document.querySelector(".container-spinner");
+
+  function showSpinner() {
+    if (spinner) spinner.style.display = "flex";
+  }
+
+  function hideSpinner() {
+    if (spinner) spinner.style.display = "none";
+  }
+
+  showSpinner();
   if (!teacherId || !token) {
     alert("Erro: ID do usuário ou token não encontrado.");
+    hideSpinner();
     return;
   }
 
@@ -24,37 +35,30 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     const specificUserData = await especificarUser.json();
-    console.log(specificUserData)
-    /* Atualiza a imagem de perfil
-        const imageContainer = document.querySelector('#fotoContainer');
-        const elementoImagem = document.createElement('img');
-        elementoImagem.src = specificUserData.image;
-        elementoImagem.alt = 'Foto do Professor';
-           
-        imageContainer.innerHTML = ''; 
-        imageContainer.appendChild(elementoImagem);
-        */
+
     document.querySelector("#nomeProfessor").value =
       specificUserData.name || "";
     document.querySelector("#datadenascimentoProfessor").value =
-      formatDateTtFormat(specificUserData.birth) || "";
+      formatDateToInputFormat(specificUserData.birth) || "";
     document.querySelector("#generoProfessor").value =
-      specificUserData.gender || "";
+      specificUserData.gender || "Não especificado";
     document.querySelector("#formacaoProfessor").value =
-      specificUserData.formation || "";
+      specificUserData.formation || "Não especificado";
     document.querySelector("#matriculaProfessor").value =
       specificUserData.registration || "";
     document.querySelector("#emailProfessor").value =
-      specificUserData.email || "";
+      specificUserData.email || "Não especificado";
     document.querySelector("#cidadeProfessor").value =
-      specificUserData.city || "";
+      specificUserData.city || "Não especificado";
     document.querySelector("#estadoProfessor").value =
-      specificUserData.state || "";
+      specificUserData.state || "Não especificado";
     document.querySelector("#instituicaoProfessor").value =
-      specificUserData.institution || "";
+      specificUserData.institution || "Não especificado";
   } catch (error) {
     console.error("Erro ao buscar dados do usuário:", error);
     alert("Erro ao buscar dados do usuário.");
+  } finally {
+    hideSpinner();
   }
 
   document
@@ -73,8 +77,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       const institution = document.querySelector("#instituicaoProfessor").value;
       const dataNascConverted = convertDateFormat(birth);
       enviarButton.disabled = true;
-      const loader = document.querySelector(".container-spinner");
-      loader.style.display = "block";
+      showSpinner();
 
       const updatedData = {
         nameTeacher: name,
@@ -108,33 +111,29 @@ document.addEventListener("DOMContentLoaded", async function () {
       } catch (error) {
         console.error("Erro ao atualizar dados do usuário:", error);
         alert("Erro ao atualizar dados do usuário.");
-      }finally{
+      } finally {
         enviarButton.disabled = false;
-        loader.style.display = "none";
+        hideSpinner();
       }
     });
-  // essa funcao veerifica se a data está no formato dd/mm/yyyy
+
   function formatDateToInputFormat(dateStr) {
     const dayMonthYearPattern = /^\d{2}\/\d{2}\/\d{4}$/;
     if (dayMonthYearPattern.test(dateStr)) {
       const [day, month, year] = dateStr.split("/");
       return `${year}-${month}-${day}`;
     }
-
     console.error("Formato de data inválido.");
     return "";
   }
 
-  //Essa aqui converte a data
   function convertDateFormat(dateStr) {
     const datePattern = /^\d{4}-\d{2}-\d{2}$/;
     if (!datePattern.test(dateStr)) {
       console.error("Formato de data inválido.");
       return null;
     }
-
     const [year, month, day] = dateStr.split("-");
-
     return `${day}/${month}/${year}`;
-  }oInpu
+  }
 });

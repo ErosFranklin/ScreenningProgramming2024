@@ -68,8 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
-    console.log('userId:',userId)
-    console.log('token:',token)
+    
     if (!userId || !token) {
       console.error("Erro: ID do usuário ou token não encontrado.");
       return;
@@ -93,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       const gruposData = await response.json();
-      console.log(gruposData);
+      
       if (Array.isArray(gruposData.groups) && gruposData.groups.length > 0) {
         gruposData.groups.forEach((grupo) => {
           const novoGrupo = criarGrupo(

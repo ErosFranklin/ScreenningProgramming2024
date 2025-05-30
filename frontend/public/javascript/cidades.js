@@ -1,6 +1,6 @@
 //Api usada para pegar as cidades referentes ao estado selecionado
-const estadoSelect = document.getElementById('estado') || document.getElementById('estadoAluno');
-const cidadeSelect = document.getElementById('cidade') || document.getElementById('cidadeAluno');
+const estadoSelect = document.getElementById('estado') || document.getElementById('estadoAluno') || document.getElementById('estadoProfessor');
+const cidadeSelect = document.getElementById('cidade') || document.getElementById('cidadeAluno') || document.getElementById('cidadeProfessor');
 
 // Fetch para carregar os estados
 fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
