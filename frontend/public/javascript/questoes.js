@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 if (!response.ok) throw new Error("Erro ao enviar resposta");
 
                 const result = await response.json();
-                console.log("Resposta enviada com sucesso:", result);
+                
 
                 questoes_carregadas++;
                 if (questoes_carregadas < total_questoes) {
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             if (!response.ok) throw new Error("Erro ao buscar dados da atividade");
 
             const atividadeData = await response.json();
-            console.log(atividadeData);
+            
             tituloAtividade.textContent = atividadeData.activity[0][1];
             return atividadeData.activity[0][6];
         } catch (error) {
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             if (!response.ok) throw new Error("Erro ao buscar questões");
 
             const responseData = await response.json();
-            console.log("Questão recebida:", responseData);
+            
 
             // Valida o formato do responseData e pega apenas a questão no índice 0
             if (Array.isArray(responseData) && responseData.length > 0) {

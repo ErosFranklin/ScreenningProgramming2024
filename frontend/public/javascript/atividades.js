@@ -13,10 +13,11 @@ document.addEventListener('DOMContentLoaded', function(){
     const confirmaExcluirModal = document.querySelector("#confirmaExcluirModal");
     const confirmaExcluirBotao = document.querySelector("#confirmarExcluirBotao");
     const cancelarExclusao = document.querySelector("#cancelarexclusao");
+    
 
     carregarAtividades(groupId);
 
-    // DEPOIS OLHE SE ESTA FUNCIONANDO E PUXE COM O GET DOIDAO
+    
     const modalExibido = localStorage.getItem("modalExibido");
     if (modalExibido === "true") {
         overlay.style.display = "block";
@@ -68,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function(){
     
     async function carregarAtividades(groupId) {
       const loader = document.querySelector(".container-spinner");
+      const mensagem = document.querySelector('#mensagem');
       loader.style.display = "block";
       
       if (!groupId) {
@@ -89,6 +91,8 @@ document.addEventListener('DOMContentLoaded', function(){
         );
   
         if (!response.ok) {
+          mensagem.style.display = "block";
+          mensagem.textContent = "Nenhuma atividade cadastrada!!!";
           const errorData = await response.json();
           throw new Error(errorData.message);
         }
@@ -96,6 +100,7 @@ document.addEventListener('DOMContentLoaded', function(){
         const atividadeData = await response.json();
         console.log(atividadeData);
         if (Array.isArray(atividadeData) && atividadeData.length > 0) {
+          mensagem.style.display = "none";
           atividadeData.forEach((atividade) => {
             const id_activity = atividade.id_activity;
             const description = atividade.description;
@@ -112,10 +117,8 @@ document.addEventListener('DOMContentLoaded', function(){
             atividadeContainer.appendChild(atividadeGrupo);
           });
         } else {
-          const mensagem = document.createElement("p");
+          mensagem.style.display = "block";
           mensagem.textContent = "Nenhuma atividade cadastrada!!!";
-          mensagem.id = 'mensagem'
-          atividadeContainer.appendChild(mensagem);
           console.error(
             'A resposta da API não contém a propriedade "atividade" ou não é um array.'
           );
