@@ -3,10 +3,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById("recupera_email");
   const matriculaInput = document.getElementById("conf_matricula");
   const matriculaContainer = document.getElementById("matriculaContainer");
+
+  const spinner = document.querySelector(".container-spinner");
+
+  function showSpinner() {
+    if (spinner) spinner.style.display = "flex";
+  }
+
+  function hideSpinner() {
+    if (spinner) spinner.style.display = "none";
+  }
   let userData = null;
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    showSpinner(); 
     const email = emailInput.value.trim();
     let matricula = matriculaInput.value.trim();
     let urlApi = "";
@@ -49,12 +60,15 @@ document.addEventListener("DOMContentLoaded", () => {
             "Erro ao enviar a solicitação de redefinição de senha:",
             error
           );
-          messageErro.innerHTML = "Ocorreu um erro ao processar sua solicitação. Tente novamente mais tarde."
+          if (messageErro) messageErro.innerHTML = "Ocorreu um erro ao processar sua solicitação. Tente novamente mais tarde."
+        } finally {
+          hideSpinner(); 
         }
       } else {
-        messageErro.innerHTML = "A matrícula informada não está cadastrada.";
+        if (messageErro) messageErro.innerHTML = "A matrícula informada não está cadastrada.";
         enviarButton.value = originalText;
         enviarButton.disabled = false;
+        hideSpinner(); 
       }
     } else {
       if (email.includes("@servidor")) {
@@ -73,25 +87,26 @@ document.addEventListener("DOMContentLoaded", () => {
           enviarButton.disabled = false;
           matriculaContainer.style.display = "block";
           matriculaInput.required = true;
-          messageErro.innerHTML = "";
-
+          if (messageErro) messageErro.innerHTML = "";
+            // Limpa o campo de matrícula ao exibir o container
+            matriculaInput.value = "";
           userData = await response.json();
         } else {
           matriculaContainer.style.display = "none";
           matriculaInput.required = false;
-          messageErro.innerHTML = "Usuário não encontrado! Verifique o email e tente novamente."; 
+          if (messageErro) messageErro.innerHTML = "Usuário não encontrado! Verifique o email e tente novamente."; 
           enviarButton.value = originalText;
           enviarButton.disabled = false;
         }
       } catch (error) {
-        
         console.error("Erro ao validar o email:", error);
-        messageErro.innerHTML = "Ocorreu um erro ao validar o email. Tente novamente mais tarde.";
+        if (messageErro) messageErro.innerHTML = "Ocorreu um erro ao validar o email. Tente novamente mais tarde.";
         enviarButton.value = originalText;
         enviarButton.disabled = false;
-      }finally{
+      } finally {
         enviarButton.value = originalText;
         enviarButton.disabled = false;
+        hideSpinner(); 
       }
     }
   });

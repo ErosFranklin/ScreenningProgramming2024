@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const token = new URLSearchParams(window.location.search).get("token");
   const decode = jwt_decode(token);
   const email = decode.email;
+  
   console.log('Token:',token)
   console.log('Decodificado:',decode)
   
