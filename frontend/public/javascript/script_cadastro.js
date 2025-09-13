@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       if (!validarEmail(email)) {
-        messageErro.innerHTML = "Email inválido!";
+        messageErro.innerHTML = "Email institucional inválido!";
         enviarButton.value = originalText;
         enviarButton.disabled = false;
         loader.style.display = "none";
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       if (!validarPassword(password)) {
-        messageErro.innerHTML = "Senha inválida!";
+        messageErro.innerHTML = "A senha deve ter entre 6 a 20 caracteres e incluir pelo menos um número e uma letra.";
         enviarButton.value = originalText;
         enviarButton.disabled = false;
         loader.style.display = "none";

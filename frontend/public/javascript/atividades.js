@@ -204,7 +204,6 @@ document.addEventListener('DOMContentLoaded', function(){
         
         // Se a atividade estiver encerrada, adiciona o botão "Ver Estatísticas" abaixo do conteúdo
         if (prazoRestante === "Encerrada") {
-          // Define o estilo de fundo para atividades encerradas, se desejado
           novaAtividade.style.backgroundColor = "#708090";
           const verEstatisticasBtn = document.createElement('button');
           verEstatisticasBtn.className = 'verEstatisticasBtn';
@@ -249,11 +248,8 @@ document.addEventListener('DOMContentLoaded', function(){
         for (var i = 0; i < atividades.length; i++) {
           var atividade = atividades[i];
           
-          // Tenta selecionar o elemento <a> e o <p>
           var aElement = atividade.querySelector("a");
           var pElement = atividade.querySelector("p");
-      
-          // Se não encontrar algum dos elementos, pula para a próxima iteração
           if (!aElement || !pElement) continue;
       
           var description = aElement.innerText.trim();

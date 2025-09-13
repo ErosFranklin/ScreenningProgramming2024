@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const btnEnviarCodigo = document.querySelector('#btnenviarCodigo')
   const errorMessage = document.querySelector("#error-message");
   const emailInput = document.querySelector("#email-input");
+  const spinner = document.querySelector(".container-spinner");
   const urlParams = new URLSearchParams(window.location.search);
   const email = urlParams.get("email");
   emailInput.innerHTML = email;
@@ -14,9 +15,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const codigo = document.querySelector("#codigo").value;
     btnEnviarCodigo.textContent = "Carregando..."; 
     btnEnviarCodigo.disabled = true; 
+    spinner.style.display = "flex";
 
     if (codigo === "") {
       errorMessage.innerText = "Por favor, insira o código de verificação.";
+      spinner.style.display = "none";
+      btnEnviarCodigo.textContent = "ENVIAR"; 
+      btnEnviarCodigo.disabled = false;
       return;
     }
 
@@ -28,14 +33,14 @@ document.addEventListener("DOMContentLoaded", function () {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ code: codigo }),
+          body: JSON.stringify({ code: codigo, resendCode: false }),
         }
       );
 
       if (!response.ok) {
         const errorData = await response.json();
-        errorMessage.innerText =
-          errorData.message || "Falha ao verificar o código.";
+        errorMessage.innerText = errorData.message || "Falha ao verificar o código.";
+        spinner.style.display = "none";
         return;
       }
 
@@ -60,21 +65,31 @@ document.addEventListener("DOMContentLoaded", function () {
     }finally{
       btnEnviarCodigo.textContent = "ENVIAR";
       btnEnviarCodigo.disabled = false;
+      spinner.style.display = "none";
     }
   });
 
   btnReenviarCodigo.addEventListener("click", async function (event) {
     event.preventDefault();
-
+    spinner.style.display = "flex";
     try {
-      const response = await fetch(`/api/reenviar_codigo/${email}`, {
-        method: "POST",
-      });
+     const response = await fetch(
+        `https://screenning-programming.onrender.com/api/send_verification_code/${email}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ resendCode: true }),
+        }
+      );
+      const responseData = await response.json();
+      console.log(responseData);
 
       if (!response.ok) {
         const errorData = await response.json();
-        errorMessage.innerText =
-          errorData.message || "Erro ao reenviar o código.";
+        errorMessage.innerText = errorData.message || "Erro ao reenviar o código.";
+        spinner.style.display = "none";
         return;
       }
 
@@ -82,6 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (error) {
       console.error("Erro ao reenviar o código:", error);
       errorMessage.innerText = "Ocorreu um erro ao reenviar o código.";
+    } finally {
+      spinner.style.display = "none";
     }
   });
 });

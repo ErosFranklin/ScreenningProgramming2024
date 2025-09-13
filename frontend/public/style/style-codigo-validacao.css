@@ -59,7 +59,8 @@ body{
     box-shadow: 0 0 5px var(--cor-2); 
 }
 #error-message{
-    font-size: 18px;
+    font-size: 0.9rem;
+    margin-bottom:2rem;
     color:red;
     font-weight: bolder;
 }
@@ -73,8 +74,17 @@ body{
     justify-content: center;
     flex-direction: column;
 }
-.container-btn #reenviar{
-    display:none;
+.container-btn #btnReenviarCodigo{
+    display:flex;
+    border:none;
+    background-color: transparent;
+    font-size:1rem;
+    color: var(--cor-4);
+}
+.container-btn #btnReenviarCodigo:hover{
+    text-decoration: underline;
+    cursor:pointer;
+    color: var(--cor-5);
 }
 .container-btn #btnenviarCodigo{
     background-color: var(--cor-3);
@@ -94,3 +104,42 @@ body{
     box-shadow:5px 5px 5px #0230595d;
     cursor:pointer;
 }
+.container-spinner{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}  
+.overlay-spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Sobrepõe o conteúdo */
+  }
+  
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top: 5px solid var(--cor-4); /* Cor do spinner */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }

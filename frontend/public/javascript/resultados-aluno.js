@@ -77,8 +77,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         dimensoes.forEach((dimensao) => {
           const card = document.createElement("div");
           card.classList.add("card-resultado");
-
-          
           
           if(dimensao.nome === 'Lembrar'){
             const nivel = dados.percentagem_level?.REMEMBER?.percentagem;
@@ -92,7 +90,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           `;
           }
           
-          if(dimensao.nome === 'Compreender'){
+          else if(dimensao.nome === 'Compreender'){
             const nivel = dados.percentagem_level?.UNDERSTAND?.percentagem;
             const isDisabled = nivel === undefined;
             const disabledAttr = isDisabled ? 'disabled' : '';
@@ -189,7 +187,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       
                   const grafico1 = document.createElement('div');
                   grafico1.classList.add('grafico1');
-                  criacaoGrafico(dadosAtuais, grafico1, skil1,'REMENBER','RECOGNIZING');
+                  console.log("dadosAtuais:", dadosAtuais);
+                  criacaoGrafico(dadosAtuais, grafico1, skil1,'REMEMBER','RECOGNIZING');
                   
                   // Segundo skill
                   const skil2 = document.createElement('div');
@@ -380,7 +379,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       
                   const grafico12 = document.createElement('div');
                   grafico12.classList.add('grafico12');
-                  criacaoGrafico(dadosAtuais, grafico12, skil12,'ANALYSE','ATTRIBUTING ');
+                  criacaoGrafico(dadosAtuais, grafico12, skil12,'ANALYSE','ATTRIBUTING');
 
                   skillContainer.appendChild(skil10);
                   skillContainer.appendChild(skil11);
@@ -549,7 +548,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       grafico.appendChild(canvas);
       skill.appendChild(grafico);
       
-      // Tenta acessar os dados usando optional chaining
       const correct_answers = dadosAtuais.level_stats?.[habilidade]?.[name_skill]?.correct_answers;
       console.log('correct_answers:', correct_answers);
       const total_questions = dadosAtuais.level_stats?.[habilidade]?.[name_skill]?.total_questions;
@@ -557,11 +555,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       
       let data;
       
-      // Se os dados não existirem, define valores padrão e mensagem
-      if (correct_answers === undefined || total_questions === undefined) {
-        // Valores padrão para criar um gráfico "zerado"
+      if (correct_answers == null || total_questions == null || total_questions === 0) {
         const defaultCorrect = 0;
-        const defaultTotal = 1; // Evita divisão por zero; nesse caso, o gráfico mostrará 0% de acertos
+        const defaultTotal = 1; 
         data = {
           labels: ['Sem Respostas'],
           datasets: [{
