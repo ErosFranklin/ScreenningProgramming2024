@@ -16,6 +16,11 @@
     />
   </head>
   <body>
+    <div class="container-spinner">
+      <div class="overlay-spinner" >
+          <div class="spinner"></div>
+        </div>
+    </div>
     <div class="posAutenticacao">
       <div class="professor">
         <h2>Pós Autenticação</h2>
@@ -87,7 +92,8 @@
             <select name="cidade" id="cidade" class="form-style"></select>
             <i class="icones-input2 bi bi-houses-fill"></i>
           </div>
-          <div class="env">
+          <div class="btn-container">
+            <p id="error-message"></p>
             <button type="submit" class="btn" id="idProfessor">
               Confirmar
             </button>

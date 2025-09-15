@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const teacherToken = localStorage.getItem("token");
   const institution = "UEPB";
   const spinner = document.querySelector(".container-spinner");
-  console.log(teacherId);
+  const errorMessage = document.getElementById("error-message");
 
   if (name) {
     const nameField = document.querySelector("#nomeP");
@@ -47,16 +47,14 @@ document.addEventListener("DOMContentLoaded", function () {
       state === "" ||
       institution === ""
     ) {
-      alert("Preencha todos os campos!!!");
+      errorMessage.textContent = "Preencha todos os campos!!!";
       enviarButton.value = originalText;
       enviarButton.disabled = false;
       spinner.style.display = "none";
       return;
     }
     if (registration.length !== 9) {
-      alert(
-        "Matrícula inválida. A matrícula deve conter exatamente 8 dígitos."
-      );
+      errorMessage.textContent = "Matrícula inválida. A matrícula deve conter exatamente 8 dígitos.";
       enviarButton.value = originalText;
       enviarButton.disabled = false;
       spinner.style.display = "none";
@@ -85,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!response.ok) {
         const errorData = await response.json();
         console.error("Error:", errorData.message);
-        alert("Erro: " + errorData.message);
+        errorMessage.textContent = "Ocorreu um erro inesperado. Por favor, tente novamente.";
         enviarButton.value = originalText;
         enviarButton.disabled = false;
         spinner.style.display = "none";
@@ -94,12 +92,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       try {
         const responseData = await response.json();
-        console.log(responseData);
-        alert("Dados atualizados com sucesso!");
         window.location.href = "../index.html";
       } catch (error) {
         console.error("JSON parse error:", error);
-        alert("Ocorreu um erro ao processar a resposta do servidor.");
       }finally{
         enviarButton.value = originalText;
         enviarButton.disabled = false;
