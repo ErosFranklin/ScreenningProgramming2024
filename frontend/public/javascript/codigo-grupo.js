@@ -35,11 +35,18 @@ document.addEventListener("DOMContentLoaded", () => {
             return response.json();
         })
         .then(data => {
-            spinner.style.display = "none";
-            console.log("Grupo adicionado com sucesso:", data);
-            alert("Você entrou no grupo com sucesso!");
-            
-            window.location.reload();
+            if(data[1] === 404){
+                messageErro.innerHTML = "Código inválido. Tente novamente.";
+                spinner.style.display = "none";
+                return;
+            }else{
+                spinner.style.display = "none";
+                alert("Você entrou no grupo com sucesso!");
+                overlay.style.display = "none";
+                modal.style.display = "none";
+                spinner.style.display = "none";
+                window.location.reload();
+            }
         })
         .catch(error => {
             spinner.style.display = "none";
@@ -47,11 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
             messageErro.innerHTML = "Ocorreu um erro ao entrar no grupo. Tente novamente.";
         })
         .finally(() => {
-            document.querySelector("#entrarGrupo").value = originalText;
+            document.querySelector("#entrarGrupo").value = "Enviar";
             document.querySelector("#entrarGrupo").disabled = false;
-            overlay.style.display = "none";
-            modal.style.display = "none";
-            spinner.style.display = "none";
         });
 
 
