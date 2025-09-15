@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     const token = localStorage.getItem("token");
     const id_activity = urlParametros.get("idAtividade");
     const id_content = urlParametros.get("id_content");
-    console.log(groupId, studentId, id_activity, id_content);
     const nivelTotal = document.querySelector('#nivel-total');
     const containerTabela = document.querySelector('.container-tabelaresultados');
     const modal = document.querySelector('.modal');
@@ -39,7 +38,6 @@ document.addEventListener("DOMContentLoaded", async function () {
           throw new Error(errorData.message || "Erro desconhecido");
         }
         const dadosResultados = await response.json();
-        console.log('dadosResultados:', dadosResultados.percentage_overall);
 
         if (dadosResultados.percentage_overall === undefined || dadosResultados.percentage_overall === null) {
           nivelTotal.textContent = 'Sem resultados';
@@ -48,7 +46,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
         
         atualizarCards(dadosResultados);
-        console.log("Dados recebidos:", dadosResultados);
         return dadosResultados;
       } catch (error) {
         console.error("Erro ao carregar resultados do aluno:", error);

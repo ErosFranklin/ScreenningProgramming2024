@@ -9,8 +9,6 @@ document.addEventListener('DOMContentLoaded',function(){
     async function carregarAtividades(groupId) {
       const loader = document.querySelector(".container-spinner");
       loader.style.display = "block";
-      
-
         const studentToken = localStorage.getItem("token");
         const studentId = localStorage.getItem("userId");
         if(!studentToken || !studentId){
@@ -37,7 +35,6 @@ document.addEventListener('DOMContentLoaded',function(){
             
 
             if (Array.isArray(atividades) && atividades.length > 0) {
-              console.log('entrou')
               atividades.forEach((atividade) => {
                   const id_activity = atividade.id_activity;
                   const description = atividade.description;

@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const studentToken = localStorage.getItem("token");
       const decode = jwt_decode(studentToken)
       const studentId = localStorage.getItem("userId");
-      console.log("dados:", decode);
      
       if (!studentId || !studentToken) {
         console.error("Error: ID do estudante ou token inválidos");
@@ -29,9 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
             },
           }
         );
-        console.log(response);
-  
-        
         if (!response.ok) {
           const errorData = await response.json();
           console.error("Erro na resposta da API:", errorData);
@@ -39,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         loader.style.display = "none";
         const gruposData = await response.json();
-        console.log("dados do grupo:", gruposData);
   
         
         const grupos = document.querySelector("#grupos");

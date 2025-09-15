@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded',function(){
     const urlParametros = new URLSearchParams(window.location.search);
     const groupId = urlParametros.get("groupId");
     const studentId = urlParametros.get("studentId");
-    console.log("ID do grupo:", studentId);
     const mensagem = document.querySelector("#mensagem");
     const atividadeContainer = document.querySelector(".atividades-container");
     
@@ -11,8 +10,6 @@ document.addEventListener('DOMContentLoaded',function(){
     async function carregarAtividades(groupId) {
       const loader = document.querySelector(".container-spinner");
       loader.style.display = "block";
-     
-
         const studentToken = localStorage.getItem("token");
         
         if(!studentToken || !studentId){
@@ -34,11 +31,9 @@ document.addEventListener('DOMContentLoaded',function(){
                 throw new Error(errorData.message);
             }
             const atividadeDataAluno = await response.json();
-            console.log("isso aqui:",atividadeDataAluno)
             const atividades = atividadeDataAluno[0];
 
             if (Array.isArray(atividades) && atividades.length > 0) {
-              console.log('entrou')
                 atividades.forEach((atividade) => {
                   const id_activity = atividade.id_activity;
                   const description = atividade.description;
@@ -51,7 +46,6 @@ document.addEventListener('DOMContentLoaded',function(){
                   
                   const id_content = atividade.id_content;
                   const atividadeGrupo = criarAtividade(description, deadline, id_content, id_activity, studentId);
-                  console.log(atividadeGrupo)
                   atividadeContainer.appendChild(atividadeGrupo);
                 });
               } else {
