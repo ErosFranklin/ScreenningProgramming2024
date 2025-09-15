@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const teacherId = localStorage.getItem("userId");
   const teacherToken = localStorage.getItem("token");
   const institution = "UEPB";
+  const spinner = document.querySelector(".container-spinner");
   console.log(teacherId);
 
   if (name) {
@@ -35,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const originalText = enviarButton.value;
     enviarButton.value = "Carregando...";
     enviarButton.disabled = true;
+    spinner.style.display = "flex";
 
     if (
       name === "" ||
@@ -48,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Preencha todos os campos!!!");
       enviarButton.value = originalText;
       enviarButton.disabled = false;
+      spinner.style.display = "none";
       return;
     }
     if (registration.length !== 9) {
@@ -56,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       enviarButton.value = originalText;
       enviarButton.disabled = false;
+      spinner.style.display = "none";
       return;
     }
 
@@ -84,6 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Erro: " + errorData.message);
         enviarButton.value = originalText;
         enviarButton.disabled = false;
+        spinner.style.display = "none";
         return;
       }
 
@@ -98,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }finally{
         enviarButton.value = originalText;
         enviarButton.disabled = false;
+        spinner.style.display = "none";
       }
     } catch (error) {
       console.error("Fetch error:", error);
@@ -105,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }finally{
       enviarButton.value = originalText;
       enviarButton.disabled = false;
+      spinner.style.display = "none";
     }
   });
 });
