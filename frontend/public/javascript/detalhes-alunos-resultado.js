@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     function atualizarTabela(dados) {
         tabelaAlunos.innerHTML = "";
 
-        dados.forEach((aluno) => {
+        dados.forEach(async (aluno) => {
         if (aluno.idStudent && aluno.nameStudent && aluno.registrationStudent) {
             const linha = document.createElement("tr");
 
@@ -71,6 +71,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                         <td class='alunoId'>${aluno.idStudent}</td>
                         <td class='alunoAcesso'><a href="../html/detalhe-atividades-resultados.html?idAtividade=${id_activity}&id_content=${id_content}&groupId=${groupId}&studentId=${aluno.idStudent}">${aluno.nameStudent} <i class="bi bi-info-circle"></i></a></td>
                         <td>${aluno.registrationStudent}</td>
+                        <td>${await carregarNivelAluno(id_activity, aluno.idStudent)}</td>
                         
                     `;
             tabelaAlunos.appendChild(linha);
@@ -150,7 +151,10 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
         const atividadeDataAluno = await response.json();
         console.log("isso aqui:",atividadeDataAluno)
-        return atividadeDataAluno.percentage_overall;
+        if(atividadeDataAluno.percentage_overall === null || atividadeDataAluno.percentage_overall === undefined){
+            return 'Sem nível';
+        }
+        return atividadeDataAluno.percentage_overall + '%';
     }
 
     configurarEventos();
